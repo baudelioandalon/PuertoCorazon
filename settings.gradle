@@ -1,2 +1,3 @@
 rootProject.name = "PuertoCorazon"
 include ':app'
+include ':commonutils'
