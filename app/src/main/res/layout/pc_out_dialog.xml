@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:elevation="10dp"
+                app:cu_cornerAll="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="31dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/deseas_salir_de_n_puerto_corazon"
+                    android:textColor="@color/black_700"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="43dp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="@string/para_salir_vuelva_a_presionar_nla_tecla_de_regreso_el_boton_salir"
+                    android:textColor="@color/fill_text_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/btnOut"
+                    android:layout_width="113dp"
+                    android:layout_height="57dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="67dp"
+                    android:layout_marginBottom="26dp"
+                    app:cu_backgroundColor="@color/red_btn_out"
+                    app:cu_cornerAll="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Salir"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/btnCancelOut"
+                    android:layout_width="113dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="67dp"
+                    android:layout_marginBottom="26dp"
+                    app:cu_backgroundColor="@color/white"
+                    app:cu_cornerAll="10dp"
+                    android:layout_marginEnd="26dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.763"
+                    app:layout_constraintStart_toEndOf="@+id/roundableCamera"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:cu_strokeLineColor="@color/primary_700"
+                    app:cu_strokeLineWidth="1dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Cancelar"
+                        android:textColor="@color/primary_700"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</layout>

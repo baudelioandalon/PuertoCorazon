@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PuertoCorazon</string>
+    <string name="deseas_salir_de_n_puerto_corazon">¿Deseas salir de \n Puerto Corazon?</string>
+    <string name="para_salir_vuelva_a_presionar_nla_tecla_de_regreso_el_boton_salir">Para salir vuelva a presionar \nla tecla de regreso ó el boton salir.</string>
+    <string name="eventos_especiales_n_en_puerto_vallarta">Eventos especiales\n en Puerto Vallarta</string>
+    <string name="proximos_eventos">Servicios disponibles</string>
+    <string name="temazcal_experience">Temazcal Experience</string>
+    <string name="reservaci_nes_text">Reservaciónes</string>
+    <string name="title_example_text">Temazcal \nExperience</string>
+    <string name="descripci_n_text">Descripción</string>
+    <string name="lorem_impsum_text">You will learn tennis Lorem Ipsum is simply du mmy text of the printing and typesetting indust ry. Lorem Ipsum has been the industry’s stan dard dummy text ever since the 1500s.</string>
 </resources>
