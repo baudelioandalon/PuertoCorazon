@@ -10,7 +10,7 @@ apply {
     plugin(Dependency.pluginKotlinKapt)
     plugin(Dependency.pluginKotlinParcelize)
     plugin(Dependency.pluginSafeArgs)
-//    plugin(Dependency.pluginGoogleService)
+    plugin(Dependency.pluginGoogleService)
     plugin(Dependency.pluginCrashlytics)
 }
 
@@ -89,8 +89,8 @@ android {
 
 dependencies {
     implementation(project(":commonutils"))
-//    implementation(project(":features:login"))
-//    implementation(project(":library:core"))
+    implementation(project(":features:login"))
+    implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
     implementation(project(":features:client:home"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)

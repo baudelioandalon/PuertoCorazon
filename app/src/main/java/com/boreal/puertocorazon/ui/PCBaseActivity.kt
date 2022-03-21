@@ -3,9 +3,13 @@ package com.boreal.puertocorazon.ui
 import com.boreal.commonutils.base.CUBaseActivity
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialog
 import com.boreal.puertocorazon.R
+import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
 import com.boreal.puertocorazon.databinding.PcBaseActivityBinding
 
-class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding, PCBaseViewModel>(PCBaseViewModel::class) {
+class PCBaseActivity :
+    CUBaseActivity<PcBaseActivityBinding, PCBaseViewModel>(
+        PCBaseViewModel::class
+    ) {
 
     lateinit var dialog: CUBlurDialog
 

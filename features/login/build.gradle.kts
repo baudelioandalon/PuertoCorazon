@@ -48,6 +48,13 @@ android {
     }
 }
 
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+    maven(url = "https://www.jitpack.io")
+}
+
 dependencies {
     implementation(project(":commonutils"))
     implementation(project(":library:core"))
@@ -61,7 +68,7 @@ dependencies {
     testImplementation(Dependency.testJunit)
 
     api(Dependency.appcompat)
-    implementation(Dependency.constraintlayout)
+    api(Dependency.constraintlayout)
     api(Dependency.coreKtx)
     api(Dependency.gson)
     api(Dependency.kotlinxCoroutinesCore)

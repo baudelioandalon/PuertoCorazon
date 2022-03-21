@@ -1,15 +1,28 @@
-package com.boreal.puertocorazon.ui
+package com.boreal.puertocorazon.core.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 
 class PCBaseViewModel : ViewModel() {
 
     var countOutClicked = 0
 
-    /**
-     * @see Obtener lista de clientes
-     */
+    val authUser: LiveData<AAuthModel?>
+        get() = _authUser
+    private val _authUser = MutableLiveData<AAuthModel>()
+
+    var allowExit = true
+
+    fun setAuthUser(aAuthModel: AAuthModel) {
+        _authUser.value = aAuthModel
+    }
+
+
+//    /**
+//     * @see Obtener lista de clientes
+//     */
 //    val dataClients = AFirestoreGetResponse<ArrayList<ACompleteDataUserModel>, CUFirestoreErrorEnum>(
 //        idKey = ATypeOfUser.CLIENT.data,
 //        collectionPath = BuildConfig.ENVIRONMENT + AAuth.authInstance.currentUser?.email + "/" + BuildConfig.CLIENTS

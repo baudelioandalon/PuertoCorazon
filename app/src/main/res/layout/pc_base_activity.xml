@@ -20,8 +20,7 @@
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bottomMenu"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/pc_home_client_graph" />
-
+            app:navGraph="@navigation/pc_login_graph" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

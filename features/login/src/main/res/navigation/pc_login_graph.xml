@@ -8,18 +8,14 @@
     <fragment
         android:id="@+id/ALoginFragment"
         tools:layout="@layout/a_login_fragment"
-        android:name="com.boreal.altemis.login.ui.login.ALoginFragment"
+        android:name="com.boreal.puertocorazon.login.ui.ALoginFragment"
         android:label="ALoginFragment" >
 
         <action
-            android:id="@+id/action_ALoginFragment_to_ABaseFragment"
-            app:destination="@id/ABaseFragment" />
+            android:id="@+id/action_ALoginFragment_to_pc_home_client_graph"
+            app:destination="@id/pc_home_client_graph" />
     </fragment>
 
-    <fragment
-        android:id="@+id/ABaseFragment"
-        tools:layout="@layout/a_adm_base_fragment"
-        android:name="com.boreal.altemis.base.ui.base.ABaseFragment"
-        android:label="ABaseFragment" />
+    <include app:graph="@navigation/pc_home_client_graph" />
 
 </navigation>

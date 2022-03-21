@@ -3,6 +3,7 @@ package com.boreal.puertocorazon.login.ui
 import android.text.TextUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.commonutils.extensions.showToast
 

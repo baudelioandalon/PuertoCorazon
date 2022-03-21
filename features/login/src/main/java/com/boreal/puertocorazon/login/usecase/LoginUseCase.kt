@@ -1,6 +1,6 @@
 package com.boreal.puertocorazon.login.usecase
 
-import com.boreal.puertocorazon.core.domain.AFirestoreAuthResponse
+import com.boreal.puertocorazon.core.domain.entity.AFirestoreAuthResponse
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.puertocorazon.core.usecase.In
 import com.boreal.puertocorazon.core.usecase.Out
@@ -18,11 +18,11 @@ class LoginUseCase(private val loginRepository: LoginRepository) :
     UseCase<LoginUseCase.Input, LoginUseCase.Output> {
 
     class Input(val request: AAuthLoginEmailModel) : In()
-    inner class Output(val response: AFirestoreAuthResponse<AAuthLoginEmailModel, Task<AuthResult>, CUAuthenticationErrorEnum>) :
+    inner class Output(val response: AFirestoreAuthResponse<AAuthLoginEmailModel, AuthResult, CUAuthenticationErrorEnum>) :
         Out()
 
     override suspend fun execute(input: Input): Flow<Output> {
-        return loginRepository.executeLogin(input.request).flowOn(Dispatchers.IO).map {
+        return loginRepository.executeLogin(input.request).map {
             Output(it)
         }
     }

@@ -4,7 +4,7 @@ import java.util.*
 object AndroidConfig {
     const val minSdk = 23
     const val targetSdk = 30
-    const val compileSdk = 31
+    const val compileSdk = 30
     const val appId = "com.boreal.puertocorazon"
     const val versionCode = 1
     val versionName = "1.0.0-${SimpleDateFormat("yyyyMMdd", Locale.US).format(Date())}"
