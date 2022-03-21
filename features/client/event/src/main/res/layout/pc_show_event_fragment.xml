@@ -207,7 +207,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         app:defaultNavHost="true"
-                        app:navGraph="@navigation/pc_client_event_graph" />
+                        app:navGraph="@navigation/pc_client_event_detail_graph" />
 
                 </LinearLayout>
 

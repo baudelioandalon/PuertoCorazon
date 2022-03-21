@@ -69,6 +69,8 @@ dependencies {
     api(Dependency.navigationFragmentKtx)
     api(Dependency.navigationRuntimeKtx)
     api(Dependency.recyclerview)
+    api(Dependency.koinCore)
+    api(Dependency.koinAndroid)
 
     implementation(Dependency.material)
     implementation(Dependency.materialAlpha)

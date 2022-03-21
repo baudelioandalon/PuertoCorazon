@@ -12,15 +12,6 @@ fun PCBaseActivity.initElements() {
             supportFragmentManager.findFragmentById(R.id.navigationBase) as NavHostFragment
         val navController = navHostFragment.navController
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-//            when (destination.id) {
-//                R.id.PCShowEventFragment -> {
-//                    bottomMenu.hideView()
-//                }
-//                else -> {
-//                    bottomMenu.showView()
-//                }
-//            }
-        }
+
     }
 }

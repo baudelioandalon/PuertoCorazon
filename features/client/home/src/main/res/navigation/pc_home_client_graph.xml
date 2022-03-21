@@ -10,11 +10,12 @@
         android:name="com.boreal.puertocorazon.client.home.ui.PCHomeFragment"
         android:label="PCHomeFragment"
         tools:layout="@layout/pc_home_fragment">
+
         <action
             android:id="@+id/action_PCHomeFragment_to_pc_client_event_graph"
             app:destination="@id/pc_client_event_graph" />
     </fragment>
-
     <include app:graph="@navigation/pc_client_event_graph" />
+
 
 </navigation>

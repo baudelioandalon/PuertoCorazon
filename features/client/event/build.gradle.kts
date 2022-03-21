@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        minSdk = 23
-        targetSdk = 32
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
 
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -46,7 +46,7 @@ repositories {
 
 dependencies {
     implementation(project(":commonutils"))
-//    implementation(project(":library:core"))
+    implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
@@ -63,6 +63,8 @@ dependencies {
     api(Dependency.navigationFragmentKtx)
     api(Dependency.navigationRuntimeKtx)
     api(Dependency.recyclerview)
+    api(Dependency.koinCore)
+    api(Dependency.koinAndroid)
 
     implementation(Dependency.material)
     implementation(Dependency.materialAlpha)
@@ -75,7 +77,6 @@ dependencies {
 
     implementation(Dependency.firestore)
     implementation(Dependency.firestoreKtx)
-
 
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)

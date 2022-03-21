@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_login"
+    app:startDestination="@id/ALoginFragment">
+
+    <fragment
+        android:id="@+id/ALoginFragment"
+        tools:layout="@layout/a_login_fragment"
+        android:name="com.boreal.altemis.login.ui.login.ALoginFragment"
+        android:label="ALoginFragment" >
+
+        <action
+            android:id="@+id/action_ALoginFragment_to_ABaseFragment"
+            app:destination="@id/ABaseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ABaseFragment"
+        tools:layout="@layout/a_adm_base_fragment"
+        android:name="com.boreal.altemis.base.ui.base.ABaseFragment"
+        android:label="ABaseFragment" />
+
+</navigation>

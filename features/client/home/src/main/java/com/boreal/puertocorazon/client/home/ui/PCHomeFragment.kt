@@ -14,7 +14,7 @@ import com.boreal.puertocorazon.client.home.databinding.PcHomeServiceItemBinding
 
 class PCHomeFragment :
     CUBaseFragment<PcHomeFragmentBinding>() {
-    //    PCHomeViewModel
+
     val adapterRecyclerHomeEvent by lazy {
         GAdapter<PcHomeEventItemBinding, String>(
             R.layout.pc_home_event_item,

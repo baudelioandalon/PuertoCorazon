@@ -13,6 +13,7 @@
 
     <color name="secondary_two_700">#2073C6</color>
     <!--    <color name="secondary_two_300">#9C61B8</color>-->
+    <color name="blue_edittext">#A9B7EE</color>
 
     <color name="gray_100">#FCFCFE</color>
     <color name="gray_200">#F7F4FC</color>

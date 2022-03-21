@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_a_background_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:realtimeBlurRadius="350dp"
+            app:realtimeOverlayColor="#A4EDEAEA" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Hola, Buen dia"
+            android:textColor="#373444"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Bienvenido, has vuelto,\n¡hoy es un gran dia!"
+            android:textAlignment="center"
+            android:textColor="#373444"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/roundableLayout4"
+            android:layout_width="0dp"
+            android:layout_height="57dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="105dp"
+            android:paddingHorizontal="10dp"
+            app:cu_cornerAll="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView22">
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fontFamily="@font/montserrat_semibold"
+                android:hint="Correo"
+                android:text="baudelio_andalon@hotmail.com"
+                android:maxLines="1"
+                android:inputType="text"
+                android:maxLength="50"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/black_700"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/roundableLayout5"
+            android:layout_width="0dp"
+            android:layout_height="57dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="47dp"
+            android:padding="10dp"
+            app:cu_cornerAll="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roundableLayout4">
+
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:enabled="false"
+                android:fontFamily="@font/montserrat_semibold"
+                android:hint="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+                android:lines="1"
+                android:maxLength="50"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/black_700"
+                android:textSize="30sp"
+                android:text="Altemis132"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recuperar contraseña"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="13sp"
+            android:textColor="#ADAEB3"
+            android:layout_marginTop="25dp"
+            app:layout_constraintEnd_toEndOf="@+id/roundableLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/roundableLayout5" />
+
+        <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
+            android:id="@+id/btnReady"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView23"
+            app:sl_shadow_color="@color/primary_300"
+            app:sl_shadowed="true">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_marginVertical="25dp"
+                android:elevation="5dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="15dp"
+                app:cu_backgroundColor="@color/primary_700"
+                app:cu_cornerAll="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Iniciar"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        </com.boreal.commonutils.component.shadowlayout.CUShadowLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
