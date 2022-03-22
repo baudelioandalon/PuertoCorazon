@@ -51,7 +51,7 @@ repositories {
 dependencies {
 
     implementation(project(":commonutils"))
-//    implementation(project(":library:core"))
+    implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
     implementation(project(":features:client:event"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)

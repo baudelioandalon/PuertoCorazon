@@ -9,7 +9,7 @@ import com.boreal.commonutils.extensions.showToast
 
 fun ALoginFragment.initElements() {
 
-    mBinding.apply {
+    binding.apply {
         txtEmail.setOnEditorActionListener { _, actionId, _ ->
             var handled = false
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -25,7 +25,7 @@ fun ALoginFragment.initElements() {
 }
 
 fun ALoginFragment.authenticateUser() {
-    mBinding.apply {
+    binding.apply {
         if (txtEmail.isValidEmail() && txtPassword.isValidPassword()) {
             val email = txtEmail.text.toString().replace(" ", "")
             val token = txtPassword.text.toString().replace(" ", "")

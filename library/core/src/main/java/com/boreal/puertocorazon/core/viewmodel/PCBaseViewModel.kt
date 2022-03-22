@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
+import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 
-class PCBaseViewModel : ViewModel() {
+class PCBaseViewModel : CUBaseViewModel() {
 
     var countOutClicked = 0
 

@@ -24,7 +24,7 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding, V : ViewModel
 
     private lateinit var cuBackHandler: CUBackHandler
 
-    lateinit var mBinding: T
+    lateinit var binding: T
 
     val viewModel by lazy {
         ViewModelProvider(this).get(vkClass.javaObjectType)
@@ -50,9 +50,9 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding, V : ViewModel
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
+        binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         initView()
-        return mBinding.root
+        return binding.root
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

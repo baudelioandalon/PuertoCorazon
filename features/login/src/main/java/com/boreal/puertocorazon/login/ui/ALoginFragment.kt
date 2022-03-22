@@ -10,6 +10,7 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
 import com.boreal.puertocorazon.login.R
 import com.boreal.puertocorazon.login.databinding.ALoginFragmentBinding
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ALoginFragment :
@@ -26,7 +27,7 @@ class ALoginFragment :
 
     override fun initObservers() {
 
-        if (false) {
+        if (FirebaseAuth.getInstance().currentUser != null) {
             viewModelBase.allowExit = false
             findNavController().navigate(R.id.action_ALoginFragment_to_pc_home_client_graph)
         } else {

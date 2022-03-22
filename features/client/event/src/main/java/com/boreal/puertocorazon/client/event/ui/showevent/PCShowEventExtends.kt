@@ -4,7 +4,7 @@ import com.boreal.commonutils.extensions.setOnSingleClickListener
 
 fun PCShowEventFragment.initElements() {
 
-    mBinding.apply {
+    binding.apply {
         btnClose.setOnSingleClickListener {
             requireActivity().onBackPressed()
         }

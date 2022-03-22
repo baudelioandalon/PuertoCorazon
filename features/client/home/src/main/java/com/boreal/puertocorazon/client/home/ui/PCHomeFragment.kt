@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.client.home.ui
 
-import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
@@ -11,9 +10,13 @@ import com.boreal.puertocorazon.client.home.R
 import com.boreal.puertocorazon.client.home.databinding.PcHomeEventItemBinding
 import com.boreal.puertocorazon.client.home.databinding.PcHomeFragmentBinding
 import com.boreal.puertocorazon.client.home.databinding.PcHomeServiceItemBinding
+import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCHomeFragment :
     CUBaseFragment<PcHomeFragmentBinding>() {
+
+    private val viewModelBase: PCBaseViewModel by sharedViewModel()
 
     val adapterRecyclerHomeEvent by lazy {
         GAdapter<PcHomeEventItemBinding, String>(
@@ -57,7 +60,6 @@ class PCHomeFragment :
 
             }).build(),
             holderCallback = { binding, model, list, adapter ->
-//                binding.customModel = model.userData
                 binding.apply {
 
                 }
@@ -67,13 +69,8 @@ class PCHomeFragment :
 
     override fun getLayout() = R.layout.pc_home_fragment
 
-    override fun initDependency(savedInstanceState: Bundle?) {
-    }
-
-    override fun initObservers() {
-    }
-
     override fun initView() {
         initElements()
     }
+
 }

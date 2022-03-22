@@ -2,6 +2,7 @@ package com.boreal.puertocorazon.application
 
 import android.app.Application
 import com.boreal.puertocorazon.login.di.loginModule
+import com.boreal.puertocorazon.ui.activityModule
 import org.koin.core.context.startKoin
 
 class PuertoCorazonApplication : Application() {
@@ -10,6 +11,7 @@ class PuertoCorazonApplication : Application() {
         super.onCreate()
         startKoin {
             modules(
+                activityModule,
                 loginModule
             )
         }
