@@ -56,7 +56,6 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                 },
                 cancelable = true
             )
-            delay(300)
             dialog.showCustom(supportFragmentManager, "Dialogout")
         }
     }

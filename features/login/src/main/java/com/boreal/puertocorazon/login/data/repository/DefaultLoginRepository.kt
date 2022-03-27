@@ -10,7 +10,9 @@ import com.boreal.puertocorazon.login.domain.LoginRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class DefaultLoginRepository(private val getLoginDataSource: GetLoginDataSource) : LoginRepository {
+class DefaultLoginRepository(
+    private val getLoginDataSource: GetLoginDataSource
+) : LoginRepository {
 
     override suspend fun executeLogin(request: AAuthLoginEmailModel): Flow<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>> =
         flow {

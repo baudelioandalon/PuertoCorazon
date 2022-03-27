@@ -13,15 +13,12 @@ open class AAuthModel(
     var email: String = "",
     var email_verified: Boolean = false,
     var exp: Int = 0,
-    var firebase: FirebaseModel? = FirebaseModel(),
     var iat: Int = 0,
-    var iss: String = "",
-    var sub: String = "",
-    var userType: String = "",
+    var userType: String = PCUserType.NONE.type,
     var user_id: String = ""
 ) : RealmObject() {
     init {
-        if(id == null) {
+        if (id == null) {
             id = autoGenerateId<AAuthModel>()
         }
     }

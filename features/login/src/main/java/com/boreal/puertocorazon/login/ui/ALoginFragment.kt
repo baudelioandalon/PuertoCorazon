@@ -9,12 +9,10 @@ import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
-import com.boreal.puertocorazon.core.utils.realm.getRealmObject
 import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
 import com.boreal.puertocorazon.login.R
 import com.boreal.puertocorazon.login.databinding.ALoginFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.gson.Gson
 import io.realm.Realm
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -34,27 +32,18 @@ class ALoginFragment :
     override fun initObservers() {
 
         if (FirebaseAuth.getInstance().currentUser != null) {
-            viewModelBase.allowExit = false
-            getRealmObject<AAuthModel>().run {
-                navigateToHome(
-                    if (this != null) {
-                        val resultFormatted = Gson().fromJson(
-                            "{\"" + Gson().toJson(toString()).replace(":", "\":\"")
-                                .replace("}", "\"}").substringAfter("proxy[")
-                                .replace("]\"", "").replace("{", "").replace(",", ",\"")
-                                .replace("}", "").replace(
-                                    "\"https\":\"//securetoken.google.com/puertocorazonapp\"",
-                                    "\"https://securetoken.google.com/puertocorazonapp\""
-                                ).replace(",\"firebase\":\"FirebaseModel\"", "") + "}",
-                            AAuthModel::class.java
-                        )
-                        resultFormatted
-                    } else {
-                        this
+            viewModel.getLocalUser()
+            viewModel.authUser.observe(viewLifecycleOwner) {
+                when (it.first) {
+                    AFirestoreStatusRequest.LOADING -> {
+                        showProgressBarCustom()
                     }
-                )
-            }
+                    AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
+                        navigateToHome(it.second)
+                    }
+                }
 
+            }
         } else {
             viewModelBase.authUser.observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -96,20 +85,28 @@ class ALoginFragment :
         if (userLocal != null) {
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
+                    viewModelBase.allowExit = false
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph).run {
+                        hideProgressBarCustom()
+                    }
                 }
                 PCUserType.CLIENT.type -> {
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
+                    viewModelBase.allowExit = false
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph).run {
+                        hideProgressBarCustom()
+                    }
                 }
                 else -> {
                     viewModelBase.allowExit = true
                     showToast("Tipo de usuario ${userLocal.userType} no controlado")
+                    hideProgressBarCustom()
                 }
             }
         } else {
             viewModelBase.allowExit = true
             FirebaseAuth.getInstance().signOut()
             showToast("El usuario no se encontró")
+            hideProgressBarCustom()
         }
     }
 

@@ -8,6 +8,7 @@ import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.utils.coreauthentication.await
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
+import com.boreal.puertocorazon.core.utils.realm.saveLocal
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginDataSource : AFirestoreRepository() {
@@ -15,7 +16,8 @@ class LoginDataSource : AFirestoreRepository() {
     companion object {
         suspend fun getLogin(
             request: AAuthLoginEmailModel,
-            verifiedEmailRequired: Boolean = true
+            verifiedEmailRequired: Boolean = true,
+            saveAuthLocal: Boolean = true
         ): AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum> {
             return with(
                 FirebaseAuth.getInstance()
@@ -30,6 +32,7 @@ class LoginDataSource : AFirestoreRepository() {
                     if (user != null) {
                         if (verifiedEmailRequired) {
                             if (authModel.email_verified) {
+                                if (saveAuthLocal) authModel.saveLocal()
                                 AFirestoreAuthResponse(
                                     authModel = request,
                                     response = authModel,
