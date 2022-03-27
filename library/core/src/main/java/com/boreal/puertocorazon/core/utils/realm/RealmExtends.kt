@@ -1,34 +1,26 @@
 package com.boreal.puertocorazon.core.utils.realm
 
 import io.realm.Realm
-import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
+import io.realm.kotlin.executeTransactionAwait
+import io.realm.kotlin.where
+import kotlinx.coroutines.Dispatchers
 
-fun RealmObject.saveLocal() {
-    Realm.Transaction { realmInstance ->
-        realmInstance.insertOrUpdate(this)
+suspend fun RealmObject.saveLocal() {
+    Realm.getDefaultInstance().executeTransactionAwait(Dispatchers.IO) {
+        it.insertOrUpdate(this)
     }
 }
 
-fun RealmModel.saveLocal() {
-    Realm.Transaction { realmInstance ->
-        realmInstance.insertOrUpdate(this)
-    }
-}
-
-fun RealmObject.autoGenerateId(primaryKey: String = "id"): Int {
-    val currentIdNumber = realm.where(this::class.java).max(primaryKey)
+inline fun <reified T : RealmObject> autoGenerateId(primaryKey: String = "id"): Int {
+    val currentIdNumber = Realm.getDefaultInstance().where(T::class.java).max(primaryKey)
     return if (currentIdNumber == null) {
-        1
+        0
     } else {
         currentIdNumber.toInt() + 1
     }
 }
 
-inline fun <reified T : RealmObject> getRealmObject(): RealmResults<T> =
-    with(Realm.getDefaultInstance()) { where(T::class.java).findAll() }
-
-
-inline fun <reified T : RealmModel> getRealmModel(): RealmResults<T> =
-    with(Realm.getDefaultInstance()) { where(T::class.java).findAll() }
+inline fun <reified T : RealmObject> getRealmObject(): T? =
+    with(Realm.getDefaultInstance()) { where(T::class.java).findFirst() }

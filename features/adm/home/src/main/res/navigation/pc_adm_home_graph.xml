@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_adm_home_graph"
+    app:startDestination="@id/PCAdmHomeFragment">
+
+    <fragment
+        android:id="@+id/PCAdmHomeFragment"
+        android:name="com.boreal.puertocorazon.adm.home.PCAdmHomeFragment"
+        android:label="PCAdmHomeFragment"
+        tools:layout="@layout/pc_adm_home_fragment" />
+
+</navigation>

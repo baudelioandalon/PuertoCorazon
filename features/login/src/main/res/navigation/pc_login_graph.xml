@@ -7,15 +7,19 @@
 
     <fragment
         android:id="@+id/ALoginFragment"
-        tools:layout="@layout/a_login_fragment"
         android:name="com.boreal.puertocorazon.login.ui.ALoginFragment"
-        android:label="ALoginFragment" >
-
+        android:label="ALoginFragment"
+        tools:layout="@layout/a_login_fragment">
         <action
-            android:id="@+id/action_ALoginFragment_to_pc_home_client_graph"
-            app:destination="@id/pc_home_client_graph" />
+            android:id="@+id/action_ALoginFragment_to_pc_client_home_graph"
+            app:destination="@id/pc_client_home_graph" />
+        <action
+            android:id="@+id/action_ALoginFragment_to_pc_adm_home_graph"
+            app:destination="@id/pc_adm_home_graph" />
     </fragment>
 
-    <include app:graph="@navigation/pc_home_client_graph" />
+    <include app:graph="@navigation/pc_client_home_graph" />
+    <include app:graph="@navigation/pc_adm_home_graph" />
+
 
 </navigation>

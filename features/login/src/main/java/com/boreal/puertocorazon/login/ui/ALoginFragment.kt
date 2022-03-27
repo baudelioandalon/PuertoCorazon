@@ -7,10 +7,15 @@ import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
+import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
+import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
+import com.boreal.puertocorazon.core.utils.realm.getRealmObject
 import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
 import com.boreal.puertocorazon.login.R
 import com.boreal.puertocorazon.login.databinding.ALoginFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.Gson
+import io.realm.Realm
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ALoginFragment :
@@ -23,19 +28,39 @@ class ALoginFragment :
 
     override fun initDependency(savedInstanceState: Bundle?) {
         CUAppInit().init(requireActivity().application, requireContext())
+        Realm.init(requireContext())
     }
 
     override fun initObservers() {
 
         if (FirebaseAuth.getInstance().currentUser != null) {
             viewModelBase.allowExit = false
-            findNavController().navigate(R.id.action_ALoginFragment_to_pc_home_client_graph)
+            getRealmObject<AAuthModel>().run {
+                navigateToHome(
+                    if (this != null) {
+                        val resultFormatted = Gson().fromJson(
+                            "{\"" + Gson().toJson(toString()).replace(":", "\":\"")
+                                .replace("}", "\"}").substringAfter("proxy[")
+                                .replace("]\"", "").replace("{", "").replace(",", ",\"")
+                                .replace("}", "").replace(
+                                    "\"https\":\"//securetoken.google.com/puertocorazonapp\"",
+                                    "\"https://securetoken.google.com/puertocorazonapp\""
+                                ).replace(",\"firebase\":\"FirebaseModel\"", "") + "}",
+                            AAuthModel::class.java
+                        )
+                        resultFormatted
+                    } else {
+                        this
+                    }
+                )
+            }
+
         } else {
             viewModelBase.authUser.observe(viewLifecycleOwner) {
                 if (it != null) {
                     if (viewModelBase.allowExit) {
                         viewModelBase.allowExit = false
-                        findNavController().navigate(R.id.action_ALoginFragment_to_pc_home_client_graph)
+                        navigateToHome(it)
                     }
                 }
             }
@@ -64,6 +89,28 @@ class ALoginFragment :
             }
         }
 
+    }
+
+    private fun navigateToHome(userLocal: AAuthModel?) {
+
+        if (userLocal != null) {
+            when (userLocal.userType) {
+                PCUserType.ADMINISTRATOR.type -> {
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
+                }
+                PCUserType.CLIENT.type -> {
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
+                }
+                else -> {
+                    viewModelBase.allowExit = true
+                    showToast("Tipo de usuario ${userLocal.userType} no controlado")
+                }
+            }
+        } else {
+            viewModelBase.allowExit = true
+            FirebaseAuth.getInstance().signOut()
+            showToast("El usuario no se encontró")
+        }
     }
 
     override fun initView() {

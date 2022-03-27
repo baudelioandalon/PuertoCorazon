@@ -1,9 +1,8 @@
 package com.boreal.puertocorazon.core.domain.entity.auth
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import io.realm.RealmList
+import io.realm.RealmObject
 
-@Parcelize
-data class Identities(
-    val email: List<String> = arrayListOf()
-) : Parcelable
+open class Identities(
+    var email: RealmList<String> = RealmList()
+) : RealmObject()

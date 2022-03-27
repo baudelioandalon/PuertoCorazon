@@ -30,7 +30,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
         if (viewModel.allowExit) {
             showOutDialog()
         } else {
-            if (navController.currentDestination?.id == R.id.PCHomeFragment) {
+            if (navController.currentDestination?.id == R.id.PCClientHomeFragment || navController.currentDestination?.id == R.id.PCAdmHomeFragment) {
                 showOutDialog()
             } else {
                 onBackPressed()

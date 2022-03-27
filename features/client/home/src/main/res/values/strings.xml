@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="eventos_especiales_n_en_puerto_vallarta">Eventos especiales\n en Puerto Vallarta</string>
-    <string name="proximos_eventos">Servicios disponibles</string>
-    <string name="reservaci_nes_text">Reservaciónes</string>
-    <string name="title_example_text">Temazcal \nExperience</string>
-    <string name="temazcal_experience">Temazcal Experience</string>
+
 </resources>

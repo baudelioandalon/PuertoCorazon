@@ -6,7 +6,7 @@ import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.client.home.R
 
-fun PCHomeFragment.initElements() {
+fun PCClientHomeFragment.initElements() {
     binding.apply {
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {

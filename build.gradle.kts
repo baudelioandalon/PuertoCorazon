@@ -12,6 +12,7 @@ buildscript {
         classpath(Dependency.pluginGmsGoogleServices)
         classpath(Dependency.pluginFirebaseCrashlyticsGradle)
         classpath(Dependency.realmGradle)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
     }
 }
 

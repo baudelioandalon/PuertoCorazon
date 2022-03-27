@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_client_home_graph"
+    app:startDestination="@id/PCClientHomeFragment">
+
+    <fragment
+        android:id="@+id/PCClientHomeFragment"
+        android:name="com.boreal.puertocorazon.client.home.ui.PCClientHomeFragment"
+        android:label="PCClientHomeFragment"
+        tools:layout="@layout/pc_client_home_fragment">
+        <action
+            android:id="@+id/action_PCClientHomeFragment_to_pc_client_event_graph"
+            app:destination="@id/pc_client_event_graph" />
+    </fragment>
+
+    <include app:graph="@navigation/pc_client_event_graph" />
+
+</navigation>
