@@ -97,6 +97,9 @@ abstract class AFirestoreRepository {
                 errorReceived.contains(CUFirestoreErrorEnum.ERROR_NOT_FOUND.defaultError) -> {
                     CUFirestoreErrorEnum.ERROR_NOT_FOUND
                 }
+                errorReceived.contains(CUFirestoreErrorEnum.ERROR_DESERIALIZE_OBJECT.defaultError) -> {
+                    CUFirestoreErrorEnum.ERROR_DESERIALIZE_OBJECT
+                }
                 else -> {
                     CUFirestoreErrorEnum.ERROR_DEFAULT
                 }

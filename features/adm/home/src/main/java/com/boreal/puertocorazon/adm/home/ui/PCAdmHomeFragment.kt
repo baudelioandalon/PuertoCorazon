@@ -23,7 +23,7 @@ class PCAdmHomeFragment :
     private val viewModelBase: PCBaseViewModel by sharedViewModel()
     val viewModel: PCHomeViewModel by viewModel()
 
-    val adapterRecyclerHomeEvent by lazy {
+    val adapterRecyclerAdmHomeEvent by lazy {
         GAdapter<PcHomeEventItemBinding, PCEventModel>(
             R.layout.pc_home_event_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCEventModel>() {
@@ -38,9 +38,10 @@ class PCAdmHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { binding, model, list, adapter ->
+            holderCallback = { bindingElement, model, list, adapter ->
 //                binding.customModel = model.userData
-                binding.apply {
+                bindingElement.apply {
+                    txtTitleEvent.text = model.title
                     containerEventItem.setOnSingleClickListener {
 //                        findNavController().navigate(R.id.action_PCHomeFragment_to_pc_client_event_graph)
                     }
@@ -87,15 +88,16 @@ class PCAdmHomeFragment :
                                 viewModelBase.signOutUser()
                             }
                             showToast(errorResult.messageError)
+                            return@observe
                         }
-                        it.response?.let { successResult ->
-                            successResult
-                        }
+                        loadRecyclerEvent(it.response!!)
+
                     }
                 }
             }
         }
     }
+
 
     override fun getLayout() = R.layout.pc_adm_home_fragment
 

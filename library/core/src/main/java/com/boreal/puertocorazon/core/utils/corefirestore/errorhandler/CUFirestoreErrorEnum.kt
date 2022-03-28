@@ -20,17 +20,22 @@ enum class CUFirestoreErrorEnum(
     ),
     ERROR_NOT_FOUND(
         "NOT_FOUND: No document to update:",
-        "No se encontró el documento a actualizar", FirebaseFirestoreException.Code.NOT_FOUND.value(),
+        "No se encontró el documento a actualizar.", FirebaseFirestoreException.Code.NOT_FOUND.value(),
+        ""
+    ),
+    ERROR_DESERIALIZE_OBJECT(
+        "Could not deserialize object.",
+        "Ocurrio un error al deserializar un modelo, favor de validar la integridad de los datos.", 7000,
         ""
     ),
     ERROR_PAYMENT_PAYED(
         "NOT_FOUND: No document to update:",
-        "No se pudo completar porque el pago ya fue efectuado", FirebaseFirestoreException.Code.ABORTED.value(),
+        "No se pudo completar porque el pago ya fue efectuado.", FirebaseFirestoreException.Code.ABORTED.value(),
         ""
     ),
     ERROR_PERMISSION_DENIED(
         "PERMISSION_DENIED: Missing or insufficient permissions.",
-        "No tienes permisos de lectura y/o escritura", FirebaseFirestoreException.Code.PERMISSION_DENIED.value(),
+        "No tienes permisos de lectura y/o escritura.", FirebaseFirestoreException.Code.PERMISSION_DENIED.value(),
         ""
     ),
     ERROR_DEFAULT(

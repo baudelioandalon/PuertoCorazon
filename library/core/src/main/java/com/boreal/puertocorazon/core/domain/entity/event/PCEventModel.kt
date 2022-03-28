@@ -14,7 +14,7 @@ data class PCEventModel(
     val packages: List<PCPackageModel> = listOf(),
     val priceAdult: Long = 0L,
     val priceChildren: Long = 0L,
-    val schedule: PCScheduleModel = PCScheduleModel(),
+    val schedule: List<PCScheduleModel> = listOf(),
     val creationDate: Timestamp = Timestamp(0L, 0),
     val instructionId: String = "",
     val instructorName: String = "",
