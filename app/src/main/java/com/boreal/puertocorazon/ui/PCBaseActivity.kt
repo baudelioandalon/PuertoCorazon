@@ -9,7 +9,7 @@ import com.boreal.puertocorazon.R
 import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
 import com.boreal.puertocorazon.databinding.PcBaseActivityBinding
 import com.boreal.puertocorazon.databinding.PcOutDialogBinding
-import kotlinx.coroutines.delay
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.system.exitProcess
@@ -21,6 +21,16 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
     lateinit var dialog: CUBlurDialog
 
     override fun getLayout() = R.layout.pc_base_activity
+
+    override fun initObservers() {
+        viewModel.goLogin.observe(this) {
+            it?.let {
+                if (it) {
+                    goToLogin()
+                }
+            }
+        }
+    }
 
     override fun initView() {
         initElements()
@@ -37,7 +47,6 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
             }
         }
     }
-
 
     private fun showOutDialog() {
         lifecycleScope.launch {
@@ -60,5 +69,9 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
         }
     }
 
+    private fun goToLogin() {
+        FirebaseAuth.getInstance().signOut()
+        navController.popBackStack()
+    }
 
 }

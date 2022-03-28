@@ -10,6 +10,7 @@ import com.boreal.puertocorazon.adm.home.R
 import com.boreal.puertocorazon.adm.home.databinding.PcAdmHomeFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeEventItemBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeServiceItemBinding
@@ -82,6 +83,9 @@ class PCAdmHomeFragment :
                     AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
                         hideProgressBarCustom()
                         it.failure?.let { errorResult ->
+                            if (errorResult == CUFirestoreErrorEnum.ERROR_PERMISSION_DENIED) {
+                                viewModelBase.signOutUser()
+                            }
                             showToast(errorResult.messageError)
                         }
                         it.response?.let { successResult ->

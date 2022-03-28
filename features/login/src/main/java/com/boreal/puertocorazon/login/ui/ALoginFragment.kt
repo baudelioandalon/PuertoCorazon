@@ -34,19 +34,21 @@ class ALoginFragment :
         if (FirebaseAuth.getInstance().currentUser != null) {
             viewModel.getLocalUser()
             viewModel.authUser.observe(viewLifecycleOwner) {
-                when (it.first) {
-                    AFirestoreStatusRequest.LOADING -> {
-                        showProgressBarCustom()
-                    }
-                    AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
-                        navigateToHome(it.second)
+                it?.let { authInfo ->
+                    when (authInfo.first) {
+                        AFirestoreStatusRequest.LOADING -> {
+                            showProgressBarCustom()
+                        }
+                        AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
+                            viewModel.resetLoginData()
+                            navigateToHome(authInfo.second)
+                        }
                     }
                 }
-
             }
         } else {
             viewModelBase.authUser.observe(viewLifecycleOwner) {
-                if (it != null) {
+                if (it != null && it.userType != PCUserType.NONE.type) {
                     if (viewModelBase.allowExit) {
                         viewModelBase.allowExit = false
                         navigateToHome(it)
@@ -54,7 +56,7 @@ class ALoginFragment :
                 }
             }
             viewModel.loginData.observe(viewLifecycleOwner) { result ->
-                when (result.status) {
+                when (result?.status) {
                     AFirestoreStatusRequest.LOADING -> {
                         showProgressBarCustom()
                     }
@@ -81,7 +83,6 @@ class ALoginFragment :
     }
 
     private fun navigateToHome(userLocal: AAuthModel?) {
-
         if (userLocal != null) {
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
@@ -116,5 +117,8 @@ class ALoginFragment :
         initElements()
     }
 
-
+    override fun onPause() {
+        super.onPause()
+        viewModel.resetLoginData()
+    }
 }

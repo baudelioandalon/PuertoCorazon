@@ -2,7 +2,6 @@ package com.boreal.puertocorazon.core.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 
@@ -12,7 +11,11 @@ class PCBaseViewModel : CUBaseViewModel() {
 
     val authUser: LiveData<AAuthModel?>
         get() = _authUser
-    private val _authUser = MutableLiveData<AAuthModel>()
+    private val _authUser = MutableLiveData<AAuthModel?>()
+
+    val goLogin: LiveData<Boolean?>
+        get() = _goLogin
+    private val _goLogin = MutableLiveData<Boolean>()
 
     var allowExit = true
 
@@ -20,6 +23,11 @@ class PCBaseViewModel : CUBaseViewModel() {
         _authUser.value = aAuthModel
     }
 
+    fun signOutUser() {
+        _authUser.value = AAuthModel()
+        _goLogin.value = true
+        allowExit = true
+    }
 
 //    /**
 //     * @see Obtener lista de clientes

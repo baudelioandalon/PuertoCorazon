@@ -21,10 +21,10 @@ class ALoginViewModel(
     UseCase<EmptyIn, AuthUseCase.Output>
 ) : CUBaseViewModel() {
 
-    val loginData: LiveData<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>>
+    val loginData: LiveData<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>?>
         get() = _loginData
     private val _loginData =
-        MutableLiveData<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>>()
+        MutableLiveData<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>?>()
 
     val authUser: LiveData<Pair<AFirestoreStatusRequest, AAuthModel?>>
         get() = _authUser
@@ -34,6 +34,10 @@ class ALoginViewModel(
             null
         )
     )
+
+    fun resetLoginData(){
+        _loginData.value = null
+    }
 
     fun requestLogin(request: AAuthLoginEmailModel) {
         executeFlow {
