@@ -1,9 +1,10 @@
-package com.boreal.puertocorazon.adm.home
+package com.boreal.puertocorazon.adm.home.ui
 
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.showView
+import com.boreal.puertocorazon.adm.home.R
 
 fun PCAdmHomeFragment.initElements() {
     binding.apply {
@@ -21,12 +22,11 @@ fun PCAdmHomeFragment.initElements() {
         recyclerHomeEvents.apply {
             adapter = adapterRecyclerHomeEvent
             itemPercent(.88)
-            adapterRecyclerHomeEvent.submitList(arrayListOf("texto", "texto"))
+            viewModel.requestEvents()
         }
         recyclerHomeServices.apply {
             adapter = adapterRecyclerHomeService
             itemPercent(.88)
-            adapterRecyclerHomeService.submitList(arrayListOf("texto", "texto"))
         }
     }
 }

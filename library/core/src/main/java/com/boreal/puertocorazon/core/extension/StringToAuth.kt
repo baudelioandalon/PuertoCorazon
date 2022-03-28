@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.login.extension
+package com.boreal.puertocorazon.core.extension
 
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.google.gson.Gson

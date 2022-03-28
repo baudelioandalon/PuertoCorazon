@@ -3,16 +3,16 @@ package com.boreal.puertocorazon.login.di
 
 import com.boreal.puertocorazon.core.usecase.EmptyIn
 import com.boreal.puertocorazon.core.usecase.UseCase
-import com.boreal.puertocorazon.login.data.datasource.GetAuthUserDataSource
+import com.boreal.puertocorazon.core.data.datasource.GetAuthUserDataSource
 import com.boreal.puertocorazon.login.data.datasource.GetLoginDataSource
-import com.boreal.puertocorazon.login.data.datasource.local.ALocalAuthDataSource
+import com.boreal.puertocorazon.core.data.datasource.local.ALocalAuthDataSource
 import com.boreal.puertocorazon.login.data.datasource.remote.ARemoteLoginDataSource
-import com.boreal.puertocorazon.login.data.repository.DefaultAuthRepository
+import com.boreal.puertocorazon.core.repository.DefaultAuthRepository
 import com.boreal.puertocorazon.login.data.repository.DefaultLoginRepository
-import com.boreal.puertocorazon.login.domain.AuthRepository
+import com.boreal.puertocorazon.core.domain.AuthRepository
 import com.boreal.puertocorazon.login.domain.LoginRepository
 import com.boreal.puertocorazon.login.ui.ALoginViewModel
-import com.boreal.puertocorazon.login.usecase.AuthUseCase
+import com.boreal.puertocorazon.core.usecase.AuthUseCase
 import com.boreal.puertocorazon.login.usecase.LoginUseCase
 
 import org.koin.androidx.viewmodel.dsl.viewModel

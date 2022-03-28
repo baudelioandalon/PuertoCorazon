@@ -2,6 +2,7 @@ package com.boreal.puertocorazon.core.domain.entity
 
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,11 +14,22 @@ import kotlinx.coroutines.MainScope
 
 abstract class AFirestoreRepository {
     protected val coroutineScope: CoroutineScope = MainScope()
-    val firestoreInstance: FirebaseFirestore by lazy {
+    protected val firestoreInstance: FirebaseFirestore by lazy {
         Firebase.firestore
+    }
+    protected val firebaseAuth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
     }
 
     companion object {
+        fun errorResponse(causeThrowable: Throwable) =
+            if (causeThrowable is FirebaseFirestoreException) {
+                errorResponse(exception = causeThrowable)
+            } else {
+                CUFirestoreErrorEnum.ERROR_UNAVAILABLE
+            }
+
+
         fun errorResponse(exception: FirebaseFirestoreException): CUFirestoreErrorEnum {
             return when (exception.code) {
                 FirebaseFirestoreException.Code.UNAVAILABLE -> {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/PCAdmHomeFragment"
-        android:name="com.boreal.puertocorazon.adm.home.PCAdmHomeFragment"
+        android:name="com.boreal.puertocorazon.adm.home.ui.PCAdmHomeFragment"
         android:label="PCAdmHomeFragment"
         tools:layout="@layout/pc_adm_home_fragment" />
 

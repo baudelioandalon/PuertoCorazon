@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.login.data.datasource
+package com.boreal.puertocorazon.core.data.datasource
 
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel

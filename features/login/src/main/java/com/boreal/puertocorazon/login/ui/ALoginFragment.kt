@@ -14,12 +14,12 @@ import com.boreal.puertocorazon.login.R
 import com.boreal.puertocorazon.login.databinding.ALoginFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ALoginFragment :
     CUBaseFragment<ALoginFragmentBinding>() {
 
-    val viewModel: ALoginViewModel by sharedViewModel()
+    val viewModel: ALoginViewModel by viewModel()
     private val viewModelBase: PCBaseViewModel by activityViewModels()
 
     override fun getLayout() = R.layout.a_login_fragment
@@ -86,15 +86,17 @@ class ALoginFragment :
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
                     viewModelBase.allowExit = false
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph).run {
-                        hideProgressBarCustom()
-                    }
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
+                        .run {
+                            hideProgressBarCustom()
+                        }
                 }
                 PCUserType.CLIENT.type -> {
                     viewModelBase.allowExit = false
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph).run {
-                        hideProgressBarCustom()
-                    }
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
+                        .run {
+                            hideProgressBarCustom()
+                        }
                 }
                 else -> {
                     viewModelBase.allowExit = true

@@ -10,7 +10,7 @@ abstract class CUBaseViewModel : ViewModel() {
         try {
             block.invoke()
         } catch (e: Exception) {
-
+            e
         }
     }
 }

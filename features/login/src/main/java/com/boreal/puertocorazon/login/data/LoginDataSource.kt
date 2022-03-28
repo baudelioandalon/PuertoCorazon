@@ -9,26 +9,20 @@ import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.utils.coreauthentication.await
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
 import com.boreal.puertocorazon.core.utils.realm.saveLocal
-import com.google.firebase.auth.FirebaseAuth
 
-class LoginDataSource : AFirestoreRepository() {
-
-    companion object {
+class LoginDataSource {
+    companion object : AFirestoreRepository() {
         suspend fun getLogin(
             request: AAuthLoginEmailModel,
             verifiedEmailRequired: Boolean = true,
             saveAuthLocal: Boolean = true
         ): AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum> {
             return with(
-                FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(request.email, request.token).await()
+                firebaseAuth.signInWithEmailAndPassword(request.email, request.token).await()
             ) {
                 try {
                     val authModel = AAuthConvert<AAuthModel>(AAuthModel::class)
-                        .getDataType(
-                            FirebaseAuth.getInstance()
-                                .getAccessToken(false).result.claims
-                        )
+                        .getDataType(firebaseAuth.getAccessToken(false).result.claims)
                     if (user != null) {
                         if (verifiedEmailRequired) {
                             if (authModel.email_verified) {
@@ -40,7 +34,7 @@ class LoginDataSource : AFirestoreRepository() {
                                 )
                             } else {
                                 user!!.sendEmailVerification()
-                                FirebaseAuth.getInstance().signOut()
+                                firebaseAuth.signOut()
                                 AFirestoreAuthResponse(
                                     authModel = request,
                                     response = null,

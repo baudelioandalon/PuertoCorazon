@@ -10,7 +10,7 @@ import com.boreal.puertocorazon.core.usecase.EmptyIn
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
-import com.boreal.puertocorazon.login.usecase.AuthUseCase
+import com.boreal.puertocorazon.core.usecase.AuthUseCase
 import com.boreal.puertocorazon.login.usecase.LoginUseCase
 import kotlinx.coroutines.flow.collect
 
