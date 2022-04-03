@@ -3,12 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pc_inside_add_event_graph"
-    app:startDestination="@id/PCMainAddEventFragment">
+    app:startDestination="@id/PCMenuAddEventFragment">
+
+    <fragment
+        android:id="@+id/PCMenuAddEventFragment"
+        android:name="com.boreal.puertocorazon.addevent.ui.menu.PCMenuAddEventFragment"
+        android:label="PCMenuAddEventFragment"
+        tools:layout="@layout/pc_menu_add_event_fragment" />
 
     <fragment
         android:id="@+id/PCMainAddEventFragment"
         android:name="com.boreal.puertocorazon.addevent.ui.main.PCMainAddEventFragment"
         android:label="PCMainAddEventFragment"
         tools:layout="@layout/pc_main_add_event_fragment" />
+
+    <fragment
+        android:id="@+id/PCGalleryAddEventFragment"
+        android:name="com.boreal.puertocorazon.addevent.ui.gallery.PCGalleryAddEventFragment"
+        android:label="PCGalleryAddEventFragment"
+        tools:layout="@layout/pc_gallery_add_event_fragment" />
 
 </navigation>

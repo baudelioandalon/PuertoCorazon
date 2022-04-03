@@ -37,7 +37,6 @@
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-
         <TextView
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
@@ -46,6 +45,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/black_700"
             android:textSize="15sp"
+            android:translationZ="10dp"
             app:layout_constraintEnd_toStartOf="@+id/btnSettings"
             app:layout_constraintStart_toEndOf="@+id/btnBack"
             app:layout_constraintTop_toTopOf="parent"
@@ -72,6 +72,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:elevation="9dp"
+            android:visibility="gone"
+            app:cu_cornerLeftBottom="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_pc_more" />
+
+            <TextView
+                android:id="@+id/tvAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/a_adir_text"
+                android:textColor="@color/black_700"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
         <androidx.fragment.app.FragmentContainerView

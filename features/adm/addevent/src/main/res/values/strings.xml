@@ -2,4 +2,10 @@
 <resources>
     <string name="instructor_text">Instructor</string>
     <string name="elegir_text">Elegir</string>
+    <string name="titulo_text">Titulo</string>
+    <string name="subtitulo_text">Subtitulo</string>
+    <string name="del_evento_text">Del evento</string>
+    <string name="descripci_n_name_text">Descripción</string>
+    <string name="imagenes_text">Imagenes</string>
+    <string name="a_adir_text">Añadir</string>
 </resources>
