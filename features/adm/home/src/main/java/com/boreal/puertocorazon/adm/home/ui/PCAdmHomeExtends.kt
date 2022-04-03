@@ -11,7 +11,7 @@ fun PCAdmHomeFragment.initElements() {
     binding.apply {
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.PCShowEventFragment -> {
+                R.id.PCShowEventFragment, R.id.PCBaseAddEventFragment -> {
                     bottomMenu.hideView()
                 }
                 else -> {
@@ -30,7 +30,7 @@ fun PCAdmHomeFragment.initElements() {
         }
 
         btnNewEvent.setOnClickListener {
-
+            findNavController().navigate(R.id.pc_add_event_graph)
         }
     }
 }

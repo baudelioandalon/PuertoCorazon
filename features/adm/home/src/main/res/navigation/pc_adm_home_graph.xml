@@ -11,4 +11,6 @@
         android:label="PCAdmHomeFragment"
         tools:layout="@layout/pc_adm_home_fragment" />
 
+    <include app:graph="@navigation/pc_add_event_graph" />
+
 </navigation>

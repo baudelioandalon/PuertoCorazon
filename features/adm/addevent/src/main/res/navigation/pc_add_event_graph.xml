@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pc_add_event_graph"
-    app:startDestination="@id/PCMainAddEventFragment">
+    app:startDestination="@id/PCBaseAddEventFragment">
+
 
     <fragment
-        android:id="@+id/PCMainAddEventFragment"
-        android:name="com.boreal.puertocorazon.addevent.ui.main.PCMainAddEventFragment"
-        android:label="PCMainAddEventFragment"
-        tools:layout="@layout/pc_main_add_event_fragment" />
-
+        tools:layout="@layout/pc_base_add_event_fragment"
+        android:id="@+id/PCBaseAddEventFragment"
+        android:name="com.boreal.puertocorazon.addevent.ui.base.PCBaseAddEventFragment"
+        android:label="PCBaseAddEventFragment" />
 </navigation>

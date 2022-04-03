@@ -84,7 +84,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnBack"
-            app:navGraph="@navigation/pc_add_event_graph" />
+            app:navGraph="@navigation/pc_inside_add_event_graph" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
