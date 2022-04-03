@@ -23,4 +23,10 @@
         android:label="PCGalleryAddEventFragment"
         tools:layout="@layout/pc_gallery_add_event_fragment" />
 
+    <fragment
+        android:id="@+id/PCPackagesAddEventFragment"
+        android:name="com.boreal.puertocorazon.addevent.ui.packages.PCPackagesAddEventFragment"
+        android:label="PCPackagesAddEventFragment"
+        tools:layout="@layout/pc_packages_add_event_fragment" />
+
 </navigation>

@@ -30,7 +30,7 @@
                 tools:text="Learn tennis with" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/CURoundableLayout3"
+                android:id="@+id/btnTicketAdult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -93,7 +93,7 @@
                 app:cu_cornerAll="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/CURoundableLayout3"
+                app:layout_constraintStart_toEndOf="@+id/btnTicketAdult"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle">
 
                 <TextView
@@ -150,7 +150,7 @@
                 android:textColor="@color/black_700"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/CURoundableLayout3" />
+                app:layout_constraintTop_toBottomOf="@+id/btnTicketAdult" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mRecyclerPackages"
