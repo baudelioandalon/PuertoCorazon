@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/btnBack"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="22dp"
+            android:elevation="10dp"
+            app:cu_cornerLeftBottom="10dp"
+            app:cu_cornerLeftTop="10dp"
+            app:cu_cornerRightSide="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pc_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black_700"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnSettings"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nuevo Evento" />
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/btnSettings"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="22dp"
+            android:elevation="10dp"
+            app:cu_cornerLeftSide="5dp"
+            app:cu_cornerRightBottom="10dp"
+            app:cu_cornerRightTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pc_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/navigationAddEvent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBack"
+            app:navGraph="@navigation/pc_add_event_graph" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -28,6 +28,10 @@ fun PCAdmHomeFragment.initElements() {
             adapter = adapterRecyclerHomeService
             itemPercent(.88)
         }
+
+        btnNewEvent.setOnClickListener {
+
+        }
     }
 }
 

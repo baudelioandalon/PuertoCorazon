@@ -45,11 +45,40 @@
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
         <ImageView
+            android:id="@+id/btnNewEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_pc_calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_pc_add_user"
+            app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/roundableLayout"
+            app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
+
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="23dp"
-            android:layout_height="26dp"
+            android:layout_height="23dp"
             android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:src="@drawable/ic_pc_notification"
+            app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 

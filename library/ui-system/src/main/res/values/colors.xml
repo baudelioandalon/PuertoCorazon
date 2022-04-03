@@ -14,6 +14,9 @@
     <color name="secondary_two_700">#2073C6</color>
     <!--    <color name="secondary_two_300">#9C61B8</color>-->
     <color name="blue_edittext">#A9B7EE</color>
+    <color name="gray_letter">#7C7C8B</color>
+    <color name="gray_photo">#F0F0F1</color>
+    <color name="gray_blue_container">#F4F4FA</color>
 
     <color name="gray_100">#FCFCFE</color>
     <color name="gray_200">#F7F4FC</color>

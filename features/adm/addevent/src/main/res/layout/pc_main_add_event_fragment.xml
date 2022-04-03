@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_default_color_background"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/addImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="43dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:visibility="visible"
+                        app:cu_cornerAll="50dp"
+                        app:cu_strokeLineColor="@color/gray_photo"
+                        app:cu_strokeLineWidth="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:padding="40dp"
+                            android:src="@drawable/ic_pc_more"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imgUserPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                        <View
+                            android:id="@+id/viewBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#80000000"
+                            android:visibility="gone" />
+
+                        <ProgressBar
+                            android:id="@+id/progressImg"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:progressBackgroundTint="@color/white"
+                            android:progressTint="@color/blue_purple_200"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgUserPhoto"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgUserPhoto"
+                            tools:progress="70" />
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <TextView
+                        android:id="@+id/txtFirstName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/elegir_text"
+                        android:textColor="@color/black_700"
+                        android:textSize="35sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addImage" />
+
+                    <TextView
+                        android:id="@+id/txtLastName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="@string/instructor_text"
+                        android:textColor="@color/gray_letter"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="@+id/txtFirstName"
+                        app:layout_constraintStart_toStartOf="@+id/txtFirstName"
+                        app:layout_constraintTop_toBottomOf="@+id/txtFirstName" />
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="30dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtLastName">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pc_main_container"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="15dp"
+                            android:src="@drawable/ic_pc_gallery_container"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pc_family_container"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="15dp"
+                            android:src="@drawable/ic_pc_id_container"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pc_user_container"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
+
+                        <!--                    <TextView-->
+                        <!--                        android:id="@+id/textView8"-->
+                        <!--                        android:layout_width="wrap_content"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:layout_gravity="center_vertical"-->
+                        <!--                        android:layout_marginStart="35dp"-->
+                        <!--                        android:fontFamily="@font/montserrat_semibold"-->
+                        <!--                        android:text="Principal"-->
+                        <!--                        android:textColor="@color/black_700"-->
+                        <!--                        android:textSize="18sp"-->
+                        <!--                        app:layout_constraintStart_toEndOf="@+id/imgPhone"-->
+                        <!--                        app:layout_constraintTop_toTopOf="@+id/imgPhone" />-->
+
+                        <!--                    <ImageView-->
+                        <!--                        android:id="@+id/roundableCheckContact"-->
+                        <!--                        android:layout_width="20dp"-->
+                        <!--                        android:layout_height="20dp"-->
+                        <!--                        android:layout_gravity="center"-->
+                        <!--                        android:layout_marginHorizontal="15dp"-->
+                        <!--                        android:src="@drawable/ic_pc_arrow_correct"-->
+                        <!--                        app:layout_constraintBottom_toBottomOf="@+id/btnContact"-->
+                        <!--                        app:layout_constraintEnd_toStartOf="@+id/btnContact"-->
+                        <!--                        app:layout_constraintStart_toEndOf="@+id/textView8"-->
+                        <!--                        app:layout_constraintTop_toTopOf="@+id/btnContact"-->
+                        <!--                        tools:visibility="visible" />-->
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center_vertical"
+                            android:text="Principal"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginVertical="15dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center_vertical"
+                            android:text="Galeria"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center_vertical"
+                            android:text="Paquetes"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginVertical="15dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center_vertical"
+                            android:text="Detalles"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center_vertical"
+                            android:text="Requeri-\nmientos"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_marginVertical="15dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_marginVertical="15dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/btnMain"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:cu_backgroundColor="@color/gray_blue_container"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgPhone">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pc_right_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/btnGallery"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginVertical="15dp"
+                            app:cu_backgroundColor="@color/gray_blue_container"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgPhone">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pc_right_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/btnPackages"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:cu_backgroundColor="@color/gray_blue_container"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgPhone">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pc_right_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/btnDetails"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginVertical="15dp"
+                            app:cu_backgroundColor="@color/gray_blue_container"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgPhone">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pc_right_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/btnRequirements"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:cu_backgroundColor="@color/gray_blue_container"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgPhone">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pc_right_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnSave"
+                android:layout_width="125dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginBottom="52dp"
+                app:cu_backgroundColor="@color/primary_700"
+                app:cu_cornerAll="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/guardar"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_correct"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/txtErrorMessage"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="@color/redError"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnSave"
+                app:layout_constraintTop_toTopOf="@+id/btnSave"
+                tools:text="Este es un mensaje de error"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</layout>
