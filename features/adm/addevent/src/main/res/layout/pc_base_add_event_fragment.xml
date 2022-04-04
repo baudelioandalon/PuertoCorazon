@@ -8,6 +8,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBase"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -19,7 +20,10 @@
             android:layout_height="37dp"
             android:layout_marginStart="22dp"
             android:layout_marginTop="22dp"
+            android:clickable="true"
             android:elevation="10dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cu_cornerLeftBottom="10dp"
             app:cu_cornerLeftTop="10dp"
             app:cu_cornerRightSide="5dp"
@@ -47,28 +51,31 @@
             android:textColor="@color/black_700"
             android:textSize="15sp"
             android:translationZ="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/btnSettings"
-            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Nuevo Evento" />
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-            android:id="@+id/btnSettings"
+            android:id="@+id/btnDeleteImage"
             android:layout_width="37dp"
             android:layout_height="37dp"
             android:layout_marginTop="22dp"
             android:layout_marginEnd="22dp"
+            android:clickable="true"
             android:elevation="10dp"
-            app:cu_cornerLeftSide="5dp"
-            app:cu_cornerRightBottom="10dp"
-            app:cu_cornerRightTop="10dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
+            app:cu_cornerAll="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_pc_settings"
+                android:src="@drawable/ic_pc_close"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,8 +84,9 @@
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/containerPhoto"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="300dp"
             android:elevation="9dp"
             android:visibility="gone"
             app:cu_cornerLeftBottom="70dp"
@@ -91,11 +99,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_pc_more"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_pc_more" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvAdd"
@@ -110,6 +118,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+
+        <TextView
+            android:id="@+id/tvTitleEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="@dimen/margin_24"
+            android:fontFamily="@font/helvetica_neue_bold"
+            android:textColor="@color/black_700"
+            android:textSize="20sp"
+            android:translationZ="11dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerPhoto"
+            tools:text="Learn tennis with" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navigationAddEvent"

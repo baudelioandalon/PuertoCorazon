@@ -8,14 +8,14 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -190,9 +190,9 @@
                         android:id="@+id/linearLayout2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:orientation="vertical"
-                        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                        app:layout_constraintStart_toStartOf="@+id/txtLastName"
                         app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
                         <TextView
@@ -299,6 +299,9 @@
                             android:id="@+id/btnMain"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             app:cu_backgroundColor="@color/gray_blue_container"
                             app:cu_cornerAll="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -320,6 +323,9 @@
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:layout_marginVertical="15dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             app:cu_backgroundColor="@color/gray_blue_container"
                             app:cu_cornerAll="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -340,6 +346,9 @@
                             android:id="@+id/btnPackages"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             app:cu_backgroundColor="@color/gray_blue_container"
                             app:cu_cornerAll="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -361,6 +370,9 @@
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:layout_marginVertical="15dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             app:cu_backgroundColor="@color/gray_blue_container"
                             app:cu_cornerAll="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -381,6 +393,9 @@
                             android:id="@+id/btnRequirements"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
                             app:cu_backgroundColor="@color/gray_blue_container"
                             app:cu_cornerAll="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -400,7 +415,6 @@
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             </LinearLayout>
@@ -449,8 +463,8 @@
             <TextView
                 android:id="@+id/txtErrorMessage"
                 android:layout_width="0dp"
-                android:layout_marginHorizontal="20dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/redError"
                 android:textSize="14sp"

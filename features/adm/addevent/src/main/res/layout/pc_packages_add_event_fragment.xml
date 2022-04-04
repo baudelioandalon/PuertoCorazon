@@ -16,28 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/helvetica_neue_bold"
-                android:textColor="@color/black_700"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Learn tennis with" />
-
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                 android:id="@+id/btnTicketAdult"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 app:cu_backgroundColor="@color/primary_700"
                 app:cu_cornerAll="25dp"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textView"
@@ -87,14 +78,17 @@
                 android:id="@+id/btnTicketChild"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_marginEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 app:cu_backgroundColor="@color/primary_700"
                 app:cu_cornerAll="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnTicketAdult"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/btnTicketAdult"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+                app:layout_constraintTop_toTopOf="@+id/btnTicketAdult">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -144,18 +138,46 @@
                 android:id="@+id/tvImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="60dp"
                 android:fontFamily="@font/helvetica_neue_bold"
                 android:text="@string/paquetes_text"
                 android:textColor="@color/black_700"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="@+id/btnTicketAdult"
                 app:layout_constraintTop_toBottomOf="@+id/btnTicketAdult" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnAddPackage"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:visibility="gone"
+                app:cu_cornerAll="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvImages"
+                app:layout_constraintEnd_toEndOf="@+id/btnTicketChild"
+                app:layout_constraintTop_toTopOf="@+id/tvImages"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_more_simbol"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mRecyclerPackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
