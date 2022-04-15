@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="allowed_people_drawables">
+        <item>@drawable/ic_pc_old</item>
+        <item>@drawable/ic_pc_pregnant</item>
+        <item>@drawable/ic_pc_pets</item>
+        <item>@drawable/ic_pc_children</item>
+        <item>@drawable/ic_pc_woman</item>
+        <item>@drawable/ic_pc_men</item>
+    </integer-array>
+
+    <integer-array name="allowed_clothes_drawables">
+        <item>@drawable/ic_pc_pants</item>
+        <item>@drawable/ic_pc_dress</item>
+        <item>@drawable/ic_pc_short</item>
+        <item>@drawable/ic_pc_shirt</item>
+        <item>@drawable/ic_pc_large_shirt</item>
+        <item>@drawable/ic_pc_high_heel_shoes</item>
+    </integer-array>
+
+    <integer-array name="allowed_accesories_drawables">
+        <item>@drawable/ic_pc_watcher</item>
+        <item>@drawable/ic_pc_ear_rings</item>
+        <item>@drawable/ic_pc_rings</item>
+        <item>@drawable/ic_pc_necklace</item>
+    </integer-array>
+
+</resources>

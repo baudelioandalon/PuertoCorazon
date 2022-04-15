@@ -30,7 +30,7 @@
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="@string/personas_aptas_text"
+                android:text="@string/people_text"
                 android:textColor="@color/black_700"
                 android:textSize="35sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,32 +53,81 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="@string/location_text"
+                android:text="@string/people_text"
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/txtApPaterno"
                 app:layout_constraintTop_toBottomOf="@+id/txtApPaterno"
                 tools:ignore="SmallSp" />
 
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundableLayout4"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAllowedPeople"
                 android:layout_width="0dp"
-                android:layout_height="57dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="13dp"
-                android:padding="10dp"
-                app:cu_cornerAll="5dp"
-                app:cu_strokeLineColor="@color/blue_edittext"
-                app:cu_strokeLineWidth="1dp"
-                app:layout_constraintEnd_toStartOf="@+id/CURoundableLayout3"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="42dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
-                app:layout_constraintTop_toBottomOf="@+id/lblNames">
+                app:layout_constraintTop_toBottomOf="@+id/lblNames"
+                app:spanCount="4"
+                tools:itemCount="6"
+                tools:listitem="@layout/pc_requirement_item" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/lblClothes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/clothes_text"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/txtApPaterno"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewAllowedPeople"
+                tools:ignore="SmallSp" />
 
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAllowedClothes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="42dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lblClothes"
+                app:layout_constraintTop_toBottomOf="@+id/lblClothes"
+                app:spanCount="4"
+                tools:itemCount="6"
+                tools:listitem="@layout/pc_requirement_item" />
+
+            <TextView
+                android:id="@+id/lblAccesories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/accesories_text"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/lblClothes"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewAllowedClothes"
+                tools:ignore="SmallSp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAllowedAccesories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="42dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/btnReady"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lblAccesories"
+                app:layout_constraintTop_toBottomOf="@+id/lblAccesories"
+                app:spanCount="4"
+                tools:itemCount="4"
+                tools:listitem="@layout/pc_requirement_item" />
 
             <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
                 android:id="@+id/btnReady"
@@ -90,7 +139,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundablePhone"
                 app:layout_constraintVertical_bias="1.0"
                 app:sl_shadow_color="@color/primary_300"
                 app:sl_shadowed="true">

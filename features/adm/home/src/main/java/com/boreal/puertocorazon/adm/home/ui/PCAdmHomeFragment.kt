@@ -38,7 +38,7 @@ class PCAdmHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { bindingElement, model, list, adapter ->
+            holderCallback = { bindingElement, model, list, adapter,position ->
 //                binding.customModel = model.userData
                 bindingElement.apply {
                     txtTitleEvent.text = model.title
@@ -65,7 +65,7 @@ class PCAdmHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { binding, model, list, adapter ->
+            holderCallback = { binding, model, list, adapter,position ->
                 binding.apply {
 
                 }

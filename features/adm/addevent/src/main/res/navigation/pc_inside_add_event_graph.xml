@@ -35,4 +35,11 @@
         android:label="PCDetailsAddEventFragment"
         tools:layout="@layout/pc_details_add_event_fragment" />
 
+    <fragment
+        android:id="@+id/PCRequirementsAddEventFragment"
+        android:name="com.boreal.puertocorazon.addevent.ui.requirements.PCRequirementsAddEventFragment"
+        android:label="PCRequirementsAddEventFragment"
+        tools:layout="@layout/pc_requirements_add_event_fragment" />
+
+
 </navigation>

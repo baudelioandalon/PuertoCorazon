@@ -24,5 +24,9 @@
     <string name="_23_59_pm_text">23:59 PM</string>
     <string name="_27_08_2022_text">Lun, 27 de Ago del 2022</string>
     <string name="vestimenta_text">Vestimenta\nAccesorios</string>
-    <string name="personas_aptas_text">Personas aptas</string>
+    <string name="people_text">Personas</string>
+    <string name="clothes_text">Vestimenta</string>
+    <string name="accesories_text">Accesorios</string>
+    <string name="requeri_nmientos_text">Requeri-\nmientos</string>
+    <string name="requirements_text">Requerimientos</string>
 </resources>

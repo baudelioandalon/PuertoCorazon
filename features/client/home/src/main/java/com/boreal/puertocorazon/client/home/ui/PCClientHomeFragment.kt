@@ -33,7 +33,7 @@ class PCClientHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { binding, model, list, adapter ->
+            holderCallback = { binding, model, list, adapter, position ->
 //                binding.customModel = model.userData
                 binding.apply {
                     containerEventItem.setOnSingleClickListener {
@@ -59,7 +59,7 @@ class PCClientHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { binding, model, list, adapter ->
+            holderCallback = { binding, model, list, adapter, position ->
                 binding.apply {
 
                 }

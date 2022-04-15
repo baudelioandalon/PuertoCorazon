@@ -57,12 +57,16 @@ fun PCBaseAddEventFragment.navigation() {
                     tvSubtitle.showView()
                     changeConstraint()
                 }
-//            R.id.PCMainAddEventFragment -> {
-//
-//            }
-//            R.id.PCMainAddEventFragment -> {
-//
-//            }
+                R.id.PCDetailsAddEventFragment -> {
+                    changeTitle("Detalles")
+                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    resetConstraint()
+                }
+                R.id.PCRequirementsAddEventFragment -> {
+                    changeTitle(getString(R.string.requirements_text))
+                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    resetConstraint()
+                }
                 else -> {
 
                 }

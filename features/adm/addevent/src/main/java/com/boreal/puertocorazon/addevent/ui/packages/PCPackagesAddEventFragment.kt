@@ -28,7 +28,7 @@ class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBind
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { bindingElement, model, list, adapter ->
+            holderCallback = { bindingElement, model, list, adapter,position ->
                 bindingElement.apply {
                     if (model.empty) {
                         containerPackageEmpty.showView()
