@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.core.domain.entity
+package com.boreal.puertocorazon.core.domain.entity.gallery
 
 import android.net.Uri
 

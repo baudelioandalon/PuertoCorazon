@@ -17,6 +17,18 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:fontFamily="@font/helvetica_neue_light"
+                android:text="@string/subtitulo_de_prueba_text"
+                android:textColor="@color/gray_subtitle"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,13 +45,13 @@
                 android:id="@+id/tvImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:fontFamily="@font/helvetica_neue_bold"
                 android:text="@string/imagenes_text"
+                android:layout_marginTop="16dp"
                 android:textColor="@color/black_700"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mRecyclerImages"

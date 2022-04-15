@@ -14,4 +14,5 @@
     <string name="adulto_text">Adulto</string>
     <string name="infantil_text">Infantil</string>
     <string name="empty_price">$0</string>
+    <string name="subtitulo_de_prueba_text">Subtitulo de prueba</string>
 </resources>

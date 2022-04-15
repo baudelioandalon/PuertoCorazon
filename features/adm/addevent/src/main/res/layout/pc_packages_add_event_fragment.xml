@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnTicketAdult"
+                android:id="@+id/btnTicketChild"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="24dp"
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/adulto_text"
+                    android:text="@string/infantil_text"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +75,7 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnTicketChild"
+                android:id="@+id/btnTicketAdult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
@@ -84,11 +84,11 @@
                 android:foreground="?attr/selectableItemBackground"
                 app:cu_backgroundColor="@color/primary_700"
                 app:cu_cornerAll="25dp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnTicketAdult"
+                app:layout_constraintBottom_toBottomOf="@+id/btnTicketChild"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/btnTicketAdult"
-                app:layout_constraintTop_toTopOf="@+id/btnTicketAdult">
+                app:layout_constraintStart_toEndOf="@+id/btnTicketChild"
+                app:layout_constraintTop_toTopOf="@+id/btnTicketChild">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/infantil_text"
+                    android:text="@string/adulto_text"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -143,8 +143,8 @@
                 android:text="@string/paquetes_text"
                 android:textColor="@color/black_700"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/btnTicketAdult"
-                app:layout_constraintTop_toBottomOf="@+id/btnTicketAdult" />
+                app:layout_constraintStart_toStartOf="@+id/btnTicketChild"
+                app:layout_constraintTop_toBottomOf="@+id/btnTicketChild" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                 android:id="@+id/btnAddPackage"
@@ -157,7 +157,7 @@
                 android:visibility="gone"
                 app:cu_cornerAll="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvImages"
-                app:layout_constraintEnd_toEndOf="@+id/btnTicketChild"
+                app:layout_constraintEnd_toEndOf="@+id/btnTicketAdult"
                 app:layout_constraintTop_toTopOf="@+id/tvImages"
                 tools:visibility="visible">
 

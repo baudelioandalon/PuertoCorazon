@@ -9,7 +9,7 @@ import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcGalleryAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.databinding.PcGalleryItemBinding
-import com.boreal.puertocorazon.core.domain.entity.PCImageItemModel
+import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
 
 class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBinding>() {
 
