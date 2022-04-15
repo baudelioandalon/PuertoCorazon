@@ -29,4 +29,10 @@
         android:label="PCPackagesAddEventFragment"
         tools:layout="@layout/pc_packages_add_event_fragment" />
 
+    <fragment
+        android:id="@+id/PCDetailsAddEventFragment"
+        android:name="com.boreal.puertocorazon.addevent.ui.details.PCDetailsAddEventFragment"
+        android:label="PCDetailsAddEventFragment"
+        tools:layout="@layout/pc_details_add_event_fragment" />
+
 </navigation>

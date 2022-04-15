@@ -16,6 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="201dp" />
+
             <TextView
                 android:id="@+id/txtNames"
                 android:layout_width="wrap_content"
@@ -118,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="@string/subtitulo_text"
+                android:text="Fecha"
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
@@ -140,9 +147,18 @@
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
                 app:layout_constraintTop_toBottomOf="@+id/lblApMaterno">
 
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_calendar_date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <EditText
                     android:id="@+id/tvSubtitle"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
@@ -155,9 +171,9 @@
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Esto es un subtitulo" />
+                    tools:text="27/08/2022" />
 
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -167,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="@string/descripci_n_name_text"
+                android:text="Hora inicial"
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/lblApMaterno"
@@ -179,19 +195,28 @@
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="52dp"
+                android:layout_marginEnd="10dp"
                 android:padding="10dp"
                 app:cu_cornerLeftSide="5dp"
                 app:cu_cornerRightSide="5dp"
                 app:cu_strokeLineColor="@color/blue_edittext"
                 app:cu_strokeLineWidth="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
                 app:layout_constraintTop_toBottomOf="@+id/lblApPaterno">
 
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_clock"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <EditText
                     android:id="@+id/tvDescription"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
@@ -203,9 +228,65 @@
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Esta es una descripcion" />
+                    tools:text="00:00 AM" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/lblEndHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Hora final"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/roundableEndDate"
+                app:layout_constraintTop_toTopOf="@+id/lblApPaterno"
+                tools:ignore="SmallSp" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/roundableEndDate"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="52dp"
+                android:padding="10dp"
+                app:cu_cornerLeftSide="5dp"
+                app:cu_cornerRightSide="5dp"
+                app:cu_strokeLineColor="@color/blue_edittext"
+                app:cu_strokeLineWidth="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/roundablePhone">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_clock"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/tvEndHour"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:hint="@string/del_evento_text"
+                    android:inputType="phone"
+                    android:maxLength="1000"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black_700"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="23:59 PM" />
 
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
