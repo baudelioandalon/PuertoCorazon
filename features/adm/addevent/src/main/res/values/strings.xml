@@ -16,4 +16,8 @@
     <string name="empty_price">$0</string>
     <string name="subtitulo_de_prueba_text">Subtitulo de prueba</string>
     <string name="titulo_de_prueba_text">Titulo de prueba</string>
+    <string name="duraci_n_nfecha_y_hora_text">Duración\nFecha y hora</string>
+    <string name="place_text">Lugar</string>
+    <string name="location_text">Ubicación</string>
+    <string name="no_available_text">No disponible</string>
 </resources>

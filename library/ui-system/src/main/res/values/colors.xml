@@ -73,6 +73,7 @@
     <color name="blue_strong_500">#6E98F8</color>
     <color name="blue_strong_600">#4A7FF7</color>
     <color name="blue_strong_700">#1F61F5</color>
+    <color name="blue_location">#2196f3</color>
 
     <color name="purple_blue_100">#FAFBFE</color>
     <color name="purple_blue_200">#E4E9FC</color>

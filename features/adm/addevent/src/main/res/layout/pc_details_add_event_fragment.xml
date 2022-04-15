@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/place_text"
+                android:textColor="@color/black_700"
+                android:textSize="35sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtApPaterno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/duraci_n_nfecha_y_hora_text"
+                android:textColor="@color/gray_letter"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="@+id/txtNames"
+                app:layout_constraintTop_toBottomOf="@+id/txtNames" />
+
+            <TextView
+                android:id="@+id/lblNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/location_text"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/txtApPaterno"
+                app:layout_constraintTop_toBottomOf="@+id/txtApPaterno"
+                tools:ignore="SmallSp" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/roundableLayout4"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="13dp"
+                android:padding="10dp"
+                app:cu_cornerAll="5dp"
+                app:cu_strokeLineColor="@color/blue_edittext"
+                app:cu_strokeLineWidth="1dp"
+                app:layout_constraintEnd_toStartOf="@+id/CURoundableLayout3"
+                app:layout_constraintStart_toStartOf="@+id/lblNames"
+                app:layout_constraintTop_toBottomOf="@+id/lblNames">
+
+                <EditText
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:hint="@string/no_available_text"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:nextFocusDown="@id/tvSubtitle"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black_700"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Calle Miramar #1195, San esteban" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/CURoundableLayout3"
+                android:layout_width="51dp"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cu_backgroundColor="@color/blue_location"
+                app:cu_cornerAll="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/roundableLayout4"
+                app:layout_constraintEnd_toEndOf="@+id/roundableEmail"
+                app:layout_constraintTop_toTopOf="@+id/roundableLayout4">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/lblApMaterno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/subtitulo_text"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/lblNames"
+                app:layout_constraintTop_toBottomOf="@+id/roundableLayout4"
+                tools:ignore="SmallSp" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/roundableEmail"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
+                android:padding="10dp"
+                app:cu_cornerLeftSide="5dp"
+                app:cu_cornerRightSide="5dp"
+                app:cu_strokeLineColor="@color/blue_edittext"
+                app:cu_strokeLineWidth="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lblNames"
+                app:layout_constraintTop_toBottomOf="@+id/lblApMaterno">
+
+                <EditText
+                    android:id="@+id/tvSubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:hint="@string/del_evento_text"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:nextFocusDown="@id/tvDescription"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black_700"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Esto es un subtitulo" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/lblApPaterno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/descripci_n_name_text"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/lblApMaterno"
+                app:layout_constraintTop_toBottomOf="@+id/roundableEmail"
+                tools:ignore="SmallSp" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/roundablePhone"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
+                android:padding="10dp"
+                app:cu_cornerLeftSide="5dp"
+                app:cu_cornerRightSide="5dp"
+                app:cu_strokeLineColor="@color/blue_edittext"
+                app:cu_strokeLineWidth="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lblNames"
+                app:layout_constraintTop_toBottomOf="@+id/lblApPaterno">
+
+                <EditText
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:hint="@string/del_evento_text"
+                    android:inputType="phone"
+                    android:maxLength="1000"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black_700"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Esta es una descripcion" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
+                android:id="@+id/btnReady"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="39dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundablePhone"
+                app:layout_constraintVertical_bias="1.0"
+                app:sl_shadow_color="@color/primary_300"
+                app:sl_shadowed="true">
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cu_backgroundColor="@color/primary_700"
+                    app:cu_cornerLeftSide="10dp"
+                    app:cu_cornerRightSide="10dp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Guardar"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            </com.boreal.commonutils.component.shadowlayout.CUShadowLayout>
+
+            <TextView
+                android:id="@+id/tvErrorMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="@color/redError"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/btnReady"
+                app:layout_constraintStart_toStartOf="@+id/btnReady"
+                app:layout_constraintTop_toBottomOf="@+id/btnReady"
+                tools:text="Este es un mensaje de error"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
