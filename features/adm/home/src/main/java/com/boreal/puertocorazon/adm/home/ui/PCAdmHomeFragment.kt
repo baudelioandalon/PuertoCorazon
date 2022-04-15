@@ -79,7 +79,7 @@ class PCAdmHomeFragment :
             it?.let {
                 when (it.status) {
                     AFirestoreStatusRequest.LOADING -> {
-                        showProgressBarCustom()
+                        showProgress()
                     }
                     AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
                         hideProgressBarCustom()

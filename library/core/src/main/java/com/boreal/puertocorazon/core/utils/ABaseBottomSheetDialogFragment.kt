@@ -95,7 +95,7 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding, V : ViewModel
      */
     fun showProgressBarCustom(message: String? = null, isCancelable: Boolean = false) {
         if (this::cuBackHandler.isInitialized) {
-            cuBackHandler.showProgressBarCustom(message, isCancelable)
+            cuBackHandler.showProgress(message, isCancelable)
         }
     }
 
@@ -105,7 +105,7 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding, V : ViewModel
      */
     fun hideProgressBarCustom() {
         if (this::cuBackHandler.isInitialized) {
-            cuBackHandler.hideProgressBarCustom()
+            cuBackHandler.hideProgress()
         }
     }
 

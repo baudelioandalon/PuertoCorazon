@@ -37,7 +37,7 @@ class ALoginFragment :
                 it?.let { authInfo ->
                     when (authInfo.first) {
                         AFirestoreStatusRequest.LOADING -> {
-                            showProgressBarCustom()
+                            showProgress()
                         }
                         AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
                             viewModel.resetLoginData()
@@ -58,7 +58,7 @@ class ALoginFragment :
             viewModel.loginData.observe(viewLifecycleOwner) { result ->
                 when (result?.status) {
                     AFirestoreStatusRequest.LOADING -> {
-                        showProgressBarCustom()
+                        showProgress()
                     }
                     AFirestoreStatusRequest.SUCCESS -> {
                         hideProgressBarCustom()
