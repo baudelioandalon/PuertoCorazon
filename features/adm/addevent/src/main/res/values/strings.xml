@@ -20,4 +20,9 @@
     <string name="place_text">Lugar</string>
     <string name="location_text">Ubicación</string>
     <string name="no_available_text">No disponible</string>
+    <string name="_00_00_am_text">00:00 AM</string>
+    <string name="_23_59_pm_text">23:59 PM</string>
+    <string name="_27_08_2022_text">Lun, 27 de Ago del 2022</string>
+    <string name="vestimenta_text">Vestimenta\nAccesorios</string>
+    <string name="personas_aptas_text">Personas aptas</string>
 </resources>
