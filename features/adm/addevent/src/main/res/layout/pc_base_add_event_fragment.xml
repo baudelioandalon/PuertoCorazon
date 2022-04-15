@@ -92,7 +92,8 @@
             app:cu_cornerLeftBottom="70dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -119,7 +120,6 @@
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-
         <TextView
             android:id="@+id/tvTitleEvent"
             android:layout_width="wrap_content"
@@ -133,7 +133,20 @@
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/containerPhoto"
-            tools:text="Learn tennis with" />
+            android:text="@string/titulo_de_prueba_text" />
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:text="@string/subtitulo_de_prueba_text"
+            android:textColor="@color/gray_subtitle"
+            android:textSize="17sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleEvent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleEvent" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navigationAddEvent"

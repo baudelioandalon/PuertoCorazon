@@ -17,51 +17,56 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvSubtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/helvetica_neue_light"
-                android:text="@string/subtitulo_de_prueba_text"
-                android:textColor="@color/gray_subtitle"
-                android:textSize="17sp"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/helvetica_neue_bold"
-                android:textColor="@color/black_700"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Learn tennis with" />
-
-            <TextView
                 android:id="@+id/tvImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
                 android:fontFamily="@font/helvetica_neue_bold"
                 android:text="@string/imagenes_text"
-                android:layout_marginTop="16dp"
                 android:textColor="@color/black_700"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+                app:layout_constraintBottom_toBottomOf="@+id/btnAddPackage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnAddPackage" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnAddPackage"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="22dp"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:visibility="invisible"
+                app:cu_cornerAll="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_more_simbol"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mRecyclerImages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvImages"
+                app:layout_constraintTop_toBottomOf="@+id/btnAddPackage"
                 app:spanCount="3"
                 tools:listitem="@layout/pc_gallery_item" />
 
@@ -119,7 +124,7 @@
                 tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
+    </ScrollView>
 
 </layout>

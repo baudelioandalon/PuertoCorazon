@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="136dp"
             android:layout_marginVertical="10dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginHorizontal="25dp"
             android:elevation="5dp"
             android:visibility="gone"
             app:cu_cornerAll="20dp"
@@ -117,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="136dp"
             android:layout_marginVertical="10dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginHorizontal="25dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
 

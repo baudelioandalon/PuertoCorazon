@@ -31,6 +31,7 @@ fun PCBaseAddEventFragment.navigation() {
                     navigationAddEvent.showView()
                     btnDeleteImage.hideView()
                     tvTitleEvent.hideView()
+                    tvSubtitle.hideView()
                     resetConstraint()
                 }
                 R.id.PCMainAddEventFragment -> {
@@ -44,6 +45,7 @@ fun PCBaseAddEventFragment.navigation() {
                     containerPhoto.showView()
                     btnDeleteImage.showView()
                     tvTitleEvent.showView()
+                    tvSubtitle.showView()
                     changeConstraint()
                 }
                 R.id.PCPackagesAddEventFragment -> {
@@ -52,6 +54,7 @@ fun PCBaseAddEventFragment.navigation() {
                     containerPhoto.showView()
                     btnDeleteImage.showView()
                     tvTitleEvent.showView()
+                    tvSubtitle.showView()
                     changeConstraint()
                 }
 //            R.id.PCMainAddEventFragment -> {
@@ -96,7 +99,7 @@ fun PCBaseAddEventFragment.changeConstraint() {
             connect(
                 R.id.navigationAddEvent,
                 ConstraintSet.TOP,
-                R.id.tvTitleEvent,
+                R.id.tvSubtitle,
                 ConstraintSet.BOTTOM,
                 24
             )
