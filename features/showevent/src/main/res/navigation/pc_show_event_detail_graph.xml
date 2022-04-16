@@ -7,42 +7,20 @@
 
     <fragment
         android:id="@+id/PCShowEventDescriptionFragment"
-        tools:layout="@layout/pc_show_event_description_fragment"
         android:name="com.boreal.puertocorazon.showevent.ui.sedescription.PCShowEventDescriptionFragment"
-        android:label="PCShowEventDescriptionFragment" >
-        <action
-            android:id="@+id/action_PCShowEventDescriptionFragment_to_PCShowEventGalleryFragment"
-            app:destination="@id/PCShowEventGalleryFragment" />
-        <action
-            android:id="@+id/action_PCShowEventDescriptionFragment_to_PCShowEventPackagesFragment"
-            app:destination="@id/PCShowEventPackagesFragment" />
-    </fragment>
+        android:label="PCShowEventDescriptionFragment"
+        tools:layout="@layout/pc_show_event_description_fragment" />
 
     <fragment
-        tools:layout="@layout/pc_show_event_gallery_fragment"
         android:id="@+id/PCShowEventGalleryFragment"
         android:name="com.boreal.puertocorazon.showevent.ui.segallery.PCShowEventGalleryFragment"
-        android:label="PCShowEventGalleryFragment" >
-        <action
-            android:id="@+id/action_PCShowEventGalleryFragment_to_PCShowEventPackagesFragment"
-            app:destination="@id/PCShowEventPackagesFragment" />
-        <action
-            android:id="@+id/action_PCShowEventGalleryFragment_to_PCShowEventDescriptionFragment"
-            app:destination="@id/PCShowEventDescriptionFragment" />
-    </fragment>
+        android:label="PCShowEventGalleryFragment"
+        tools:layout="@layout/pc_show_event_gallery_fragment" />
 
     <fragment
-        tools:layout="@layout/pc_show_event_packages_fragment"
         android:id="@+id/PCShowEventPackagesFragment"
         android:name="com.boreal.puertocorazon.showevent.ui.sepackages.PCShowEventPackagesFragment"
-        android:label="PCShowEventPackagesFragment" >
-        <action
-            android:id="@+id/action_PCShowEventPackagesFragment_to_PCShowEventGalleryFragment"
-            app:destination="@id/PCShowEventGalleryFragment" />
-        <action
-            android:id="@+id/action_PCShowEventPackagesFragment_to_PCShowEventDescriptionFragment"
-            app:destination="@id/PCShowEventDescriptionFragment" />
-    </fragment>
-
+        android:label="PCShowEventPackagesFragment"
+        tools:layout="@layout/pc_show_event_packages_fragment" />
 
 </navigation>

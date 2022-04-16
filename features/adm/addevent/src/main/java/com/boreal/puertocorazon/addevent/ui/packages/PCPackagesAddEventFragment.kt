@@ -7,9 +7,9 @@ import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.showView
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.addevent.databinding.PcPackageItemBinding
 import com.boreal.puertocorazon.addevent.databinding.PcPackagesAddEventFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
+import com.boreal.puertocorazon.uisystem.databinding.PcPackageItemBinding
 
 class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBinding>() {
 
@@ -28,7 +28,7 @@ class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBind
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { bindingElement, model, list, adapter,position ->
+            holderCallback = { bindingElement, model, list, adapter, position ->
                 bindingElement.apply {
                     if (model.empty) {
                         containerPackageEmpty.showView()
