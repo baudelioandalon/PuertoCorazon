@@ -11,7 +11,7 @@ data class PCEventModel(
     val eventType: String = "",
     val imageGallery: List<String> = listOf(),
     val videoGallery: List<String> = listOf(),
-    val packages: List<PCPackageModel> = listOf(),
+    val packages: List<PCPackageToUploadModel> = listOf(),
     val priceAdult: Long = 0L,
     val priceChild: Long = 0L,
     val readyToShow: Boolean = true,

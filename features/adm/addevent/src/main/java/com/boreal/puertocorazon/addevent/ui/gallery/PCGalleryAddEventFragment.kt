@@ -9,26 +9,28 @@ import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcGalleryAddEventFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
+import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageToUploadItemModel
 import com.boreal.puertocorazon.uisystem.databinding.PcGalleryItemBinding
+import com.boreal.puertocorazon.uisystem.databinding.PcGalleryToUploadItemBinding
 
 class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBinding>() {
 
     val adapterRecyclerImagesGallery by lazy {
-        GAdapter<PcGalleryItemBinding, PCImageItemModel>(
-            R.layout.pc_gallery_item,
-            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCImageItemModel>() {
+        GAdapter<PcGalleryToUploadItemBinding, PCImageToUploadItemModel>(
+            R.layout.pc_gallery_to_upload_item,
+            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCImageToUploadItemModel>() {
                 override fun areItemsTheSame(
-                    oldItem: PCImageItemModel,
-                    newItem: PCImageItemModel
+                    oldItem: PCImageToUploadItemModel,
+                    newItem: PCImageToUploadItemModel
                 ) = oldItem == newItem
 
                 override fun areContentsTheSame(
-                    oldItem: PCImageItemModel,
-                    newItem: PCImageItemModel
+                    oldItem: PCImageToUploadItemModel,
+                    newItem: PCImageToUploadItemModel
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { bindingElement, model, list, adapter,position ->
+            holderCallback = { bindingElement, model, list, adapter, position ->
                 bindingElement.apply {
                     if (model.empty) {
                         containerGalleryEmpty.showView()

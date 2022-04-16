@@ -20,7 +20,6 @@
                 android:id="@+id/tvImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
                 android:fontFamily="@font/helvetica_neue_bold"
                 android:text="@string/imagenes_text"
                 android:textColor="@color/black_700"
@@ -69,7 +68,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnAddPackage"
                 app:spanCount="3"
                 tools:listitem="@layout/pc_gallery_item" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

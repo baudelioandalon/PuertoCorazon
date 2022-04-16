@@ -10,8 +10,6 @@ class PCShowEventFragment :
     CUBaseFragment<PcShowEventFragmentBinding>() {
     //    PCShowEventViewModel
 
-    lateinit var navController: NavController
-
     override fun getLayout() = R.layout.pc_show_event_fragment
 
     override fun initDependency(savedInstanceState: Bundle?) {

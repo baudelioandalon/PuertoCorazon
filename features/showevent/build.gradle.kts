@@ -89,6 +89,7 @@ dependencies {
     implementation(Dependency.picassoLibrary)
     implementation(Dependency.circleImage)
     implementation(Dependency.roundableImageView)
+    implementation(Dependency.stfalconImageViewer)
 
     implementation(Dependency.firebaseAuth)
 }

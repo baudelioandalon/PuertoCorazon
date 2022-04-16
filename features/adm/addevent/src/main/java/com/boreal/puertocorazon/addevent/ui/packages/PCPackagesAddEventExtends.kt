@@ -1,6 +1,7 @@
 package com.boreal.puertocorazon.addevent.ui.packages
 
-import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
+import androidx.recyclerview.widget.LinearSnapHelper
+import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 
 fun PCPackagesAddEventFragment.initElements() {
     binding.apply {
@@ -9,6 +10,10 @@ fun PCPackagesAddEventFragment.initElements() {
 }
 
 fun PCPackagesAddEventFragment.initAdapter() {
-    adapterRecyclerPackages.submitList(arrayListOf(PCPackageModel()))
-    binding.mRecyclerPackages.adapter = adapterRecyclerPackages
+    binding.mRecyclerPackages.apply {
+        LinearSnapHelper().attachToRecyclerView(this)
+        adapter = adapterRecyclerPackages
+    }
+    adapterRecyclerPackages.submitList(arrayListOf(PCPackageToUploadModel()))
+
 }
