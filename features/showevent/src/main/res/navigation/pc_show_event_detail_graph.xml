@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_show_event_detail_graph"
+    app:startDestination="@id/PCShowEventDescriptionFragment">
+
+    <fragment
+        android:id="@+id/PCShowEventDescriptionFragment"
+        tools:layout="@layout/pc_show_event_description_fragment"
+        android:name="com.boreal.puertocorazon.showevent.ui.sedescription.PCShowEventDescriptionFragment"
+        android:label="PCShowEventDescriptionFragment" >
+        <action
+            android:id="@+id/action_PCShowEventDescriptionFragment_to_PCShowEventGalleryFragment"
+            app:destination="@id/PCShowEventGalleryFragment" />
+        <action
+            android:id="@+id/action_PCShowEventDescriptionFragment_to_PCShowEventPackagesFragment"
+            app:destination="@id/PCShowEventPackagesFragment" />
+    </fragment>
+
+    <fragment
+        tools:layout="@layout/pc_show_event_gallery_fragment"
+        android:id="@+id/PCShowEventGalleryFragment"
+        android:name="com.boreal.puertocorazon.showevent.ui.segallery.PCShowEventGalleryFragment"
+        android:label="PCShowEventGalleryFragment" >
+        <action
+            android:id="@+id/action_PCShowEventGalleryFragment_to_PCShowEventPackagesFragment"
+            app:destination="@id/PCShowEventPackagesFragment" />
+        <action
+            android:id="@+id/action_PCShowEventGalleryFragment_to_PCShowEventDescriptionFragment"
+            app:destination="@id/PCShowEventDescriptionFragment" />
+    </fragment>
+
+    <fragment
+        tools:layout="@layout/pc_show_event_packages_fragment"
+        android:id="@+id/PCShowEventPackagesFragment"
+        android:name="com.boreal.puertocorazon.showevent.ui.sepackages.PCShowEventPackagesFragment"
+        android:label="PCShowEventPackagesFragment" >
+        <action
+            android:id="@+id/action_PCShowEventPackagesFragment_to_PCShowEventGalleryFragment"
+            app:destination="@id/PCShowEventGalleryFragment" />
+        <action
+            android:id="@+id/action_PCShowEventPackagesFragment_to_PCShowEventDescriptionFragment"
+            app:destination="@id/PCShowEventDescriptionFragment" />
+    </fragment>
+
+
+</navigation>

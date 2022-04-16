@@ -54,7 +54,7 @@ dependencies {
     implementation(project(":commonutils"))
     implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
-    implementation(project(":features:client:event"))
+    implementation(project(":features:showevent"))
     implementation(project(":features:adm:addevent"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)

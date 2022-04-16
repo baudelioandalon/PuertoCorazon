@@ -11,7 +11,7 @@ fun PCAdmHomeFragment.initElements() {
     binding.apply {
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.PCShowEventFragment, R.id.PCBaseAddEventFragment -> {
+                R.id.PCShowEventFragment, R.id.PCBaseAddEventFragment,R.id.PCShowEventFragment -> {
                     bottomMenu.hideView()
                 }
                 else -> {

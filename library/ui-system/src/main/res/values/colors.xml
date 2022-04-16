@@ -138,4 +138,8 @@
     <color name="fill_text_selector">#99A0B4</color>
     <color name="red_btn_out">#CF5B56</color>
     <color name="gray_subtitle">#707070</color>
+
+    <color name="helper_color">#7065E4</color>
+    <color name="helper_color_background">#F2F1FC</color>
+    <color name="helper_color_border">#E2E4E4</color>
 </resources>

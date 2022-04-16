@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.adm.home.ui
 
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
@@ -43,8 +44,9 @@ class PCAdmHomeFragment :
                 bindingElement.apply {
                     txtTitleEvent.text = model.title
                     containerEventItem.setOnSingleClickListener {
-//                        findNavController().navigate(R.id.action_PCHomeFragment_to_pc_client_event_graph)
+                        findNavController().navigate(R.id.pc_show_event_graph)
                     }
+                    containerEventItem.performClick()
                 }
             }
         )

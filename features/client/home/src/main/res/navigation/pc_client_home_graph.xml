@@ -12,9 +12,9 @@
         tools:layout="@layout/pc_client_home_fragment">
         <action
             android:id="@+id/action_PCClientHomeFragment_to_pc_client_event_graph"
-            app:destination="@id/pc_client_event_graph" />
+            app:destination="@id/pc_show_event_graph" />
     </fragment>
 
-    <include app:graph="@navigation/pc_client_event_graph" />
+    <include app:graph="@navigation/pc_show_event_graph" />
 
 </navigation>

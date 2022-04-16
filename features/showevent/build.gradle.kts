@@ -1,20 +1,20 @@
 plugins {
     id("com.android.library")
+    id("kotlin-android")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 apply {
     plugin(Dependency.pluginKotlinApp)
     plugin(Dependency.pluginKotlinKapt)
     plugin(Dependency.pluginKotlinParcelize)
 }
-
 android {
     compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -32,11 +32,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
     buildFeatures {
         dataBinding = true
     }
@@ -48,12 +46,13 @@ repositories {
     mavenCentral()
     maven(url = "https://www.jitpack.io")
 }
-dependencies {
 
+dependencies {
     implementation(project(":commonutils"))
     implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
-    implementation(project(":features:showevent"))
+//    implementation(project(":features:client:home"))
+//    implementation(project(":features:adm:home"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)
@@ -64,7 +63,9 @@ dependencies {
     api(Dependency.appcompat)
     api(Dependency.constraintlayout)
     api(Dependency.coreKtx)
+    api(Dependency.gson)
     api(Dependency.kotlinxCoroutinesCore)
+    api(Dependency.firebaseCrashlyticsKtx)
     api(Dependency.navigationUiKtx)
     api(Dependency.navigationFragmentKtx)
     api(Dependency.navigationRuntimeKtx)
@@ -81,17 +82,13 @@ dependencies {
     implementation(Dependency.activityKtx)
     implementation(Dependency.lifecycleKtx)
 
-    implementation(Dependency.firestore)
-    implementation(Dependency.firestoreKtx)
-
-
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
+    implementation(Dependency.kProgressHud)
+    implementation(Dependency.donutLibrary)
+    implementation(Dependency.picassoLibrary)
+    implementation(Dependency.circleImage)
     implementation(Dependency.roundableImageView)
-//    implementation(Dependency.kProgressHud)
-//    implementation(Dependency.donutLibrary)
-//    implementation(Dependency.picassoLibrary)
-//    implementation(Dependency.circleImage)
-//
 
+    implementation(Dependency.firebaseAuth)
 }

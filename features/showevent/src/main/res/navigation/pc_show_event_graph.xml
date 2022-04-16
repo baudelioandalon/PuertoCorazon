@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_show_event_graph"
+    app:startDestination="@id/PCShowEventFragment">
+
+    <fragment
+        android:id="@+id/PCShowEventFragment"
+        android:name="com.boreal.puertocorazon.showevent.ui.showevent.PCShowEventFragment"
+        android:label="PCShowEventFragment"
+        tools:layout="@layout/pc_show_event_fragment" />
+
+</navigation>
