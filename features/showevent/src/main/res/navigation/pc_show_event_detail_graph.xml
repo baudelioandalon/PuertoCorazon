@@ -9,7 +9,12 @@
         android:id="@+id/PCShowEventDescriptionFragment"
         android:name="com.boreal.puertocorazon.showevent.ui.sedescription.PCShowEventDescriptionFragment"
         android:label="PCShowEventDescriptionFragment"
-        tools:layout="@layout/pc_show_event_description_fragment" />
+        tools:layout="@layout/pc_show_event_description_fragment">
+        <action
+            android:id="@+id/action_PCShowEventDescriptionFragment_to_PCShowEventGalleryFragment"
+            app:destination="@id/PCShowEventGalleryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/PCShowEventGalleryFragment"
