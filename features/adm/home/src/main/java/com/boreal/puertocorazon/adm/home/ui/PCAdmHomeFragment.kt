@@ -46,7 +46,6 @@ class PCAdmHomeFragment :
                     containerEventItem.setOnSingleClickListener {
                         findNavController().navigate(R.id.pc_show_event_graph)
                     }
-                    containerEventItem.performClick()
                 }
             }
         )
