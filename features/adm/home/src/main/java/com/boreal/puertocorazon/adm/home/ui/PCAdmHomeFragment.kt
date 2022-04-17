@@ -39,7 +39,7 @@ class PCAdmHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { bindingElement, model, list, adapter,position ->
+            holderCallback = { bindingElement, model, list, adapter, position ->
 //                binding.customModel = model.userData
                 bindingElement.apply {
                     txtTitleEvent.text = model.title
@@ -66,7 +66,7 @@ class PCAdmHomeFragment :
                 ) = oldItem == newItem
 
             }).build(),
-            holderCallback = { binding, model, list, adapter,position ->
+            holderCallback = { binding, model, list, adapter, position ->
                 binding.apply {
 
                 }
@@ -80,11 +80,14 @@ class PCAdmHomeFragment :
             it?.let {
                 when (it.status) {
                     AFirestoreStatusRequest.LOADING -> {
-                        showProgress()
+//                        showProgress()
+                        binding.recyclerAdmHomeEvents.setLoading(AFirestoreStatusRequest.LOADING.ordinal)
                     }
                     AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
-                        hideProgressBarCustom()
+                        binding.recyclerAdmHomeEvents.setLoading(AFirestoreStatusRequest.SUCCESS.ordinal)
+//                        hideProgressBarCustom()
                         it.failure?.let { errorResult ->
+                            binding.recyclerAdmHomeEvents.setLoading(AFirestoreStatusRequest.FAILURE.ordinal)
                             if (errorResult == CUFirestoreErrorEnum.ERROR_PERMISSION_DENIED) {
                                 viewModelBase.signOutUser()
                             }

@@ -27,7 +27,7 @@ object Version {
     const val viewmodelVersion = "2.3.1"
     const val gmsGoogleServicesVersion = "4.3.10"
 
-    const val lottieVersion = "4.2.0"
+    const val lottieVersion = "5.0.3"
     const val roundableImageViewVersion = "2.3.0"
     const val recyclerViewVersion = "1.2.1"
     const val securityCryptoVersion = "1.1.0-alpha01"

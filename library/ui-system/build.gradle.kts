@@ -62,4 +62,5 @@ dependencies {
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.circularProgress)
     implementation(Dependency.roundableImageView)
+    implementation(Dependency.lottie)
 }

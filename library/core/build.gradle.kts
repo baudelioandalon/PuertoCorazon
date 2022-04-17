@@ -113,6 +113,7 @@ dependencies {
     implementation(Dependency.glideLibrary)
     implementation(Dependency.glideCompilerLibrary)
     implementation(Dependency.circleImage)
+    implementation(Dependency.lottie)
 
     implementation(Dependency.firebaseAuth)
     implementation(Dependency.firestore)
