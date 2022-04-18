@@ -1,6 +1,7 @@
 package com.boreal.puertocorazon.showevent.ui.sedescription
 
 import com.boreal.commonutils.extensions.openFacebookActivity
+import com.boreal.commonutils.extensions.openMapsActivity
 import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.puertocorazon.core.utils.formatCurrency
 
@@ -27,7 +28,7 @@ fun PCShowEventDescriptionFragment.fillData() {
                 )
             }
             btnGoMaps.setOnSingleClickListener {
-
+                openMapsActivity(byAddress = addressPlace)
             }
         }
     }
