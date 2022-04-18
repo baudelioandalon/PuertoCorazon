@@ -7,6 +7,7 @@ data class PCEventModel(
     val title: String = "",
     val subtitle: String = "",
     val description: String = "",
+    val addressPlace: String = "",
     val place: PCLocationModel = PCLocationModel(),
     val eventType: String = "",
     val imageGallery: List<String> = listOf(),

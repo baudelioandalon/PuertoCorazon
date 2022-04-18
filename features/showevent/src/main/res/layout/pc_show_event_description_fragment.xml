@@ -319,19 +319,21 @@
                 app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5" />
 
             <TextView
+                android:id="@+id/txtAddressPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/helvetica_neue"
-                android:text="Miramar #1195 San Est..."
                 android:textColor="@color/black_700"
                 android:textSize="18sp"
+                maxDot="@{20}"
                 app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
-                app:layout_constraintEnd_toStartOf="@+id/CURoundableLayout6"
+                app:layout_constraintEnd_toStartOf="@+id/btnGoMaps"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView8" />
+                app:layout_constraintStart_toStartOf="@+id/textView8"
+                tools:text="Miramar #1195 San Est..." />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/CURoundableLayout6"
+                android:id="@+id/btnGoMaps"
                 android:layout_width="50dp"
                 android:layout_height="0dp"
                 app:cu_backgroundColor="#00000000"

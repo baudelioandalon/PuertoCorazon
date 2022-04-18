@@ -17,6 +17,7 @@ fun PCShowEventDescriptionFragment.fillData() {
         mainViewModel.getEventSelected().apply {
             imgUser = instructorImageUrl
             txtDescription.text = description
+            txtAddressPlace.text = addressPlace
             tvInstructorName.text = instructorName
             tvTicketPrice.text = priceAdult.formatCurrency(textFirst = "Comprar")
             txtCountPeople.text = "4" //TODO getTickets from firebase
@@ -24,6 +25,9 @@ fun PCShowEventDescriptionFragment.fillData() {
                 openFacebookActivity(
                     "739092302865258"
                 )
+            }
+            btnGoMaps.setOnSingleClickListener {
+
             }
         }
     }
