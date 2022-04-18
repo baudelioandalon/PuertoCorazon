@@ -1,14 +1,32 @@
 package com.boreal.puertocorazon.showevent.ui.segallery
 
+import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
+import com.boreal.puertocorazon.showevent.ui.sepackages.addLinearHelper
+import com.boreal.puertocorazon.showevent.ui.sepackages.scrollToPositionCentered
 
 fun PCShowEventGalleryFragment.initElements() {
     binding.apply {
-        initAdapter()
+        fillData()
     }
 }
 
-fun PCShowEventGalleryFragment.initAdapter() {
-    adapterRecyclerImagesGallery.submitList(arrayListOf(PCImageItemModel("https://firebasestorage.googleapis.com/v0/b/puertocorazonapp.appspot.com/o/image_test.jpeg?alt=media&token=146504be-2d82-4358-adfd-f69005234205")))
-    binding.mRecyclerImages.adapter = adapterRecyclerImagesGallery
+fun PCShowEventGalleryFragment.fillData() {
+    binding.apply {
+        mainViewModel.getEventSelected().apply {
+            initAdapter(imageGallery.map { PCImageItemModel(it) })
+        }
+    }
+}
+
+fun PCShowEventGalleryFragment.initAdapter(galleryList: List<PCImageItemModel>) {
+    adapterRecyclerImagesGallery.submitList(galleryList)
+    binding.mRecyclerImages.apply {
+        adapter = adapterRecyclerImagesGallery
+        addLinearHelper()
+        smoothScrollToPosition(0)
+        scrollToPositionCentered()
+        itemPercent(.88)
+    }
+
 }

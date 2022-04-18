@@ -8,13 +8,16 @@ import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.commonutils.extensions.showImageViewer
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
+import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.showevent.R
 import com.boreal.puertocorazon.showevent.databinding.PcShowEventGalleryFragmentBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcGalleryItemBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCShowEventGalleryFragment :
     CUBaseFragment<PcShowEventGalleryFragmentBinding>() {
-    //    PCShowEventGalleryViewModel
+
+    val mainViewModel: PCMainViewModel by sharedViewModel()
 
     val adapterRecyclerImagesGallery by lazy {
         GAdapter<PcGalleryItemBinding, PCImageItemModel>(
@@ -35,7 +38,7 @@ class PCShowEventGalleryFragment :
                 bindingElement.apply {
                     imageUrl = model.imageUrl
                     containerGalleryFilled.setOnSingleClickListener {
-                        showImageViewer(arrayListOf(model.imageUrl ?: ""))
+                        showImageViewer(list.map { it.imageUrl ?: "" }.sortedBy { it != model.imageUrl ?: "" })
                     }
                 }
             }

@@ -9,7 +9,7 @@ import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
-import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
+import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.login.R
 import com.boreal.puertocorazon.login.databinding.ALoginFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +20,7 @@ class ALoginFragment :
     CUBaseFragment<ALoginFragmentBinding>() {
 
     val viewModel: ALoginViewModel by viewModel()
-    private val viewModelBase: PCBaseViewModel by activityViewModels()
+    private val mainViewModel: PCMainViewModel by activityViewModels()
 
     override fun getLayout() = R.layout.a_login_fragment
 
@@ -47,10 +47,10 @@ class ALoginFragment :
                 }
             }
         } else {
-            viewModelBase.authUser.observe(viewLifecycleOwner) {
+            mainViewModel.authUser.observe(viewLifecycleOwner) {
                 if (it != null && it.userType != PCUserType.NONE.type) {
-                    if (viewModelBase.allowExit) {
-                        viewModelBase.allowExit = false
+                    if (mainViewModel.allowExit) {
+                        mainViewModel.allowExit = false
                         navigateToHome(it)
                     }
                 }
@@ -64,7 +64,7 @@ class ALoginFragment :
                         hideProgressBarCustom()
                         result.response?.let {
                             if (it.email_verified) {
-                                viewModelBase.setAuthUser(it)
+                                mainViewModel.setAuthUser(it)
                             }
                         }
                     }
@@ -86,27 +86,27 @@ class ALoginFragment :
         if (userLocal != null) {
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
-                    viewModelBase.allowExit = false
+                    mainViewModel.allowExit = false
                     findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
                         .run {
                             hideProgressBarCustom()
                         }
                 }
                 PCUserType.CLIENT.type -> {
-                    viewModelBase.allowExit = false
+                    mainViewModel.allowExit = false
                     findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
                         .run {
                             hideProgressBarCustom()
                         }
                 }
                 else -> {
-                    viewModelBase.allowExit = true
+                    mainViewModel.allowExit = true
                     showToast("Tipo de usuario ${userLocal.userType} no controlado")
                     hideProgressBarCustom()
                 }
             }
         } else {
-            viewModelBase.allowExit = true
+            mainViewModel.allowExit = true
             FirebaseAuth.getInstance().signOut()
             showToast("El usuario no se encontró")
             hideProgressBarCustom()

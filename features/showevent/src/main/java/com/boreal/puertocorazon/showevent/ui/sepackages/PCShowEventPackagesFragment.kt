@@ -7,9 +7,11 @@ import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
+import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.showevent.R
 import com.boreal.puertocorazon.showevent.databinding.PcShowEventPackagesFragmentBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcPackageItemBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //fun Float.currencyFormat(noDecimal: Boolean = true) = if (noDecimal) {
 //    "$${toInt()}"
@@ -20,6 +22,8 @@ import com.boreal.puertocorazon.uisystem.databinding.PcPackageItemBinding
 
 class PCShowEventPackagesFragment :
     CUBaseFragment<PcShowEventPackagesFragmentBinding>() {
+
+    val mainViewModel: PCMainViewModel by sharedViewModel()
 
     val adapterRecyclerPackages by lazy {
         GAdapter<PcPackageItemBinding, PCPackageModel>(

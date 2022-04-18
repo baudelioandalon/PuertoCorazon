@@ -5,14 +5,18 @@
 
     <data>
 
+        <variable
+            name="imgUser"
+            type="java.lang.String" />
+
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,46 +31,48 @@
                 app:layout_constraintGuide_percent="0.5" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem_impsum_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/lorem_impsum_text" />
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/instructorImage"
+                android:id="@+id/imgInstructor"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_pc_face_example"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:riv_corner_radius="25dp" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescription"
+                app:loadUserImage="@{imgUser}"
+                app:riv_corner_radius="25dp"
+                tools:src="@drawable/ic_pc_face_example" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvInstructorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_12"
                 android:fontFamily="@font/helvetica_neue_light"
-                android:text="Jenifer Woodson"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/instructorImage"
-                app:layout_constraintStart_toEndOf="@+id/instructorImage"
-                app:layout_constraintTop_toTopOf="@+id/instructorImage" />
+                app:layout_constraintBottom_toBottomOf="@+id/imgInstructor"
+                app:layout_constraintStart_toEndOf="@+id/imgInstructor"
+                app:layout_constraintTop_toTopOf="@+id/imgInstructor"
+                tools:text="Jenifer Woodson" />
 
             <TextView
+                android:id="@+id/btnFollow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8"
                 android:text="@string/u2022_follow_text"
                 android:textColor="@color/helper_color"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintBottom_toBottomOf="@+id/tvInstructorName"
+                app:layout_constraintStart_toEndOf="@+id/tvInstructorName"
+                app:layout_constraintTop_toTopOf="@+id/tvInstructorName" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                 android:id="@+id/btnAddToCar"
@@ -83,7 +89,7 @@
                 app:cu_strokeLineWidth="2dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/instructorImage">
+                app:layout_constraintTop_toBottomOf="@+id/imgInstructor">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,7 +111,7 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnTicketChild"
+                android:id="@+id/btnBuyTicket"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -119,25 +125,25 @@
                 app:layout_constraintTop_toTopOf="@+id/btnAddToCar">
 
                 <TextView
-                    android:id="@+id/tvTicketName"
+                    android:id="@+id/tvTicketPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="28dp"
                     android:layout_marginVertical="18dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Comprar $399"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Comprar $399" />
 
 
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/txtCountPeople"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="45dp"
@@ -156,9 +162,9 @@
                 android:fontFamily="@font/avenir_medium"
                 android:text="personas irán"
                 android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView5"
-                app:layout_constraintStart_toEndOf="@+id/textView5"
-                app:layout_constraintTop_toTopOf="@+id/textView5" />
+                app:layout_constraintBottom_toBottomOf="@+id/txtCountPeople"
+                app:layout_constraintStart_toEndOf="@+id/txtCountPeople"
+                app:layout_constraintTop_toTopOf="@+id/txtCountPeople" />
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/invitedOne"
@@ -218,7 +224,7 @@
                 app:cu_backgroundColor="@color/helper_color_background"
                 app:cu_cornerAll="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5">
+                app:layout_constraintTop_toBottomOf="@+id/txtCountPeople">
 
                 <ImageView
                     android:layout_width="wrap_content"

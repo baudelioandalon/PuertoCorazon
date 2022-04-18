@@ -6,7 +6,7 @@ import com.boreal.commonutils.base.CUBaseActivity
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialog
 import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.puertocorazon.R
-import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
+import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.databinding.PcBaseActivityBinding
 import com.boreal.puertocorazon.databinding.PcOutDialogBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -16,14 +16,14 @@ import kotlin.system.exitProcess
 
 class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
 
-    private val viewModel: PCBaseViewModel by viewModel()
+    private val mainViewModel: PCMainViewModel by viewModel()
     lateinit var navController: NavController
     lateinit var dialog: CUBlurDialog
 
     override fun getLayout() = R.layout.pc_base_activity
 
     override fun initObservers() {
-        viewModel.goLogin.observe(this) {
+        mainViewModel.goLogin.observe(this) {
             it?.let {
                 if (it) {
                     goToLogin()
@@ -37,7 +37,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
     }
 
     override fun onBackPressed() {
-        if (viewModel.allowExit) {
+        if (mainViewModel.allowExit) {
             showOutDialog()
         } else {
             navController.currentDestination?.apply {
@@ -59,7 +59,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                 callback = {
                     PcOutDialogBinding.bind(it).apply {
                         btnCancelOut.setOnSingleClickListener {
-                            viewModel.countOutClicked = 0
+                            mainViewModel.countOutClicked = 0
                             dialog.dismiss()
                         }
                         btnOut.setOnSingleClickListener {

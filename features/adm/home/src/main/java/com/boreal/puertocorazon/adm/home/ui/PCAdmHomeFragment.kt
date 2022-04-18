@@ -12,7 +12,7 @@ import com.boreal.puertocorazon.adm.home.databinding.PcAdmHomeFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
-import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
+import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeEventItemBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeServiceItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class PCAdmHomeFragment :
     CUBaseFragment<PcAdmHomeFragmentBinding>() {
 
-    private val viewModelBase: PCBaseViewModel by sharedViewModel()
+    private val mainViewModel: PCMainViewModel by sharedViewModel()
     val viewModel: PCHomeViewModel by viewModel()
 
     val adapterRecyclerAdmHomeEvent by lazy {
@@ -43,8 +43,9 @@ class PCAdmHomeFragment :
 //                binding.customModel = model.userData
                 bindingElement.apply {
                     txtTitleEvent.text = model.title
+                    homeImg = model.homeImageUrl
                     containerEventItem.setOnSingleClickListener {
-                        findNavController().navigate(R.id.pc_show_event_graph)
+                        mainViewModel.setEventSelected(model)
                     }
                 }
             }
@@ -76,6 +77,14 @@ class PCAdmHomeFragment :
 
     override fun initObservers() {
 
+        mainViewModel.eventSelected.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it.idEvent != "NONE") {
+                    findNavController().navigate(R.id.pc_show_event_graph)
+                }
+            }
+        }
+
         viewModel.eventList.observe(viewLifecycleOwner) {
             it?.let {
                 when (it.status) {
@@ -84,12 +93,12 @@ class PCAdmHomeFragment :
                         binding.recyclerAdmHomeEvents.setLoading(AFirestoreStatusRequest.LOADING.ordinal)
                     }
                     AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
-                        binding.recyclerAdmHomeEvents.setLoading(AFirestoreStatusRequest.SUCCESS.ordinal)
+                        binding.recyclerAdmHomeEvents.setLoading(it.status.ordinal)
 //                        hideProgressBarCustom()
                         it.failure?.let { errorResult ->
-                            binding.recyclerAdmHomeEvents.setLoading(AFirestoreStatusRequest.FAILURE.ordinal)
+                            binding.recyclerAdmHomeEvents.setLoading(it.status.ordinal)
                             if (errorResult == CUFirestoreErrorEnum.ERROR_PERMISSION_DENIED) {
-                                viewModelBase.signOutUser()
+                                mainViewModel.signOutUser()
                             }
                             showToast(errorResult.messageError)
                             return@observe

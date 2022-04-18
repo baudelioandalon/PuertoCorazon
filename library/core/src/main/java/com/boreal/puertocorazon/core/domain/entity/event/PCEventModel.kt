@@ -3,7 +3,7 @@ package com.boreal.puertocorazon.core.domain.entity.event
 import com.google.firebase.Timestamp
 
 data class PCEventModel(
-    val idEvent: String = "",
+    val idEvent: String = "NONE",
     val title: String = "",
     val subtitle: String = "",
     val description: String = "",
@@ -11,7 +11,7 @@ data class PCEventModel(
     val eventType: String = "",
     val imageGallery: List<String> = listOf(),
     val videoGallery: List<String> = listOf(),
-    val packages: List<PCPackageToUploadModel> = listOf(),
+    val packages: List<PCPackageModel> = listOf(),
     val priceAdult: Long = 0L,
     val priceChild: Long = 0L,
     val readyToShow: Boolean = true,

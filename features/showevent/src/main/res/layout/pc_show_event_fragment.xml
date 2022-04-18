@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="mainImage"
+            type="java.lang.String" />
+        
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -77,6 +80,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    app:loadImage="@{mainImage}"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:elevation="9dp"

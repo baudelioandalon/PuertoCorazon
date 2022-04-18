@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="homeImg"
+            type="java.lang.String" />
     </data>
 
     <LinearLayout
@@ -12,15 +15,15 @@
         android:layout_height="match_parent">
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-            android:layout_width="match_parent"
-            android:clickable="true"
-            android:focusable="true"
             android:id="@+id/containerEventItem"
-            android:foreground="?attr/selectableItemBackground"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="10dp"
+            android:clickable="true"
             android:elevation="3dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cu_cornerAll="30dp">
 
             <TextView
@@ -34,6 +37,7 @@
                 android:text="01."
                 android:textColor="@color/white"
                 android:textSize="30sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/countainerImageEvent"
                 app:layout_constraintTop_toTopOf="@+id/countainerImageEvent" />
 
@@ -48,6 +52,7 @@
                 android:maxLines="2"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/countainerImageEvent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 tools:text="@string/title_example_text" />
@@ -56,6 +61,7 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
                 android:elevation="1dp"
                 android:fontFamily="@font/montserrat_semibold"
@@ -63,13 +69,13 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/countainerImageEvent"
-                app:layout_constraintStart_toStartOf="@+id/txtTitleEvent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                 android:id="@+id/countainerImageEvent"
                 android:layout_width="0dp"
-                android:layout_marginHorizontal="20dp"
                 android:layout_height="250dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 app:cu_backgroundColor="#F8C12A"
                 app:cu_cornerAll="30dp"
@@ -87,11 +93,11 @@
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_marginEnd="-130dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/test"/>
+                        app:loadImage="@{homeImg}"
+                        tools:src="@drawable/test" />
 
                 </LinearLayout>
 

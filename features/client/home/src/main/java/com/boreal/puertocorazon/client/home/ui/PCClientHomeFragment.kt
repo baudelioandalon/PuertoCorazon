@@ -8,7 +8,7 @@ import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.client.home.R
 import com.boreal.puertocorazon.client.home.databinding.PcClientHomeFragmentBinding
-import com.boreal.puertocorazon.core.viewmodel.PCBaseViewModel
+import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeEventItemBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeServiceItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class PCClientHomeFragment :
     CUBaseFragment<PcClientHomeFragmentBinding>() {
 
-    private val viewModelBase: PCBaseViewModel by sharedViewModel()
+    private val mainViewModel: PCMainViewModel by sharedViewModel()
 
     val adapterRecyclerHomeEvent by lazy {
         GAdapter<PcHomeEventItemBinding, String>(

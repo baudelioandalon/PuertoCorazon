@@ -14,7 +14,7 @@ fun PCShowEventFragment.initElements() {
     binding.apply {
         navigation()
         btnClose.setOnSingleClickListener {
-            requireActivity().onBackPressed()
+            mainViewModel.removeEventSelected()
         }
 
         btnDescription.setOnSingleClickListener {
@@ -37,6 +37,18 @@ fun PCShowEventFragment.initElements() {
         }
     }
 
+    fillData()
+
+}
+
+fun PCShowEventFragment.fillData() {
+    binding.apply {
+        mainViewModel.getEventSelected().apply {
+            mainImage = mainImageUrl
+            txtTitle.text = title
+            txtSubtitle.text = subtitle
+        }
+    }
 }
 
 fun PCShowEventFragment.navigation() {

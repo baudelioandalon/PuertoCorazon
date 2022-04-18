@@ -10,22 +10,20 @@ import com.boreal.puertocorazon.showevent.R
 
 fun PCShowEventPackagesFragment.initElements() {
     binding.apply {
-        initAdapter()
+        fillData()
     }
 }
 
-fun PCShowEventPackagesFragment.initAdapter() {
-    adapterRecyclerPackages.submitList(
-        arrayListOf(
-            PCPackageModel(
-                titlePackage = "Familia",
-                adult = 2L, child = 1, price = 790L
-            ), PCPackageModel(
-                titlePackage = "Pareja",
-                adult = 2L, price = 600L
-            )
-        )
-    )
+fun PCShowEventPackagesFragment.fillData() {
+    binding.apply {
+        mainViewModel.getEventSelected().apply {
+            initAdapter(packages)
+        }
+    }
+}
+
+fun PCShowEventPackagesFragment.initAdapter(packageList: List<PCPackageModel>) {
+    adapterRecyclerPackages.submitList(packageList)
     binding.apply {
         mRecyclerPackages.apply {
             addLinearHelper()
