@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.addevent.ui.menu
 
+import android.net.Uri
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.showView
@@ -16,15 +17,14 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
 
     override fun initObservers() {
         binding.apply {
-            addEventViewModel.newEvent.apply {
-                if (title.isNotEmpty() && subtitle.isNotEmpty() && description.isNotEmpty()) {
+            addEventViewModel.apply {
+                if (getEventTitle().isNotEmpty() && getEventSubtitle().isNotEmpty() && getEventDescription().isNotEmpty()) {
                     checkMain.showView()
                 } else {
                     checkMain.invisibleView()
                 }
-            }
-            addEventViewModel.newEvent.apply {
-                if (imageGallery.isNotEmpty()) {
+
+                if (getGallery().isNotEmpty() && getMainImage() != Uri.EMPTY) {
                     checkGallery.showView()
                 } else {
                     checkGallery.invisibleView()

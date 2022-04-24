@@ -22,9 +22,9 @@ data class PCEventToUploadModel(
     val instructionId: String = "",
     val instructorName: String = "",
     val instructorImageUrl: String = "",
-    val mainImageUrl: String = "",
+    var mainImageUrl: Uri = Uri.EMPTY,
     val capacity: Long = 0L,
-    val homeImageUrl: String = "",
+    val homeImageUrl: Uri = Uri.EMPTY,
     val allowedPeople: List<String> = listOf(),
     val allowedAccesories: List<String> = listOf(),
     val allowedClothing: List<String> = listOf()

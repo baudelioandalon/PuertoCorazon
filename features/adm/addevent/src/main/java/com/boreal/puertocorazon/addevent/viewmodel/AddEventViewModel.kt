@@ -6,7 +6,7 @@ import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 
 class AddEventViewModel : CUBaseViewModel() {
 
-    val newEvent = PCEventToUploadModel()
+    private val newEvent = PCEventToUploadModel()
 
     fun setMainData(title: String, subtitle: String, description: String) {
         newEvent.apply {
@@ -20,9 +20,14 @@ class AddEventViewModel : CUBaseViewModel() {
         newEvent.imageGallery = list
     }
 
+    fun setMainImage(mainImage: Uri) {
+        newEvent.mainImageUrl = mainImage
+    }
+
     fun getEventTitle() = newEvent.title
     fun getEventSubtitle() = newEvent.subtitle
     fun getEventDescription() = newEvent.description
     fun getGallery() = newEvent.imageGallery
+    fun getMainImage() = newEvent.mainImageUrl
 
 }

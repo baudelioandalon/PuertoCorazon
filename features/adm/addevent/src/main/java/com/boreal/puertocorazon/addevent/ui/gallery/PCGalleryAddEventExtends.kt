@@ -28,6 +28,9 @@ fun PCGalleryAddEventFragment.initElements() {
             ) {
                 tvErrorMessage.text = getString(R.string.select_photo_text)
                 return@setOnSingleClickListener
+            }else if(viewModel.getMainImage() == Uri.EMPTY){
+                tvErrorMessage.text = getString(R.string.select_main_photo_text)
+                return@setOnSingleClickListener
             }
             viewModel.setGallery(adapterRecyclerImagesGallery.currentList.map { it.imageToUpdate })
             onFragmentBackPressed()

@@ -1,12 +1,11 @@
 package com.boreal.puertocorazon.addevent.ui.base
 
+import android.net.Uri
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.fragment.NavHostFragment
-import com.boreal.commonutils.extensions.changeDrawable
-import com.boreal.commonutils.extensions.hideView
-import com.boreal.commonutils.extensions.setOnSingleClickListener
-import com.boreal.commonutils.extensions.showView
+import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 
 
 fun PCBaseAddEventFragment.initElements() {
@@ -14,6 +13,37 @@ fun PCBaseAddEventFragment.initElements() {
         navigation()
         btnBack.setOnSingleClickListener {
             onFragmentBackPressed()
+        }
+
+        if (viewModel.getMainImage() != Uri.EMPTY) {
+            imgContainer.setImageURI(viewModel.getMainImage())
+            btnDeleteImage.showView()
+        } else {
+            btnDeleteImage.invisibleView()
+        }
+        containerPhoto.setOnSingleClickListener {
+            ABottomSheetOptionsImageFragment { uriReceived ->
+                viewModel.setMainImage(uriReceived)
+                imgContainer.setImageURI(uriReceived)
+                imgContainer.showView()
+                tvAdd.invisibleView()
+                imageView.invisibleView()
+                btnDeleteImage.showView()
+                tvTitle.changeTextColor(R.color.white)
+            }.show(
+                requireActivity().supportFragmentManager,
+                "imageoption"
+            )
+        }
+
+        btnDeleteImage.setOnSingleClickListener {
+            imgContainer.invisibleView()
+            imgContainer.setImageURI(Uri.EMPTY)
+            viewModel.setMainImage(Uri.EMPTY)
+            btnDeleteImage.invisibleView()
+            tvAdd.showView()
+            imageView.showView()
+            tvTitle.changeTextColor(R.color.black_700)
         }
     }
 }
@@ -47,7 +77,12 @@ fun PCBaseAddEventFragment.navigation() {
                     changeTitle("Galeria")
                     imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
                     containerPhoto.showView()
-                    btnDeleteImage.showView()
+                    if (viewModel.getMainImage() != Uri.EMPTY) {
+                        imgContainer.setImageURI(viewModel.getMainImage())
+                        btnDeleteImage.showView()
+                    } else {
+                        btnDeleteImage.invisibleView()
+                    }
                     tvTitleEvent.showView()
                     tvSubtitle.showView()
                     changeConstraint()
@@ -56,7 +91,12 @@ fun PCBaseAddEventFragment.navigation() {
                     changeTitle("Paquetes")
                     imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
                     containerPhoto.showView()
-                    btnDeleteImage.showView()
+                    if (viewModel.getMainImage() != Uri.EMPTY) {
+                        imgContainer.setImageURI(viewModel.getMainImage())
+                        btnDeleteImage.showView()
+                    } else {
+                        btnDeleteImage.invisibleView()
+                    }
                     tvTitleEvent.showView()
                     tvSubtitle.showView()
                     changeConstraint()
