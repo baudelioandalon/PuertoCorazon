@@ -8,10 +8,14 @@ import com.boreal.commonutils.extensions.showView
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcPackagesAddEventFragmentBinding
+import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.uisystem.databinding.PcPackageToUploadItemBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBinding>() {
+
+    val viewModel: AddEventViewModel by sharedViewModel()
 
     val adapterRecyclerPackages by lazy {
         GAdapter<PcPackageToUploadItemBinding, PCPackageToUploadModel>(

@@ -29,4 +29,8 @@
     <string name="requirements_text">Requerimientos</string>
     <string name="select_photo_text">Aún no has seleccionado una foto</string>
     <string name="select_main_photo_text">Selecciona una foto principal</string>
+    <string name="add_text">Agregar</string>
+    <string name="amount_text">Monto</string>
+    <string name="change_text">Cambiar</string>ç
+    <string name="title_price_ticket_holder">Boleto %s</string>
 </resources>

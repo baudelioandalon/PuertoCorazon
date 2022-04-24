@@ -58,7 +58,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <TextView
-                    android:id="@+id/tvPriceAdultTicket"
+                    android:id="@+id/tvPriceChildTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -118,7 +118,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                 <TextView
-                    android:id="@+id/tvPriceChildTicket"
+                    android:id="@+id/tvPriceAdultTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -178,11 +178,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/tvErrorMessage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnAddPackage"
+                app:layout_constraintVertical_bias="0.0"
                 app:spanCount="3"
                 tools:listitem="@layout/pc_package_item" />
 
@@ -204,6 +207,9 @@
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     app:cu_backgroundColor="@color/primary_700"
                     app:cu_cornerLeftSide="10dp"
                     app:cu_cornerRightSide="10dp">
@@ -232,10 +238,9 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/redError"
                 android:textSize="14sp"
-                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/btnReady"
                 app:layout_constraintEnd_toEndOf="@+id/btnReady"
                 app:layout_constraintStart_toStartOf="@+id/btnReady"
-                app:layout_constraintTop_toBottomOf="@+id/btnReady"
                 tools:text="Este es un mensaje de error"
                 tools:visibility="visible" />
 
