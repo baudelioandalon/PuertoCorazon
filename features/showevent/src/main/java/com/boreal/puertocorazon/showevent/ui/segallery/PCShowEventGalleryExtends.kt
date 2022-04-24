@@ -2,8 +2,8 @@ package com.boreal.puertocorazon.showevent.ui.segallery
 
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
-import com.boreal.puertocorazon.showevent.ui.sepackages.addLinearHelper
-import com.boreal.puertocorazon.showevent.ui.sepackages.scrollToPositionCentered
+import com.boreal.puertocorazon.core.extension.addLinearHelper
+import com.boreal.puertocorazon.core.extension.scrollToPositionCentered
 
 fun PCShowEventGalleryFragment.initElements() {
     binding.apply {

@@ -4,4 +4,6 @@
     <string name="imagenes_text">Imagenes</string>
     <string name="a_adir_text">Añadir</string>
     <string name="_799_test_price">$799</string>
+    <string name="galer_a">Galería</string>
+    <string name="camara">Camara</string>
 </resources>
