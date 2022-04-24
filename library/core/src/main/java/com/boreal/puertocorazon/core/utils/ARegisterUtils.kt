@@ -5,11 +5,11 @@ import android.text.TextUtils
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.boreal.puertocorazon.core.R
 import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.component.roundablelayout.CURoundableLayout
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.showView
+import com.boreal.puertocorazon.core.R
 
 fun EditText.isEmailValid(roundableLayout: CURoundableLayout) =
     if (TextUtils.isEmpty(this.text.toString().trim().trimIndent())) {
@@ -30,6 +30,8 @@ fun EditText.isEmailValid(roundableLayout: CURoundableLayout) =
         }
 
     }
+
+fun EditText.onlyText() = text.toString().trim()
 
 
 fun EditText.isPhoneValid(roundableLayout: CURoundableLayout) =

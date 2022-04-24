@@ -54,7 +54,7 @@
                 tools:ignore="SmallSp" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundableLayout4"
+                android:id="@+id/roundableTitle"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginTop="8dp"
@@ -74,7 +74,7 @@
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
                     android:hint="@string/del_evento_text"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:maxLength="50"
                     android:nextFocusDown="@id/tvSubtitle"
                     android:paddingHorizontal="10dp"
@@ -98,11 +98,11 @@
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
-                app:layout_constraintTop_toBottomOf="@+id/roundableLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/roundableTitle"
                 tools:ignore="SmallSp" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundableEmail"
+                android:id="@+id/roundableSubtitle"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginTop="8dp"
@@ -123,7 +123,7 @@
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
                     android:hint="@string/del_evento_text"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:maxLength="50"
                     android:nextFocusDown="@id/tvDescription"
                     android:paddingHorizontal="10dp"
@@ -147,13 +147,13 @@
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/lblApMaterno"
-                app:layout_constraintTop_toBottomOf="@+id/roundableEmail"
+                app:layout_constraintTop_toBottomOf="@+id/roundableSubtitle"
                 tools:ignore="SmallSp" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundablePhone"
+                android:id="@+id/roundableDescription"
                 android:layout_width="0dp"
-                android:layout_height="57dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="52dp"
                 android:padding="10dp"
@@ -171,9 +171,11 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="start"
                     android:hint="@string/del_evento_text"
-                    android:inputType="phone"
+                    android:inputType="textCapSentences"
                     android:maxLength="1000"
+                    android:maxLines="5"
                     android:paddingHorizontal="10dp"
                     android:textColor="@color/black_700"
                     android:textSize="13sp"
@@ -190,12 +192,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="35dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="39dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundablePhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvErrorMessage"
                 app:layout_constraintVertical_bias="1.0"
                 app:sl_shadow_color="@color/primary_300"
                 app:sl_shadowed="true">
@@ -229,13 +230,13 @@
                 android:id="@+id/tvErrorMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/redError"
                 android:textSize="14sp"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/btnReady"
                 app:layout_constraintStart_toStartOf="@+id/btnReady"
-                app:layout_constraintTop_toBottomOf="@+id/btnReady"
+                app:layout_constraintTop_toBottomOf="@+id/roundableDescription"
                 tools:text="Este es un mensaje de error"
                 tools:visibility="visible" />
 

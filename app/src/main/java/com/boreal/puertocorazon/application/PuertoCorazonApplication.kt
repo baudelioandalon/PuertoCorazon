@@ -1,6 +1,7 @@
 package com.boreal.puertocorazon.application
 
 import android.app.Application
+import com.boreal.puertocorazon.addevent.di.addEventModule
 import com.boreal.puertocorazon.adm.home.di.admHomeModule
 import com.boreal.puertocorazon.login.di.loginModule
 import com.boreal.puertocorazon.ui.activityModule
@@ -14,7 +15,8 @@ class PuertoCorazonApplication : Application() {
             modules(
                 activityModule,
                 loginModule,
-                admHomeModule
+                admHomeModule,
+                addEventModule
             )
         }
     }

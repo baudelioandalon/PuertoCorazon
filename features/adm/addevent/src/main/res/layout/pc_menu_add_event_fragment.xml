@@ -259,28 +259,33 @@
                         app:layout_constraintTop_toTopOf="@+id/linearLayout2">
 
                         <ImageView
+                            android:id="@+id/checkMain"
                             android:layout_width="wrap_content"
                             android:layout_height="55dp"
                             android:src="@drawable/ic_pc_arrow_correct" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="55dp"
-                            android:layout_marginVertical="15dp"
-                            android:src="@drawable/ic_pc_arrow_correct" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="55dp"
-                            android:src="@drawable/ic_pc_arrow_correct" />
-
-                        <ImageView
+                            android:id="@+id/checkGallery"
                             android:layout_width="wrap_content"
                             android:layout_height="55dp"
                             android:layout_marginVertical="15dp"
                             android:src="@drawable/ic_pc_arrow_correct" />
 
                         <ImageView
+                            android:id="@+id/checkPackages"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                        <ImageView
+                            android:id="@+id/checkDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:layout_marginVertical="15dp"
+                            android:src="@drawable/ic_pc_arrow_correct" />
+
+                        <ImageView
+                            android:id="@+id/checkRequirements"
                             android:layout_width="wrap_content"
                             android:layout_height="55dp"
                             android:src="@drawable/ic_pc_arrow_correct" />

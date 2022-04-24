@@ -94,6 +94,7 @@ dependencies {
     implementation(project(":library:ui-system"))
     implementation(project(":features:client:home"))
     implementation(project(":features:adm:home"))
+    implementation(project(":features:adm:addevent"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)

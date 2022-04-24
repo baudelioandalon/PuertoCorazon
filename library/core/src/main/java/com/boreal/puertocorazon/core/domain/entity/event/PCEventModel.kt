@@ -4,9 +4,9 @@ import com.google.firebase.Timestamp
 
 data class PCEventModel(
     val idEvent: String = "NONE",
-    val title: String = "",
-    val subtitle: String = "",
-    val description: String = "",
+    var title: String = "",
+    var subtitle: String = "",
+    var description: String = "",
     val addressPlace: String = "",
     val place: PCLocationModel = PCLocationModel(),
     val eventType: String = "",

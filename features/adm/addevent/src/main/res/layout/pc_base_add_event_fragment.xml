@@ -133,7 +133,8 @@
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/containerPhoto"
-            android:text="@string/titulo_de_prueba_text" />
+            tools:text="@string/titulo_de_prueba_text"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/tvSubtitle"
@@ -141,12 +142,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:fontFamily="@font/helvetica_neue_light"
-            android:text="@string/subtitulo_de_prueba_text"
             android:textColor="@color/gray_subtitle"
             android:textSize="17sp"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/tvTitleEvent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleEvent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleEvent"
+            tools:text="@string/subtitulo_de_prueba_text"
+            tools:visibility="visible" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navigationAddEvent"

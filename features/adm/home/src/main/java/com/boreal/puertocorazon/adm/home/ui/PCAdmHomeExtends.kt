@@ -32,6 +32,7 @@ fun PCAdmHomeFragment.initElements() {
         btnNewEvent.setOnClickListener {
             findNavController().navigate(R.id.pc_add_event_graph)
         }
+        btnNewEvent.performClick()
     }
 }
 
