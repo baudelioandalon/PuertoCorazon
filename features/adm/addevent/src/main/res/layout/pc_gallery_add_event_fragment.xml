@@ -88,6 +88,9 @@
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     app:cu_backgroundColor="@color/primary_700"
                     app:cu_cornerLeftSide="10dp"
                     app:cu_cornerRightSide="10dp">
@@ -116,10 +119,9 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/redError"
                 android:textSize="14sp"
-                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/btnReady"
                 app:layout_constraintEnd_toEndOf="@+id/btnReady"
                 app:layout_constraintStart_toStartOf="@+id/btnReady"
-                app:layout_constraintTop_toBottomOf="@+id/btnReady"
                 tools:text="Este es un mensaje de error"
                 tools:visibility="visible" />
 

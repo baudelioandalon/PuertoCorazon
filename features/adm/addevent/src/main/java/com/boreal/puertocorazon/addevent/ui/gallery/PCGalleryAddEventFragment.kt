@@ -47,6 +47,7 @@ class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBindin
                             ABottomSheetOptionsImageFragment {
                                 model.imageToUpdate = it
                                 adapter.notifyItemChanged(position)
+                                binding.tvErrorMessage.text = ""
                             }.show(
                                 requireActivity().supportFragmentManager,
                                 "imageoption"
@@ -57,7 +58,8 @@ class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBindin
                         containerGalleryFilled.showView()
                         imageFromGallery.setImageURI(model.imageToUpdate)
                         imageFromGallery.setOnSingleClickListener {
-                            showImageViewer(list.map { it.imageToUpdate })
+                            showImageViewer(list.map { it.imageToUpdate }
+                                .sortedBy { it != model.imageToUpdate })
                         }
                         btnRemoveImage.setOnSingleClickListener {
                             if (list.size > 1) {

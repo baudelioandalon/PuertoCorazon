@@ -27,4 +27,5 @@
     <string name="accesories_text">Accesorios</string>
     <string name="requeri_nmientos_text">Requeri-\nmientos</string>
     <string name="requirements_text">Requerimientos</string>
+    <string name="select_photo_text">Aún no has seleccionado una foto</string>
 </resources>

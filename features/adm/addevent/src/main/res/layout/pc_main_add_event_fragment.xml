@@ -205,6 +205,9 @@
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     app:cu_backgroundColor="@color/primary_700"
                     app:cu_cornerLeftSide="10dp"
                     app:cu_cornerRightSide="10dp">
