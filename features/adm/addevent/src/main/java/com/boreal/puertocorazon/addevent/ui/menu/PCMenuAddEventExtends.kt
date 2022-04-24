@@ -21,6 +21,6 @@ fun PCMenuAddEventFragment.initElements() {
         btnRequirements.setOnSingleClickListener {
             findNavController().navigate(R.id.PCRequirementsAddEventFragment)
         }
-        btnGallery.performClick()
+//        btnPackages.performClick()
     }
 }

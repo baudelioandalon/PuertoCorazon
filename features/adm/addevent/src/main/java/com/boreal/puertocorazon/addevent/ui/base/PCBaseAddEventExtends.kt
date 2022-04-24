@@ -91,12 +91,7 @@ fun PCBaseAddEventFragment.navigation() {
                     changeTitle("Paquetes")
                     imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
                     containerPhoto.showView()
-                    if (viewModel.getMainImage() != Uri.EMPTY) {
-                        imgContainer.setImageURI(viewModel.getMainImage())
-                        btnDeleteImage.showView()
-                    } else {
-                        btnDeleteImage.invisibleView()
-                    }
+                    btnDeleteImage.invisibleView()
                     tvTitleEvent.showView()
                     tvSubtitle.showView()
                     changeConstraint()
