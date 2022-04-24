@@ -33,6 +33,10 @@ fun PCBaseAddEventFragment.navigation() {
                     tvTitleEvent.hideView()
                     tvSubtitle.hideView()
                     resetConstraint()
+                    binding.apply {
+                        tvTitleEvent.text = viewModel.getEventTitle()
+                        tvSubtitle.text = viewModel.getEventSubtitle()
+                    }
                 }
                 R.id.PCMainAddEventFragment -> {
                     changeTitle("Principal")
@@ -47,15 +51,6 @@ fun PCBaseAddEventFragment.navigation() {
                     tvTitleEvent.showView()
                     tvSubtitle.showView()
                     changeConstraint()
-                    viewModel.newEvent.apply {
-                        if (title.isNotEmpty() && subtitle.isNotEmpty() && description.isNotEmpty()) {
-                            binding.apply {
-                                tvTitleEvent.text = title
-                                tvSubtitle.text = subtitle
-                            }
-                        }
-                    }
-
                 }
                 R.id.PCPackagesAddEventFragment -> {
                     changeTitle("Paquetes")

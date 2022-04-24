@@ -6,6 +6,7 @@ import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcMenuAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
+import com.boreal.puertocorazon.core.extension.observe
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
