@@ -34,6 +34,11 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
                 } else {
                     checkPackages.invisibleView()
                 }
+                if (requirementsChanged) {
+                    checkRequirements.showView()
+                } else {
+                    checkRequirements.invisibleView()
+                }
             }
         }
 

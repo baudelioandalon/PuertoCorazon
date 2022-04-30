@@ -1,6 +1,7 @@
 package com.boreal.puertocorazon.core.domain.entity.event
 
 import android.net.Uri
+import com.boreal.puertocorazon.core.utils.Constants
 import com.google.firebase.Timestamp
 
 data class PCEventToUploadModel(
@@ -25,7 +26,7 @@ data class PCEventToUploadModel(
     var mainImageUrl: Uri = Uri.EMPTY,
     val capacity: Long = 0L,
     val homeImageUrl: Uri = Uri.EMPTY,
-    val allowedPeople: List<String> = listOf(),
-    val allowedAccesories: List<String> = listOf(),
-    val allowedClothing: List<String> = listOf()
+    var allowedPeople: List<String> = Constants.allowedPeopleList.map { it.name },
+    var allowedAccesories: List<String> = Constants.allowedAccesoriesList.map { it.name },
+    var allowedClothing: List<String> = Constants.allowedClothesList.map { it.name }
 )

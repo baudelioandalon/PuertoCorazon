@@ -9,23 +9,27 @@ import com.boreal.commonutils.extensions.changeImgColor
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcRequirementsAddEventFragmentBinding
-import com.boreal.puertocorazon.core.domain.entity.requirements.PCAllowedRequirementModel
+import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
+import com.boreal.puertocorazon.core.domain.entity.requirements.PCAllowedRequirementToShowModel
 import com.boreal.puertocorazon.uisystem.databinding.PcRequirementItemBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFragmentBinding>() {
 
+    val viewModel: AddEventViewModel by sharedViewModel()
+
     val adapterAllowedPeople by lazy {
-        GAdapter<PcRequirementItemBinding, PCAllowedRequirementModel>(
+        GAdapter<PcRequirementItemBinding, PCAllowedRequirementToShowModel>(
             R.layout.pc_requirement_item,
-            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementModel>() {
+            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementToShowModel>() {
                 override fun areItemsTheSame(
-                    oldItem: PCAllowedRequirementModel,
-                    newItem: PCAllowedRequirementModel
+                    oldItem: PCAllowedRequirementToShowModel,
+                    newItem: PCAllowedRequirementToShowModel
                 ) = oldItem == newItem
 
                 override fun areContentsTheSame(
-                    oldItem: PCAllowedRequirementModel,
-                    newItem: PCAllowedRequirementModel
+                    oldItem: PCAllowedRequirementToShowModel,
+                    newItem: PCAllowedRequirementToShowModel
                 ) = oldItem.imageResource == newItem.imageResource
 
             }).build(),
@@ -51,17 +55,17 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
     }
 
     val adapterAllowedClothes by lazy {
-        GAdapter<PcRequirementItemBinding, PCAllowedRequirementModel>(
+        GAdapter<PcRequirementItemBinding, PCAllowedRequirementToShowModel>(
             R.layout.pc_requirement_item,
-            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementModel>() {
+            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementToShowModel>() {
                 override fun areItemsTheSame(
-                    oldItem: PCAllowedRequirementModel,
-                    newItem: PCAllowedRequirementModel
+                    oldItem: PCAllowedRequirementToShowModel,
+                    newItem: PCAllowedRequirementToShowModel
                 ) = oldItem == newItem
 
                 override fun areContentsTheSame(
-                    oldItem: PCAllowedRequirementModel,
-                    newItem: PCAllowedRequirementModel
+                    oldItem: PCAllowedRequirementToShowModel,
+                    newItem: PCAllowedRequirementToShowModel
                 ) = oldItem == newItem
 
             }).build(),
@@ -87,17 +91,17 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
     }
 
     val adapterAllowedAccesories by lazy {
-        GAdapter<PcRequirementItemBinding, PCAllowedRequirementModel>(
+        GAdapter<PcRequirementItemBinding, PCAllowedRequirementToShowModel>(
             R.layout.pc_requirement_item,
-            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementModel>() {
+            AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementToShowModel>() {
                 override fun areItemsTheSame(
-                    oldItem: PCAllowedRequirementModel,
-                    newItem: PCAllowedRequirementModel
+                    oldItem: PCAllowedRequirementToShowModel,
+                    newItem: PCAllowedRequirementToShowModel
                 ) = oldItem == newItem
 
                 override fun areContentsTheSame(
-                    oldItem: PCAllowedRequirementModel,
-                    newItem: PCAllowedRequirementModel
+                    oldItem: PCAllowedRequirementToShowModel,
+                    newItem: PCAllowedRequirementToShowModel
                 ) = oldItem == newItem
 
             }).build(),

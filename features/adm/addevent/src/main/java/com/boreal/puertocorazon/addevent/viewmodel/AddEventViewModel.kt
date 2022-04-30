@@ -8,6 +8,7 @@ import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 class AddEventViewModel : CUBaseViewModel() {
 
     private val newEvent = PCEventToUploadModel()
+    var requirementsChanged = false
 
     fun setMainData(title: String, subtitle: String, description: String) {
         newEvent.apply {
@@ -15,6 +16,7 @@ class AddEventViewModel : CUBaseViewModel() {
             this.subtitle = subtitle
             this.description = description
         }
+
     }
 
     fun setGallery(list: List<Uri>) {
@@ -37,6 +39,18 @@ class AddEventViewModel : CUBaseViewModel() {
         newEvent.packages = packageList
     }
 
+    fun setAllowedAccesories(allowedAccesories: List<String>) {
+        newEvent.allowedAccesories = allowedAccesories
+    }
+
+    fun setAllowedClothing(allowedClothing: List<String>) {
+        newEvent.allowedClothing = allowedClothing
+    }
+
+    fun setAllowedPeople(allowedPeople: List<String>) {
+        newEvent.allowedPeople = allowedPeople
+    }
+
     fun getEventTitle() = newEvent.title
     fun getEventSubtitle() = newEvent.subtitle
     fun getEventDescription() = newEvent.description
@@ -47,5 +61,8 @@ class AddEventViewModel : CUBaseViewModel() {
     fun isPriceAdultValid() = newEvent.priceAdult != 0L
     fun isPriceChildValid() = newEvent.priceChild != 0L
     fun getPackages() = newEvent.packages
+    fun getAllowedAccesories() = newEvent.allowedAccesories
+    fun getAllowedClothing() = newEvent.allowedClothing
+    fun getAllowedPeople() = newEvent.allowedPeople
 
 }
