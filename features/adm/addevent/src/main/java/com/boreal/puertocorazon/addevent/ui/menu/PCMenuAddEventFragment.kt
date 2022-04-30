@@ -29,6 +29,11 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
                 } else {
                     checkGallery.invisibleView()
                 }
+                if (isPriceAdultValid()) {
+                    checkPackages.showView()
+                } else {
+                    checkPackages.invisibleView()
+                }
             }
         }
 

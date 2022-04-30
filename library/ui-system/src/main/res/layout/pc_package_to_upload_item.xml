@@ -7,10 +7,35 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/btnDeletePackage"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="18dp"
+            android:background="@color/white"
+            android:elevation="10dp"
+            android:src="@drawable/ic_pc_horizontal_line_red"
+            android:visibility="gone"
+            app:cu_cornerAll="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pc_horizontal_line_red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
             android:id="@+id/containerPackageFilled"
@@ -23,6 +48,10 @@
             app:cu_cornerAll="20dp"
             app:cu_strokeLineColor="@color/primary_700"
             app:cu_strokeLineWidth="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible">
 
             <TextView
@@ -32,11 +61,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="13dp"
                 android:fontFamily="@font/helvetica_neue_bold"
-                android:text="Familia"
                 android:textColor="@color/black_700"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Familia" />
 
             <TextView
                 android:id="@+id/tvCountAdults"
@@ -71,8 +100,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnPayPackage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 app:cu_backgroundColor="@color/primary_700"
                 app:cu_cornerLeftTop="25dp"
                 app:cu_cornerRightBottom="25dp"
@@ -119,7 +152,11 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -152,5 +189,5 @@
 
         </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

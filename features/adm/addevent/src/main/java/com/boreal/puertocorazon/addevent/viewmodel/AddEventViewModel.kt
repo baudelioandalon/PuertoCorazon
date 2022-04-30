@@ -2,6 +2,7 @@ package com.boreal.puertocorazon.addevent.viewmodel
 
 import android.net.Uri
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventToUploadModel
+import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 
 class AddEventViewModel : CUBaseViewModel() {
@@ -32,6 +33,10 @@ class AddEventViewModel : CUBaseViewModel() {
         newEvent.priceAdult = price
     }
 
+    fun setPackages(packageList: List<PCPackageToUploadModel>) {
+        newEvent.packages = packageList
+    }
+
     fun getEventTitle() = newEvent.title
     fun getEventSubtitle() = newEvent.subtitle
     fun getEventDescription() = newEvent.description
@@ -41,5 +46,6 @@ class AddEventViewModel : CUBaseViewModel() {
     fun getPriceChildren() = newEvent.priceChild
     fun isPriceAdultValid() = newEvent.priceAdult != 0L
     fun isPriceChildValid() = newEvent.priceChild != 0L
+    fun getPackages() = newEvent.packages
 
 }

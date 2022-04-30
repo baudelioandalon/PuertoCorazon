@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.addevent.ui.packages
+package com.boreal.puertocorazon.addevent.ui.packages.addprice
 
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcAddPriceBottomFragmentBinding

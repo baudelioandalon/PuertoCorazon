@@ -3,14 +3,16 @@ package com.boreal.puertocorazon.addevent.ui.packages
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.boreal.commonutils.extensions.getSupportFragmentManager
 import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.puertocorazon.addevent.ui.packages.addpackage.PCAddPackage
+import com.boreal.puertocorazon.addevent.ui.packages.addprice.PCAddPriceTicket
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 
 fun PCPackagesAddEventFragment.initElements() {
     binding.apply {
         initAdapter()
-        var priceTempAdult = 0L
-        var priceTempChild = 0L
+        var priceTempAdult = viewModel.getPriceAdult()
+        var priceTempChild = viewModel.getPriceChildren()
         if (viewModel.isPriceAdultValid()) {
             tvPriceAdultTicket.text = viewModel.getPriceAdult().formatCurrency()
         }
@@ -36,10 +38,17 @@ fun PCPackagesAddEventFragment.initElements() {
             if (priceTempAdult != 0L) {
                 viewModel.setPriceAdult(priceTempAdult)
                 viewModel.setPriceChildren(priceTempChild)
+                viewModel.setPackages(adapterRecyclerPackages.currentList)
                 onFragmentBackPressed()
             } else {
                 tvErrorMessage.text = "Agrega precio al boleto"
             }
+        }
+
+        btnAddPackage.setOnSingleClickListener {
+            PCAddPackage(list = adapterRecyclerPackages.currentList) { packageModel ->
+                adapterRecyclerPackages.add(packageModel)
+            }.show(getSupportFragmentManager(), "odmod")
         }
     }
 }
@@ -49,6 +58,10 @@ fun PCPackagesAddEventFragment.initAdapter() {
         LinearSnapHelper().attachToRecyclerView(this)
         adapter = adapterRecyclerPackages
     }
-    adapterRecyclerPackages.submitList(arrayListOf(PCPackageToUploadModel()))
+    if (viewModel.getPackages().isEmpty()) {
+        adapterRecyclerPackages.submitList(arrayListOf(PCPackageToUploadModel()))
+    } else {
+        adapterRecyclerPackages.submitList(viewModel.getPackages())
+    }
 
 }

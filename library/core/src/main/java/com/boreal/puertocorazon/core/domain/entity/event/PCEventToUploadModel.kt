@@ -13,7 +13,7 @@ data class PCEventToUploadModel(
     val eventType: String = "",
     var imageGallery: List<Uri> = listOf(),
     val videoGallery: List<String> = listOf(),
-    val packages: List<PCPackageModel> = listOf(),
+    var packages: List<PCPackageToUploadModel> = listOf(),
     var priceAdult: Long = 0L,
     var priceChild: Long = 0L,
     val readyToShow: Boolean = true,

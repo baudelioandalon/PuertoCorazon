@@ -7,9 +7,10 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:orientation="vertical">
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
@@ -18,11 +19,13 @@
             android:layout_height="136dp"
             android:layout_marginVertical="10dp"
             android:elevation="3dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="20dp"
             app:cu_cornerAll="20dp"
             app:cu_strokeLineColor="@color/primary_700"
-            app:cu_strokeLineWidth="2dp">
+            app:cu_strokeLineWidth="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tvNamePackage"
@@ -111,5 +114,6 @@
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

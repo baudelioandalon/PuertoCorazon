@@ -33,6 +33,17 @@ fun EditText.isEmailValid(roundableLayout: CURoundableLayout) =
 
 fun EditText.onlyText() = text.toString().trim()
 
+fun TextView.onlyText() = text.toString().trim()
+
+inline fun <reified T> TextView.toNumber(): T {
+    return when (T::class) {
+        Int::class -> onlyText().toInt() as T
+        Double::class -> onlyText().toDouble() as T
+        Long::class -> onlyText().toLong() as T
+        else -> throw IllegalStateException("Unknown Generic Type")
+    }
+}
+
 
 fun EditText.isPhoneValid(roundableLayout: CURoundableLayout) =
     if (TextUtils.isEmpty(text.toString().trim().trimIndent()) || text.toString().trim()
