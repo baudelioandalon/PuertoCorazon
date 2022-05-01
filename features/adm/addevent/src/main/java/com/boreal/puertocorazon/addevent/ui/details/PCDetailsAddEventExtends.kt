@@ -20,10 +20,11 @@ fun PCDetailsAddEventFragment.initElements() {
             if (viewModel.isScheduleValid()) viewModel.getSchedule()[0].endTime else Timestamp.now()
         var tempStartHour = Timestamp.now()
         var tempEndHour = Timestamp.now()
-        tvInitialDate.text = getToday()
-        tvDateEnding.text = getToday()
-        tvStartHour.text = getHourAMPM()
-        tvEndHour.text = getEndHour()
+        tvInitialDate.text = getToday(tempInitialDate)
+        tvDateEnding.text = getToday(tempEndingDate)
+        tvStartHour.text = getHourAMPM(timestamp = tempInitialDate)
+        tvEndHour.text =
+            if (viewModel.isScheduleValid()) getHourAMPM(timestamp = viewModel.getSchedule()[0].endTime) else getEndHour()
 
         roundableInitialDate.setOnSingleClickListener {
             DatePickerDialog(

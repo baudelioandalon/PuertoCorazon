@@ -30,7 +30,7 @@ fun Timestamp.getFormat(format: String = "dd MMM yy", locale: Locale = Locale("e
     SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalizeName()
 
 @SuppressLint("SimpleDateFormat")
-fun getToday() = with(Timestamp.now()) {
+fun getToday(timestamp: Timestamp = Timestamp.now()) = with(timestamp) {
     "${
         getNameOfDay().subSequence(
             IntRange(
@@ -45,9 +45,10 @@ fun getAMPM(format: String = "a") = with(Timestamp.now()) {
     "${getHour(format).replace(" ", "")}".uppercase()
 }
 
-fun getHourAMPM(format: String = "HH:mm") = with(Timestamp.now()) {
-    "${getHour(format).replace(" ", "")} ${getAMPM()}".uppercase()
-}
+fun getHourAMPM(format: String = "HH:mm", timestamp: Timestamp = Timestamp.now()) =
+    with(timestamp) {
+        "${getHour(format).replace(" ", "")} ${getAMPM()}".uppercase()
+    }
 
 fun getEndHour() = "23:59 P.M."
 
