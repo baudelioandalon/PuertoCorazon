@@ -32,12 +32,7 @@ fun Timestamp.getFormat(format: String = "dd MMM yy", locale: Locale = Locale("e
 @SuppressLint("SimpleDateFormat")
 fun getToday(timestamp: Timestamp = Timestamp.now()) = with(timestamp) {
     "${
-        getNameOfDay().subSequence(
-            IntRange(
-                0,
-                2
-            )
-        )
+        getNameOfDay().subSequence(IntRange(0, 2))
     }, ${getDay()} de ${getNameOfMonth()} del ${getYear()}"
 }
 

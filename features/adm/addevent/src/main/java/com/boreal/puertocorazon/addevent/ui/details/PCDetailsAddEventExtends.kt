@@ -2,12 +2,15 @@ package com.boreal.puertocorazon.addevent.ui.details
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
 import com.boreal.puertocorazon.core.utils.*
 import com.google.firebase.Timestamp
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -90,12 +93,20 @@ fun PCDetailsAddEventFragment.initElements() {
             tempInitialDate = tempInitialDate.setHour(tvStartHour.onlyText())
             tempEndingDate = tempEndingDate.setHour(tvEndHour.onlyText())
             if (Timestamp.now() greaterThan tempInitialDate) {
-                showToast("Ajusta la hora inicial")
+                lifecycleScope.launch {
+                    tvErrorMessage.text = "La hora inicial tiene que ser mayor a la actual"
+                    delay(3000)
+                    tvErrorMessage.text = ""
+                }
                 return@setOnSingleClickListener
             }
             if (tvInitialDate.onlyText() == tvDateEnding.onlyText()) {
                 if (tempInitialDate greaterThan tempEndingDate) {
-                    showToast("La fecha inicial es mayor a la fecha final")
+                    lifecycleScope.launch {
+                        tvErrorMessage.text = "La fecha inicial es mayor a la fecha final"
+                        delay(3000)
+                        tvErrorMessage.text = ""
+                    }
                 } else {
                     val eventHours = tempEndingDate hoursBetweenDays tempInitialDate
                     viewModel.setSchedule(
@@ -122,7 +133,11 @@ fun PCDetailsAddEventFragment.initElements() {
             } else {
                 val eventHours = tempEndingDate hoursBetweenDays tempInitialDate
                 if (eventHours > 24) {
-                    showToast("Tu evento no puede durar mas de 24 horas")
+                    lifecycleScope.launch {
+                        tvErrorMessage.text = "Tu evento no puede durar mas de 24 horas"
+                        delay(3000)
+                        tvErrorMessage.text = ""
+                    }
                 } else {
                     viewModel.setSchedule(
                         listOf(

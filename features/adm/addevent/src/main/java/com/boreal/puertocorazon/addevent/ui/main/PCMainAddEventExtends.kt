@@ -2,9 +2,12 @@ package com.boreal.puertocorazon.addevent.ui.main
 
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.core.utils.onlyText
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 fun PCMainAddEventFragment.initElements() {
     binding.apply {
@@ -45,18 +48,30 @@ fun PCMainAddEventFragment.initElements() {
             ).reversed()
 
             if (validations[0].first) {
-                tvErrorMessage.text = "No has ingresado un titulo"
-                validations[0].second.invoke()
+                lifecycleScope.launch {
+                    tvErrorMessage.text = "No has ingresado un titulo"
+                    validations[0].second.invoke()
+                    delay(3000)
+                    tvErrorMessage.text = ""
+                }
                 return@setOnSingleClickListener
             }
             if (validations[1].first) {
-                tvErrorMessage.text = "No has ingresado un subtitulo"
-                validations[1].second.invoke()
+                lifecycleScope.launch {
+                    tvErrorMessage.text = "No has ingresado un subtitulo"
+                    validations[1].second.invoke()
+                    delay(3000)
+                    tvErrorMessage.text = ""
+                }
                 return@setOnSingleClickListener
             }
             if (validations[2].first) {
-                tvErrorMessage.text = "No has ingresado una descripción"
-                validations[2].second.invoke()
+                lifecycleScope.launch {
+                    tvErrorMessage.text = "No has ingresado una descripción"
+                    validations[2].second.invoke()
+                    delay(3000)
+                    tvErrorMessage.text = ""
+                }
                 return@setOnSingleClickListener
             }
 

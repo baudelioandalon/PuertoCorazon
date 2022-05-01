@@ -427,12 +427,11 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/redError"
                 android:textSize="14sp"
-                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/btnReady"
                 app:layout_constraintEnd_toEndOf="@+id/btnReady"
                 app:layout_constraintStart_toStartOf="@+id/btnReady"
-                app:layout_constraintTop_toBottomOf="@+id/btnReady"
                 tools:text="Este es un mensaje de error"
-                tools:visibility="visible" />
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

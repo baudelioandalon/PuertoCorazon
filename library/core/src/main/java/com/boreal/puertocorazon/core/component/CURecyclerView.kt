@@ -20,19 +20,26 @@ class CURecyclerView(
 ) : ConstraintLayout(context, attrs) {
 
     private val binding: CuRecyclerViewBinding =
-        CuRecyclerViewBinding.inflate(LayoutInflater.from(context), this, false)
+        CuRecyclerViewBinding.inflate(
+            LayoutInflater.from(context),
+            this, false
+        )
 
     init {
         val view = binding.root
         val set = ConstraintSet()
         addView(view, 0)
         set.clone(this)
-        set.connect(view.id, ConstraintSet.TOP, this.id, ConstraintSet.TOP, 0)
+        set.connect(
+            view.id, ConstraintSet.TOP, this.id,
+            ConstraintSet.TOP, 0
+        )
         set.applyTo(this)
 
         context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.CuRecyclerView, 0, 0
+            R.styleable.CuRecyclerView,
+            0, 0
         ).apply {
             try {
                 binding.loadingImage.setAnimation(R.raw.last_loading)
