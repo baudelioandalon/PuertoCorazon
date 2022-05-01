@@ -52,8 +52,8 @@ class AddEventViewModel : CUBaseViewModel() {
         newEvent.allowedPeople = allowedPeople
     }
 
-    fun setSchedule(schedule: List<PCScheduleModel>){
-        newEvent.schedule =  schedule
+    fun setSchedule(schedule: List<PCScheduleModel>) {
+        newEvent.schedule = schedule
     }
 
     fun getEventTitle() = newEvent.title
@@ -69,5 +69,7 @@ class AddEventViewModel : CUBaseViewModel() {
     fun getAllowedAccesories() = newEvent.allowedAccesories
     fun getAllowedClothing() = newEvent.allowedClothing
     fun getAllowedPeople() = newEvent.allowedPeople
+    fun getSchedule() = newEvent.schedule
+    fun isScheduleValid() = getSchedule().isNotEmpty()
 
 }

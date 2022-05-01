@@ -14,8 +14,10 @@ import java.util.*
 fun PCDetailsAddEventFragment.initElements() {
     binding.apply {
         val cal = Calendar.getInstance()
-        var tempInitialDate = Timestamp.now()
-        var tempEndingDate = Timestamp.now()
+        var tempInitialDate =
+            if (viewModel.isScheduleValid()) viewModel.getSchedule()[0].startTime else Timestamp.now()
+        var tempEndingDate =
+            if (viewModel.isScheduleValid()) viewModel.getSchedule()[0].endTime else Timestamp.now()
         var tempStartHour = Timestamp.now()
         var tempEndHour = Timestamp.now()
         tvInitialDate.text = getToday()
@@ -86,7 +88,7 @@ fun PCDetailsAddEventFragment.initElements() {
         btnSave.setOnSingleClickListener {
             tempInitialDate = tempInitialDate.setHour(tvStartHour.onlyText())
             tempEndingDate = tempEndingDate.setHour(tvEndHour.onlyText())
-            if(Timestamp.now() greaterThan tempInitialDate){
+            if (Timestamp.now() greaterThan tempInitialDate) {
                 showToast("Ajusta la hora inicial")
                 return@setOnSingleClickListener
             }
