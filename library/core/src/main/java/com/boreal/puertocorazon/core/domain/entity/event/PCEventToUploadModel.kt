@@ -18,7 +18,7 @@ data class PCEventToUploadModel(
     var priceAdult: Long = 0L,
     var priceChild: Long = 0L,
     val readyToShow: Boolean = true,
-    val schedule: List<PCScheduleModel> = listOf(),
+    var schedule: List<PCScheduleModel> = listOf(),
     val creationDate: Timestamp = Timestamp(0L, 0),
     val instructionId: String = "",
     val instructorName: String = "",

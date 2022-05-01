@@ -3,6 +3,7 @@ package com.boreal.puertocorazon.addevent.viewmodel
 import android.net.Uri
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventToUploadModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
+import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 
 class AddEventViewModel : CUBaseViewModel() {
@@ -49,6 +50,10 @@ class AddEventViewModel : CUBaseViewModel() {
 
     fun setAllowedPeople(allowedPeople: List<String>) {
         newEvent.allowedPeople = allowedPeople
+    }
+
+    fun setSchedule(schedule: List<PCScheduleModel>){
+        newEvent.schedule =  schedule
     }
 
     fun getEventTitle() = newEvent.title

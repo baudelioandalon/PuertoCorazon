@@ -8,9 +8,7 @@ import com.boreal.commonutils.extensions.showView
 import com.boreal.commonutils.text.capitalizeName
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Date
-import java.util.Calendar
+import java.util.*
 import kotlin.math.absoluteValue
 
 /**
@@ -24,11 +22,34 @@ import kotlin.math.absoluteValue
  * *yyyy-MM-dd HH:mm:ss.SSS	2012-01-31 23:59:59.999
  * *yyyy-MM-dd HH:mm:ss.SSSZ	2012-01-31 23:59:59.999+0100
  * *EEEEE MMMMM yyyy HH:mm:ss.SSSZ	Saturday November 2012 10:45:42.720+0100
+ * *EEEE dd MMM yyyy
  */
 
 @SuppressLint("SimpleDateFormat")
 fun Timestamp.getFormat(format: String = "dd MMM yy", locale: Locale = Locale("es", "MX")) =
     SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalizeName()
+
+@SuppressLint("SimpleDateFormat")
+fun getToday() = with(Timestamp.now()) {
+    "${
+        getNameOfDay().subSequence(
+            IntRange(
+                0,
+                2
+            )
+        )
+    }, ${getDay()} de ${getNameOfMonth()} del ${getYear()}"
+}
+
+fun getAMPM(format: String = "a") = with(Timestamp.now()) {
+    "${getHour(format).replace(" ", "")}".uppercase()
+}
+
+fun getHourAMPM(format: String = "HH:mm") = with(Timestamp.now()) {
+    "${getHour(format).replace(" ", "")} ${getAMPM()}".uppercase()
+}
+
+fun getEndHour() = "23:59 P.M."
 
 fun Timestamp.getFormatWithDay(
     format: String = "EEEE dd MMM yy HH:mm:ss",
@@ -42,10 +63,17 @@ fun Timestamp.getDay(format: String = "dd", locale: Locale = Locale("es", "MX"))
 fun Timestamp.getMonth(format: String = "MM", locale: Locale = Locale("es", "MX")) =
     SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
 
+fun Timestamp.getNameOfMonth(format: String = "MMM", locale: Locale = Locale("es", "MX")) =
+    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+
 fun Timestamp.getNameOfDay(format: String = "EEEE", locale: Locale = Locale("es", "MX")) =
     SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale).removeTilde()
 
 fun Timestamp.getYear(format: String = "yyyy", locale: Locale = Locale("es", "MX")) =
+    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+
+
+fun Timestamp.getHour(format: String = "HH", locale: Locale = Locale("es", "MX")) =
     SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
 
 fun Timestamp.isValidDate() = this != Timestamp(0L, 0)
@@ -100,6 +128,12 @@ fun Timestamp.hoursBetweenDays(evaluateDate: Timestamp, absolute: Boolean = fals
     return if (absolute) (minutes / 60).absoluteValue else minutes / 60
 }
 
+infix fun Timestamp.hoursBetweenDays(evaluateDate: Timestamp): Long {
+    val seconds = (toDate().time - evaluateDate.toDate().time) / 1000
+    val minutes = seconds / 60
+    return (minutes / 60).absoluteValue
+}
+
 fun Timestamp.daysBetweenDays(evaluateDate: Timestamp, absolute: Boolean = false): Long {
     val seconds = (toDate().time - evaluateDate.toDate().time) / 1000
     val minutes = seconds / 60
@@ -113,6 +147,19 @@ fun Timestamp.setMaxHour() =
             "dd MMM yy HH:mm:ss",
             Locale("es", "MX")
         ).parse("${this@setMaxHour.getFormat()} 23:59:59")
+        Timestamp(Date(time.time))
+    }
+
+fun Timestamp.setHour(hourAndMinute: String) =
+    with(Calendar.getInstance()) {
+        time = SimpleDateFormat(
+            "dd MM yy HH:mm:ss",
+            Locale("es", "MX")
+        ).parse(
+            "${this@setHour.getFormat("dd MM yy")} ${
+                hourAndMinute.replace("A.M.", "").replace(" ", "").replace("P.M.", "")
+            }:00"
+        )
         Timestamp(Date(time.time))
     }
 
@@ -143,3 +190,29 @@ fun String.toTimestamp(
     time = SimpleDateFormat(format, locale).parse("${this@toTimestamp}")
     Timestamp(Date(time.time))
 }
+
+fun String.toTimestampString(
+    initialDate: String,
+    locale: Locale = Locale("es", "MX")
+) = with(Calendar.getInstance()) {
+    time = SimpleDateFormat("dd MM yy HH:mm:ss", locale).parse(
+        "$initialDate ${this@toTimestampString}:00"
+    )
+    Timestamp(Date(time.time))
+}
+
+fun Long.toFormat() = with(Timestamp(Date(this))) {
+    "${
+        getNameOfDay().subSequence(
+            IntRange(
+                0,
+                2
+            )
+        )
+    }, ${getDay()} de ${getNameOfMonth()} del ${getYear()}"
+}
+
+fun Long.toTimeStamp() = Timestamp(Date(this))
+
+infix fun Timestamp.greaterThan(nextTimestamp: Timestamp) = this > nextTimestamp
+infix fun Timestamp.equals(nextTimestamp: Timestamp) = this == nextTimestamp

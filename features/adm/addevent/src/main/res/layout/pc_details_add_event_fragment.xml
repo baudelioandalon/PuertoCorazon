@@ -105,7 +105,7 @@
                 app:cu_backgroundColor="@color/blue_location"
                 app:cu_cornerAll="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/roundableLayout4"
-                app:layout_constraintEnd_toEndOf="@+id/roundableEmail"
+                app:layout_constraintEnd_toEndOf="@+id/roundableEndingDate"
                 app:layout_constraintTop_toTopOf="@+id/roundableLayout4">
 
                 <ImageView
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="Fecha"
+                android:text="Fecha inicial"
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
@@ -133,17 +133,17 @@
                 tools:ignore="SmallSp" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundableEmail"
+                android:id="@+id/roundableInitialDate"
                 android:layout_width="0dp"
-                android:layout_height="57dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="52dp"
+                android:layout_marginEnd="10dp"
                 android:padding="10dp"
                 app:cu_cornerLeftSide="5dp"
                 app:cu_cornerRightSide="5dp"
                 app:cu_strokeLineColor="@color/blue_edittext"
                 app:cu_strokeLineWidth="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
                 app:layout_constraintTop_toBottomOf="@+id/lblApMaterno">
 
@@ -157,24 +157,90 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvSubtitle"
+                    android:id="@+id/tvInitialDate"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
-                    android:gravity="center_vertical"
+                    android:lines="3"
                     android:nextFocusDown="@id/tvDescription"
                     android:paddingHorizontal="10dp"
-                    android:text="@string/_27_08_2022_text"
                     android:textColor="@color/black_700"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView6"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/_27_08_2022_text" />
 
                 <ImageView
                     android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_down_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/lblEndingDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Fecha final"
+                android:textColor="@color/black_700"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/roundableEndingDate"
+                app:layout_constraintTop_toBottomOf="@+id/roundableLayout4"
+                tools:ignore="SmallSp" />
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/roundableEndingDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
+                android:padding="10dp"
+                app:cu_cornerLeftSide="5dp"
+                app:cu_cornerRightSide="5dp"
+                app:cu_strokeLineColor="@color/blue_edittext"
+                app:cu_strokeLineWidth="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/lblApMaterno">
+
+                <ImageView
+                    android:id="@+id/imageView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_calendar_date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDateEnding"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:lines="3"
+                    android:nextFocusDown="@id/tvDescription"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black_700"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView61"
+                    app:layout_constraintStart_toEndOf="@+id/imageView31"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/_27_08_2022_text" />
+
+                <ImageView
+                    android:id="@+id/imageView61"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_pc_down_arrow"
@@ -194,11 +260,11 @@
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/lblApMaterno"
-                app:layout_constraintTop_toBottomOf="@+id/roundableEmail"
+                app:layout_constraintTop_toBottomOf="@+id/roundableInitialDate"
                 tools:ignore="SmallSp" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundablePhone"
+                android:id="@+id/roundableStartHour"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginTop="8dp"
@@ -222,7 +288,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvDescription"
+                    android:id="@+id/tvStartHour"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -256,12 +322,12 @@
                 android:text="Hora final"
                 android:textColor="@color/black_700"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@+id/roundableEndDate"
+                app:layout_constraintStart_toStartOf="@+id/roundableEndHour"
                 app:layout_constraintTop_toTopOf="@+id/lblApPaterno"
                 tools:ignore="SmallSp" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/roundableEndDate"
+                android:id="@+id/roundableEndHour"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="10dp"
@@ -273,7 +339,7 @@
                 app:cu_strokeLineWidth="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/roundablePhone">
+                app:layout_constraintTop_toTopOf="@+id/roundableStartHour">
 
                 <ImageView
                     android:id="@+id/imageView5"
@@ -292,13 +358,13 @@
                     android:fontFamily="@font/montserrat_semibold"
                     android:gravity="center_vertical"
                     android:paddingHorizontal="10dp"
-                    android:text="@string/_23_59_pm_text"
                     android:textColor="@color/black_700"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/changeHourImageEnd"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/_23_59_pm_text" />
 
                 <ImageView
                     android:id="@+id/changeHourImageEnd"
@@ -321,7 +387,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundablePhone"
+                app:layout_constraintTop_toBottomOf="@+id/roundableStartHour"
                 app:layout_constraintVertical_bias="1.0"
                 app:sl_shadow_color="@color/primary_300"
                 app:sl_shadowed="true">
