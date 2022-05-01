@@ -1,26 +1,67 @@
 package com.boreal.puertocorazon.addevent.ui.menu
 
+import android.net.Uri
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.core.utils.clearText
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 fun PCMenuAddEventFragment.initElements() {
     binding.apply {
-        btnMain.setOnSingleClickListener {
+        btnMain.onClick {
             findNavController().navigate(R.id.PCMainAddEventFragment)
         }
-        btnGallery.setOnSingleClickListener {
+        btnGallery.onClick {
             findNavController().navigate(R.id.PCGalleryAddEventFragment)
         }
-        btnPackages.setOnSingleClickListener {
+        btnPackages.onClick {
             findNavController().navigate(R.id.PCPackagesAddEventFragment)
         }
-        btnDetails.setOnSingleClickListener {
+        btnDetails.onClick {
             findNavController().navigate(R.id.PCDetailsAddEventFragment)
         }
-        btnRequirements.setOnSingleClickListener {
+        btnRequirements.onClick {
             findNavController().navigate(R.id.PCRequirementsAddEventFragment)
         }
-//        btnDetails.performClick()
+        btnSave.onClick {
+            addEventViewModel.apply {
+                if (getEventTitle().isEmpty() || getEventSubtitle().isEmpty() || getEventDescription().isEmpty()) {
+                    changeText("Ve a la opcion Principal")
+                    return@onClick
+                }
+                if (getGallery().isEmpty() || getMainImage() == Uri.EMPTY) {
+                    changeText("Agrega una imagen a la galeria y una foto principal")
+                    return@onClick
+                }
+                if (!isPriceAdultValid()) {
+                    changeText("Agrega el precio al boleto de adulto")
+                    return@onClick
+                }
+                if (!isScheduleValid()) {
+                    changeText("Ve a Detalles y agrega la fecha de tu evento")
+                    return@onClick
+                }
+                if (!requirementsChanged) {
+                    changeText("Ve a Requerimientos y elige los que se adecuen mas a tu evento")
+                    return@onClick
+                }
+                //ok
+            }
+        }
+    }
+}
+
+fun PCMenuAddEventFragment.changeText(messageToShow: String) {
+    binding.apply {
+        lifecycleScope.launch {
+            tvErrorMessage.text = messageToShow
+            btnSave.isEnabled = false
+            delay(3000)
+            btnSave.isEnabled = true
+            tvErrorMessage.clearText()
+        }
     }
 }

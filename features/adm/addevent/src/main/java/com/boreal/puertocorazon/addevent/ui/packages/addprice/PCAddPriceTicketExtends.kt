@@ -1,6 +1,6 @@
 package com.boreal.puertocorazon.addevent.ui.packages.addprice
 
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.R
 
 fun PCAddPriceTicket.initElements() {
@@ -8,12 +8,12 @@ fun PCAddPriceTicket.initElements() {
 
         txtTitle.text = getString(R.string.title_price_ticket_holder, title)
 
-        btnAddPrice.setOnSingleClickListener {
+        btnAddPrice.onClick {
             priceTicket.invoke(txtPriceTicket.getIntegers())
             closeFragment()
         }
 
-        btnBack.setOnSingleClickListener {
+        btnBack.onClick {
             closeFragment()
         }
     }

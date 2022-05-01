@@ -4,7 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.boreal.commonutils.base.CUBaseActivity
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialog
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.R
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.databinding.PcBaseActivityBinding
@@ -58,11 +58,11 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                 resource = R.layout.pc_out_dialog,
                 callback = {
                     PcOutDialogBinding.bind(it).apply {
-                        btnCancelOut.setOnSingleClickListener {
+                        btnCancelOut.onClick {
                             mainViewModel.countOutClicked = 0
                             dialog.dismiss()
                         }
-                        btnOut.setOnSingleClickListener {
+                        btnOut.onClick {
                             exitProcess(0)
                         }
                     }

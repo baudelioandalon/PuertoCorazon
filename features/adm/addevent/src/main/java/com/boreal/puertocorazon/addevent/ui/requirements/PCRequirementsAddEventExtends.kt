@@ -1,7 +1,7 @@
 package com.boreal.puertocorazon.addevent.ui.requirements
 
 import com.boreal.commonutils.extensions.resDrawableArray
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.core.domain.entity.requirements.PCAllowedRequirementToShowModel
 import com.boreal.puertocorazon.core.utils.Constants.allowedAccesoriesList
@@ -12,7 +12,7 @@ import com.boreal.puertocorazon.core.utils.Constants.allowedPeopleList
 fun PCRequirementsAddEventFragment.initElements() {
     binding.apply {
 
-        btnSave.setOnSingleClickListener {
+        btnSave.onClick {
             viewModel.setAllowedAccesories(adapterAllowedAccesories.currentList.filter { it.selected }
                 .map { it.allowedRequirement.name })
             viewModel.setAllowedClothing(adapterAllowedClothes.currentList.filter { it.selected }

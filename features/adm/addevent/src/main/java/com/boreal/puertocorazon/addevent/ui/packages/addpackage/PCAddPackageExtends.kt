@@ -2,7 +2,7 @@ package com.boreal.puertocorazon.addevent.ui.packages.addpackage
 
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
@@ -16,19 +16,19 @@ fun PCAddPackage.initElements() {
             countainerNamePackage.strokeLineColor =
                 ContextCompat.getColor(requireContext(), R.color.blue_edittext)
         }
-        btnAddPackage.setOnSingleClickListener {
+        btnAddPackage.onClick {
             if (txtNamePackage.onlyText().isEmpty()) {
                 countainerNamePackage.strokeLineColor =
                     ContextCompat.getColor(requireContext(), R.color.red_600)
-                return@setOnSingleClickListener
+                return@onClick
             }
             if (txtPricePackage.getIntegers() == 0) {
                 showToast("El precio no puede ser 0")
-                return@setOnSingleClickListener
+                return@onClick
             }
             if (list.find { it.titlePackage == txtNamePackage.onlyText() } != null) {
                 showToast("Ya existe un paquete con ese nombre")
-                return@setOnSingleClickListener
+                return@onClick
             }
             packageResult.invoke(
                 PCPackageToUploadModel(
@@ -42,7 +42,7 @@ fun PCAddPackage.initElements() {
             closeFragment()
         }
 
-        btnLessAdult.setOnSingleClickListener {
+        btnLessAdult.onClick {
             if (txtCountAdult.toNumber<Int>() != 0) {
                 val adult = txtCountAdult.toNumber<Int>() - 1
                 "$adult x Adulto".also { txtShowAmountAdult.text = it }
@@ -50,7 +50,7 @@ fun PCAddPackage.initElements() {
             }
         }
 
-        btnMoreAdult.setOnSingleClickListener {
+        btnMoreAdult.onClick {
             if (txtCountAdult.toNumber<Int>() != 99) {
                 val adult = txtCountAdult.toNumber<Int>() + 1
                 "$adult x Adulto".also { txtShowAmountAdult.text = it }
@@ -58,7 +58,7 @@ fun PCAddPackage.initElements() {
             }
         }
 
-        btnLessChild.setOnSingleClickListener {
+        btnLessChild.onClick {
             if (txtCountChild.toNumber<Int>() != 0) {
                 val child = txtCountChild.toNumber<Int>() - 1
                 "$child x Niño / a".also { txtShowAmountChild.text = it }
@@ -66,7 +66,7 @@ fun PCAddPackage.initElements() {
             }
         }
 
-        btnMoreChild.setOnSingleClickListener {
+        btnMoreChild.onClick {
             if (txtCountChild.toNumber<Int>() != 99) {
                 val child = txtCountChild.toNumber<Int>() + 1
                 "$child x Niño / a".also { txtShowAmountChild.text = it }
@@ -74,7 +74,7 @@ fun PCAddPackage.initElements() {
             }
         }
 
-        btnBack.setOnSingleClickListener {
+        btnBack.onClick {
             closeFragment()
         }
     }

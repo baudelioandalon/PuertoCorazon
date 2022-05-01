@@ -4,7 +4,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.client.home.R
 import com.boreal.puertocorazon.client.home.databinding.PcClientHomeFragmentBinding
@@ -36,7 +36,7 @@ class PCClientHomeFragment :
             holderCallback = { binding, model, list, adapter, position ->
 //                binding.customModel = model.userData
                 binding.apply {
-                    containerEventItem.setOnSingleClickListener {
+                    containerEventItem.onClick {
                         findNavController().navigate(R.id.action_PCClientHomeFragment_to_pc_client_event_graph)
                     }
                 }

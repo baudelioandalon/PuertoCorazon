@@ -3,7 +3,7 @@ package com.boreal.puertocorazon.addevent.ui.main
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.core.utils.onlyText
 import kotlinx.coroutines.delay
@@ -16,7 +16,7 @@ fun PCMainAddEventFragment.initElements() {
         tvSubtitle.setText(addEventViewModel.getEventSubtitle())
         tvDescription.setText(addEventViewModel.getEventDescription())
 
-        btnSave.setOnSingleClickListener {
+        btnSave.onClick {
             val validations = arrayListOf(
                 Pair(tvDescription.onlyText().isEmpty()) {
                     tvDescription.doAfterTextChanged {
@@ -54,7 +54,7 @@ fun PCMainAddEventFragment.initElements() {
                     delay(3000)
                     tvErrorMessage.text = ""
                 }
-                return@setOnSingleClickListener
+                return@onClick
             }
             if (validations[1].first) {
                 lifecycleScope.launch {
@@ -63,7 +63,7 @@ fun PCMainAddEventFragment.initElements() {
                     delay(3000)
                     tvErrorMessage.text = ""
                 }
-                return@setOnSingleClickListener
+                return@onClick
             }
             if (validations[2].first) {
                 lifecycleScope.launch {
@@ -72,7 +72,7 @@ fun PCMainAddEventFragment.initElements() {
                     delay(3000)
                     tvErrorMessage.text = ""
                 }
-                return@setOnSingleClickListener
+                return@onClick
             }
 
             if (validations.indexOfFirst { it.first } == -1) {

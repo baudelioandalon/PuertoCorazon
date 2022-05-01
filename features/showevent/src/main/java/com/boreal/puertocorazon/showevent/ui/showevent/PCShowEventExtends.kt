@@ -3,7 +3,7 @@ package com.boreal.puertocorazon.showevent.ui.showevent
 import androidx.viewpager.widget.ViewPager
 import com.boreal.commonutils.extensions.changeTextColor
 import com.boreal.commonutils.extensions.invisibleView
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.showevent.R
 import com.boreal.puertocorazon.showevent.ui.sedescription.PCShowEventDescriptionFragment
@@ -13,23 +13,23 @@ import com.boreal.puertocorazon.showevent.ui.sepackages.PCShowEventPackagesFragm
 fun PCShowEventFragment.initElements() {
     binding.apply {
         navigation()
-        btnClose.setOnSingleClickListener {
+        btnClose.onClick {
             mainViewModel.removeEventSelected()
         }
 
-        btnDescription.setOnSingleClickListener {
+        btnDescription.onClick {
             changingTitleTheme(
                 PCShowEventFragmentEnum.DESCRIPTION.position,
                 true
             )
         }
-        btnGallery.setOnSingleClickListener {
+        btnGallery.onClick {
             changingTitleTheme(
                 PCShowEventFragmentEnum.GALLERY.position,
                 true
             )
         }
-        btnPackages.setOnSingleClickListener {
+        btnPackages.onClick {
             changingTitleTheme(
                 PCShowEventFragmentEnum.PACKAGES.position,
                 true

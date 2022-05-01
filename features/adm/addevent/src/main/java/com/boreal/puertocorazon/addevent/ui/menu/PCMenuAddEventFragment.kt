@@ -2,8 +2,7 @@ package com.boreal.puertocorazon.addevent.ui.menu
 
 import android.net.Uri
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.commonutils.extensions.invisibleView
-import com.boreal.commonutils.extensions.showView
+import com.boreal.commonutils.extensions.notInvisibleIf
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcMenuAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
@@ -18,35 +17,13 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
     override fun initObservers() {
         binding.apply {
             addEventViewModel.apply {
-                if (getEventTitle().isNotEmpty() && getEventSubtitle().isNotEmpty() && getEventDescription().isNotEmpty()) {
-                    checkMain.showView()
-                } else {
-                    checkMain.invisibleView()
-                }
-
-                if (getGallery().isNotEmpty() && getMainImage() != Uri.EMPTY) {
-                    checkGallery.showView()
-                } else {
-                    checkGallery.invisibleView()
-                }
-                if (isPriceAdultValid()) {
-                    checkPackages.showView()
-                } else {
-                    checkPackages.invisibleView()
-                }
-                if (requirementsChanged) {
-                    checkRequirements.showView()
-                } else {
-                    checkRequirements.invisibleView()
-                }
-                if (isScheduleValid()) {
-                    checkDetails.showView()
-                } else {
-                    checkDetails.invisibleView()
-                }
+                checkMain.notInvisibleIf(getEventTitle().isNotEmpty() && getEventSubtitle().isNotEmpty() && getEventDescription().isNotEmpty())
+                checkGallery.notInvisibleIf(getGallery().isNotEmpty() && getMainImage() != Uri.EMPTY)
+                checkPackages.notInvisibleIf(isPriceAdultValid())
+                checkDetails.notInvisibleIf(isScheduleValid())
+                checkRequirements.notInvisibleIf(requirementsChanged)
             }
         }
-
     }
 
     override fun initView() {

@@ -11,7 +11,7 @@ import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsIm
 fun PCBaseAddEventFragment.initElements() {
     binding.apply {
         navigation()
-        btnBack.setOnSingleClickListener {
+        btnBack.onClick {
             onFragmentBackPressed()
         }
 
@@ -21,7 +21,7 @@ fun PCBaseAddEventFragment.initElements() {
         } else {
             btnDeleteImage.invisibleView()
         }
-        containerPhoto.setOnSingleClickListener {
+        containerPhoto.onClick {
             ABottomSheetOptionsImageFragment { uriReceived ->
                 viewModel.setMainImage(uriReceived)
                 imgContainer.setImageURI(uriReceived)
@@ -36,7 +36,7 @@ fun PCBaseAddEventFragment.initElements() {
             )
         }
 
-        btnDeleteImage.setOnSingleClickListener {
+        btnDeleteImage.onClick {
             imgContainer.invisibleView()
             imgContainer.setImageURI(Uri.EMPTY)
             viewModel.setMainImage(Uri.EMPTY)

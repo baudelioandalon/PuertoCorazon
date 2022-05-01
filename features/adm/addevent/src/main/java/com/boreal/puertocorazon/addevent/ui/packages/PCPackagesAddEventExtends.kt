@@ -2,7 +2,7 @@ package com.boreal.puertocorazon.addevent.ui.packages
 
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.boreal.commonutils.extensions.getSupportFragmentManager
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.ui.packages.addpackage.PCAddPackage
 import com.boreal.puertocorazon.addevent.ui.packages.addprice.PCAddPriceTicket
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
@@ -19,7 +19,7 @@ fun PCPackagesAddEventFragment.initElements() {
         if (viewModel.isPriceChildValid()) {
             tvPriceChildTicket.text = viewModel.getPriceChildren().formatCurrency()
         }
-        btnTicketAdult.setOnSingleClickListener {
+        btnTicketAdult.onClick {
             PCAddPriceTicket("Adulto") { priceTicket ->
                 tvPriceAdultTicket.text = priceTicket.toLong().formatCurrency()
                 priceTempAdult = priceTicket.toLong()
@@ -27,14 +27,14 @@ fun PCPackagesAddEventFragment.initElements() {
             }.show(getSupportFragmentManager(), "odmod")
         }
 
-        btnTicketChild.setOnSingleClickListener {
+        btnTicketChild.onClick {
             PCAddPriceTicket("Infantil") { priceTicket ->
                 tvPriceChildTicket.text = priceTicket.toLong().formatCurrency()
                 priceTempChild = priceTicket.toLong()
             }.show(getSupportFragmentManager(), "odmod")
         }
 
-        btnSave.setOnSingleClickListener {
+        btnSave.onClick {
             if (priceTempAdult != 0L) {
                 viewModel.setPriceAdult(priceTempAdult)
                 viewModel.setPriceChildren(priceTempChild)
@@ -45,7 +45,7 @@ fun PCPackagesAddEventFragment.initElements() {
             }
         }
 
-        btnAddPackage.setOnSingleClickListener {
+        btnAddPackage.onClick {
             PCAddPackage(list = adapterRecyclerPackages.currentList) { packageModel ->
                 adapterRecyclerPackages.add(packageModel)
             }.show(getSupportFragmentManager(), "odmod")

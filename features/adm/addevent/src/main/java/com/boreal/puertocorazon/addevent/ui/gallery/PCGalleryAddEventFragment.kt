@@ -43,7 +43,7 @@ class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBindin
                     if (model.imageToUpdate == Uri.EMPTY) {
                         containerGalleryEmpty.showView()
                         containerGalleryFilled.hideView()
-                        containerGalleryEmpty.setOnSingleClickListener {
+                        containerGalleryEmpty.onClick {
                             ABottomSheetOptionsImageFragment {
                                 model.imageToUpdate = it
                                 adapter.notifyItemChanged(position)
@@ -57,11 +57,11 @@ class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBindin
                         containerGalleryEmpty.hideView()
                         containerGalleryFilled.showView()
                         imageFromGallery.setImageURI(model.imageToUpdate)
-                        imageFromGallery.setOnSingleClickListener {
+                        imageFromGallery.onClick {
                             showImageViewer(list.map { it.imageToUpdate }
                                 .sortedBy { it != model.imageToUpdate })
                         }
-                        btnRemoveImage.setOnSingleClickListener {
+                        btnRemoveImage.onClick {
                             if (list.size > 1) {
                                 adapter.removeAt(position)
                             } else if (list.size == 1) {

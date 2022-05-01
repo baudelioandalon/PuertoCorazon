@@ -34,6 +34,9 @@ fun EditText.isEmailValid(roundableLayout: CURoundableLayout) =
 fun EditText.onlyText() = text.toString().trim()
 
 fun TextView.onlyText() = text.toString().trim()
+fun TextView.clearText() {
+    text = ""
+}
 
 inline fun <reified T> TextView.toNumber(): T {
     return when (T::class) {

@@ -36,7 +36,7 @@ class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBind
             holderCallback = { bindingElement, model, list, adapter, position ->
                 bindingElement.apply {
 
-                    containerPackageEmpty.setOnSingleClickListener {
+                    containerPackageEmpty.onClick {
                         PCAddPackage(list = list) { packageModel ->
                             adapter.replaceAt(packageModel, position)
                             adapter.notifyItemChanged(position)
@@ -59,11 +59,11 @@ class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBind
                         tvPricePackage.text = model.price.formatCurrency()
                         containerPackageEmpty.hideView()
                         containerPackageFilled.showView()
-                        btnPayPackage.setOnSingleClickListener {
+                        btnPayPackage.onClick {
                             //payment flow
                         }
                         btnDeletePackage.showView()
-                        btnDeletePackage.setOnSingleClickListener {
+                        btnDeletePackage.onClick {
                             if (list.size > 1) {
                                 adapter.removeAt(position)
                             } else if (list.size == 1) {

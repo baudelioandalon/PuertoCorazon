@@ -4,7 +4,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.home.R
@@ -44,7 +44,7 @@ class PCAdmHomeFragment :
                 bindingElement.apply {
                     txtTitleEvent.text = model.title
                     homeImg = model.homeImageUrl
-                    containerEventItem.setOnSingleClickListener {
+                    containerEventItem.onClick {
                         mainViewModel.setEventSelected(model)
                     }
                 }

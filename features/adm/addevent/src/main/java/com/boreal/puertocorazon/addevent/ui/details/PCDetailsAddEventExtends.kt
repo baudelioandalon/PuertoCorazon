@@ -3,7 +3,7 @@ package com.boreal.puertocorazon.addevent.ui.details
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import androidx.lifecycle.lifecycleScope
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
@@ -29,7 +29,7 @@ fun PCDetailsAddEventFragment.initElements() {
         tvEndHour.text =
             if (viewModel.isScheduleValid()) getHourAMPM(timestamp = viewModel.getSchedule()[0].endTime) else getEndHour()
 
-        roundableInitialDate.setOnSingleClickListener {
+        roundableInitialDate.onClick {
             DatePickerDialog(
                 requireContext(), R.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
@@ -46,7 +46,7 @@ fun PCDetailsAddEventFragment.initElements() {
             ).show()
         }
 
-        roundableEndingDate.setOnSingleClickListener {
+        roundableEndingDate.onClick {
             DatePickerDialog(
                 requireContext(), R.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
@@ -64,7 +64,7 @@ fun PCDetailsAddEventFragment.initElements() {
             ).show()
         }
 
-        roundableStartHour.setOnSingleClickListener {
+        roundableStartHour.onClick {
             TimePickerDialog(
                 requireContext(), R.style.DatePickerTheme,
                 { _, hourOfDay, minute ->
@@ -76,7 +76,7 @@ fun PCDetailsAddEventFragment.initElements() {
                 }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true
             ).show()
         }
-        roundableEndHour.setOnSingleClickListener {
+        roundableEndHour.onClick {
             TimePickerDialog(
                 requireContext(), R.style.DatePickerTheme,
                 { _, hourOfDay, minute ->
@@ -89,7 +89,7 @@ fun PCDetailsAddEventFragment.initElements() {
             ).show()
         }
 
-        btnSave.setOnSingleClickListener {
+        btnSave.onClick {
             tempInitialDate = tempInitialDate.setHour(tvStartHour.onlyText())
             tempEndingDate = tempEndingDate.setHour(tvEndHour.onlyText())
             if (Timestamp.now() greaterThan tempInitialDate) {
@@ -98,7 +98,7 @@ fun PCDetailsAddEventFragment.initElements() {
                     delay(3000)
                     tvErrorMessage.text = ""
                 }
-                return@setOnSingleClickListener
+                return@onClick
             }
             if (tvInitialDate.onlyText() == tvDateEnding.onlyText()) {
                 if (tempInitialDate greaterThan tempEndingDate) {

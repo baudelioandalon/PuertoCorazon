@@ -2,7 +2,7 @@ package com.boreal.puertocorazon.showevent.ui.sedescription
 
 import com.boreal.commonutils.extensions.openFacebookActivity
 import com.boreal.commonutils.extensions.openMapsActivity
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.core.utils.formatCurrency
 
 
@@ -22,12 +22,12 @@ fun PCShowEventDescriptionFragment.fillData() {
             tvInstructorName.text = instructorName
             tvTicketPrice.text = priceAdult.formatCurrency(textFirst = "Comprar")
             txtCountPeople.text = "4" //TODO getTickets from firebase
-            btnFollow.setOnSingleClickListener {
+            btnFollow.onClick {
                 openFacebookActivity(
                     "739092302865258"
                 )
             }
-            btnGoMaps.setOnSingleClickListener {
+            btnGoMaps.onClick {
                 openMapsActivity(byAddress = addressPlace)
             }
         }

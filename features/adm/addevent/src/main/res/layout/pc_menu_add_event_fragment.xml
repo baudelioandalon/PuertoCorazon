@@ -437,6 +437,9 @@
                 android:layout_height="44dp"
                 android:layout_marginStart="52dp"
                 android:layout_marginBottom="52dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 app:cu_backgroundColor="@color/primary_700"
                 app:cu_cornerAll="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -467,14 +470,13 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <TextView
-                android:id="@+id/txtErrorMessage"
+                android:id="@+id/tvErrorMessage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/redError"
                 android:textSize="14sp"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/btnSave"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btnSave"

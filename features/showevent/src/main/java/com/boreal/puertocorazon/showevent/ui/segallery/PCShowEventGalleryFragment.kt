@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.commonutils.extensions.setOnSingleClickListener
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showImageViewer
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
@@ -37,7 +37,7 @@ class PCShowEventGalleryFragment :
             holderCallback = { bindingElement, model, list, adapter, position ->
                 bindingElement.apply {
                     imageUrl = model.imageUrl
-                    containerGalleryFilled.setOnSingleClickListener {
+                    containerGalleryFilled.onClick {
                         showImageViewer(list.map { it.imageUrl ?: "" }.sortedBy { it != model.imageUrl ?: "" })
                     }
                 }
