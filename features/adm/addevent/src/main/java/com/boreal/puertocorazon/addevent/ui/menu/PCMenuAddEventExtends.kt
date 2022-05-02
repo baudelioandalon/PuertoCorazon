@@ -48,7 +48,7 @@ fun PCMenuAddEventFragment.initElements() {
                     changeText("Ve a Requerimientos y elige los que se adecuen mas a tu evento")
                     return@onClick
                 }
-                //ok
+                setEvent()
             }
         }
     }
