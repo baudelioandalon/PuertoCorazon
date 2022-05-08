@@ -13,8 +13,13 @@ import com.boreal.puertocorazon.showevent.ui.sepackages.PCShowEventPackagesFragm
 fun PCShowEventFragment.initElements() {
     binding.apply {
         navigation()
+        onBackPressedDispatcher {
+            mainViewModel.removeEventSelected()
+            onFragmentBackPressed(true)
+        }
         btnClose.onClick {
             mainViewModel.removeEventSelected()
+            onFragmentBackPressed(true)
         }
 
         btnDescription.onClick {

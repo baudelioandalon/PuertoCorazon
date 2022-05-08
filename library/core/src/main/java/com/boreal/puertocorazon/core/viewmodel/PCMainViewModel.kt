@@ -19,9 +19,9 @@ class PCMainViewModel : CUBaseViewModel() {
     private val _goLogin = MutableLiveData<Boolean>()
 
 
-    val eventSelected: LiveData<PCEventModel>
+    val eventSelected: LiveData<PCEventModel?>
         get() = _eventSelected
-    private val _eventSelected = MutableLiveData<PCEventModel>()
+    private val _eventSelected = MutableLiveData<PCEventModel?>()
 
     var allowExit = true
 
@@ -42,7 +42,7 @@ class PCMainViewModel : CUBaseViewModel() {
     fun getEventSelected() = _eventSelected.value ?: PCEventModel()
 
     fun removeEventSelected() {
-        _eventSelected.value = PCEventModel()
+        _eventSelected.value = null
     }
 
 //    /**

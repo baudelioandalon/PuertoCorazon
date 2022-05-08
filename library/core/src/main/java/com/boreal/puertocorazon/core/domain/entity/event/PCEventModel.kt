@@ -1,10 +1,10 @@
 package com.boreal.puertocorazon.core.domain.entity.event
 
-import com.boreal.commonutils.globalmethod.firestoreId
+import com.boreal.commonutils.globalmethod.randomANID
 import com.google.firebase.Timestamp
 
 data class PCEventModel(
-    val idEvent: String = firestoreId(),
+    val idEvent: String = randomANID(),
     var title: String = "",
     var subtitle: String = "",
     var description: String = "",
