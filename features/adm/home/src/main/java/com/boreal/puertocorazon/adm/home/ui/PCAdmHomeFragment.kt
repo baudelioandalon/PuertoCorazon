@@ -96,7 +96,6 @@ class PCAdmHomeFragment :
                         binding.recyclerAdmHomeEvents.setLoading(it.status.ordinal)
 //                        hideProgressBarCustom()
                         it.failure?.let { errorResult ->
-                            binding.recyclerAdmHomeEvents.setLoading(it.status.ordinal)
                             if (errorResult == CUFirestoreErrorEnum.ERROR_PERMISSION_DENIED) {
                                 mainViewModel.signOutUser()
                             }

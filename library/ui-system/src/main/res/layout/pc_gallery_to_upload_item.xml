@@ -46,9 +46,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_corner_radius="30dp"
                 app:riv_mutate_background="true"
-                app:riv_oval="true">
-
-            </com.makeramen.roundedimageview.RoundedImageView>
+                app:riv_oval="true"/>
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 

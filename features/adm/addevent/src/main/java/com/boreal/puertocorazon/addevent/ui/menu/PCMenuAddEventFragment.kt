@@ -21,8 +21,16 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
     override fun initObservers() {
         binding.apply {
             addEventViewModel.apply {
-                checkMain.notInvisibleIf(getEventTitle().isNotEmpty() && getEventSubtitle().isNotEmpty() && getEventDescription().isNotEmpty())
-                checkGallery.notInvisibleIf(getGallery().isNotEmpty() && getMainImage() != Uri.EMPTY)
+                checkMain.notInvisibleIf(
+                    getEventTitle().isNotEmpty() &&
+                            getEventSubtitle().isNotEmpty() &&
+                            getEventDescription().isNotEmpty() &&
+                            getHomeImage() != Uri.EMPTY
+                )
+                checkGallery.notInvisibleIf(
+                    getGallery().isNotEmpty() &&
+                            getMainImage() != Uri.EMPTY
+                )
                 checkPackages.notInvisibleIf(isPriceAdultValid())
                 checkDetails.notInvisibleIf(isScheduleValid())
                 checkRequirements.notInvisibleIf(requirementsChanged)

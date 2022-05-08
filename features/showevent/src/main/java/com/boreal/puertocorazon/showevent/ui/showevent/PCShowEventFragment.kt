@@ -8,7 +8,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCShowEventFragment :
     CUBaseFragment<PcShowEventFragmentBinding>() {
-    //    PCShowEventViewModel
+
     val mainViewModel: PCMainViewModel by sharedViewModel()
 
     override fun getLayout() = R.layout.pc_show_event_fragment

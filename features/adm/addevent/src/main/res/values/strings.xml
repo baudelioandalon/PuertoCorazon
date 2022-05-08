@@ -36,4 +36,5 @@
     <string name="less_text">-</string>
     <string name="write_text">Escribe</string>
     <string name="package_name_text">Nombre del paquete</string>
+    <string name="imagen_de_inicio_text">Imagen de inicio</string>
 </resources>

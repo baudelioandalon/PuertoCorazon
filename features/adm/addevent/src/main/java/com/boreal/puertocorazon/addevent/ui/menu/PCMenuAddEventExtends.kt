@@ -28,7 +28,11 @@ fun PCMenuAddEventFragment.initElements() {
         }
         btnSave.onClick {
             addEventViewModel.apply {
-                if (getEventTitle().isEmpty() || getEventSubtitle().isEmpty() || getEventDescription().isEmpty()) {
+                if (getEventTitle().isEmpty() ||
+                    getEventSubtitle().isEmpty() ||
+                    getEventDescription().isEmpty() ||
+                    getHomeImage() == Uri.EMPTY
+                ) {
                     changeText("Ve a la opcion Principal")
                     return@onClick
                 }

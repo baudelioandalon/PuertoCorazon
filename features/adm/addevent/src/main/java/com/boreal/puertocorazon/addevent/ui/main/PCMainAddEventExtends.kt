@@ -1,10 +1,14 @@
 package com.boreal.puertocorazon.addevent.ui.main
 
+import android.net.Uri
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
+import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.onClick
+import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 import com.boreal.puertocorazon.core.utils.onlyText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -15,6 +19,38 @@ fun PCMainAddEventFragment.initElements() {
         tvTitle.setText(addEventViewModel.getEventTitle())
         tvSubtitle.setText(addEventViewModel.getEventSubtitle())
         tvDescription.setText(addEventViewModel.getEventDescription())
+        if (addEventViewModel.getHomeImage() != Uri.EMPTY) {
+            homeImage.setImageURI(addEventViewModel.getHomeImage())
+            imageViewHome.hideView()
+            tvAddHome.hideView()
+            homeImage.showView()
+            btnRemoveImage.showView()
+        }
+
+        btnRemoveImage.onClick {
+            imageViewHome.showView()
+            tvAddHome.showView()
+            homeImage.hideView()
+            btnRemoveImage.hideView()
+            containerHomeImage.strokeLineWidth = 0f
+            tvErrorMessage.text = ""
+            addEventViewModel.setHomeImage(Uri.EMPTY)
+        }
+        containerHomeImage.onClick {
+            ABottomSheetOptionsImageFragment {
+                addEventViewModel.setHomeImage(it)
+                imageViewHome.hideView()
+                tvAddHome.hideView()
+                homeImage.showView()
+                btnRemoveImage.showView()
+                homeImage.setImageURI(it)
+                containerHomeImage.strokeLineWidth = 0f
+                tvErrorMessage.text = ""
+            }.show(
+                requireActivity().supportFragmentManager,
+                "imageoption"
+            )
+        }
 
         btnSave.onClick {
             val validations = arrayListOf(
@@ -71,6 +107,16 @@ fun PCMainAddEventFragment.initElements() {
                     validations[2].second.invoke()
                     delay(3000)
                     tvErrorMessage.text = ""
+                }
+                return@onClick
+            }
+            if (addEventViewModel.getHomeImage() == Uri.EMPTY) {
+                lifecycleScope.launch {
+                    tvErrorMessage.text = "No has seleccionado una imagen de inicio para el evento"
+                    containerHomeImage.strokeLineWidth = 1.5f
+                    delay(3000)
+                    tvErrorMessage.text = ""
+                    containerHomeImage.strokeLineWidth = 0f
                 }
                 return@onClick
             }
