@@ -59,9 +59,9 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         allowedClothing = listOf(PCRequirementEnum.LARGE_SHIRT.name)
     )
 
-    private val eventImageToUpload = PCEventToUploadModel()
+    private var eventImageToUpload = PCEventToUploadModel()
 
-    var requirementsChanged = true
+    var requirementsChanged = false
 
     val addEvent: LiveData<AFirestoreSetResponse<PCEventModel, CUFirestoreErrorEnum>>
         get() = _addEvent
@@ -151,6 +151,11 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
     fun isScheduleValid() = getSchedule().isNotEmpty()
     fun resetViewModel() {
         newEventTest = PCEventModel()
+        requirementsChanged = false
+        eventImageToUpload = PCEventToUploadModel()
+        _addEvent.value = AFirestoreSetResponse(
+            status = AFirestoreStatusRequest.NONE
+        )
     }
 
 }

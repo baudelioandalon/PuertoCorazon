@@ -12,10 +12,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
+import com.airbnb.lottie.LottieDrawable
+import com.boreal.commonutils.extensions.invisibleView
+import com.boreal.commonutils.extensions.showView
+import com.boreal.puertocorazon.core.R
 import com.boreal.puertocorazon.core.databinding.ABottomSheetOptionsImageFragmentBinding
 import com.boreal.puertocorazon.core.utils.getImageBitmap
 import com.boreal.puertocorazon.core.utils.getImageUri
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 class ABottomSheetOptionsImageFragment(
     private var imageReturn: (Uri) -> Unit
@@ -49,6 +58,21 @@ class ABottomSheetOptionsImageFragment(
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_GALLERY_CAPTURE)
+        showLoading()
+    }
+
+    private fun showLoading() {
+        mBinding.apply {
+            loadingImage.setAnimation(R.raw.last_loading)
+            loadingImage.repeatCount = LottieDrawable.INFINITE
+            loadingImage.playAnimation()
+            title.text = "Espere un momento, por favor..."
+            loadingImage.showView()
+            roundableGalery.invisibleView()
+            roundableCamera.invisibleView()
+            lblCamera.invisibleView()
+            lblGallery.invisibleView()
+        }
     }
 
     private fun goToCamera() {
@@ -59,6 +83,7 @@ class ABottomSheetOptionsImageFragment(
                 }
             }
         }
+        showLoading()
     }
 
     fun getPermissionsStorage() {
@@ -93,7 +118,6 @@ class ABottomSheetOptionsImageFragment(
         )
     }
 
-    //TODO usar Dexter
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -113,8 +137,7 @@ class ABottomSheetOptionsImageFragment(
                         requireContext(),
                         "No cuenta con permisos de camara",
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    ).show()
                 }
             }
             REQUEST_GALLERY_CAPTURE -> {
@@ -128,28 +151,37 @@ class ABottomSheetOptionsImageFragment(
                         requireContext(),
                         "No cuenta con permisos de almacenamiento",
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    ).show()
                 }
             }
         }
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_GALLERY_CAPTURE -> {
                     mImageSelectedUri = data?.data
-                    imageReturn.invoke(mImageSelectedUri!!.getImageBitmap().getImageUri())
-                    dismiss()
+                    isCancelable = false
+                    lifecycleScope.launch {
+                        imageReturn.invoke(withContext(Dispatchers.IO) {
+                            mImageSelectedUri!!.getImageBitmap().getImageUri()
+                        })
+                        dismiss()
+                    }
                 }
                 REQUEST_IMAGE_CAPTURE -> {
                     val cameraBitmap = data?.extras?.get("data") as Bitmap
-                    imageReturn.invoke(cameraBitmap.getImageUri())
-                    dismiss()
+                    isCancelable = false
+                    lifecycleScope.launch(Dispatchers.Main) {
+                        imageReturn.invoke(withContext(Dispatchers.IO) {
+                            cameraBitmap.getImageUri()
+                        })
+                        dismiss()
+                    }
                 }
             }
         } else {
