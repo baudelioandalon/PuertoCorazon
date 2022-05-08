@@ -97,7 +97,6 @@ open class AUploadImageService : LifecycleService() {
                                         collectionPath = collectionPath,
                                         documentPath = documentPath,
                                         {
-                                            stopSelf()
                                             createNotification(
                                                 "La imagen se subió correctamente",
                                                 "Listo"
@@ -142,6 +141,94 @@ open class AUploadImageService : LifecycleService() {
                                                     notify(
                                                         idNotification,
                                                         builder.build()
+                                                    )
+                                                    //STEP 2 SUBIR FOTO DE INICIO -> HOME
+                                                    imageUri = homeImageReceived
+                                                    idEventModel = "homeImageUrl"
+                                                    pathStorageHomeEvent =
+                                                        "${BuildConfig.ENVIRONMENT}$email${BuildConfig.EVENTS}/$idEvent/home"
+                                                    pathStorageImage =
+                                                        "${BuildConfig.ENVIRONMENT}$email${BuildConfig.EVENTS}/$idEvent/home"
+                                                    nameImage = "homeImg$idEvent.jpg"
+
+                                                    uploadPhoto(
+                                                        imageUri,
+                                                        "Subiendo imagen",
+                                                        pathStorageImage,
+                                                        nameImage,
+                                                        success = { urlHome, idInitial ->
+                                                            this@AUploadImageService.lifecycleScope.launch {
+                                                                updateImageReference(
+                                                                    imageUrl = urlHome,
+                                                                    idEventModel = idEventModel,
+                                                                    collectionPath = collectionPath,
+                                                                    documentPath = documentPath,
+                                                                    {
+                                                                        stopSelf()
+                                                                        createNotification(
+                                                                            "La imagen se subió correctamente",
+                                                                            "Listo"
+                                                                        ) { notification, builder, idNotification ->
+
+                                                                            notification.apply {
+                                                                                builder.setSilent(
+                                                                                    true
+                                                                                )
+                                                                                val message2 =
+                                                                                    NotificationCompat.MessagingStyle.Message(
+                                                                                        "Se subio correctamente",
+                                                                                        System.currentTimeMillis(),
+                                                                                        Person.Builder()
+                                                                                            .also {
+                                                                                                it.setName(
+                                                                                                    "Actualizacion"
+                                                                                                )
+                                                                                                it.setIcon(
+                                                                                                    IconCompat.createWithAdaptiveBitmap(
+                                                                                                        imageUri.getImageBitmap()
+                                                                                                    )
+                                                                                                )
+                                                                                            }
+                                                                                            .build()
+                                                                                    )
+
+                                                                                builder.setStyle(
+                                                                                    NotificationCompat.MessagingStyle(
+                                                                                        Person.Builder()
+                                                                                            .also {
+                                                                                                it.setName(
+                                                                                                    "Actualizacion"
+                                                                                                )
+                                                                                            }
+                                                                                            .build()
+                                                                                    )
+                                                                                        .addMessage(
+                                                                                            message2
+                                                                                        )
+                                                                                )
+                                                                                notify(
+                                                                                    idInitial,
+                                                                                    builder.build()
+                                                                                )
+                                                                            }
+
+                                                                        }
+                                                                    }, {
+                                                                        cancelNotification(
+                                                                            "Fallo al actualizar referencia de $titleForError",
+                                                                            it
+                                                                        )
+                                                                    }
+                                                                )
+                                                            }
+
+                                                        },
+                                                        failure = {
+                                                            cancelNotification(
+                                                                "Fallo al actualizar imagen de $titleForError",
+                                                                it
+                                                            )
+                                                        }
                                                     )
                                                 }
 
@@ -339,10 +426,7 @@ open class AUploadImageService : LifecycleService() {
             if (first) {
                 updatePathSuccess()
             } else {
-                updatePathFailure(
-                    second?.messageError
-                        ?: CUFirestoreErrorEnum.ERROR_DEFAULT.messageError
-                )
+                updatePathFailure(second?.messageError ?: CUFirestoreErrorEnum.ERROR_DEFAULT.messageError)
             }
         }
 
