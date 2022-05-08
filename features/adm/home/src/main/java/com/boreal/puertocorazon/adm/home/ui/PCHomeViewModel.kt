@@ -44,7 +44,10 @@ class PCHomeViewModel(
                     "eventData",
                     "DEBUG/baudelio_andalon@hotmail.com/Events"
                 )
-            ).collect {
+            ).catch {
+                cause: Throwable ->
+                cause
+            }.collect {
                 _eventList.value = it.response
             }
         }

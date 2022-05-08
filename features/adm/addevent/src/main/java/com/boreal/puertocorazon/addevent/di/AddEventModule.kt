@@ -1,7 +1,7 @@
 package com.boreal.puertocorazon.addevent.di
 
-import com.boreal.puertocorazon.addevent.data.datasource.AddEventDataSource
-import com.boreal.puertocorazon.addevent.data.datasource.remote.PCRemoteAddEventDataSource
+import com.boreal.puertocorazon.addevent.data.datasource.SetEventDataSource
+import com.boreal.puertocorazon.addevent.data.datasource.remote.PCRemoteSetEventDataSource
 import com.boreal.puertocorazon.addevent.data.repository.DefaultAddEventRepository
 import com.boreal.puertocorazon.addevent.domain.AddEventRepository
 import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
@@ -13,8 +13,8 @@ import org.koin.dsl.module
 
 val addEventModule = module {
 
-    single<AddEventDataSource>(named("PCRemoteAddEventDataSource")) {
-        PCRemoteAddEventDataSource()
+    single<SetEventDataSource>(named("PCRemoteAddEventDataSource")) {
+        PCRemoteSetEventDataSource()
     }
 
     single<AddEventRepository>(named("DefaultAddEventRepository")) {

@@ -16,8 +16,7 @@ class HomeDataSource {
             collectionPath: String
         ): AFirestoreGetResponse<List<PCEventModel>> =
             with(
-                firestoreInstance.collection(collectionPath)
-                    .whereEqualTo("eventData.readyToShow", true).get(Source.SERVER).await()
+                firestoreInstance.collection(collectionPath).get(Source.SERVER).await()
             ) {
                 try {
                     with(documents.convertDataToList<PCEventModel>(idKey)) {

@@ -83,6 +83,7 @@ dependencies {
 
     implementation(Dependency.firestore)
     implementation(Dependency.firestoreKtx)
+    implementation(Dependency.firestoreStorage)
 
 
     implementation(Dependency.circularProgress)

@@ -7,10 +7,7 @@ import com.boreal.commonutils.globalmethod.randomID
 import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
-import com.boreal.puertocorazon.core.domain.entity.event.PCEventToUploadModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCLocationModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
+import com.boreal.puertocorazon.core.domain.entity.event.*
 import com.boreal.puertocorazon.core.domain.entity.requirements.PCRequirementEnum
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
@@ -22,19 +19,18 @@ import kotlinx.coroutines.flow.collect
 class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Input, AddEventUseCase.Output>) :
     CUBaseViewModel() {
 
-    private val newEvent = PCEventToUploadModel(
+    private val newEventTest = PCEventModel(
         title = "Titilo de prueba",
         subtitle = "Subtitulo de prueba",
         idEvent = randomID(),
         description = "Esto es una descripcion de prueba",
         addressPlace = "Calle miramar#1195, San esteban",
         place = PCLocationModel(latitude = 0L, 5L),
-        eventType = "PARTICULA",
-        imageGallery = listOf(Uri.EMPTY),
+        eventType = "PARTICULAR",
+        imageGallery = listOf("NONE"),
         videoGallery = listOf("NONE"),
         packages = listOf(
-            PCPackageToUploadModel(
-                empty = false,
+            PCPackageModel(
                 titlePackage = "Paquete 1",
                 adult = 2L,
                 child = 1L,
@@ -43,7 +39,7 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         ),
         priceAdult = 300L,
         priceChild = 200L,
-        readyToShow = true,
+        readyToShow = false,
         schedule = listOf(
             PCScheduleModel(
                 idTime = 1L,
@@ -55,64 +51,69 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         instructionId = "NONE",
         instructorName = "NONE",
         instructorImageUrl = "NONE",
-        mainImageUrl = Uri.EMPTY,
+        mainImageUrl = "NONE",
         capacity = 50L,
-        homeImageUrl = Uri.EMPTY,
+        homeImageUrl = "NONE",
         allowedPeople = listOf(PCRequirementEnum.OLD.name),
         allowedAccesories = listOf(PCRequirementEnum.NECKLACE.name),
         allowedClothing = listOf(PCRequirementEnum.LARGE_SHIRT.name)
-
     )
+
+    private val eventImageToUpload = PCEventToUploadModel()
+
     var requirementsChanged = true
 
-    val addEvent: LiveData<AFirestoreSetResponse<PCEventToUploadModel, CUFirestoreErrorEnum>>
+    val addEvent: LiveData<AFirestoreSetResponse<PCEventModel, CUFirestoreErrorEnum>>
         get() = _addEvent
     private val _addEvent =
-        MutableLiveData<AFirestoreSetResponse<PCEventToUploadModel, CUFirestoreErrorEnum>>()
+        MutableLiveData<AFirestoreSetResponse<PCEventModel, CUFirestoreErrorEnum>>()
 
     fun setMainData(title: String, subtitle: String, description: String) {
-        newEvent.apply {
+        newEventTest.apply {
             this.title = title
             this.subtitle = subtitle
             this.description = description
         }
-
     }
 
     fun setGallery(list: List<Uri>) {
-        newEvent.imageGallery = list
+        eventImageToUpload.imageGallery = list
     }
 
-    fun setMainImage(mainImage: Uri) {
-        newEvent.mainImageUrl = mainImage
+    fun setMainImage(mainImageUri: Uri) {
+        eventImageToUpload.mainImageUrl = mainImageUri
+    }
+
+    fun setHomeImage(homeImageUri: Uri) {
+        eventImageToUpload.homeImageUrl = homeImageUri
     }
 
     fun setPriceChildren(price: Long) {
-        newEvent.priceChild = price
+        newEventTest.priceChild = price
     }
 
     fun setPriceAdult(price: Long) {
-        newEvent.priceAdult = price
+        newEventTest.priceAdult = price
     }
 
-    fun setPackages(packageList: List<PCPackageToUploadModel>) {
-        newEvent.packages = packageList
+    fun setPackages(packageList: List<PCPackageModel>) {
+        newEventTest.packages = packageList
     }
 
     fun setAllowedAccesories(allowedAccesories: List<String>) {
-        newEvent.allowedAccesories = allowedAccesories
+        newEventTest.allowedAccesories = allowedAccesories
     }
 
     fun setAllowedClothing(allowedClothing: List<String>) {
-        newEvent.allowedClothing = allowedClothing
+        newEventTest.allowedClothing = allowedClothing
     }
 
     fun setAllowedPeople(allowedPeople: List<String>) {
-        newEvent.allowedPeople = allowedPeople
+        newEventTest.allowedPeople = allowedPeople
     }
 
     fun setSchedule(schedule: List<PCScheduleModel>) {
-        newEvent.schedule = schedule
+        newEventTest.schedule = schedule
     }
 
     fun setEvent() {
@@ -120,29 +121,33 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
             _addEvent.value = AFirestoreSetResponse(
                 status = AFirestoreStatusRequest.LOADING
             )
-            addEventUseCase.execute(AddEventUseCase.Input(newEvent))
-                .catch { cause ->
+            addEventUseCase.execute(AddEventUseCase.Input(newEventTest))
+                .catch { cause: Throwable ->
                     cause
+                    _addEvent.value = AFirestoreSetResponse(
+                        status = AFirestoreStatusRequest.FAILURE
+                    )
                 }.collect {
                     _addEvent.value = it.response
                 }
         }
     }
 
-    fun getEventTitle() = newEvent.title
-    fun getEventSubtitle() = newEvent.subtitle
-    fun getEventDescription() = newEvent.description
-    fun getGallery() = newEvent.imageGallery
-    fun getMainImage() = newEvent.mainImageUrl
-    fun getPriceAdult() = newEvent.priceAdult
-    fun getPriceChildren() = newEvent.priceChild
-    fun isPriceAdultValid() = newEvent.priceAdult != 0L
-    fun isPriceChildValid() = newEvent.priceChild != 0L
-    fun getPackages() = newEvent.packages
-    fun getAllowedAccesories() = newEvent.allowedAccesories
-    fun getAllowedClothing() = newEvent.allowedClothing
-    fun getAllowedPeople() = newEvent.allowedPeople
-    fun getSchedule() = newEvent.schedule
+    fun getEventTitle() = newEventTest.title
+    fun getEventSubtitle() = newEventTest.subtitle
+    fun getEventDescription() = newEventTest.description
+    fun getGallery() = eventImageToUpload.imageGallery
+    fun getMainImage() = eventImageToUpload.mainImageUrl
+    fun getHomeImage() = eventImageToUpload.homeImageUrl
+    fun getPriceAdult() = newEventTest.priceAdult
+    fun getPriceChildren() = newEventTest.priceChild
+    fun isPriceAdultValid() = newEventTest.priceAdult != 0L
+    fun isPriceChildValid() = newEventTest.priceChild != 0L
+    fun getPackages() = newEventTest.packages
+    fun getAllowedAccesories() = newEventTest.allowedAccesories
+    fun getAllowedClothing() = newEventTest.allowedClothing
+    fun getAllowedPeople() = newEventTest.allowedPeople
+    fun getSchedule() = newEventTest.schedule
     fun isScheduleValid() = getSchedule().isNotEmpty()
 
 

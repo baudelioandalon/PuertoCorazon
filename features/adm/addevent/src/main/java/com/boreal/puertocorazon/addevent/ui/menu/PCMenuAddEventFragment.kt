@@ -1,11 +1,13 @@
 package com.boreal.puertocorazon.addevent.ui.menu
 
+import android.content.Intent
 import android.net.Uri
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.notInvisibleIf
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
 import com.boreal.puertocorazon.addevent.databinding.PcMenuAddEventFragmentBinding
+import com.boreal.puertocorazon.addevent.ui.services.AUploadImageService
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -35,7 +37,20 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
                     }
                     AFirestoreStatusRequest.SUCCESS -> {
                         hideProgressBarCustom()
-                        showToast("OK, SUBIR FOTOS")
+                        requireActivity().startService(
+                            Intent(context, AUploadImageService::class.java).apply {
+                                action = AUploadImageService.START_ALL_EVENT_IMAGES_SERVICE
+                                putExtra("idEventModel", response.modelToSet?.idEvent ?: "")
+                                putExtra("mainImage", addEventViewModel.getMainImage().toString())
+                                putExtra("homeImage", addEventViewModel.getHomeImage().toString())
+                                putExtra(
+                                    "galleryImages",
+                                    addEventViewModel.getGallery().map { image ->
+                                        image.toString()
+                                    }.toTypedArray()
+                                )
+                            })
+                        onFragmentBackPressed()
                     }
                     AFirestoreStatusRequest.FAILURE -> {
                         hideProgressBarCustom()

@@ -1,30 +1,31 @@
 package com.boreal.puertocorazon.core.domain.entity.event
 
+import com.boreal.commonutils.globalmethod.firestoreId
 import com.google.firebase.Timestamp
 
 data class PCEventModel(
-    val idEvent: String = "NONE",
+    val idEvent: String = firestoreId(),
     var title: String = "",
     var subtitle: String = "",
     var description: String = "",
     val addressPlace: String = "",
     val place: PCLocationModel = PCLocationModel(),
     val eventType: String = "",
-    val imageGallery: List<String> = listOf(),
+    var imageGallery: List<String> = listOf(),
     val videoGallery: List<String> = listOf(),
-    val packages: List<PCPackageModel> = listOf(),
-    val priceAdult: Long = 0L,
-    val priceChild: Long = 0L,
+    var packages: List<PCPackageModel> = listOf(),
+    var priceAdult: Long = 0L,
+    var priceChild: Long = 0L,
     val readyToShow: Boolean = true,
-    val schedule: List<PCScheduleModel> = listOf(),
+    var schedule: List<PCScheduleModel> = listOf(),
     val creationDate: Timestamp = Timestamp(0L, 0),
     val instructionId: String = "",
     val instructorName: String = "",
     val instructorImageUrl: String = "",
-    val mainImageUrl: String = "",
+    var mainImageUrl: String = "",
     val capacity: Long = 0L,
     val homeImageUrl: String = "",
-    val allowedPeople: List<String> = listOf(),
-    val allowedAccesories: List<String> = listOf(),
-    val allowedClothing: List<String> = listOf()
+    var allowedPeople: List<String> = listOf(),
+    var allowedAccesories: List<String> = listOf(),
+    var allowedClothing: List<String> = listOf()
 )

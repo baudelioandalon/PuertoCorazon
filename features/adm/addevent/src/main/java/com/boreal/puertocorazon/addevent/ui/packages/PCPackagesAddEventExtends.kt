@@ -5,6 +5,7 @@ import com.boreal.commonutils.extensions.getSupportFragmentManager
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.ui.packages.addpackage.PCAddPackage
 import com.boreal.puertocorazon.addevent.ui.packages.addprice.PCAddPriceTicket
+import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 
@@ -38,7 +39,15 @@ fun PCPackagesAddEventFragment.initElements() {
             if (priceTempAdult != 0L) {
                 viewModel.setPriceAdult(priceTempAdult)
                 viewModel.setPriceChildren(priceTempChild)
-                viewModel.setPackages(adapterRecyclerPackages.currentList)
+                viewModel.setPackages(
+                    adapterRecyclerPackages.currentList.toTypedArray().toMutableList().map {
+                        PCPackageModel(
+                            titlePackage = it.titlePackage,
+                            adult = it.adult,
+                            child = it.child,
+                            price = it.price
+                        )
+                    })
                 onFragmentBackPressed()
             } else {
                 tvErrorMessage.text = "Agrega precio al boleto"
@@ -61,7 +70,14 @@ fun PCPackagesAddEventFragment.initAdapter() {
     if (viewModel.getPackages().isEmpty()) {
         adapterRecyclerPackages.submitList(arrayListOf(PCPackageToUploadModel()))
     } else {
-        adapterRecyclerPackages.submitList(viewModel.getPackages())
+        adapterRecyclerPackages.submitList(viewModel.getPackages().map {
+            PCPackageToUploadModel(
+                titlePackage = it.titlePackage,
+                adult = it.adult,
+                child = it.child,
+                price = it.price
+            )
+        })
     }
 
 }

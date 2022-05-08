@@ -30,10 +30,7 @@ android {
         getByName("debug") {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"DEBUG/\"")
-            buildConfigField(type = "String", name = "USERS", value = "\"Users\"")
-            buildConfigField(type = "String", name = "LENDERS", value = "\"Lenders\"")
-            buildConfigField(type = "String", name = "CLIENTS", value = "\"Clients\"")
-            buildConfigField(type = "String", name = "PAYMENTS", value = "\"Payments\"")
+            buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(
                 type = "String",
                 name = "VERSION_NAME",
@@ -46,10 +43,7 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"RELEASE/\"")
-            buildConfigField(type = "String", name = "USERS", value = "\"Users\"")
-            buildConfigField(type = "String", name = "LENDERS", value = "\"Lenders\"")
-            buildConfigField(type = "String", name = "CLIENTS", value = "\"Clients\"")
-            buildConfigField(type = "String", name = "PAYMENTS", value = "\"Payments\"")
+            buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(
                 type = "String",
                 name = "VERSION_NAME",
