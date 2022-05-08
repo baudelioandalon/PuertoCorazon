@@ -26,6 +26,7 @@ import com.boreal.puertocorazon.core.utils.coreauthentication.awaitTask
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.utils.getImageBitmap
 import com.boreal.puertocorazon.core.utils.realm.getRealmObject
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
@@ -52,6 +53,9 @@ open class AUploadImageService : LifecycleService() {
     private var collectionPath = ""
     private var documentPath = ""
     private var idEventModel = ""
+    private var idEventLoaded = ""
+    private var emailLoaded = ""
+    private var index = 0
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.apply {
@@ -62,12 +66,14 @@ open class AUploadImageService : LifecycleService() {
                         val result = getRealmObject<AAuthModel>().toString().toModel<AAuthModel>()
                         val idEvent = intent.getStringExtra("idEventModel")
                         val email = result.email
+                        emailLoaded = result.email
                         val mainImageReceived =
                             Uri.parse(intent.getStringExtra("mainImage")) ?: Uri.EMPTY
                         val homeImageReceived =
                             Uri.parse(intent.getStringExtra("homeImage")) ?: Uri.EMPTY
                         val galleryImages =
-                            intent.getStringArrayListExtra("galleryImages") ?: emptyList<String>()
+                            intent.getStringArrayExtra("galleryImages")?.map { Uri.parse(it) }
+                                ?: emptyList<Uri>()
 
                         if (mainImageReceived == Uri.EMPTY) {
                             //FINISH SERVICE
@@ -83,6 +89,7 @@ open class AUploadImageService : LifecycleService() {
                         nameImage = "mainImg$idEvent.jpg"
                         collectionPath = "${BuildConfig.ENVIRONMENT}$email${BuildConfig.EVENTS}"
                         documentPath = "$idEvent"
+                        idEventLoaded = idEvent ?: ""
 
                         uploadPhoto(
                             imageUri,
@@ -95,6 +102,7 @@ open class AUploadImageService : LifecycleService() {
                                         imageUrl = urlProfileImageUpdated,
                                         idEventModel = idEventModel,
                                         collectionPath = collectionPath,
+                                        gallery = false,
                                         documentPath = documentPath,
                                         {
                                             createNotification(
@@ -162,9 +170,9 @@ open class AUploadImageService : LifecycleService() {
                                                                     imageUrl = urlHome,
                                                                     idEventModel = idEventModel,
                                                                     collectionPath = collectionPath,
+                                                                    gallery = false,
                                                                     documentPath = documentPath,
                                                                     {
-                                                                        stopSelf()
                                                                         createNotification(
                                                                             "La imagen se subió correctamente",
                                                                             "Listo"
@@ -209,6 +217,10 @@ open class AUploadImageService : LifecycleService() {
                                                                                 notify(
                                                                                     idInitial,
                                                                                     builder.build()
+                                                                                )
+
+                                                                                uploadGallery(
+                                                                                    galleryImages
                                                                                 )
                                                                             }
 
@@ -260,9 +272,160 @@ open class AUploadImageService : LifecycleService() {
 
             }
         }
-
-
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    private fun uploadGallery(gallery: List<Uri>) {
+        pathStorageImage =
+            "${BuildConfig.ENVIRONMENT}$emailLoaded${BuildConfig.EVENTS}/$idEventLoaded/gallery"
+        nameImage = "homeImg$idEventLoaded$index.jpg"
+
+        if (gallery.isEmpty()) {
+            stopSelf()
+            return
+        }
+        uploadPhoto(
+            gallery[index],
+            "Subiendo galeria ${index + 1}/${gallery.size}",
+            pathStorageImage,
+            nameImage,
+            success = { urlHome, idInitial ->
+                this@AUploadImageService.lifecycleScope.launch {
+                    updateImageReference(
+                        imageUrl = urlHome,
+                        idEventModel = idEventModel,
+                        collectionPath = collectionPath,
+                        gallery = true,
+                        documentPath = documentPath,
+                        {
+                            if (index == gallery.size - 1) {
+                                stopSelf()
+                                createNotification(
+                                    "La galeria se subió correctamente",
+                                    "Listo"
+                                ) { notification, builder, idNotification ->
+
+                                    notification.apply {
+                                        builder.setSilent(
+                                            true
+                                        )
+                                        val message2 =
+                                            NotificationCompat.MessagingStyle.Message(
+                                                "La galeria se subió correctamente",
+                                                System.currentTimeMillis(),
+                                                Person.Builder()
+                                                    .also {
+                                                        it.setName(
+                                                            if (gallery.size > 1) {
+                                                                "Se subieron ${gallery.size} fotos a galeria"
+                                                            } else {
+                                                                "Se subio una foto a galeria"
+                                                            }
+
+                                                        )
+                                                        it.setIcon(
+                                                            IconCompat.createWithAdaptiveBitmap(
+                                                                imageUri.getImageBitmap()
+                                                            )
+                                                        )
+                                                    }
+                                                    .build()
+                                            )
+
+                                        builder.setStyle(
+                                            NotificationCompat.MessagingStyle(
+                                                Person.Builder()
+                                                    .also {
+                                                        it.setName(
+                                                            "Actualizacion"
+                                                        )
+                                                    }
+                                                    .build()
+                                            )
+                                                .addMessage(
+                                                    message2
+                                                )
+                                        )
+                                        notify(
+                                            idInitial,
+                                            builder.build()
+                                        )
+                                    }
+
+                                }
+                            } else {
+                                createNotification(
+                                    "La imagen se subió correctamente",
+                                    "Listo"
+                                ) { notification, builder, idNotification ->
+
+                                    notification.apply {
+                                        builder.setSilent(
+                                            true
+                                        )
+                                        val message2 =
+                                            NotificationCompat.MessagingStyle.Message(
+                                                "Se subio correctamente",
+                                                System.currentTimeMillis(),
+                                                Person.Builder()
+                                                    .also {
+                                                        it.setName(
+                                                            "Actualizacion"
+                                                        )
+                                                        it.setIcon(
+                                                            IconCompat.createWithAdaptiveBitmap(
+                                                                imageUri.getImageBitmap()
+                                                            )
+                                                        )
+                                                    }
+                                                    .build()
+                                            )
+
+                                        builder.setStyle(
+                                            NotificationCompat.MessagingStyle(
+                                                Person.Builder()
+                                                    .also {
+                                                        it.setName(
+                                                            "Actualizacion"
+                                                        )
+                                                    }
+                                                    .build()
+                                            )
+                                                .addMessage(
+                                                    message2
+                                                )
+                                        )
+                                        notify(
+                                            idInitial,
+                                            builder.build()
+                                        )
+                                        if (index < gallery.size) {
+                                            index += 1
+                                            uploadGallery(gallery)
+                                        }
+                                    }
+
+                                }
+                            }
+
+
+                        }, {
+                            cancelNotification(
+                                "Fallo al actualizar referencia de $titleForError",
+                                it
+                            )
+                        }
+                    )
+                }
+
+            },
+            failure = {
+                cancelNotification(
+                    "Fallo al actualizar imagen de $titleForError",
+                    it
+                )
+            }
+        )
     }
 
     private fun cancelNotification(titleReceived: String, cause: String) {
@@ -411,22 +574,35 @@ open class AUploadImageService : LifecycleService() {
         imageUrl: String,
         idEventModel: String,
         collectionPath: String,
+        gallery: Boolean = false,
         documentPath: String,
         updatePathSuccess: () -> Unit,
         updatePathFailure: (messageError: String) -> Unit
     ) {
-        val request = UploadReference.updateImageReference(
-            AFirestoreSetResponse(
-                collectionPath = collectionPath,
-                documentPath = documentPath,
-                modelToSet = mapOf("eventData.$idEventModel" to imageUrl)
+        val request = if (gallery) {
+            UploadReference.updateImageGalleryReference(
+                AFirestoreSetResponse(
+                    collectionPath = collectionPath,
+                    documentPath = documentPath,
+                    modelToSet = imageUrl
+                )
             )
-        )
+        } else {
+            UploadReference.updateImageReference(
+                AFirestoreSetResponse(
+                    collectionPath = collectionPath,
+                    documentPath = documentPath,
+                    modelToSet = mapOf("eventData.$idEventModel" to imageUrl)
+                )
+            )
+        }
         with(request) {
             if (first) {
                 updatePathSuccess()
             } else {
-                updatePathFailure(second?.messageError ?: CUFirestoreErrorEnum.ERROR_DEFAULT.messageError)
+                updatePathFailure(
+                    second?.messageError ?: CUFirestoreErrorEnum.ERROR_DEFAULT.messageError
+                )
             }
         }
 
@@ -485,6 +661,37 @@ open class AUploadImageService : LifecycleService() {
 
 class UploadReference {
     companion object : AFirestoreRepository() {
+        suspend fun updateImageGalleryReference(
+            request: AFirestoreSetResponse<String, CUFirestoreErrorEnum>
+        ): Pair<Boolean, CUFirestoreErrorEnum?> =
+            try {
+                firestoreInstance.run {
+                    with(
+                        collection(request.collectionPath)
+                            .document(request.documentPath)
+                            .update(
+                                "eventData.imageGallery",
+                                FieldValue.arrayUnion(request.modelToSet ?: "")
+                            )
+                            .awaitTask()
+                    ) {
+                        if (isSuccessful) {
+                            Pair(true, null)
+                        } else {
+                            Pair(
+                                false, if (exception is FirebaseFirestoreException) {
+                                    errorResponse(exception as FirebaseFirestoreException)
+                                } else {
+                                    CUFirestoreErrorEnum.ERROR_DEFAULT
+                                }
+                            )
+                        }
+                    }
+                }
+            } catch (exception: Exception) {
+                Pair(false, validationError(exception.message ?: ""))
+            }
+
         suspend fun updateImageReference(
             request: AFirestoreSetResponse<Map<String, String>, CUFirestoreErrorEnum>
         ): Pair<Boolean, CUFirestoreErrorEnum?> =

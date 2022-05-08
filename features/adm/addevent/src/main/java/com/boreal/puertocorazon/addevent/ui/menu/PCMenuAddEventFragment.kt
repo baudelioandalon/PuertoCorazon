@@ -58,6 +58,7 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
                                     }.toTypedArray()
                                 )
                             })
+                        addEventViewModel.resetViewModel()
                         onFragmentBackPressed()
                     }
                     AFirestoreStatusRequest.FAILURE -> {

@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.collect
 class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Input, AddEventUseCase.Output>) :
     CUBaseViewModel() {
 
-    private val newEventTest = PCEventModel(
+    private var newEventTest = PCEventModel(
         title = "Titilo de prueba",
         subtitle = "Subtitulo de prueba",
         idEvent = randomID(),
@@ -27,8 +27,8 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         addressPlace = "Calle miramar#1195, San esteban",
         place = PCLocationModel(latitude = 0L, 5L),
         eventType = "PARTICULAR",
-        imageGallery = listOf("NONE"),
-        videoGallery = listOf("NONE"),
+        imageGallery = listOf(),
+        videoGallery = listOf(),
         packages = listOf(
             PCPackageModel(
                 titlePackage = "Paquete 1",
@@ -149,6 +149,8 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
     fun getAllowedPeople() = newEventTest.allowedPeople
     fun getSchedule() = newEventTest.schedule
     fun isScheduleValid() = getSchedule().isNotEmpty()
-
+    fun resetViewModel() {
+        newEventTest = PCEventModel()
+    }
 
 }

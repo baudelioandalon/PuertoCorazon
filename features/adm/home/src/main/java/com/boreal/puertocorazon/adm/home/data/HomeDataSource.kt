@@ -6,6 +6,7 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.convertDataToList
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.utils.coreauthentication.await
+import com.boreal.puertocorazon.core.utils.coreauthentication.awaitTask
 import com.boreal.puertocorazon.core.utils.log
 import com.google.firebase.firestore.Source
 
