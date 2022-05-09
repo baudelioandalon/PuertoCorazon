@@ -19,10 +19,9 @@ import kotlinx.coroutines.flow.collect
 class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Input, AddEventUseCase.Output>) :
     CUBaseViewModel() {
 
-    private var newEventTest = PCEventModel(
+    private var newEvent = PCEventModel(
         title = "Titilo de prueba",
         subtitle = "Subtitulo de prueba",
-        idEvent = randomID(),
         description = "Esto es una descripcion de prueba",
         addressPlace = "Calle miramar#1195, San esteban",
         place = PCLocationModel(latitude = 0L, 5L),
@@ -69,7 +68,7 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         MutableLiveData<AFirestoreSetResponse<PCEventModel, CUFirestoreErrorEnum>>()
 
     fun setMainData(title: String, subtitle: String, description: String) {
-        newEventTest.apply {
+        newEvent.apply {
             this.title = title
             this.subtitle = subtitle
             this.description = description
@@ -89,31 +88,31 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
     }
 
     fun setPriceChildren(price: Long) {
-        newEventTest.priceChild = price
+        newEvent.priceChild = price
     }
 
     fun setPriceAdult(price: Long) {
-        newEventTest.priceAdult = price
+        newEvent.priceAdult = price
     }
 
     fun setPackages(packageList: List<PCPackageModel>) {
-        newEventTest.packages = packageList
+        newEvent.packages = packageList
     }
 
     fun setAllowedAccesories(allowedAccesories: List<String>) {
-        newEventTest.allowedAccesories = allowedAccesories
+        newEvent.allowedAccesories = allowedAccesories
     }
 
     fun setAllowedClothing(allowedClothing: List<String>) {
-        newEventTest.allowedClothing = allowedClothing
+        newEvent.allowedClothing = allowedClothing
     }
 
     fun setAllowedPeople(allowedPeople: List<String>) {
-        newEventTest.allowedPeople = allowedPeople
+        newEvent.allowedPeople = allowedPeople
     }
 
     fun setSchedule(schedule: List<PCScheduleModel>) {
-        newEventTest.schedule = schedule
+        newEvent.schedule = schedule
     }
 
     fun setEvent() {
@@ -121,7 +120,7 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
             _addEvent.value = AFirestoreSetResponse(
                 status = AFirestoreStatusRequest.LOADING
             )
-            addEventUseCase.execute(AddEventUseCase.Input(newEventTest))
+            addEventUseCase.execute(AddEventUseCase.Input(newEvent))
                 .catch { cause: Throwable ->
                     cause
                     _addEvent.value = AFirestoreSetResponse(
@@ -133,24 +132,24 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         }
     }
 
-    fun getEventTitle() = newEventTest.title
-    fun getEventSubtitle() = newEventTest.subtitle
-    fun getEventDescription() = newEventTest.description
+    fun getEventTitle() = newEvent.title
+    fun getEventSubtitle() = newEvent.subtitle
+    fun getEventDescription() = newEvent.description
     fun getGallery() = eventImageToUpload.imageGallery
     fun getMainImage() = eventImageToUpload.mainImageUrl
     fun getHomeImage() = eventImageToUpload.homeImageUrl
-    fun getPriceAdult() = newEventTest.priceAdult
-    fun getPriceChildren() = newEventTest.priceChild
-    fun isPriceAdultValid() = newEventTest.priceAdult != 0L
-    fun isPriceChildValid() = newEventTest.priceChild != 0L
-    fun getPackages() = newEventTest.packages
-    fun getAllowedAccesories() = newEventTest.allowedAccesories
-    fun getAllowedClothing() = newEventTest.allowedClothing
-    fun getAllowedPeople() = newEventTest.allowedPeople
-    fun getSchedule() = newEventTest.schedule
+    fun getPriceAdult() = newEvent.priceAdult
+    fun getPriceChildren() = newEvent.priceChild
+    fun isPriceAdultValid() = newEvent.priceAdult != 0L
+    fun isPriceChildValid() = newEvent.priceChild != 0L
+    fun getPackages() = newEvent.packages
+    fun getAllowedAccesories() = newEvent.allowedAccesories
+    fun getAllowedClothing() = newEvent.allowedClothing
+    fun getAllowedPeople() = newEvent.allowedPeople
+    fun getSchedule() = newEvent.schedule
     fun isScheduleValid() = getSchedule().isNotEmpty()
     fun resetViewModel() {
-        newEventTest = PCEventModel()
+        newEvent = PCEventModel()
         requirementsChanged = false
         eventImageToUpload = PCEventToUploadModel()
         _addEvent.value = AFirestoreSetResponse(
