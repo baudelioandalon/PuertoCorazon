@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.login.ui
+package com.boreal.puertocorazon.login.ui.login
 
 import android.text.TextUtils
 import android.view.inputmethod.EditorInfo

@@ -28,8 +28,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:realtimeBlurRadius="350dp"
-            app:realtimeOverlayColor="#A4EDEAEA" />
+            app:realtimeBlurRadius="250dp"
+            app:realtimeOverlayColor="#A4F8F6F6" />
 
         <TextView
             android:id="@+id/textView5"

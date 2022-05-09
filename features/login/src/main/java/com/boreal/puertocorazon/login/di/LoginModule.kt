@@ -11,7 +11,7 @@ import com.boreal.puertocorazon.core.repository.DefaultAuthRepository
 import com.boreal.puertocorazon.login.data.repository.DefaultLoginRepository
 import com.boreal.puertocorazon.core.domain.AuthRepository
 import com.boreal.puertocorazon.login.domain.LoginRepository
-import com.boreal.puertocorazon.login.ui.ALoginViewModel
+import com.boreal.puertocorazon.login.viewmodel.ALoginViewModel
 import com.boreal.puertocorazon.core.usecase.AuthUseCase
 import com.boreal.puertocorazon.login.usecase.LoginUseCase
 

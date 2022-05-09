@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_puerto_coraz_n_text">Puerto Corazón</string>
+    <string name="a_n_no_tienes_cuenta_question_login">¿Aún no tienes cuenta?</string>
+    <string name="ya_conoces_nuestro_sitio">¿Ya conoces nuestro sitio?</string>
+</resources>

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_login"
-    app:startDestination="@id/ALoginFragment">
+    app:startDestination="@id/PCStartFragment">
 
     <fragment
         android:id="@+id/ALoginFragment"
-        android:name="com.boreal.puertocorazon.login.ui.ALoginFragment"
+        android:name="com.boreal.puertocorazon.login.ui.login.ALoginFragment"
         android:label="ALoginFragment"
-        tools:layout="@layout/a_login_fragment">
+        tools:layout="@layout/pc_login_fragment">
         <action
             android:id="@+id/action_ALoginFragment_to_pc_client_home_graph"
             app:destination="@id/pc_client_home_graph" />
@@ -20,6 +20,21 @@
 
     <include app:graph="@navigation/pc_client_home_graph" />
     <include app:graph="@navigation/pc_adm_home_graph" />
+    <fragment
+        tools:layout="@layout/pc_start_login_fragment"
+        android:id="@+id/PCStartFragment"
+        android:name="com.boreal.puertocorazon.login.ui.start.PCStartFragment"
+        android:label="PCStartFragment" >
+        <action
+            android:id="@+id/action_PCStartFragment_to_ALoginFragment"
+            app:destination="@id/ALoginFragment" />
+        <action
+            android:id="@+id/action_PCStartFragment_to_pc_adm_home_graph"
+            app:destination="@id/pc_adm_home_graph" />
+        <action
+            android:id="@+id/action_PCStartFragment_to_pc_client_home_graph"
+            app:destination="@id/pc_client_home_graph" />
+    </fragment>
 
 
 </navigation>

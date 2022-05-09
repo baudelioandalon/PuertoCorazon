@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.login.ui
+package com.boreal.puertocorazon.login.ui.start
 
 import android.os.Bundle
 import androidx.fragment.app.activityViewModels
@@ -11,18 +11,19 @@ import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.login.R
-import com.boreal.puertocorazon.login.databinding.ALoginFragmentBinding
+import com.boreal.puertocorazon.login.databinding.PcStartLoginFragmentBinding
+import com.boreal.puertocorazon.login.viewmodel.ALoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class ALoginFragment :
-    CUBaseFragment<ALoginFragmentBinding>() {
+class PCStartFragment :
+    CUBaseFragment<PcStartLoginFragmentBinding>() {
 
-    val viewModel: ALoginViewModel by viewModel()
+    val viewModel: ALoginViewModel by sharedViewModel()
     private val mainViewModel: PCMainViewModel by activityViewModels()
 
-    override fun getLayout() = R.layout.a_login_fragment
+    override fun getLayout() = R.layout.pc_start_login_fragment
 
     override fun initDependency(savedInstanceState: Bundle?) {
         CUAppInit().init(requireActivity().application, requireContext())
@@ -87,14 +88,14 @@ class ALoginFragment :
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
                     mainViewModel.allowExit = false
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
+                    findNavController().navigate(R.id.action_PCStartFragment_to_pc_adm_home_graph)
                         .run {
                             hideProgressBarCustom()
                         }
                 }
                 PCUserType.CLIENT.type -> {
                     mainViewModel.allowExit = false
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
+                    findNavController().navigate(R.id.action_PCStartFragment_to_pc_client_home_graph)
                         .run {
                             hideProgressBarCustom()
                         }
