@@ -85,6 +85,7 @@ dependencies {
 
     implementation(Dependency.firestore)
     implementation(Dependency.firestoreKtx)
+    implementation(Dependency.firebaseAuth)
 
 
     implementation(Dependency.circularProgress)

@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class PCAdmHomeFragment :
     CUBaseFragment<PcAdmHomeFragmentBinding>() {
 
-    private val mainViewModel: PCMainViewModel by sharedViewModel()
+    val mainViewModel: PCMainViewModel by sharedViewModel()
     val viewModel: PCHomeViewModel by viewModel()
 
     val adapterRecyclerAdmHomeEvent by lazy {
@@ -85,7 +85,7 @@ class PCAdmHomeFragment :
             }
         }
 
-        viewModel.eventList.observe(viewLifecycleOwner) {
+        mainViewModel.eventList.observe(viewLifecycleOwner) {
             it?.let {
                 when (it.status) {
                     AFirestoreStatusRequest.LOADING -> {
@@ -109,7 +109,6 @@ class PCAdmHomeFragment :
             }
         }
     }
-
 
     override fun getLayout() = R.layout.pc_adm_home_fragment
 

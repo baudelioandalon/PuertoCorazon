@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.adm.home.data.datasource
+package com.boreal.puertocorazon.core.data.datasource
 
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel

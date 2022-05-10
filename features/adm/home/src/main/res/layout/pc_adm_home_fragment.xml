@@ -113,7 +113,9 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:layout_height="200dp"
+                    tools:listitem="@layout/pc_home_event_item" />
                 <!--                tools:listitem="@layout/pc_home_event_item"-->
                 <TextView
                     android:id="@+id/txtTitleNextEvents"

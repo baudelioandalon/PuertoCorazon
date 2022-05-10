@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.adm.home.data
+package com.boreal.puertocorazon.core.repository.home
 
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreRepository

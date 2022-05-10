@@ -9,18 +9,17 @@ import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
-import com.boreal.puertocorazon.core.domain.entity.auth.AAuthConvert
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.login.R
-import com.boreal.puertocorazon.login.data.LoginDataSource
 import com.boreal.puertocorazon.login.databinding.PcStartLoginFragmentBinding
 import com.boreal.puertocorazon.login.viewmodel.ALoginViewModel
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import io.realm.Realm
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -31,9 +30,8 @@ class PCStartFragment :
         const val REQ_GOOGLE = 1000
     }
 
-    private lateinit var auth: FirebaseAuth
-
     lateinit var oneTapClient: SignInClient
+    lateinit var signInRequest: BeginSignInRequest
     val viewModel: ALoginViewModel by sharedViewModel()
     private val mainViewModel: PCMainViewModel by activityViewModels()
 
@@ -42,8 +40,21 @@ class PCStartFragment :
     override fun initDependency(savedInstanceState: Bundle?) {
         CUAppInit().init(requireActivity().application, requireContext())
         Realm.init(requireContext())
-        Realm.deleteRealm(Realm.getDefaultConfiguration())
-        auth = FirebaseAuth.getInstance()
+        oneTapClient = Identity.getSignInClient(requireActivity())
+        signInRequest = BeginSignInRequest.builder()
+            .setPasswordRequestOptions(
+                BeginSignInRequest.PasswordRequestOptions.builder()
+                    .setSupported(true)
+                    .build()
+            )
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    .setServerClientId(getString(R.string.your_web_client_id))
+                    .setFilterByAuthorizedAccounts(false)
+                    .build()
+            )
+            .build()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -51,48 +62,14 @@ class PCStartFragment :
         when (requestCode) {
             REQ_GOOGLE -> {
                 try {
-                    val credential = oneTapClient.getSignInCredentialFromIntent(data)
-                    val idToken = credential.googleIdToken
-                    val username = credential.id
-                    val password = credential.password
-                    when {
-                        idToken != null -> {
-                            // Got an ID token from Google. Use it to authenticate
-                            // with Firebase.
-
-                            val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
-                            auth.signInWithCredential(firebaseCredential)
-                                .addOnCompleteListener(requireActivity()) { task ->
-                                    if (task.isSuccessful) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Log.d("LOGIN_GOOGLE", "signInWithCredential:success")
-                                        val user = auth.currentUser
-                                        val authModel = AAuthConvert<AAuthModel>(AAuthModel::class).getDataType(FirebaseAuth.getInstance().getAccessToken(false).result.claims)
-                                        auth.signOut()
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.e(
-                                            "LOGIN_GOOGLE",
-                                            "signInWithCredential:failure",
-                                            task.exception
-                                        )
-                                    }
-                                }
-                            Log.d("LOGIN_GOOGLE", "Got ID token.")
-                        }
-                        password != null -> {
-                            // Got a saved username and password. Use them to authenticate
-                            // with your backend.
-                            Log.d("LOGIN_GOOGLE", "Got password.")
-                        }
-                        else -> {
-                            // Shouldn't happen.
-                            Log.d("LOGIN_GOOGLE", "No ID token or password!")
-                        }
+                    if (oneTapClient.getSignInCredentialFromIntent(data).googleIdToken != null) {
+                        viewModel.requestGoogleLogin(oneTapClient.getSignInCredentialFromIntent(data))
+                    } else {
+                        showToast("Algo salio mal")
                     }
                 } catch (e: ApiException) {
-                    e
-                    // ...
+                    Log.e("GOOGLE_ERROR", e.message ?: "ERROR DEFAULT")
+                    showToast("Algo salio mal")
                 }
             }
         }

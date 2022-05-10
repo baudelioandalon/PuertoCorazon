@@ -7,24 +7,21 @@ import com.boreal.puertocorazon.core.usecase.In
 import com.boreal.puertocorazon.core.usecase.Out
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
-import com.boreal.puertocorazon.login.domain.LoginRepository
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import com.boreal.puertocorazon.login.domain.LoginNormalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class LoginUseCase(private val loginRepository: LoginRepository) :
-    UseCase<LoginUseCase.Input, LoginUseCase.Output> {
+class LoginNormalUseCase(private val loginNormalRepository: LoginNormalRepository) :
+    UseCase<LoginNormalUseCase.Input, LoginNormalUseCase.Output> {
 
     class Input(val request: AAuthLoginEmailModel) : In()
-    inner class Output(val response: AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>) :
+    inner class Output(val response: AFirestoreAuthResponse<AAuthLoginEmailModel?, AAuthModel?, CUAuthenticationErrorEnum>) :
         Out()
 
     override suspend fun execute(input: Input): Flow<Output> {
-        return loginRepository.executeLogin(input.request).flowOn(Dispatchers.IO).map {
+        return loginNormalRepository.executeLogin(input.request).flowOn(Dispatchers.IO).map {
             Output(it)
         }
     }

@@ -12,20 +12,25 @@ import com.boreal.puertocorazon.core.usecase.EmptyIn
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
-import com.boreal.puertocorazon.login.usecase.LoginUseCase
+import com.boreal.puertocorazon.login.usecase.LoginGoogleUseCase
+import com.boreal.puertocorazon.login.usecase.LoginNormalUseCase
+import com.google.android.gms.auth.api.identity.SignInCredential
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 
 class ALoginViewModel(
-    private val getLoginUseCase:
-    UseCase<LoginUseCase.Input, LoginUseCase.Output>,
+    private val getLoginNormalUseCase:
+    UseCase<LoginNormalUseCase.Input, LoginNormalUseCase.Output>,
+    private val getLoginGoogleUseCase:
+    UseCase<LoginGoogleUseCase.Input, LoginGoogleUseCase.Output>,
     private val getAuthUseCase:
     UseCase<EmptyIn, AuthUseCase.Output>
 ) : CUBaseViewModel() {
 
-    val loginData: LiveData<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>?>
+    val loginData: LiveData<AFirestoreAuthResponse<AAuthLoginEmailModel?, AAuthModel?, CUAuthenticationErrorEnum>?>
         get() = _loginData
     private val _loginData =
-        MutableLiveData<AFirestoreAuthResponse<AAuthLoginEmailModel, AAuthModel, CUAuthenticationErrorEnum>?>()
+        MutableLiveData<AFirestoreAuthResponse<AAuthLoginEmailModel?, AAuthModel?, CUAuthenticationErrorEnum>?>()
 
     val authUser: LiveData<Pair<AFirestoreStatusRequest, AAuthModel?>>
         get() = _authUser
@@ -46,7 +51,7 @@ class ALoginViewModel(
         _loginData.value = null
     }
 
-    fun requestLogin(request: AAuthLoginEmailModel) {
+    fun requestNormalLogin(request: AAuthLoginEmailModel) {
         executeFlow {
             _loginData.postValue(
                 AFirestoreAuthResponse(
@@ -54,7 +59,21 @@ class ALoginViewModel(
                     authModel = request
                 )
             )
-            getLoginUseCase.execute(LoginUseCase.Input(request)).collect {
+            getLoginNormalUseCase.execute(LoginNormalUseCase.Input(request)).collect {
+                _loginData.postValue(it.response)
+            }
+        }
+    }
+
+    fun requestGoogleLogin(request: SignInCredential) {
+        executeFlow {
+            _loginData.postValue(
+                AFirestoreAuthResponse(
+                    status = AFirestoreStatusRequest.LOADING,
+                    authModel = AAuthLoginEmailModel(request.id, request.googleIdToken ?: "")
+                )
+            )
+            getLoginGoogleUseCase.execute(LoginGoogleUseCase.Input(request)).collect {
                 _loginData.postValue(it.response)
             }
         }
@@ -63,7 +82,9 @@ class ALoginViewModel(
     fun getLocalUser() {
         executeFlow {
             _authUser.value = Pair(AFirestoreStatusRequest.LOADING, AAuthModel())
-            getAuthUseCase.execute(EmptyIn).collect {
+            getAuthUseCase.execute(EmptyIn).catch { cause: Throwable ->
+                cause
+            }.collect {
                 _authUser.value = it.response
             }
         }

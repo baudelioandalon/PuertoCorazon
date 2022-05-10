@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.core.repository
+package com.boreal.puertocorazon.core.repository.login
 
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel

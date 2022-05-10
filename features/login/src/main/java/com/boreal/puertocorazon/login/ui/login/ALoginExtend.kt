@@ -38,7 +38,7 @@ fun ALoginFragment.authenticateUser() {
         if (txtEmail.isValidEmail() && txtPassword.isValidPassword()) {
             val email = txtEmail.text.toString().replace(" ", "")
             val token = txtPassword.text.toString().replace(" ", "")
-            viewModel.requestLogin(AAuthLoginEmailModel(email, token))
+            viewModel.requestNormalLogin(AAuthLoginEmailModel(email, token))
         } else {
             showToast("Complete los campos correctamente")
         }

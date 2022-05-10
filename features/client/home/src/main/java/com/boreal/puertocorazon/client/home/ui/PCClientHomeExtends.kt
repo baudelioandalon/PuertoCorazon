@@ -3,8 +3,10 @@ package com.boreal.puertocorazon.client.home.ui
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.itemPercent
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.client.home.R
+import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 
 fun PCClientHomeFragment.initElements() {
     binding.apply {
@@ -19,15 +21,22 @@ fun PCClientHomeFragment.initElements() {
             }
         }
 
-        recyclerHomeEvents.apply {
-            adapter = adapterRecyclerHomeEvent
-            itemPercent(.88)
-            adapterRecyclerHomeEvent.submitList(arrayListOf("texto", "texto"))
+        btnNotifications.onClick {
+            mainViewModel.signOutUser()
+        }
+
+        recyclerClientHomeEvents.apply {
+            adapter(adapterRecyclerHomeEvent)
+            mainViewModel.requestEvents(mainViewModel.getEmailUser())
         }
         recyclerHomeServices.apply {
             adapter = adapterRecyclerHomeService
             itemPercent(.88)
-            adapterRecyclerHomeService.submitList(arrayListOf("texto", "texto"))
         }
     }
+}
+
+fun PCClientHomeFragment.loadRecyclerEvent(response: List<PCEventModel>) {
+    if (response.size > 1) binding.recyclerClientHomeEvents.itemPercent(.88)
+    adapterRecyclerHomeEvent.submitList(response)
 }

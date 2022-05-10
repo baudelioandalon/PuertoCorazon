@@ -1,6 +1,6 @@
-package com.boreal.puertocorazon.adm.home.usecase
+package com.boreal.puertocorazon.core.usecase.home
 
-import com.boreal.puertocorazon.adm.home.domain.HomeRepository
+import com.boreal.puertocorazon.core.domain.HomeRepository
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.usecase.In

@@ -11,6 +11,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import java.lang.Exception
 
 abstract class AFirestoreRepository {
     protected val coroutineScope: CoroutineScope = MainScope()

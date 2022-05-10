@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.adm.home.domain
+package com.boreal.puertocorazon.core.domain
 
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel

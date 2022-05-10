@@ -22,7 +22,7 @@ fun PCAdmHomeFragment.initElements() {
 
         recyclerAdmHomeEvents.apply {
             adapter(adapterRecyclerAdmHomeEvent)
-            viewModel.requestEvents()
+            mainViewModel.requestEvents(mainViewModel.getEmailUser())
         }
         recyclerHomeServices.apply {
             adapter = adapterRecyclerHomeService
@@ -32,7 +32,6 @@ fun PCAdmHomeFragment.initElements() {
         btnNewEvent.setOnClickListener {
             findNavController().navigate(R.id.pc_add_event_graph)
         }
-//        btnNewEvent.performClick()
     }
 }
 

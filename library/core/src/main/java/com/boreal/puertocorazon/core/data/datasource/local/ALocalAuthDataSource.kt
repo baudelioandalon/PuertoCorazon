@@ -11,9 +11,16 @@ class ALocalAuthDataSource : GetAuthUserDataSource {
 
     override suspend fun executeAuthUser(request: EmptyIn): Pair<AFirestoreStatusRequest, AAuthModel?> {
         val result = getRealmObject<AAuthModel>().toString().toModel<AAuthModel>()
-        return if (result != null) Pair(AFirestoreStatusRequest.SUCCESS, result) else Pair(
-            AFirestoreStatusRequest.FAILURE,
-            result
-        )
+        return try {
+            if (result != null) Pair(AFirestoreStatusRequest.SUCCESS, result) else Pair(
+                AFirestoreStatusRequest.FAILURE,
+                result
+            )
+        } catch (e: Exception) {
+            Pair(
+                AFirestoreStatusRequest.FAILURE,
+                AAuthModel()
+            )
+        }
     }
 }
