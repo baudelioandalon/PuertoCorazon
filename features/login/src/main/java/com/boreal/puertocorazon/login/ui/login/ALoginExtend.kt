@@ -1,11 +1,13 @@
 package com.boreal.puertocorazon.login.ui.login
 
 import android.text.TextUtils
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.commonutils.extensions.showToast
+import com.boreal.puertocorazon.login.R
 
 fun ALoginFragment.initElements() {
 
@@ -22,6 +24,13 @@ fun ALoginFragment.initElements() {
             authenticateUser()
         }
     }
+}
+
+fun ALoginFragment.initAnimations() {
+    binding.imgOne.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+    binding.imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left))
+    binding.imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+    binding.imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down))
 }
 
 fun ALoginFragment.authenticateUser() {

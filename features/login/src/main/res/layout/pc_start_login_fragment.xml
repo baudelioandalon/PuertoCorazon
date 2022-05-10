@@ -59,18 +59,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/imgTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_pc_start_top_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/CURoundableLayout6"
+                android:id="@+id/imgLogo"
                 android:layout_width="45dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="25dp"
@@ -79,9 +79,9 @@
                 app:cu_backgroundColor="@color/primary_700"
                 app:cu_cornerLeftSide="20dp"
                 app:cu_cornerRightTop="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView7"
+                app:layout_constraintEnd_toStartOf="@+id/imgTop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7">
+                app:layout_constraintTop_toBottomOf="@+id/imgTop">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/CURoundableLayout4"
+                android:id="@+id/imgOne"
                 android:layout_width="146dp"
                 android:layout_height="220dp"
                 android:layout_marginStart="20dp"
@@ -106,7 +106,7 @@
                 app:cu_cornerAll="80dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView9"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7">
+                app:layout_constraintTop_toBottomOf="@+id/imgTop">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/CURoundableLayout7"
+                android:id="@+id/imgTwo"
                 android:layout_width="146dp"
                 android:layout_height="220dp"
                 android:layout_marginStart="30dp"
@@ -129,7 +129,7 @@
                 app:cu_cornerAll="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="@+id/CURoundableLayout4">
+                app:layout_constraintTop_toTopOf="@+id/imgOne">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CURoundableLayout7" />
+                app:layout_constraintTop_toBottomOf="@+id/imgTwo" />
 
             <TextView
                 android:id="@+id/textView10"

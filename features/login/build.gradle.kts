@@ -89,6 +89,7 @@ dependencies {
     implementation(Dependency.lifecycleExtensions)
     implementation(Dependency.activityKtx)
     implementation(Dependency.lifecycleKtx)
+    implementation(Dependency.playServicesAuth)
 
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)

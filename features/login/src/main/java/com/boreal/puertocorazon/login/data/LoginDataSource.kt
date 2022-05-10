@@ -6,6 +6,7 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthConvert
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
+import com.boreal.puertocorazon.core.domain.entity.auth.PCTypeSession
 import com.boreal.puertocorazon.core.utils.coreauthentication.await
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
 import com.boreal.puertocorazon.core.utils.realm.saveLocal
@@ -23,6 +24,9 @@ class LoginDataSource {
                 try {
                     val authModel = AAuthConvert<AAuthModel>(AAuthModel::class)
                         .getDataType(firebaseAuth.getAccessToken(false).result.claims)
+                    if (authModel.picture.contains("googleusercontent")) {
+                        authModel.sign_in_provider = PCTypeSession.GOOGLE.name
+                    }
                     if (user != null) {
                         if (verifiedEmailRequired) {
                             if (authModel.email_verified) {

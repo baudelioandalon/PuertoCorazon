@@ -116,6 +116,7 @@ class ALoginFragment :
 
     override fun initView() {
         initElements()
+        initAnimations()
     }
 
     override fun onPause() {
