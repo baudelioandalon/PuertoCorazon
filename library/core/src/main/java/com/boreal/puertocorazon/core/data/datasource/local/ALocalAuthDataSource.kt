@@ -10,17 +10,18 @@ import com.boreal.puertocorazon.core.utils.realm.getRealmObject
 class ALocalAuthDataSource : GetAuthUserDataSource {
 
     override suspend fun executeAuthUser(request: EmptyIn): Pair<AFirestoreStatusRequest, AAuthModel?> {
-        val result = getRealmObject<AAuthModel>().toString().toModel<AAuthModel>()
-        return try {
-            if (result != null) Pair(AFirestoreStatusRequest.SUCCESS, result) else Pair(
-                AFirestoreStatusRequest.FAILURE,
-                result
-            )
-        } catch (e: Exception) {
-            Pair(
-                AFirestoreStatusRequest.FAILURE,
-                AAuthModel()
-            )
+        return with(getRealmObject<AAuthModel>().toString().toModel<AAuthModel>()) {
+            try {
+                if (this != null) Pair(AFirestoreStatusRequest.SUCCESS, this) else Pair(
+                    AFirestoreStatusRequest.FAILURE,
+                    null
+                )
+            } catch (e: Exception) {
+                Pair(
+                    AFirestoreStatusRequest.FAILURE,
+                    null
+                )
+            }
         }
     }
 }

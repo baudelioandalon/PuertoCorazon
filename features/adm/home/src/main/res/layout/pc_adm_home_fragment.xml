@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="userProfile"
+            type="java.lang.String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +29,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_pc_face_example"
+                tools:src="@drawable/ic_pc_face_example"
+                app:loadUserImage="@{userProfile}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +45,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_pc_logo"
             app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/btnNotifications"
             app:layout_constraintStart_toEndOf="@+id/roundableLayout"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
@@ -52,10 +57,10 @@
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:src="@drawable/ic_pc_calendar"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNotifications"
+            app:layout_constraintEnd_toStartOf="@+id/btnNotifications"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="@+id/btnNotifications" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -70,7 +75,7 @@
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnNotifications"
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_marginEnd="30dp"

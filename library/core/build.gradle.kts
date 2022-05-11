@@ -30,6 +30,7 @@ android {
         getByName("debug") {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"DEBUG/\"")
+            buildConfigField(type = "String", name = "DEFAULT_EMAIL", value = "\"baudelio_andalon@hotmail.com/\"")//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(
                 type = "String",
@@ -43,6 +44,7 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"RELEASE/\"")
+            buildConfigField(type = "String", name = "DEFAULT_EMAIL", value = "\"baudelio_andalon@hotmail.com/\"")//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(
                 type = "String",

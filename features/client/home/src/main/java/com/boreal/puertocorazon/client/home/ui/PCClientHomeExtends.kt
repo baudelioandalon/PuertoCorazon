@@ -10,6 +10,7 @@ import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 
 fun PCClientHomeFragment.initElements() {
     binding.apply {
+        userProfile = mainViewModel.getImageProfile()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.PCShowEventFragment -> {

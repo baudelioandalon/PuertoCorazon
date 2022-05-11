@@ -9,10 +9,13 @@ import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
+import com.boreal.puertocorazon.core.domain.entity.auth.AAuthConvert
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
+import com.boreal.puertocorazon.core.domain.entity.auth.PCTypeSession
 import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.login.R
+import com.boreal.puertocorazon.login.data.LoginDataSource
 import com.boreal.puertocorazon.login.databinding.PcStartLoginFragmentBinding
 import com.boreal.puertocorazon.login.viewmodel.ALoginViewModel
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -22,6 +25,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import kotlin.system.exitProcess
 
 class PCStartFragment :
     CUBaseFragment<PcStartLoginFragmentBinding>() {
@@ -133,6 +137,7 @@ class PCStartFragment :
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
                     mainViewModel.allowExit = false
+                    mainViewModel.setAuthUser(userLocal)
                     findNavController().navigate(R.id.action_PCStartFragment_to_pc_adm_home_graph)
                         .run {
                             hideProgressBarCustom()
@@ -140,6 +145,7 @@ class PCStartFragment :
                 }
                 PCUserType.CLIENT.type -> {
                     mainViewModel.allowExit = false
+                    mainViewModel.setAuthUser(userLocal)
                     findNavController().navigate(R.id.action_PCStartFragment_to_pc_client_home_graph)
                         .run {
                             hideProgressBarCustom()
@@ -148,6 +154,7 @@ class PCStartFragment :
                 else -> {
                     mainViewModel.allowExit = true
                     showToast("Tipo de usuario ${userLocal.userType} no controlado")
+                    mainViewModel.signOutUser()
                     hideProgressBarCustom()
                 }
             }

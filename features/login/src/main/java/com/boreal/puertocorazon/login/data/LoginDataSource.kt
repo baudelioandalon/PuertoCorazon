@@ -89,7 +89,12 @@ class LoginDataSource {
                     if (isSuccessful) {
                         val authModel = AAuthConvert<AAuthModel>(AAuthModel::class)
                             .getDataType(firebaseAuth.getAccessToken(false).result.claims)
-                        if (authModel.picture.contains("googleusercontent")) {
+                        val arrayMap =
+                            firebaseAuth.getAccessToken(false).result.claims as androidx.collection.ArrayMap<String, Any>
+
+                        if (authModel.picture.contains("googleusercontent") || arrayMap["firebase"].toString()
+                                .contains("google.com")
+                        ) {
                             authModel.sign_in_provider = PCTypeSession.GOOGLE.name
                             authModel.userType = PCUserType.CLIENT.type
                         }

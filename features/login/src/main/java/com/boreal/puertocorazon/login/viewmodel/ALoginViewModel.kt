@@ -60,7 +60,7 @@ class ALoginViewModel(
                 )
             )
             getLoginNormalUseCase.execute(LoginNormalUseCase.Input(request)).collect {
-                _loginData.postValue(it.response)
+                _loginData.value = it.response
             }
         }
     }
@@ -74,14 +74,13 @@ class ALoginViewModel(
                 )
             )
             getLoginGoogleUseCase.execute(LoginGoogleUseCase.Input(request)).collect {
-                _loginData.postValue(it.response)
+                _loginData.value = it.response
             }
         }
     }
 
     fun getLocalUser() {
         executeFlow {
-            _authUser.value = Pair(AFirestoreStatusRequest.LOADING, AAuthModel())
             getAuthUseCase.execute(EmptyIn).catch { cause: Throwable ->
                 cause
             }.collect {
