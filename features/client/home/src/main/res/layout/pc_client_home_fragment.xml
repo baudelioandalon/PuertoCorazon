@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="userProfile"
             type="java.lang.String" />
@@ -27,12 +28,12 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:src="@drawable/ic_pc_face_example"
-                app:loadUserImage="@{userProfile}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadUserImage="@{userProfile}"
+                tools:src="@drawable/ic_pc_face_example" />
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -43,19 +44,31 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_pc_logo"
             app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
-            app:layout_constraintEnd_toStartOf="@+id/btnNotifications"
-            app:layout_constraintStart_toEndOf="@+id/roundableLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
         <ImageView
             android:id="@+id/btnNotifications"
             android:layout_width="23dp"
             android:layout_height="26dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="25dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:src="@drawable/ic_pc_notification"
+            app:layout_constraintEnd_toStartOf="@+id/btnCartShopping"
+            app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
+
+        <ImageView
+            android:id="@+id/btnCartShopping"
+            android:layout_width="23dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_pc_cart_shopping"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 

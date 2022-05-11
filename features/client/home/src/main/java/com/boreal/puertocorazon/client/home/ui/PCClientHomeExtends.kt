@@ -13,7 +13,7 @@ fun PCClientHomeFragment.initElements() {
         userProfile = mainViewModel.getImageProfile()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.PCShowEventFragment -> {
+                R.id.PCShowEventFragment, R.id.PCCartShoppingFragment -> {
                     bottomMenu.hideView()
                 }
                 else -> {
@@ -24,6 +24,10 @@ fun PCClientHomeFragment.initElements() {
 
         btnNotifications.onClick {
             mainViewModel.signOutUser()
+        }
+
+        btnCartShopping.onClick {
+            findNavController().navigate(R.id.pc_payment_graph)
         }
 
         recyclerClientHomeEvents.apply {

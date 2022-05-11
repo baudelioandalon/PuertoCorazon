@@ -33,7 +33,7 @@
     <string name="amount_text">Monto</string>
     <string name="change_text">Cambiar</string>ç
     <string name="title_price_ticket_holder">Boleto %s</string>
-    <string name="less_text">-</string>
+
     <string name="write_text">Escribe</string>
     <string name="package_name_text">Nombre del paquete</string>
     <string name="imagen_de_inicio_text">Imagen de inicio</string>

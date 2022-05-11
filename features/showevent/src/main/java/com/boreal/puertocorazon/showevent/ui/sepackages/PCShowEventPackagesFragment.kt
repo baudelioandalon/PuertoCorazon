@@ -60,13 +60,12 @@ class PCShowEventPackagesFragment :
                         if (child == 0L) {
                             tvCountChildren.hideView()
                         } else {
-                            tvCountChildren.text = "$child Niño/a${
-                                if (child > 1) {
-                                    "s"
-                                } else {
-                                    ""
-                                }
-                            }"
+                            val plural = if (child > 1) {
+                                "s"
+                            } else {
+                                ""
+                            }
+                            tvCountChildren.text = "$child Niño$plural / a$plural"
                         }
                     }
                 }
@@ -76,9 +75,6 @@ class PCShowEventPackagesFragment :
 
     //    , PCShowEventPackagesViewModel
     override fun getLayout() = R.layout.pc_show_event_packages_fragment
-
-    override fun initObservers() {
-    }
 
     override fun initView() {
         initElements()

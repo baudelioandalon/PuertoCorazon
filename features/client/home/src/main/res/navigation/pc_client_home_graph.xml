@@ -12,5 +12,6 @@
         tools:layout="@layout/pc_client_home_fragment" />
 
     <include app:graph="@navigation/pc_show_event_graph" />
+    <include app:graph="@navigation/pc_payment_graph" />
 
 </navigation>
