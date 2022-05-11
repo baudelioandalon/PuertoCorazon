@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.ui
 
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.boreal.commonutils.base.CUBaseActivity
@@ -75,6 +76,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
     }
 
     private fun goToLogin() {
+        mainViewModel.logOut = true
         FirebaseAuth.getInstance().signOut()
         navController.popBackStack()
     }

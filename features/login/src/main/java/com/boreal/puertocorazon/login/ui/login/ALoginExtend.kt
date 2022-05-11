@@ -1,12 +1,13 @@
 package com.boreal.puertocorazon.login.ui.login
 
-import android.text.TextUtils
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.onClick
-import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.commonutils.extensions.showToast
+import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
+import com.boreal.puertocorazon.core.extension.isValidEmail
+import com.boreal.puertocorazon.core.extension.isValidPassword
 import com.boreal.puertocorazon.login.R
 
 fun ALoginFragment.initElements() {
@@ -23,14 +24,24 @@ fun ALoginFragment.initElements() {
         btnLogin.onClick {
             authenticateUser()
         }
+
+        btnBack.onClick {
+            findNavController().popBackStack(R.id.PCStartFragment, false)
+        }
+        if(mainViewModel.logOut){
+            mainViewModel.logOut = false
+            findNavController().popBackStack(R.id.PCStartFragment, false)
+        }
     }
 }
 
 fun ALoginFragment.initAnimations() {
-    binding.imgOne.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-    binding.imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left))
-    binding.imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-    binding.imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down))
+    binding.apply {
+        imgOne.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+        imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left))
+        imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+        imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down))
+    }
 }
 
 fun ALoginFragment.authenticateUser() {
@@ -45,21 +56,3 @@ fun ALoginFragment.authenticateUser() {
     }
 
 }
-
-
-fun EditText.isValidEmail() =
-    if (TextUtils.isEmpty(text.toString().replace(" ", ""))) {
-        false
-    } else {
-        android.util.Patterns.EMAIL_ADDRESS.matcher(text.toString().replace(" ", "")).matches()
-    }
-
-fun EditText.isValidPassword() = if (TextUtils.isEmpty(text.toString().replace(" ", ""))) {
-    false
-} else {
-    text.toString().replace(" ", "").length > 7
-}
-
-
-
-

@@ -49,6 +49,10 @@ class ALoginViewModel(
 
     fun resetLoginData() {
         _loginData.value = null
+        _authUser.value = Pair(
+            AFirestoreStatusRequest.NONE,
+            null
+        )
     }
 
     fun requestNormalLogin(request: AAuthLoginEmailModel) {

@@ -52,7 +52,7 @@ class PCStartFragment :
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
                     .setServerClientId(getString(R.string.your_web_client_id))
-                    .setFilterByAuthorizedAccounts(false)
+                    .setFilterByAuthorizedAccounts(true)
                     .build()
             )
             .build()
@@ -134,6 +134,7 @@ class PCStartFragment :
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
                     mainViewModel.allowExit = false
+                    mainViewModel.logOut = false
                     mainViewModel.setAuthUser(userLocal)
                     findNavController().navigate(R.id.action_PCStartFragment_to_pc_adm_home_graph)
                         .run {
@@ -142,6 +143,7 @@ class PCStartFragment :
                 }
                 PCUserType.CLIENT.type -> {
                     mainViewModel.allowExit = false
+                    mainViewModel.logOut = false
                     mainViewModel.setAuthUser(userLocal)
                     findNavController().navigate(R.id.action_PCStartFragment_to_pc_client_home_graph)
                         .run {
@@ -150,6 +152,7 @@ class PCStartFragment :
                 }
                 else -> {
                     mainViewModel.allowExit = true
+                    mainViewModel.logOut = false
                     showToast("Tipo de usuario ${userLocal.userType} no controlado")
                     mainViewModel.signOutUser()
                     hideProgressBarCustom()
@@ -157,6 +160,7 @@ class PCStartFragment :
             }
         } else {
             mainViewModel.allowExit = true
+            mainViewModel.logOut = false
             FirebaseAuth.getInstance().signOut()
             showToast("El usuario no se encontró")
             hideProgressBarCustom()

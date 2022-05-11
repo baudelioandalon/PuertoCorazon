@@ -49,6 +49,7 @@ class PCMainViewModel(
         MutableLiveData<AFirestoreGetResponse<List<PCEventModel>>>()
 
     var allowExit = true
+    var logOut = false
 
     fun setAuthUser(aAuthModel: AAuthModel?) {
         _authUser.value = aAuthModel

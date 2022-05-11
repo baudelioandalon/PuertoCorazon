@@ -21,7 +21,7 @@ class ALoginFragment :
     CUBaseFragment<PcLoginFragmentBinding>() {
 
     val viewModel: ALoginViewModel by sharedViewModel()
-    private val mainViewModel: PCMainViewModel by activityViewModels()
+    val mainViewModel: PCMainViewModel by activityViewModels()
 
     override fun getLayout() = R.layout.pc_login_fragment
 
@@ -88,6 +88,7 @@ class ALoginFragment :
             when (userLocal.userType) {
                 PCUserType.ADMINISTRATOR.type -> {
                     mainViewModel.allowExit = false
+                    mainViewModel.logOut = false
                     findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
                         .run {
                             hideProgressBarCustom()
@@ -95,6 +96,7 @@ class ALoginFragment :
                 }
                 PCUserType.CLIENT.type -> {
                     mainViewModel.allowExit = false
+                    mainViewModel.logOut = false
                     findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
                         .run {
                             hideProgressBarCustom()
