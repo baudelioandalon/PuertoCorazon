@@ -62,6 +62,12 @@ fun PCStartFragment.goToLogin(typeSession: PCTypeSession) {
                         when (e.statusCode) {
                             CommonStatusCodes.CANCELED -> {
                                 Log.e("LOGIN_GOOGLE", e.localizedMessage ?: "ErrorDefault")
+                                e.message?.let {
+                                    if (it.contains("Cannot find a matching credential")) {
+                                        showToast("No se encontraron las credenciales")
+                                    }
+                                    return@addOnFailureListener
+                                }
                                 showToast("Hubo muchas cancelaciones de inicio con google, reintente de nuevo en 24 horas.")
                             }
                             CommonStatusCodes.NETWORK_ERROR -> {
