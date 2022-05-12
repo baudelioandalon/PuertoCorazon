@@ -124,5 +124,6 @@ dependencies {
     implementation(Dependency.squareupGson)
 
     implementation(Dependency.rxJava2Adapter)
+    implementation(Dependency.imageConverterLibrary)
 
 }

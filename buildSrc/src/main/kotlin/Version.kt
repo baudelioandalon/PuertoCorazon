@@ -49,6 +49,9 @@ object Version {
     const val circleImageVersion = "3.1.0"
     const val stfalconImageViewerVersion = "v1.0.1"
 
+    //UTILS
+    const val imageConverterLibraryVersion = "1.30.6"
+
     //FIREBASE
     const val firebaseCrashlytics = "18.2.7"
     const val firebaseAnalyticsVersion = "20.0.2"

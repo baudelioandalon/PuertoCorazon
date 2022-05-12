@@ -57,6 +57,9 @@ object Dependency {
     const val circleImage = "de.hdodenhof:circleimageview:${Version.circleImageVersion}"
     const val stfalconImageViewer = "com.github.stfalcon-studio:StfalconImageViewer:${Version.stfalconImageViewerVersion}"
 
+    //UTILS
+    const val imageConverterLibrary = "com.blankj:utilcodex:${Version.imageConverterLibraryVersion}"
+
     //FIREBASE
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Version.firebaseAnalyticsVersion}"
     const val pluginFirebaseCrashlyticsGradle = "com.google.firebase:firebase-crashlytics-gradle:${Version.firebaseCrashlyticsGradle}"
