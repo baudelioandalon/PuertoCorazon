@@ -2,20 +2,17 @@ package com.boreal.puertocorazon.core.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialog
-import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.core.BuildConfig
 import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
-import com.boreal.puertocorazon.core.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
 import kotlinx.coroutines.Dispatchers
@@ -34,10 +31,45 @@ class PCMainViewModel(
         get() = _authUser
     private val _authUser = MutableLiveData<AAuthModel?>()
 
+    private var shoppingCart = arrayListOf(
+        PCShoppingModel(
+            idEvent = "dmuc874hc8348",
+            titleEvent = "Evento Holistico",
+            isPackage = true,
+            namePackage = "Paquete familia",
+            countAdult = 2,
+            countChild = 2,
+            priceElement = 450
+        ), PCShoppingModel(
+            idEvent = "v45gc32ed",
+            titleEvent = "2do Evento",
+            countAdult = 1,
+            priceElement = 150
+        )
+    )
+
+    var shoppingChanged: ((list: List<PCShoppingModel>) -> Unit)? = null
+
+    fun addShopping(element: PCShoppingModel) {
+        shoppingCart.add(element)
+        shoppingChanged?.invoke(shoppingCart)
+    }
+
+    fun setShoppingList(list: ArrayList<PCShoppingModel>) {
+        shoppingCart = list
+        shoppingChanged?.invoke(shoppingCart)
+    }
+
+    fun clearShoppingCart() {
+        shoppingCart.clear()
+        shoppingChanged?.invoke(shoppingCart)
+    }
+
+    fun getShoppingList() = shoppingCart
+
     val goLogin: LiveData<Boolean?>
         get() = _goLogin
     private val _goLogin = MutableLiveData<Boolean>()
-
 
     val eventSelected: LiveData<PCEventModel?>
         get() = _eventSelected

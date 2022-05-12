@@ -76,7 +76,8 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Paquete Familiar"
                     android:textColor="@color/gray_letter"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/tvCountAdults"
@@ -86,7 +87,8 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:text="2 x Boletos adultos"
                     android:textColor="@color/gray_letter"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/tvCountChildren"
@@ -95,7 +97,8 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:text="2 x Boletos niños / as"
                     android:textColor="@color/gray_letter"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 

@@ -4,7 +4,7 @@ data class PCShoppingModel(
     val idEvent: String = "",
     val imageEvent: String = "",
     val titleEvent: String = "",
-    var countItem: Int = 0,
+    var countItem: Int = 1,
     val isPackage: Boolean = false,
     val namePackage: String = "",
     val countAdult: Int = 0,

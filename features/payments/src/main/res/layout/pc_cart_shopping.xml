@@ -86,12 +86,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="55dp"
             android:fontFamily="@font/montserrat_regular"
-            android:text="VAT (21%)"
+            android:text="IVA (16%)"
             android:textColor="#8F9097"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvSubtotalVat"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSubtotalIva"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvSubtotalVat" />
+            app:layout_constraintTop_toTopOf="@+id/tvSubtotalIva" />
 
         <TextView
             android:id="@+id/tvSubtotal"
@@ -99,19 +99,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="$600"
+            tools:text="$600"
             android:textColor="#4F5053"
             android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvSubtotalVat"
-            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalVat" />
+            app:layout_constraintBottom_toTopOf="@+id/tvSubtotalIva"
+            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalIva" />
 
         <TextView
-            android:id="@+id/tvSubtotalVat"
+            android:id="@+id/tvSubtotalIva"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="$33.50"
+            tools:text="$33.50"
             android:textColor="#4F5053"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/view"
@@ -148,7 +148,7 @@
             android:layout_marginEnd="52dp"
             android:layout_marginBottom="28dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="@string/_633_50_test_text"
+            tools:text="@string/_633_50_test_text"
             android:textColor="@color/black_700"
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/btnReady"
