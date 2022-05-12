@@ -24,13 +24,13 @@ fun Bitmap.getImageUri(levelQuality: Int = 23): Uri {
 }
 
 fun Uri.getImageBitmap(): Bitmap {
-    return if (Build.VERSION.SDK_INT < 30) {
+    return if (Build.VERSION.SDK_INT >= 28) {
+        val source = ImageDecoder.createSource(CUAppInit.getAppContext().contentResolver, this)
+        ImageDecoder.decodeBitmap(source)
+    } else {
         MediaStore.Images.Media.getBitmap(
             CUAppInit.getAppContext().contentResolver,
             this
         )
-    } else {
-        val source = ImageDecoder.createSource(CUAppInit.getAppContext().contentResolver, this)
-        ImageDecoder.decodeBitmap(source)
     }
 }
