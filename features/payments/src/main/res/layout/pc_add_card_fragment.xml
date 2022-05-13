@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBase"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/btnBack"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="22dp"
+            android:clickable="true"
+            android:elevation="10dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cu_cornerLeftBottom="10dp"
+            app:cu_cornerLeftTop="10dp"
+            app:cu_cornerRightSide="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pc_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black_700"
+            android:textSize="15sp"
+            android:translationZ="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/new_card_text" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvErrorMessage"
+            app:layout_constraintTop_toBottomOf="@+id/btnBack">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/txtNames"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/agregar"
+                    android:textColor="@color/black_700"
+                    android:textSize="35sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtApPaterno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="@string/tarjeta_ncredito_debito_text"
+                    android:textColor="@color/gray_letter"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="@+id/txtNames"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNames" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/containerHomeImage"
+                    android:layout_width="0dp"
+                    android:layout_height="204dp"
+                    android:layout_marginHorizontal="28dp"
+                    android:layout_marginTop="47dp"
+                    android:clickable="true"
+                    android:elevation="3dp"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cu_backgroundColor="@color/card_background_one"
+                    app:cu_cornerAll="20dp"
+                    app:cu_strokeLineColor="@color/red_700"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtApPaterno">
+
+                    <ImageView
+                        android:id="@+id/homeImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_pc_more"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageViewHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:src="@drawable/ic_pc_chip"
+                        app:layout_constraintStart_toStartOf="@+id/tvNameCard"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNameCard" />
+
+                    <ImageView
+                        android:id="@+id/imgWireless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8.5dp"
+                        android:src="@drawable/ic_pc_wireless"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageViewHome"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewHome"
+                        app:layout_constraintTop_toTopOf="@+id/imageViewHome" />
+
+                    <TextView
+                        android:id="@+id/tvNameCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="23dp"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Nombre"
+                        android:textColor="@color/gray_letter"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imgTypeCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="27dp"
+                        android:src="@drawable/ic_pc_master_card"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvNameCard"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvNameCard" />
+
+                    <TextView
+                        android:id="@+id/tvAliasCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Alias"
+                        android:textColor="@color/gray_letter"
+                        app:layout_constraintEnd_toStartOf="@+id/imgTypeCard"
+                        app:layout_constraintTop_toBottomOf="@+id/imgTypeCard" />
+
+                    <LinearLayout
+                        android:id="@+id/linearNumberCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="27dp"
+                        android:layout_marginEnd="22dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/imageViewHome"
+                        app:layout_constraintTop_toBottomOf="@+id/imageViewHome"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/txtNumberCardOneSegment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:text="0000"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/txtNumberCardTwoSegment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:text="0000"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/txtNumberCardThreeSegment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:text="0000"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/txtNumberCardFourSegment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:text="0000"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="25sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/linearNumberCard"
+                        app:layout_constraintTop_toBottomOf="@+id/linearNumberCard">
+
+                        <TextView
+                            android:id="@+id/txtCvv"
+                            android:layout_width="50dp"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:text="/"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                <TextView
+                    android:id="@+id/lblNames"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Alias de la tarjeta ( Opcional )"
+                    android:textColor="@color/black_700"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="@+id/containerHomeImage"
+                    app:layout_constraintTop_toBottomOf="@+id/containerHomeImage"
+                    tools:ignore="SmallSp" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/roundableTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"
+                    app:cu_cornerAll="5dp"
+                    app:cu_strokeLineColor="@color/blue_edittext"
+                    app:cu_strokeLineWidth="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/containerHomeImage"
+                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintTop_toBottomOf="@+id/lblNames">
+
+                    <EditText
+                        android:id="@+id/txtAlias"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:hint="Alias para la tarjeta"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50"
+                        android:nextFocusDown="@id/txtNameCard"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black_700"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Esto es un titulo" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                <TextView
+                    android:id="@+id/lblApMaterno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Nombre del titular"
+                    android:textColor="@color/black_700"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintTop_toBottomOf="@+id/roundableTitle"
+                    tools:ignore="SmallSp" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/roundableNameCard"
+                    android:layout_width="0dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"
+                    app:cu_cornerLeftSide="5dp"
+                    app:cu_cornerRightSide="5dp"
+                    app:cu_strokeLineColor="@color/blue_edittext"
+                    app:cu_strokeLineWidth="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/roundableTitle"
+                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintTop_toBottomOf="@+id/lblApMaterno">
+
+                    <EditText
+                        android:id="@+id/txtNameCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:hint="Primer nombre y un Apellido"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50"
+                        android:nextFocusDown="@id/txtNumberCard"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black_700"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Esto es un subtitulo" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                <TextView
+                    android:id="@+id/lblNumberCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Numero de tarjeta"
+                    android:textColor="@color/black_700"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintTop_toBottomOf="@+id/roundableNameCard"
+                    tools:ignore="SmallSp" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/roundableNumberCard"
+                    android:layout_width="0dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"
+                    app:cu_cornerLeftSide="5dp"
+                    app:cu_cornerRightSide="5dp"
+                    app:cu_strokeLineColor="@color/blue_edittext"
+                    app:cu_strokeLineWidth="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/roundableNameCard"
+                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintTop_toBottomOf="@+id/lblNumberCard">
+
+                    <EditText
+                        android:id="@+id/txtNumberCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:hint="Digite 16 digitos"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50"
+                        android:nextFocusDown="@id/tvFinalDate"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black_700"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Esto es un subtitulo" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+
+                <TextView
+                    android:id="@+id/lblApPaterno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Fecha de caducidad"
+                    android:textColor="@color/black_700"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="@+id/lblApMaterno"
+                    app:layout_constraintTop_toBottomOf="@+id/roundableNumberCard"
+                    tools:ignore="SmallSp" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/roundableStartHour"
+                    android:layout_width="0dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp"
+                    app:cu_cornerLeftSide="5dp"
+                    app:cu_cornerRightSide="5dp"
+                    app:cu_strokeLineColor="@color/blue_edittext"
+                    app:cu_strokeLineWidth="1dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintTop_toBottomOf="@+id/lblApPaterno">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_clock"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvFinalDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:text="/"
+                        android:textAlignment="center"
+                        android:textColor="@color/black_700"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/changeHourImageFirst"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/changeHourImageFirst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_down_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                <TextView
+                    android:id="@+id/lblEndHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="CVV"
+                    android:textColor="@color/black_700"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="@+id/roundableEndHour"
+                    app:layout_constraintTop_toTopOf="@+id/lblApPaterno"
+                    tools:ignore="SmallSp" />
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/roundableEndHour"
+                    android:layout_width="0dp"
+                    android:layout_height="57dp"
+                    android:layout_marginStart="10dp"
+                    android:padding="10dp"
+                    app:cu_cornerLeftSide="5dp"
+                    app:cu_cornerRightSide="5dp"
+                    app:cu_strokeLineColor="@color/blue_edittext"
+                    app:cu_strokeLineWidth="1dp"
+                    app:layout_constraintEnd_toEndOf="@+id/roundableNumberCard"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="@+id/roundableStartHour">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_clock"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvEndHour"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black_700"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/changeHourImageEnd"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="000" />
+
+                    <ImageView
+                        android:id="@+id/changeHourImageEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_arrow_correct"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+        <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
+            android:id="@+id/btnReady"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="39dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:sl_shadow_color="@color/primary_300"
+            app:sl_shadowed="true">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cu_backgroundColor="@color/primary_700"
+                app:cu_cornerLeftSide="10dp"
+                app:cu_cornerRightSide="10dp">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Guardar"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        </com.boreal.commonutils.component.shadowlayout.CUShadowLayout>
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textAlignment="center"
+            android:textColor="@color/redError"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnReady"
+            app:layout_constraintEnd_toEndOf="@+id/btnReady"
+            app:layout_constraintStart_toStartOf="@+id/btnReady"
+            tools:text="Este es un mensaje de error"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -11,4 +11,10 @@
         android:label="PCCartShoppingFragment"
         tools:layout="@layout/pc_cart_shopping" />
 
+    <fragment
+        android:id="@+id/PCAddCardFragment"
+        android:name="com.boreal.puertocorazon.payments.ui.addcard.PCAddCardFragment"
+        android:label="PCAddCardFragment"
+        tools:layout="@layout/pc_add_card_fragment" />
+
 </navigation>

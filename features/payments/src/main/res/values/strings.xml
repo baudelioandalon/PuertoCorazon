@@ -4,4 +4,7 @@
     <string name="_633_50_test_text">$633.50</string>
     <string name="pago_con_tarjeta">Pago con tarjeta</string>
     <string name="agregar_metodo_de_pago_text">Agregar metodo de pago</string>
+    <string name="tarjeta_ncredito_debito_text">Tarjeta\nCredito/Debito</string>
+    <string name="agregar">Agregar</string>
+    <string name="new_card_text">Nueva tarjeta</string>
 </resources>

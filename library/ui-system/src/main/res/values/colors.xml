@@ -134,6 +134,8 @@
     <color name="red_600">#FF3A3A</color>
     <color name="red_700">#FF0E0E</color>
 
+    <color name="card_background_one">#2F2F31</color>
+
     <color name="black_700">#112633</color>
     <color name="fill_text_selector">#99A0B4</color>
     <color name="red_btn_out">#CF5B56</color>

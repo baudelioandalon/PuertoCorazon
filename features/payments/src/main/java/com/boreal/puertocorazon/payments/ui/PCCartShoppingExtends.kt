@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.payments.ui
 
+import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
@@ -32,11 +33,7 @@ fun PCCartShoppingFragment.initElements() {
         initCardAdapter(mainViewModel.getCardList())
         btnCard.onClick {
             if (mainViewModel.getCardList().isEmpty()) {
-                PCPaymentSelector { typePaymentSelected ->
-                    if (typePaymentSelected == PCTypePayment.CARD) {
-                        //open flow
-                    }
-                }.show(getSupportFragmentManager(), "odmod")
+                findNavController().navigate(R.id.PCAddCardFragment)
             } else {
                 //Open show cards
             }
