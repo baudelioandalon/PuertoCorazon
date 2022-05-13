@@ -5,4 +5,5 @@
     <string name="reservaci_nes_text">Reservaciónes</string>
     <string name="title_example_text">Temazcal \nExperience</string>
     <string name="temazcal_experience">Temazcal Experience</string>
+    <string name="card_hidden">**** %s</string>
 </resources>

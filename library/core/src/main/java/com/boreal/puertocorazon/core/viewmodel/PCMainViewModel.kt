@@ -9,6 +9,7 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
@@ -31,6 +32,8 @@ class PCMainViewModel(
         get() = _authUser
     private val _authUser = MutableLiveData<AAuthModel?>()
 
+    private val cardList = arrayListOf<PCCardModel>()
+
     private var shoppingCart = arrayListOf(
         PCShoppingModel(
             idEvent = "dmuc874hc8348",
@@ -47,6 +50,8 @@ class PCMainViewModel(
             priceElement = 150
         )
     )
+
+    fun getCardList() = cardList
 
     var shoppingChanged: ((list: List<PCShoppingModel>) -> Unit)? = null
 

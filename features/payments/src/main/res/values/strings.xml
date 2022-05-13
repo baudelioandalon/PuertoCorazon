@@ -2,4 +2,6 @@
 <resources>
     <string name="details_order_text">Carrito de compras</string>
     <string name="_633_50_test_text">$633.50</string>
+    <string name="pago_con_tarjeta">Pago con tarjeta</string>
+    <string name="agregar_metodo_de_pago_text">Agregar metodo de pago</string>
 </resources>

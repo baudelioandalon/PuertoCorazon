@@ -58,15 +58,123 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="27dp"
             android:layout_marginTop="35dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/tvSubtotal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/tvPaymentMethod"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnBack"
             app:layout_constraintVertical_bias="0.060000002"
             tools:itemCount="2"
             tools:listitem="@layout/pc_item_shopping" />
+
+        <TextView
+            android:id="@+id/tvPaymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Metodo de pago"
+            android:textColor="@color/black_700"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnCard"
+            app:layout_constraintStart_toStartOf="@+id/view" />
+
+        <LinearLayout
+            android:paddingVertical="10dp"
+            android:id="@+id/btnCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintBottom_toTopOf="@+id/tvDetailsBuy"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/tvDetailsBuy">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:layout_width="32dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center_vertical"
+                app:cu_backgroundColor="#F0F0F0"
+                app:cu_cornerAll="2dp">
+
+                <ImageView
+                    android:id="@+id/imgTypeCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_pc_visa"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAddCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="@string/agregar_metodo_de_pago_text"
+                    android:textColor="#4F5053"
+                    android:textSize="13sp"
+                    tools:visibility="visible"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvAliasCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:textColor="#4F5053"
+                    android:textSize="13sp"
+                    android:visibility="gone"
+                    tools:text="Visa Alias" />
+
+                <TextView
+                    android:id="@+id/tvNumberCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:textColor="#4F5053"
+                    android:textSize="13sp"
+                    android:visibility="gone"
+                    tools:text="**** 1414" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="20dp"
+                android:src="@drawable/ic_pc_right_arrow_gray" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDetailsBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Detalles de compra"
+            android:textColor="@color/black_700"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@+id/view" />
 
         <TextView
             android:id="@+id/textView4"
@@ -99,11 +207,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_semibold"
-            tools:text="$600"
             android:textColor="#4F5053"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/tvSubtotalIva"
-            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalIva" />
+            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalIva"
+            tools:text="$600" />
 
         <TextView
             android:id="@+id/tvSubtotalIva"
@@ -111,11 +219,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/montserrat_semibold"
-            tools:text="$33.50"
             android:textColor="#4F5053"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="@+id/tvTotal" />
+            app:layout_constraintEnd_toEndOf="@+id/tvTotal"
+            tools:text="$33.50" />
 
         <View
             android:id="@+id/view"
@@ -148,11 +256,11 @@
             android:layout_marginEnd="52dp"
             android:layout_marginBottom="28dp"
             android:fontFamily="@font/montserrat_semibold"
-            tools:text="@string/_633_50_test_text"
             android:textColor="@color/black_700"
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/btnReady"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/_633_50_test_text" />
 
         <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
             android:id="@+id/btnReady"

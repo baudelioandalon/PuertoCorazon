@@ -1,8 +1,14 @@
 package com.boreal.puertocorazon.payments.ui
 
-import com.boreal.commonutils.extensions.onClick
+import com.boreal.commonutils.extensions.*
+import com.boreal.puertocorazon.core.constants.NONE
+import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
+import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
+import com.boreal.puertocorazon.core.domain.entity.payment.PCTypePayment
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
+import com.boreal.puertocorazon.payments.R
+import com.boreal.puertocorazon.payments.ui.paymentselector.PCPaymentSelector
 
 fun PCCartShoppingFragment.initElements() {
     binding.apply {
@@ -17,7 +23,65 @@ fun PCCartShoppingFragment.initElements() {
                 tvSubtotalIva.text = "$0"
             }
         }
+        btnPay.onClick {
+            PCPaymentSelector { typePaymentSelected ->
+                typePaymentSelected
+            }.show(getSupportFragmentManager(), "odmod")
+        }
+
+        initCardAdapter(mainViewModel.getCardList())
+        btnCard.onClick {
+            if (mainViewModel.getCardList().isEmpty()) {
+                PCPaymentSelector { typePaymentSelected ->
+                    if (typePaymentSelected == PCTypePayment.CARD) {
+                        //open flow
+                    }
+                }.show(getSupportFragmentManager(), "odmod")
+            } else {
+                //Open show cards
+            }
+        }
     }
+}
+
+fun PCCartShoppingFragment.initCardAdapter(cardList: ArrayList<PCCardModel>) {
+    binding.apply {
+        if (cardList.isEmpty()) {
+            tvAddCard.showView()
+            tvNumberCard.hideView()
+            tvAliasCard.hideView()
+            imgTypeCard.changeDrawable(R.drawable.ic_pc_more)
+        } else {
+            tvAddCard.hideView()
+            tvNumberCard.showView()
+            tvAliasCard.showView()
+            val favoriteCard = cardList.find { it.default }
+            fillCard(favoriteCard ?: cardList[0])
+        }
+    }
+}
+
+private fun PCCartShoppingFragment.fillCard(card: PCCardModel) {
+    binding.apply {
+        imgTypeCard.changeDrawable(
+            when (card.typeCard) {
+                PCTypeCard.VISA.name -> {
+                    R.drawable.ic_pc_visa
+                }
+                else -> {
+                    R.drawable.ic_pc_master_card
+                }
+            }
+        )
+
+        tvAliasCard.text =
+            if (card.alias == NONE || card.alias.isEmpty()) card.typeCard + card.cardNumber.takeLast(
+                4
+            ) else card.alias
+
+        tvNumberCard.text = getString(R.string.card_hidden, card.cardNumber.takeLast(4))
+    }
+
 }
 
 private fun PCCartShoppingFragment.initAdapter(listShopping: List<PCShoppingModel>) {
@@ -31,7 +95,7 @@ private fun PCCartShoppingFragment.initAdapter(listShopping: List<PCShoppingMode
 
 }
 
-private fun PCCartShoppingFragment.sumTotal(listShopping: List<PCShoppingModel>){
+private fun PCCartShoppingFragment.sumTotal(listShopping: List<PCShoppingModel>) {
     binding.apply {
         val subtotal = listShopping.sumOf { (it.countItem * it.priceElement) }.toLong()
         val iva = (subtotal * .16).toLong()
