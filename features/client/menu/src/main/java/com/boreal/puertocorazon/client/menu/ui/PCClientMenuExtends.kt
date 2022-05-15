@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.client.home.ui
+package com.boreal.puertocorazon.client.menu.ui
 
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.hideView
@@ -8,7 +8,7 @@ import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.client.home.R
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 
-fun PCClientHomeFragment.initElements() {
+fun PCClientMenuFragment.initElements() {
     binding.apply {
         userProfile = mainViewModel.getImageProfile()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
@@ -41,7 +41,7 @@ fun PCClientHomeFragment.initElements() {
     }
 }
 
-fun PCClientHomeFragment.loadRecyclerEvent(response: List<PCEventModel>) {
+fun PCClientMenuFragment.loadRecyclerEvent(response: List<PCEventModel>) {
     if (response.size > 1) binding.recyclerClientHomeEvents.itemPercent(.88)
     adapterRecyclerHomeEvent.submitList(response)
 }

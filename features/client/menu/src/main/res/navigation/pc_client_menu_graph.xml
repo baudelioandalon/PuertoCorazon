@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/PCClientHomeFragment"
-        android:name="com.boreal.puertocorazon.client.home.ui.PCClientHomeFragment"
+        android:name="com.boreal.puertocorazon.client.menu.ui.PCClientMenuFragment"
         android:label="PCClientHomeFragment"
-        tools:layout="@layout/pc_client_home_fragment" />
+        tools:layout="@layout/pc_client_menu_fragment" />
 
     <include app:graph="@navigation/pc_show_event_graph" />
     <include app:graph="@navigation/pc_payment_graph" />

@@ -59,7 +59,7 @@ dependencies {
     implementation(project(":commonutils"))
     implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
-    implementation(project(":features:client:home"))
+    implementation(project(":features:client:menu"))
     implementation(project(":features:adm:home"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)

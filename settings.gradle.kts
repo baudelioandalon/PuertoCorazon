@@ -2,7 +2,7 @@ rootProject.name = "PuertoCorazon"
 include(":app")
 include(":commonutils")
 include(":library:ui-system")
-include(":features:client:home")
+include(":features:client:menu")
 include(":features:login")
 include(":library:core")
 include(":features:adm:home")

@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.client.home.ui
+package com.boreal.puertocorazon.client.menu.ui
 
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
@@ -8,7 +8,7 @@ import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.client.home.R
-import com.boreal.puertocorazon.client.home.databinding.PcClientHomeFragmentBinding
+import com.boreal.puertocorazon.client.home.databinding.PcClientMenuFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
@@ -16,10 +16,9 @@ import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeEventItemBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeServiceItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PCClientHomeFragment :
-    CUBaseFragment<PcClientHomeFragmentBinding>() {
+class PCClientMenuFragment :
+    CUBaseFragment<PcClientMenuFragmentBinding>() {
 
     val mainViewModel: PCMainViewModel by sharedViewModel()
 
@@ -109,7 +108,7 @@ class PCClientHomeFragment :
         }
     }
 
-    override fun getLayout() = R.layout.pc_client_home_fragment
+    override fun getLayout() = R.layout.pc_client_menu_fragment
 
     override fun initView() {
         initElements()

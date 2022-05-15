@@ -18,7 +18,7 @@
             app:destination="@id/pc_adm_home_graph" />
     </fragment>
 
-    <include app:graph="@navigation/pc_client_home_graph" />
+    <include app:graph="@navigation/pc_client_menu_graph" />
     <include app:graph="@navigation/pc_adm_home_graph" />
     <fragment
         tools:layout="@layout/pc_start_login_fragment"
