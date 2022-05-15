@@ -10,10 +10,17 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
+import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
+import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
+import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
+import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
+import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
+import com.boreal.puertocorazon.core.utils.retrofit.core.DataResponse
+import com.boreal.puertocorazon.core.utils.retrofit.core.StatusRequestEnum
 import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
 import kotlinx.coroutines.Dispatchers
@@ -21,9 +28,10 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+
 class PCMainViewModel(
-    private val getHomeUseCase:
-    UseCase<HomeUseCase.Input, HomeUseCase.Output>,
+    private val getHomeUseCase: UseCase<HomeUseCase.Input, HomeUseCase.Output>,
+    private val getPaymentUseCase: UseCase<PaymentUseCase.Input, PaymentUseCase.Output>,
 ) : CUBaseViewModel() {
 
     var countOutClicked = 0
@@ -85,6 +93,10 @@ class PCMainViewModel(
     private val _eventList =
         MutableLiveData<AFirestoreGetResponse<List<PCEventModel>>>()
 
+    val paymentTransaction: LiveData<DataResponse<PCPaymentResponse>>
+        get() = _paymentTransaction
+    private val _paymentTransaction = MutableLiveData<DataResponse<PCPaymentResponse>>()
+
     var allowExit = true
     var logOut = false
 
@@ -134,6 +146,63 @@ class PCMainViewModel(
 
     fun removeEventSelected() {
         _eventSelected.value = null
+    }
+
+    fun requestPayment(aliasCard: String, conektaCardModel: ConektaCardModel) {
+        executeFlow {
+            _paymentTransaction.value = DataResponse(statusRequest = StatusRequestEnum.LOADING)
+            getPaymentUseCase.execute(
+                PaymentUseCase.Input(
+                    PCPaymentRequest(
+                        countAdult = 1,
+                        countChild = 1,
+                        idEvent = "1378950eafce4ed3a7797a2f9732b1c7",
+                        idClient = "epQUrsON4aNxzxqizDgSZlc3whX2",//baudelioandalon@gmail.com,
+                        namePackage = "Familia",
+                        nameUser = "Baudelio Andalon",
+                        email = "baudelioandalon@gmail.com",
+                        isPackage = true,
+                        amount = 50,
+                        typeCard = PCTypeCard.VISA.name,
+                        lastFour = "1414",
+                        typePayment = "CARD",
+                        countItem = 1
+                    ), conektaCardModel
+                )
+            ).catch {
+                _paymentTransaction.value = DataResponse(
+                    statusRequest = StatusRequestEnum.FAILURE,
+                    null, it.message ?: "Algo salio mal"
+                )
+            }.collect {
+                _paymentTransaction.postValue(it.response)
+            }
+        }
+    }
+
+    fun generateToken(token: String) {
+        if (token.isNotEmpty()) {
+//                        requestPayment(response)
+        }
+    }
+
+    private fun errorInternetPayment() {
+        _paymentTransaction.postValue(
+            DataResponse(
+                statusRequest = StatusRequestEnum.FAILURE,
+                null, "Verifica tu conexion a internet"
+            )
+        )
+        resetError()
+    }
+
+    private fun resetError() {
+        _paymentTransaction.postValue(
+            DataResponse(
+                statusRequest = StatusRequestEnum.NONE,
+                null, null
+            )
+        )
     }
 
 }

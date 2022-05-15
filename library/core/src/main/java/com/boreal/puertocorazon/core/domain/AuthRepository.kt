@@ -6,5 +6,6 @@ import com.boreal.puertocorazon.core.usecase.EmptyIn
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
-    suspend fun executeAuthUser(request: EmptyIn): Flow<Pair<AFirestoreStatusRequest, AAuthModel?>>
+    suspend fun executeAuthUser(request: EmptyIn):
+            Flow<Pair<AFirestoreStatusRequest, AAuthModel?>>
 }

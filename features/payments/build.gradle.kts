@@ -95,6 +95,8 @@ dependencies {
     implementation(Dependency.circleImage)
     implementation(Dependency.roundableImageView)
     implementation(Dependency.stfalconImageViewer)
+    implementation("io.conekta:conektasdk:2.1")
+    implementation("org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2")
 
     implementation(Dependency.firebaseAuth)
 }

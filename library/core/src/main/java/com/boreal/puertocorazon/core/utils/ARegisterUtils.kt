@@ -1,17 +1,53 @@
 package com.boreal.puertocorazon.core.utils
 
 import android.net.Uri
-import android.text.TextUtils
-import android.widget.EditText
+import android.text.Editable
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import com.boreal.commonutils.application.CUAppInit
-import com.boreal.commonutils.component.roundablelayout.CURoundableLayout
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.showView
-import com.boreal.puertocorazon.core.R
+import com.google.firebase.Timestamp
 
 fun TextView.onlyText() = text.toString().trim()
+fun Editable.onlyText() = toString().trim()
+fun String.onlyText() = trim()
+
+fun String.onlyCardNumber() = onlyText().trimIndent()
+    .replace("-", "").replace(" ", "")
+
+fun Editable.onlyCardNumber() = toString().trim().onlyCardNumber()
+
+fun String.validCardNumber() = if (onlyText().isNotEmpty()) {
+    onlyCardNumber().length == 16
+} else {
+    false
+}
+
+fun Editable.validCardNumber() = onlyText().validCardNumber()
+
+fun String.validMonth() = if (onlyText().isNotEmpty()) {
+    onlyText().toInt() < 13
+} else {
+    false
+}
+
+fun Editable.validMonth() = onlyText().validMonth()
+
+fun String.validCvv(isAmex: Boolean = false) = if (onlyText().isNotEmpty()) {
+    if (!isAmex) onlyText().length == 3 else onlyText().length == 4
+} else {
+    false
+}
+
+fun Editable.validCvv(isAmex: Boolean = false) = onlyText().validCvv(isAmex)
+
+fun String.validYear() = if (onlyText().isNotEmpty() && onlyText().length == 2) {
+    onlyText().toInt() >= Timestamp.now().getYear().takeLast(2).toInt()
+} else {
+    false
+}
+
+fun Editable.validYear() = onlyText().validYear()
+
 fun TextView.clearText() {
     text = ""
 }

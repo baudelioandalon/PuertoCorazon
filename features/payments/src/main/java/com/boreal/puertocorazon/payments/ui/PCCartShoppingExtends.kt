@@ -38,6 +38,7 @@ fun PCCartShoppingFragment.initElements() {
                 //Open show cards
             }
         }
+        findNavController().navigate(R.id.PCAddCardFragment)
     }
 }
 

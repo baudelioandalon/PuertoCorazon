@@ -48,24 +48,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="31dp"
             android:fontFamily="@font/montserrat_bold"
+            android:text="@string/new_card_text"
             android:textColor="@color/black_700"
             android:textSize="15sp"
             android:translationZ="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/new_card_text" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:fillViewport="true"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/tvErrorMessage"
             app:layout_constraintTop_toBottomOf="@+id/btnBack">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:paddingBottom="15dp"
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.Guideline
@@ -246,9 +246,9 @@
                         <TextView
                             android:id="@+id/txtCvv"
                             android:layout_width="50dp"
-                            android:gravity="center"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
                             android:text="/"
                             android:textColor="@color/gray_letter"
                             android:textSize="18sp" />
@@ -286,7 +286,7 @@
 
                     <EditText
                         android:id="@+id/txtAlias"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:fontFamily="@font/montserrat_semibold"
@@ -298,10 +298,21 @@
                         android:textColor="@color/black_700"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Esto es un titulo" />
+
+                    <ImageView
+                        android:id="@+id/changeImageCorrect1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_arrow_correct"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -334,22 +345,33 @@
 
                     <EditText
                         android:id="@+id/txtNameCard"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:hint="Primer nombre y un Apellido"
-                        android:inputType="textCapSentences"
+                        android:hint="Nombre Apellido"
+                        android:inputType="textCapWords"
                         android:maxLength="50"
                         android:nextFocusDown="@id/txtNumberCard"
                         android:paddingHorizontal="10dp"
                         android:textColor="@color/black_700"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Esto es un subtitulo" />
+
+                    <ImageView
+                        android:id="@+id/changeImageCorrect2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_arrow_correct"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -382,22 +404,35 @@
 
                     <EditText
                         android:id="@+id/txtNumberCard"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@color/white"
+                        android:digits="0987654321"
                         android:fontFamily="@font/montserrat_semibold"
                         android:hint="Digite 16 digitos"
-                        android:inputType="textCapSentences"
+                        android:inputType="numberSigned"
                         android:maxLength="50"
-                        android:nextFocusDown="@id/tvFinalDate"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@id/tvMonth"
                         android:paddingHorizontal="10dp"
                         android:textColor="@color/black_700"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect3"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Esto es un subtitulo" />
+                        tools:text="0000 - 0000 - 0000 - 0000" />
+
+                    <ImageView
+                        android:id="@+id/changeImageCorrect3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_arrow_correct"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -416,7 +451,7 @@
                     tools:ignore="SmallSp" />
 
                 <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                    android:id="@+id/roundableStartHour"
+                    android:id="@+id/roundableEndDate"
                     android:layout_width="0dp"
                     android:layout_height="57dp"
                     android:layout_marginTop="8dp"
@@ -439,31 +474,85 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvFinalDate"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:gravity="center"
-                        android:paddingHorizontal="10dp"
-                        android:text="/"
-                        android:textAlignment="center"
-                        android:textColor="@color/black_700"
-                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/changeHourImageFirst"
+                        app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect4"
                         app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <EditText
+                            android:id="@+id/tvMonth"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:digits="0987654321"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:inputType="numberSigned"
+                            android:maxLength="2"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@id/tvYear"
+                            android:paddingHorizontal="10dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/black_700"
+                            android:textSize="13sp"
+                            tools:text="12" />
+
+                        <TextView
+                            android:id="@+id/tvSlash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:text="/"
+                            android:textAlignment="center"
+                            android:textColor="@color/black_700"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/tvYear"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:digits="0987654321"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:inputType="numberSigned"
+                            android:maxLength="2"
+                            android:nextFocusDown="@id/tvCvv"
+                            android:paddingHorizontal="10dp"
+                            android:textAlignment="center"
+                            android:imeOptions="actionNext"
+                            android:textColor="@color/black_700"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="25" />
+
+                    </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/changeHourImageFirst"
+                        android:id="@+id/changeImageCorrect4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_pc_down_arrow"
+                        android:src="@drawable/ic_pc_arrow_correct"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -475,12 +564,12 @@
                     android:text="CVV"
                     android:textColor="@color/black_700"
                     android:textSize="11sp"
-                    app:layout_constraintStart_toStartOf="@+id/roundableEndHour"
+                    app:layout_constraintStart_toStartOf="@+id/roundableCVV"
                     app:layout_constraintTop_toTopOf="@+id/lblApPaterno"
                     tools:ignore="SmallSp" />
 
                 <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                    android:id="@+id/roundableEndHour"
+                    android:id="@+id/roundableCVV"
                     android:layout_width="0dp"
                     android:layout_height="57dp"
                     android:layout_marginStart="10dp"
@@ -491,7 +580,7 @@
                     app:cu_strokeLineWidth="1dp"
                     app:layout_constraintEnd_toEndOf="@+id/roundableNumberCard"
                     app:layout_constraintStart_toStartOf="@+id/guideline2"
-                    app:layout_constraintTop_toTopOf="@+id/roundableStartHour">
+                    app:layout_constraintTop_toTopOf="@+id/roundableEndDate">
 
                     <ImageView
                         android:id="@+id/imageView5"
@@ -502,30 +591,36 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvEndHour"
+                    <EditText
+                        android:id="@+id/tvCvv"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:fontFamily="@font/montserrat_semibold"
                         android:gravity="center_vertical"
+                        android:maxLength="3"
+                        android:inputType="numberSigned"
+                        android:imeOptions="actionDone"
+                        android:digits="0987654321"
                         android:paddingHorizontal="10dp"
                         android:textColor="@color/black_700"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/changeHourImageEnd"
+                        app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect5"
                         app:layout_constraintStart_toEndOf="@+id/imageView5"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="000" />
 
                     <ImageView
-                        android:id="@+id/changeHourImageEnd"
+                        android:id="@+id/changeImageCorrect5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_pc_arrow_correct"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
