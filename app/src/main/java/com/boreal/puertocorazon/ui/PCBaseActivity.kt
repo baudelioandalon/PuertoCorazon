@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.ui
 
-import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.boreal.commonutils.base.CUBaseActivity
@@ -35,6 +34,9 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
 
     override fun initView() {
         initElements()
+        mainViewModel.goToHomeClient = {
+            navController.popBackStack(R.id.pc_client_home_graph, false)
+        }
     }
 
     override fun onBackPressed() {

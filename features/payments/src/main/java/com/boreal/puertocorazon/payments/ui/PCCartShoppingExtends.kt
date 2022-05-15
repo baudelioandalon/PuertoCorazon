@@ -5,7 +5,6 @@ import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
-import com.boreal.puertocorazon.core.domain.entity.payment.PCTypePayment
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 import com.boreal.puertocorazon.payments.R
@@ -26,7 +25,7 @@ fun PCCartShoppingFragment.initElements() {
         }
         btnPay.onClick {
             PCPaymentSelector { typePaymentSelected ->
-                typePaymentSelected
+                findNavController().navigate(R.id.PCAddCardFragment)
             }.show(getSupportFragmentManager(), "odmod")
         }
 
@@ -38,7 +37,7 @@ fun PCCartShoppingFragment.initElements() {
                 //Open show cards
             }
         }
-        findNavController().navigate(R.id.PCAddCardFragment)
+
     }
 }
 

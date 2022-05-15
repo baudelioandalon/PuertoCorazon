@@ -6,6 +6,7 @@ import com.boreal.puertocorazon.core.BuildConfig
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
+import com.boreal.puertocorazon.core.utils.payment.ConektaErrorModel
 import com.boreal.puertocorazon.core.utils.payment.ConektaTokenModel
 import com.boreal.puertocorazon.core.utils.retrofit.core.*
 import com.google.gson.Gson
@@ -56,29 +57,44 @@ class PaymentDataSource {
             val response = http.execute(httpRequest)
             result = EntityUtils.toString(response.entity)
             val gson = Gson()
-            val conektaTokenModel = gson.fromJson(
-                result,
-                ConektaTokenModel::class.java
-            )
-            request.token = conektaTokenModel.id
-            ValidResponse<PCPaymentResponse>(PCPaymentResponse::class).validationMethod(
-                InitServices<Call<PCPaymentResponse>, PCPaymentRequest>().postExecuteService(
-                    request,
-                    RemoteUrls.PAYMENT_TRANSACTION.url
+            try {
+                val conektaErrorModel = gson.fromJson(
+                    result,
+                    ConektaErrorModel::class.java
                 )
-            )
+                DataResponse(
+                    statusRequest = StatusRequestEnum.FAILURE,
+                    null, errorData =
+                    conektaErrorModel.details.map { it.message }.toString().replace("[", "")
+                        .replace("]", "")
+                )
+            } catch (exception: Exception) {
+                val conektaTokenModel = gson.fromJson(
+                    result,
+                    ConektaTokenModel::class.java
+                )
+                request.token = conektaTokenModel.id
+                request.emailLocal = request.emailLocal.replace("/","")
+                request.environmentLocal = request.environmentLocal.replace("/","")
+                ValidResponse<PCPaymentResponse>(PCPaymentResponse::class).validationMethod(
+                    InitServices<Call<PCPaymentResponse>, PCPaymentRequest>().postExecuteService(
+                        request,
+                        RemoteUrls.PAYMENT_TRANSACTION.url
+                    )
+                )
+            }
         } catch (exception: Exception) {
             if (exception is UnknownHostException) {
                 DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
                     null,
-                    "Por favor, revisa tu conexion a internet"
+                    errorData = "Por favor, revisa tu conexion a internet"
                 )
             } else {
                 DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
                     null,
-                    "No se pudo completar la transaccion"
+                    errorData = "No se pudo completar la transaccion"
                 )
             }
         }

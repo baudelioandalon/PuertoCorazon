@@ -22,8 +22,10 @@ class PCAddCardFragment : CUBaseFragment<PcAddCardFragmentBinding>() {
                         showProgress()
                     }
                     StatusRequestEnum.SUCCESS -> {
+                        mainViewModel.paymentClear()
+                        mainViewModel.clearShoppingCart()
+                        mainViewModel.goToHomeClient()
                         hideProgressBarCustom()
-                        onFragmentBackPressed()
                     }
                     StatusRequestEnum.FAILURE -> {
                         hideProgressBarCustom()

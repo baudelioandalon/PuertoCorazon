@@ -29,6 +29,7 @@ android {
     buildTypes {
         getByName("debug") {
             isMinifyEnabled = false
+            buildConfigField(type = "String", name = "ENVIRONMENT_ABSOLUTE", value = "\"DEBUG\"")
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"DEBUG/\"")
             buildConfigField(type = "String", name = "CONEKTA_PUBLIC_KEY", value = "\"key_DQpekCNQJ55Dj14grt1XYYg\"")
             buildConfigField(type = "String", name = "DEFAULT_EMAIL", value = "\"baudelio_andalon@hotmail.com/\"")//obtener desde RemoteConfig

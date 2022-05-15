@@ -36,11 +36,10 @@ fun PCAddCardFragment.initElements() {
 
         btnSave.onClick {
             if (cardValid()) {
-                showToast("Todo ok")
                 mainViewModel.requestPayment(
                     aliasCard = txtAlias.onlyText(),
                     ConektaCardModel(
-                        numberCard = txtNameCard.onlyText(),
+                        numberCard = txtNumberCard.onlyText().onlyCardNumber(),
                         nameCard = txtNameCard.onlyText(),
                         cvc = tvCvv.onlyText(),
                         exp_month = tvMonthCard.onlyText(),
@@ -106,7 +105,7 @@ fun PCAddCardFragment.changeText(messageToShow: String) {
 fun PCAddCardFragment.cardValid(): Boolean {
     binding.apply {
         return txtNameCard.onlyText().isNotEmpty() && txtNameCard.onlyText().length > 5 &&
-                txtNameCard.onlyText().validCardNumber() &&
+                txtNumberCard.onlyText().validCardNumber() &&
                 tvMonth.onlyText().validMonth() &&
                 tvYear.onlyText().validYear() &&
                 tvCvv.onlyText().validCvv()

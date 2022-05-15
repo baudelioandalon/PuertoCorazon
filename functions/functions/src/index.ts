@@ -36,7 +36,7 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
 
   export const paymentTransaction = functions.https.onRequest((request: functions.https.Request, response: functions.Response<any>) => {
     const conekta = require('conekta');
-    if(request.body.environmentLocal === 'DEBUG'){
+    if(request.body.environmentLocal === 'DEBUG' || request.body.environmentLocal === 'DEBUG/'){
       conekta.api_key = 'key_etzcf2xbgvx5KrosSyVMcA';
     }else{
       conekta.api_key = 'key_GQiE8zGdAEVSBAfNKJVbLQ';
@@ -185,7 +185,7 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
         }
    
         return response.status(200).send({
-            code:200,
+            code: 200,
             message: ["Transaccion exitosa"]
         });
     });

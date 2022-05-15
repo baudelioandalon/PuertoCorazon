@@ -42,6 +42,12 @@ class PCMainViewModel(
 
     private val cardList = arrayListOf<PCCardModel>()
 
+    var goToHomeClient: (() -> Unit)? = null
+
+    fun goToHomeClient() {
+        goToHomeClient?.invoke()
+    }
+
     private var shoppingCart = arrayListOf(
         PCShoppingModel(
             idEvent = "dmuc874hc8348",
@@ -76,6 +82,10 @@ class PCMainViewModel(
     fun clearShoppingCart() {
         shoppingCart.clear()
         shoppingChanged?.invoke(shoppingCart)
+    }
+
+    fun paymentClear() {
+        resetError()
     }
 
     fun getShoppingList() = shoppingCart
@@ -158,7 +168,8 @@ class PCMainViewModel(
                         idClient = "epQUrsON4aNxzxqizDgSZlc3whX2",//baudelioandalon@gmail.com,
                         nameUser = "Baudelio Andalon",
                         email = getEmailUser(),
-                        amount = 50,
+                        amount = getShoppingList().sumOf { (it.countItem * it.priceElement) }
+                            .toLong(),
                         typeCard = conektaCardModel.typeCard(),
                         lastFour = conektaCardModel.lastFour(),
                         typePayment = "CARD",
@@ -183,7 +194,7 @@ class PCMainViewModel(
             ).catch {
                 _paymentTransaction.value = DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
-                    null, it.message ?: "Algo salio mal"
+                    null, errorData = it.message ?: "Algo salio mal"
                 )
             }.collect {
                 _paymentTransaction.postValue(it.response)
@@ -191,27 +202,11 @@ class PCMainViewModel(
         }
     }
 
-    fun generateToken(token: String) {
-        if (token.isNotEmpty()) {
-//                        requestPayment(response)
-        }
-    }
-
-    private fun errorInternetPayment() {
-        _paymentTransaction.postValue(
-            DataResponse(
-                statusRequest = StatusRequestEnum.FAILURE,
-                null, "Verifica tu conexion a internet"
-            )
-        )
-        resetError()
-    }
-
     private fun resetError() {
         _paymentTransaction.postValue(
             DataResponse(
                 statusRequest = StatusRequestEnum.NONE,
-                null, null
+                null
             )
         )
     }

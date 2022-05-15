@@ -12,6 +12,9 @@ class ARemotePaymentDataSource : GetPaymentDataSource {
         request: PCPaymentRequest,
         conektaModel: ConektaCardModel
     ): DataResponse<PCPaymentResponse> {
-        return PaymentDataSource.getData(request, conektaModel)
+        return PaymentDataSource.getData(request, conektaModel).also {
+            it.errorData = it.errorData ?: it.errorModel?.message.toString()
+                .replace("[", "").replace("]", "")
+        }
     }
 }

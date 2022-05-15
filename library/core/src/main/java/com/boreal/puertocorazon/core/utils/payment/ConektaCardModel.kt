@@ -9,9 +9,9 @@ data class ConektaCardModel(
     val exp_month: String,
     val exp_year: String
 ) {
-    fun typeCard() = if (numberCard.startsWith("4") && numberCard.length < 16) {
+    fun typeCard() = if (numberCard.startsWith("4") && numberCard.length == 16) {
         PCTypeCard.VISA.name
-    } else if (numberCard.startsWith("5") && numberCard.length < 16) {
+    } else if (numberCard.startsWith("5") && numberCard.length == 16) {
         PCTypeCard.MASTERCARD.name
     } else {
         PCTypeCard.AMEX.name

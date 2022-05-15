@@ -11,8 +11,8 @@ fun TextView.onlyText() = text.toString().trim()
 fun Editable.onlyText() = toString().trim()
 fun String.onlyText() = trim()
 
-fun String.onlyCardNumber() = onlyText().trimIndent()
-    .replace("-", "").replace(" ", "")
+fun String.onlyCardNumber(isAmex: Boolean = false) = onlyText().trimIndent()
+    .replace("-", "").replace(" ", "").take(if (isAmex) 15 else 16)
 
 fun Editable.onlyCardNumber() = toString().trim().onlyCardNumber()
 
