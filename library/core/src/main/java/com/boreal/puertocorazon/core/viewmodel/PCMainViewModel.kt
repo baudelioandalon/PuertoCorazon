@@ -10,9 +10,9 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
+import com.boreal.puertocorazon.core.domain.entity.payment.PCPackagePaymentModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
-import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
@@ -122,6 +122,7 @@ class PCMainViewModel(
 
     fun getEventSelected() = _eventSelected.value ?: PCEventModel()
 
+    fun getIdUser() = _authUser.value?.user_id ?: NONE
     fun getEmailUser() = _authUser.value?.email ?: NONE
     fun getImageProfile() = _authUser.value?.picture ?: NONE
 
@@ -154,19 +155,29 @@ class PCMainViewModel(
             getPaymentUseCase.execute(
                 PaymentUseCase.Input(
                     PCPaymentRequest(
-                        countAdult = 1,
-                        countChild = 1,
-                        idEvent = "1378950eafce4ed3a7797a2f9732b1c7",
                         idClient = "epQUrsON4aNxzxqizDgSZlc3whX2",//baudelioandalon@gmail.com,
-                        namePackage = "Familia",
                         nameUser = "Baudelio Andalon",
-                        email = "baudelioandalon@gmail.com",
-                        isPackage = true,
+                        email = getEmailUser(),
                         amount = 50,
-                        typeCard = PCTypeCard.VISA.name,
-                        lastFour = "1414",
+                        typeCard = conektaCardModel.typeCard(),
+                        lastFour = conektaCardModel.lastFour(),
                         typePayment = "CARD",
-                        countItem = 1
+                        phone = "1234567891",
+                        aliasCard = aliasCard,
+                        expirationDate = conektaCardModel.expirationDate(),
+                        digitsCard = conektaCardModel.numberCard,
+                        emailLocal = BuildConfig.DEFAULT_EMAIL,
+                        environmentLocal = BuildConfig.ENVIRONMENT,
+                        packages = getShoppingList().map {
+                            PCPackagePaymentModel(
+                                countAdult = it.countAdult.toLong(),
+                                countChild = it.countChild.toLong(),
+                                idClient = getIdUser(),
+                                idEvent = it.idEvent,
+                                namePackage = it.namePackage,
+                                isPackage = it.isPackage
+                            )
+                        }
                     ), conektaCardModel
                 )
             ).catch {

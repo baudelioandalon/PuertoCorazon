@@ -37,16 +37,16 @@ fun PCAddCardFragment.initElements() {
         btnSave.onClick {
             if (cardValid()) {
                 showToast("Todo ok")
-//                mainViewModel.requestPayment(
-//                    aliasCard = txtAlias.onlyText(),
-//                    ConektaCardModel(
-//                        numberCard = txtNameCard.onlyText(),
-//                        nameCard = txtNameCard.onlyText(),
-//                        cvc = tvCvv.onlyText(),
-//                        exp_month = tvMonthCard.onlyText(),
-//                        exp_year = tvYearCard.onlyText()
-//                    )
-//                )
+                mainViewModel.requestPayment(
+                    aliasCard = txtAlias.onlyText(),
+                    ConektaCardModel(
+                        numberCard = txtNameCard.onlyText(),
+                        nameCard = txtNameCard.onlyText(),
+                        cvc = tvCvv.onlyText(),
+                        exp_month = tvMonthCard.onlyText(),
+                        exp_year = tvYearCard.onlyText()
+                    )
+                )
             } else {
                 changeText("Revisa los datos de la tarjeta")
             }
@@ -57,7 +57,7 @@ fun PCAddCardFragment.initElements() {
 
 fun PCAddCardFragment.showOrHide() {
     binding.apply {
-        if (txtNumberCard.hasFocus()) {
+        if (txtNumberCard.hasFocus() && KeyboardVisibilityEvent.isKeyboardVisible(requireActivity())) {
             roundableTitle.hideView()
             lblNames.hideView()
             lblApMaterno.hideView()
@@ -136,15 +136,20 @@ fun PCAddCardFragment.initOnChangeListener() {
                 val cardNumber = it.onlyCardNumber()
                 if (cardNumber.isNotEmpty() && cardNumber.length < 5) {
                     txtNumberCardOneSegment.text = cardNumber
+                    txtNumberCardTwoSegment.text = "0000"
                 } else if (cardNumber.length in 5..8) {
                     txtNumberCardTwoSegment.text =
                         cardNumber.substring(IntRange(4, cardNumber.length - 1))
+                    txtNumberCardThreeSegment.text = "0000"
                 } else if (cardNumber.length in 9..12) {
                     txtNumberCardThreeSegment.text =
                         cardNumber.substring(IntRange(8, cardNumber.length - 1))
+                    txtNumberCardFourSegment.text = "0000"
                 } else if (cardNumber.length in 13..16) {
                     txtNumberCardFourSegment.text =
                         cardNumber.substring(IntRange(12, cardNumber.length - 1))
+                } else if (cardNumber.isEmpty()) {
+                    txtNumberCardOneSegment.text = "0000"
                 }
                 changeImageCorrect3.notInvisibleIf(
                     it.validCardNumber()
@@ -153,9 +158,10 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
         tvMonth.doAfterTextChanged {
             it?.let {
-                tvMonthCard.text = it.onlyText()
+                tvMonthCard.text =
+                    if (it.onlyText().length == 1) "0${it.onlyText()}" else it.onlyText()
                 changeImageCorrect4.notInvisibleIf(
-                    it.validMonth()
+                    it.validMonth() && tvYear.text.toString().validYear()
                 )
             }
         }
@@ -163,7 +169,7 @@ fun PCAddCardFragment.initOnChangeListener() {
             it?.let {
                 tvYearCard.text = it.onlyText()
                 changeImageCorrect4.notInvisibleIf(
-                    it.validYear()
+                    it.validYear() && tvMonth.text.toString().validMonth()
                 )
             }
         }

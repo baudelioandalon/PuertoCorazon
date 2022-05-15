@@ -38,8 +38,6 @@ fun PCClientHomeFragment.initElements() {
             adapter = adapterRecyclerHomeService
             itemPercent(.88)
         }
-
-        btnCartShopping.performClick()
     }
 }
 

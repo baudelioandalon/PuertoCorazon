@@ -60,13 +60,13 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
     const typePayment = request.body.typePayment;
     const phone =  request.body.phone
     const token = request.body.token;
-    const packages = request.body.packages;
     const saveCard = request.body.saveCard;
     const aliasCard = request.body.aliasCard;
     const expirationDate = request.body.expirationDate;
     const digitsCard = request.body.digitsCard;
     const emailLocal = request.body.emailLocal;
     const environmentLocal = request.body.environmentLocal;
+    const packages = request.body.packages;
 
    
    // const payedDate = admin.firestore.Timestamp.now()

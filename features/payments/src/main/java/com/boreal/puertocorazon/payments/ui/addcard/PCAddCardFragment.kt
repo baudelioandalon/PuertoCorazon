@@ -15,11 +15,19 @@ class PCAddCardFragment : CUBaseFragment<PcAddCardFragmentBinding>() {
     override fun getLayout() = R.layout.pc_add_card_fragment
 
     override fun initObservers() {
-        mainViewModel.paymentTransaction.observe(viewLifecycleOwner){
+        mainViewModel.paymentTransaction.observe(viewLifecycleOwner) {
             it?.let {
-                when(it.statusRequest){
+                when (it.statusRequest) {
+                    StatusRequestEnum.LOADING -> {
+                        showProgress()
+                    }
+                    StatusRequestEnum.SUCCESS -> {
+                        hideProgressBarCustom()
+                        onFragmentBackPressed()
+                    }
                     StatusRequestEnum.FAILURE -> {
-                        showToast(it.errorData?: "")
+                        hideProgressBarCustom()
+                        showToast(it.errorData ?: "")
                     }
                 }
             }
