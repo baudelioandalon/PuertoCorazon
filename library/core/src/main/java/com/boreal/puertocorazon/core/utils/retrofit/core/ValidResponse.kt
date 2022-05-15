@@ -13,10 +13,10 @@ class ValidResponse<R>(
     fun validationMethod(result: Call<R>): DataResponse<R> = try {
         val requestExecuted = result.execute()
         val gson = Gson()
-        if (requestExecuted.isSuccessful) {
-            val jsonObjectArray = gson.toJsonTree(requestExecuted.body()).asJsonArray
+        if (requestExecuted.isSuccessful && requestExecuted.code() == 200) {
+            val jsonObject = gson.toJsonTree(requestExecuted.body())
             val myResponse =
-                Gson().fromJson(jsonObjectArray, vkClass.javaObjectType) as R
+                Gson().fromJson(jsonObject, vkClass.javaObjectType) as R
             DataResponse(
                 statusRequest = StatusRequestEnum.SUCCESS,
                 successData = myResponse
