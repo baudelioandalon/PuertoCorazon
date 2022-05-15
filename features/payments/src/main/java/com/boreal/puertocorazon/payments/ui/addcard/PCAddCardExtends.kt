@@ -2,47 +2,93 @@ package com.boreal.puertocorazon.payments.ui.addcard
 
 import android.webkit.CookieManager
 import android.webkit.WebView
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.boreal.commonutils.extensions.notInvisibleIf
-import com.boreal.commonutils.extensions.onClick
-import com.boreal.commonutils.extensions.showToast
+import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.globalmethod.getDeviceId
 import com.boreal.puertocorazon.core.utils.*
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
+import com.boreal.puertocorazon.payments.R
 import io.conekta.conektasdk.Conekta
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 
 fun PCAddCardFragment.initElements() {
     binding.apply {
+        KeyboardVisibilityEvent.setEventListener(
+            requireActivity()
+        ) {
+            btnReady.showIf(!it)
+            if (txtNumberCard.hasFocus()) {
+                showOrHide()
+            }
+        }
+        txtNumberCard.setOnFocusChangeListener { _, _ ->
+            showOrHide()
+        }
+
         btnBack.onClick {
             onFragmentBackPressed()
         }
 
         btnSave.onClick {
-            mainViewModel.requestPayment(
-                aliasCard = txtAlias.onlyText(),
-                ConektaCardModel(
-                    numberCard = txtNameCard.onlyText(),
-                    nameCard = txtNameCard.onlyText(),
-                    cvc = txtCvv.onlyText(),
-                    exp_month = "23",
-                    exp_year = "22"
-                )
-            )
-        }
-
-        btnSave.onClick {
-            if(cardValid()){
+            if (cardValid()) {
                 showToast("Todo ok")
-            }else{
+//                mainViewModel.requestPayment(
+//                    aliasCard = txtAlias.onlyText(),
+//                    ConektaCardModel(
+//                        numberCard = txtNameCard.onlyText(),
+//                        nameCard = txtNameCard.onlyText(),
+//                        cvc = tvCvv.onlyText(),
+//                        exp_month = tvMonthCard.onlyText(),
+//                        exp_year = tvYearCard.onlyText()
+//                    )
+//                )
+            } else {
                 changeText("Revisa los datos de la tarjeta")
             }
         }
     }
     initOnChangeListener()
+}
+
+fun PCAddCardFragment.showOrHide() {
+    binding.apply {
+        if (txtNumberCard.hasFocus()) {
+            roundableTitle.hideView()
+            lblNames.hideView()
+            lblApMaterno.hideView()
+            roundableNameCard.hideView()
+            val set = ConstraintSet()
+            set.clone(containerNewCard)
+            set.connect(
+                R.id.lblNumberCard,
+                ConstraintSet.TOP,
+                R.id.containerHomeImage,
+                ConstraintSet.BOTTOM,
+                40
+            )
+            set.applyTo(containerNewCard)
+        } else {
+            roundableTitle.showView()
+            lblNames.showView()
+            lblApMaterno.showView()
+            roundableNameCard.showView()
+            val set = ConstraintSet()
+            set.clone(containerNewCard)
+            set.connect(
+                R.id.lblNumberCard,
+                ConstraintSet.TOP,
+                R.id.roundableNameCard,
+                ConstraintSet.BOTTOM,
+                24
+            )
+            set.applyTo(containerNewCard)
+        }
+    }
 }
 
 fun PCAddCardFragment.changeText(messageToShow: String) {
@@ -59,8 +105,7 @@ fun PCAddCardFragment.changeText(messageToShow: String) {
 
 fun PCAddCardFragment.cardValid(): Boolean {
     binding.apply {
-        return txtAlias.onlyText().isNotEmpty() && txtAlias.onlyText().length > 2 &&
-                txtNameCard.onlyText().isNotEmpty() && txtNameCard.onlyText().length > 5 &&
+        return txtNameCard.onlyText().isNotEmpty() && txtNameCard.onlyText().length > 5 &&
                 txtNameCard.onlyText().validCardNumber() &&
                 tvMonth.onlyText().validMonth() &&
                 tvYear.onlyText().validYear() &&
@@ -72,6 +117,7 @@ fun PCAddCardFragment.initOnChangeListener() {
     binding.apply {
         txtAlias.doAfterTextChanged {
             it?.let {
+                tvAliasCard.text = it.onlyText().ifEmpty { "Alias" }
                 changeImageCorrect1.notInvisibleIf(
                     it.onlyText().isNotEmpty() && it.onlyText().length > 2
                 )
@@ -79,6 +125,7 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
         txtNameCard.doAfterTextChanged {
             it?.let {
+                tvNameCard.text = it.onlyText().ifEmpty { "Nombre" }
                 changeImageCorrect2.notInvisibleIf(
                     it.onlyText().isNotEmpty() && it.onlyText().length > 5
                 )
@@ -86,6 +133,19 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
         txtNumberCard.doAfterTextChanged {
             it?.let {
+                val cardNumber = it.onlyCardNumber()
+                if (cardNumber.isNotEmpty() && cardNumber.length < 5) {
+                    txtNumberCardOneSegment.text = cardNumber
+                } else if (cardNumber.length in 5..8) {
+                    txtNumberCardTwoSegment.text =
+                        cardNumber.substring(IntRange(4, cardNumber.length - 1))
+                } else if (cardNumber.length in 9..12) {
+                    txtNumberCardThreeSegment.text =
+                        cardNumber.substring(IntRange(8, cardNumber.length - 1))
+                } else if (cardNumber.length in 13..16) {
+                    txtNumberCardFourSegment.text =
+                        cardNumber.substring(IntRange(12, cardNumber.length - 1))
+                }
                 changeImageCorrect3.notInvisibleIf(
                     it.validCardNumber()
                 )
@@ -93,6 +153,7 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
         tvMonth.doAfterTextChanged {
             it?.let {
+                tvMonthCard.text = it.onlyText()
                 changeImageCorrect4.notInvisibleIf(
                     it.validMonth()
                 )
@@ -100,6 +161,7 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
         tvYear.doAfterTextChanged {
             it?.let {
+                tvYearCard.text = it.onlyText()
                 changeImageCorrect4.notInvisibleIf(
                     it.validYear()
                 )

@@ -64,9 +64,10 @@
             app:layout_constraintTop_toBottomOf="@+id/btnBack">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerNewCard"
                 android:layout_width="match_parent"
-                android:paddingBottom="15dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="15dp">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline2"
@@ -236,7 +237,9 @@
 
                     </LinearLayout>
 
+
                     <LinearLayout
+                        android:id="@+id/linearExpirationDateCard"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -244,17 +247,53 @@
                         app:layout_constraintTop_toBottomOf="@+id/linearNumberCard">
 
                         <TextView
-                            android:id="@+id/txtCvv"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/tvMonthCard"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:fontFamily="@font/montserrat_semibold"
                             android:gravity="center"
-                            android:text="/"
+                            android:maxLength="2"
+                            android:paddingHorizontal="10dp"
+                            android:textAlignment="center"
                             android:textColor="@color/gray_letter"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            tools:text="12" />
+
+                        <TextView
+                            android:id="@+id/tvSlashCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:text="/"
+                            android:textAlignment="center"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvYearCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:maxLength="2"
+                            android:paddingHorizontal="10dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/gray_letter"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/changeImageCorrect4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="25" />
 
                     </LinearLayout>
-
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -384,7 +423,7 @@
                     android:text="Numero de tarjeta"
                     android:textColor="@color/black_700"
                     android:textSize="11sp"
-                    app:layout_constraintStart_toStartOf="@+id/lblNames"
+                    app:layout_constraintStart_toStartOf="@+id/containerHomeImage"
                     app:layout_constraintTop_toBottomOf="@+id/roundableNameCard"
                     tools:ignore="SmallSp" />
 
@@ -398,7 +437,7 @@
                     app:cu_cornerRightSide="5dp"
                     app:cu_strokeLineColor="@color/blue_edittext"
                     app:cu_strokeLineWidth="1dp"
-                    app:layout_constraintEnd_toEndOf="@+id/roundableNameCard"
+                    app:layout_constraintEnd_toEndOf="@+id/containerHomeImage"
                     app:layout_constraintStart_toStartOf="@+id/lblNames"
                     app:layout_constraintTop_toBottomOf="@+id/lblNumberCard">
 
@@ -410,9 +449,9 @@
                         android:digits="0987654321"
                         android:fontFamily="@font/montserrat_semibold"
                         android:hint="Digite 16 digitos"
+                        android:imeOptions="actionNext"
                         android:inputType="numberSigned"
                         android:maxLength="50"
-                        android:imeOptions="actionNext"
                         android:nextFocusDown="@id/tvMonth"
                         android:paddingHorizontal="10dp"
                         android:textColor="@color/black_700"
@@ -435,7 +474,6 @@
                         tools:visibility="visible" />
 
                 </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
 
                 <TextView
                     android:id="@+id/lblApPaterno"
@@ -475,6 +513,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
+                        android:id="@+id/linearExpirationDate2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -491,9 +530,9 @@
                             android:digits="0987654321"
                             android:fontFamily="@font/montserrat_semibold"
                             android:gravity="center"
+                            android:imeOptions="actionNext"
                             android:inputType="numberSigned"
                             android:maxLength="2"
-                            android:imeOptions="actionNext"
                             android:nextFocusDown="@id/tvYear"
                             android:paddingHorizontal="10dp"
                             android:textAlignment="center"
@@ -527,12 +566,12 @@
                             android:digits="0987654321"
                             android:fontFamily="@font/montserrat_semibold"
                             android:gravity="center"
+                            android:imeOptions="actionNext"
                             android:inputType="numberSigned"
                             android:maxLength="2"
                             android:nextFocusDown="@id/tvCvv"
                             android:paddingHorizontal="10dp"
                             android:textAlignment="center"
-                            android:imeOptions="actionNext"
                             android:textColor="@color/black_700"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -596,12 +635,12 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@color/white"
+                        android:digits="0987654321"
                         android:fontFamily="@font/montserrat_semibold"
                         android:gravity="center_vertical"
-                        android:maxLength="3"
-                        android:inputType="numberSigned"
                         android:imeOptions="actionDone"
-                        android:digits="0987654321"
+                        android:inputType="numberSigned"
+                        android:maxLength="3"
                         android:paddingHorizontal="10dp"
                         android:textColor="@color/black_700"
                         android:textSize="13sp"
