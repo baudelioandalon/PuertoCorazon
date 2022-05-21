@@ -1,9 +1,9 @@
 package com.boreal.puertocorazon.adm.home.di
 
 import com.boreal.puertocorazon.adm.home.ui.PCHomeViewModel
-import com.boreal.puertocorazon.core.usecase.AuthUseCase
-import com.boreal.puertocorazon.core.usecase.EmptyIn
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.AuthUseCase
+import com.boreal.puertocorazon.core.usecase.login.EmptyIn
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

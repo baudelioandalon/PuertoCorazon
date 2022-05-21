@@ -3,9 +3,9 @@ package com.boreal.puertocorazon.core.usecase.home
 import com.boreal.puertocorazon.core.domain.HomeRepository
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
-import com.boreal.puertocorazon.core.usecase.In
-import com.boreal.puertocorazon.core.usecase.Out
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.In
+import com.boreal.puertocorazon.core.usecase.login.Out
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn

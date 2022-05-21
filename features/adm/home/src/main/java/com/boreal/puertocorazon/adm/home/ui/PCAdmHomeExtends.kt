@@ -28,7 +28,7 @@ fun PCAdmHomeFragment.initElements() {
 
         recyclerAdmHomeEvents.apply {
             adapter(adapterRecyclerAdmHomeEvent)
-            mainViewModel.requestEvents(mainViewModel.getEmailUser())
+            mainViewModel.requestEvents()
         }
         recyclerHomeServices.apply {
             adapter = adapterRecyclerHomeService

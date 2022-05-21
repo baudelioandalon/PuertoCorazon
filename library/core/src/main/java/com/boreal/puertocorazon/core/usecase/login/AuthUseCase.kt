@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.core.usecase
+package com.boreal.puertocorazon.core.usecase.login
 
 import com.boreal.puertocorazon.core.domain.AuthRepository
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest

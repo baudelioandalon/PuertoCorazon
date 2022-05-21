@@ -3,13 +3,12 @@ package com.boreal.puertocorazon.addevent.viewmodel
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.boreal.commonutils.globalmethod.randomID
 import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.*
 import com.boreal.puertocorazon.core.domain.entity.requirements.PCRequirementEnum
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.google.firebase.Timestamp

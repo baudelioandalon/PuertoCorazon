@@ -4,7 +4,7 @@ import com.boreal.puertocorazon.core.data.datasource.GetAuthUserDataSource
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.extension.toModel
-import com.boreal.puertocorazon.core.usecase.EmptyIn
+import com.boreal.puertocorazon.core.usecase.login.EmptyIn
 import com.boreal.puertocorazon.core.utils.realm.getRealmObject
 
 class ALocalAuthDataSource : GetAuthUserDataSource {

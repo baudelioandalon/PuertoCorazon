@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.core.data
+package com.boreal.puertocorazon.core.data.datasource
 
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse

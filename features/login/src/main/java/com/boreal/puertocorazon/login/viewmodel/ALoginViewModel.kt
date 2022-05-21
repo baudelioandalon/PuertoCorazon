@@ -7,9 +7,9 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.auth.PCTypeSession
-import com.boreal.puertocorazon.core.usecase.AuthUseCase
-import com.boreal.puertocorazon.core.usecase.EmptyIn
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.AuthUseCase
+import com.boreal.puertocorazon.core.usecase.login.EmptyIn
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUAuthenticationErrorEnum
 import com.boreal.puertocorazon.login.usecase.LoginGoogleUseCase

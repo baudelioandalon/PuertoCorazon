@@ -5,9 +5,9 @@ import com.boreal.puertocorazon.core.data.datasource.GetAuthUserDataSource
 import com.boreal.puertocorazon.core.data.datasource.local.ALocalAuthDataSource
 import com.boreal.puertocorazon.core.domain.AuthRepository
 import com.boreal.puertocorazon.core.repository.login.DefaultAuthRepository
-import com.boreal.puertocorazon.core.usecase.AuthUseCase
-import com.boreal.puertocorazon.core.usecase.EmptyIn
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.AuthUseCase
+import com.boreal.puertocorazon.core.usecase.login.EmptyIn
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.login.data.datasource.GetLoginDataSource
 import com.boreal.puertocorazon.login.data.datasource.remote.ARemoteLoginDataSource
 import com.boreal.puertocorazon.login.data.repository.DefaultLoginGoogleRepository

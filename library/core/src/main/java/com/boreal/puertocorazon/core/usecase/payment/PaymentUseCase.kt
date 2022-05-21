@@ -3,9 +3,9 @@ package com.boreal.puertocorazon.core.usecase.payment
 import com.boreal.puertocorazon.core.domain.PaymentRepository
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
-import com.boreal.puertocorazon.core.usecase.In
-import com.boreal.puertocorazon.core.usecase.Out
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.In
+import com.boreal.puertocorazon.core.usecase.login.Out
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
 import com.boreal.puertocorazon.core.utils.retrofit.core.DataResponse
 import kotlinx.coroutines.Dispatchers

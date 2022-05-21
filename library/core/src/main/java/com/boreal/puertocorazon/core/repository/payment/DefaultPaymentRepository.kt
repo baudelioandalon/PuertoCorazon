@@ -1,6 +1,6 @@
 package com.boreal.puertocorazon.core.repository.payment
 
-import com.boreal.puertocorazon.core.data.GetPaymentDataSource
+import com.boreal.puertocorazon.core.data.datasource.GetPaymentDataSource
 import com.boreal.puertocorazon.core.domain.PaymentRepository
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse

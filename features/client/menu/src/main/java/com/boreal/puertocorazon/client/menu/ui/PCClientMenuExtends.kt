@@ -1,12 +1,11 @@
 package com.boreal.puertocorazon.client.menu.ui
 
 import androidx.navigation.fragment.findNavController
+import com.boreal.commonutils.extensions.changeDrawable
 import com.boreal.commonutils.extensions.hideView
-import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.client.home.R
-import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 
 fun PCClientMenuFragment.initElements() {
     binding.apply {
@@ -30,18 +29,17 @@ fun PCClientMenuFragment.initElements() {
             findNavController().navigate(R.id.pc_payment_graph)
         }
 
-        recyclerClientHomeEvents.apply {
-            adapter(adapterRecyclerHomeEvent)
-            mainViewModel.requestEvents(mainViewModel.getEmailUser())
+        imgTicket.onClick {
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+            mainViewModel.navigateToTicket()
         }
-        recyclerHomeServices.apply {
-            adapter = adapterRecyclerHomeService
-            itemPercent(.88)
-        }
-    }
-}
 
-fun PCClientMenuFragment.loadRecyclerEvent(response: List<PCEventModel>) {
-    if (response.size > 1) binding.recyclerClientHomeEvents.itemPercent(.88)
-    adapterRecyclerHomeEvent.submitList(response)
+        imgHome.onClick {
+            imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            mainViewModel.navigateToHome()
+        }
+
+    }
 }

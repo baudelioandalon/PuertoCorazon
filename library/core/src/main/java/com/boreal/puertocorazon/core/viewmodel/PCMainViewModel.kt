@@ -10,13 +10,14 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
-import com.boreal.puertocorazon.core.domain.entity.payment.PCPackagePaymentModel
+import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
-import com.boreal.puertocorazon.core.usecase.UseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
+import com.boreal.puertocorazon.core.usecase.ticket.TicketUseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
 import com.boreal.puertocorazon.core.utils.retrofit.core.DataResponse
@@ -32,6 +33,7 @@ import kotlinx.coroutines.launch
 class PCMainViewModel(
     private val getHomeUseCase: UseCase<HomeUseCase.Input, HomeUseCase.Output>,
     private val getPaymentUseCase: UseCase<PaymentUseCase.Input, PaymentUseCase.Output>,
+    private val getTicketUseCase: UseCase<TicketUseCase.Input, TicketUseCase.Output>,
 ) : CUBaseViewModel() {
 
     var countOutClicked = 0
@@ -68,6 +70,8 @@ class PCMainViewModel(
     fun getCardList() = cardList
 
     var shoppingChanged: ((list: List<PCShoppingModel>) -> Unit)? = null
+    var navToTicket: () -> Unit = {}
+    var navToHome: () -> Unit = {}
 
     fun addShopping(element: PCShoppingModel) {
         shoppingCart.add(element)
@@ -103,6 +107,11 @@ class PCMainViewModel(
     private val _eventList =
         MutableLiveData<AFirestoreGetResponse<List<PCEventModel>>>()
 
+    val ticketList: LiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>
+        get() = _ticketList
+    private val _ticketList =
+        MutableLiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>()
+
     val paymentTransaction: LiveData<DataResponse<PCPaymentResponse>>
         get() = _paymentTransaction
     private val _paymentTransaction = MutableLiveData<DataResponse<PCPaymentResponse>>()
@@ -136,12 +145,14 @@ class PCMainViewModel(
     fun getEmailUser() = _authUser.value?.email ?: NONE
     fun getImageProfile() = _authUser.value?.picture ?: NONE
 
-    fun requestEvents(email: String) {
+    fun requestEvents() {
         executeFlow {
-            _eventList.value = AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
-            if (_eventList.value?.status == AFirestoreStatusRequest.SUCCESS) {
+            if (_eventList.value?.status == AFirestoreStatusRequest.SUCCESS ||
+                _eventList.value?.status == AFirestoreStatusRequest.LOADING
+            ) {
                 return@executeFlow
             }
+            _eventList.value = AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
             getHomeUseCase.execute(
                 HomeUseCase.Input(
                     "eventData",
@@ -151,6 +162,27 @@ class PCMainViewModel(
                 cause
             }.collect {
                 _eventList.value = it.response
+            }
+        }
+    }
+
+    fun requestTickets() {
+        executeFlow {
+            if (_ticketList.value?.status == AFirestoreStatusRequest.SUCCESS ||
+                _ticketList.value?.status == AFirestoreStatusRequest.LOADING
+            ) {
+                return@executeFlow
+            }
+            _ticketList.value = AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
+            getTicketUseCase.execute(
+                TicketUseCase.Input(
+                    getIdUser(),
+                    "${BuildConfig.ENVIRONMENT}${BuildConfig.DEFAULT_EMAIL}Tickets"
+                )
+            ).catch { cause: Throwable ->
+                cause
+            }.collect {
+                _ticketList.value = it.response
             }
         }
     }
@@ -180,13 +212,16 @@ class PCMainViewModel(
                         emailLocal = BuildConfig.DEFAULT_EMAIL,
                         environmentLocal = BuildConfig.ENVIRONMENT,
                         packages = getShoppingList().map {
-                            PCPackagePaymentModel(
+                            PCPackageTicketModel(
                                 countAdult = it.countAdult.toLong(),
                                 countChild = it.countChild.toLong(),
                                 idClient = getIdUser(),
                                 idEvent = it.idEvent,
                                 namePackage = it.namePackage,
-                                isPackage = it.isPackage
+                                isPackage = it.isPackage,
+                                priceItem = it.priceElement.toFloat().toLong(),
+                                nameEvent = it.titleEvent,
+                                imageEvent = it.imageEvent
                             )
                         }
                     ), conektaCardModel
@@ -200,6 +235,14 @@ class PCMainViewModel(
                 _paymentTransaction.postValue(it.response)
             }
         }
+    }
+
+    fun navigateToTicket() {
+        navToTicket.invoke()
+    }
+
+    fun navigateToHome() {
+        navToHome.invoke()
     }
 
     private fun resetError() {

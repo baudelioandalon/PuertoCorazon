@@ -72,71 +72,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
-        <ScrollView
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/navigationMenu"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bottomMenu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="@string/eventos_especiales_n_en_puerto_vallarta"
-                    android:textColor="@color/black_700"
-                    android:textSize="23sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.boreal.puertocorazon.core.component.CURecyclerView
-                    android:id="@+id/recyclerClientHomeEvents"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
-                    tools:layout_height="200dp"
-                    tools:listitem="@layout/pc_home_event_item" />
-
-                <TextView
-                    android:id="@+id/txtTitleNextEvents"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
-                    android:alpha="0.7"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="@string/proximos_eventos"
-                    android:textColor="@color/black_700"
-                    android:textSize="23sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerClientHomeEvents" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerHomeServices"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTitleNextEvents"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/pc_home_service_item" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:navGraph="@navigation/pc_client_home_graph" />
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
             android:id="@+id/bottomMenu"
@@ -156,7 +102,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="70dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_pc_home"
+                android:src="@drawable/ic_pc_home_selected"
                 app:layout_constraintBottom_toBottomOf="@+id/imgTicket"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imgTicket" />

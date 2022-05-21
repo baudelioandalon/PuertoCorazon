@@ -2,13 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pc_client_home_graph"
-    app:startDestination="@id/PCClientHomeFragment">
+    android:id="@+id/pc_client_menu_graph"
+    app:startDestination="@id/PCClientMenuFragment">
 
     <fragment
-        android:id="@+id/PCClientHomeFragment"
+        android:id="@+id/PCClientMenuFragment"
         android:name="com.boreal.puertocorazon.client.menu.ui.PCClientMenuFragment"
-        android:label="PCClientHomeFragment"
+        android:label="PCClientMenuFragment"
         tools:layout="@layout/pc_client_menu_fragment" />
 
     <include app:graph="@navigation/pc_show_event_graph" />

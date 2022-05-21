@@ -6,7 +6,7 @@ import com.boreal.puertocorazon.addevent.data.repository.DefaultAddEventReposito
 import com.boreal.puertocorazon.addevent.domain.AddEventRepository
 import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
-import com.boreal.puertocorazon.core.usecase.UseCase
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

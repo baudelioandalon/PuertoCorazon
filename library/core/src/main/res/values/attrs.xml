@@ -8,6 +8,10 @@
             <flag name="success" value="2" />
             <flag name="failure" value="3" />
         </attr>
+        <attr name="recycler_orientation">
+            <flag name="horizontal" value="0" />
+            <flag name="vertical" value="1" />
+        </attr>
     </declare-styleable>
 
 </resources>

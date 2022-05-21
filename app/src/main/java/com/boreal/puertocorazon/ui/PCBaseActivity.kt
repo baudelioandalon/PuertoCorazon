@@ -35,7 +35,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
     override fun initView() {
         initElements()
         mainViewModel.goToHomeClient = {
-            navController.popBackStack(R.id.pc_client_home_graph, false)
+            navController.popBackStack(R.id.pc_client_menu_graph, false)
         }
     }
 
@@ -44,7 +44,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
             showOutDialog()
         } else {
             navController.currentDestination?.apply {
-                if (id == R.id.PCClientHomeFragment ||
+                if (id == R.id.PCClientMenuFragment ||
                     id == R.id.PCAdmHomeFragment
                 ) {
                     showOutDialog()

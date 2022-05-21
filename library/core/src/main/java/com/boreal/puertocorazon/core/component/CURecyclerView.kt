@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieDrawable
 import com.boreal.commonutils.extensions.hideView
@@ -45,7 +46,17 @@ class CURecyclerView(
                 binding.loadingImage.setAnimation(R.raw.last_loading)
                 binding.loadingImage.repeatCount = LottieDrawable.INFINITE
                 binding.loadingImage.playAnimation()
-//                setLoadingListener(getInt(R.styleable.CuRecyclerView_loader_listener, 0))
+
+                binding.recyclerViewInside.layoutManager =
+                    LinearLayoutManager(
+                        context,
+                        if (getInt(
+                                R.styleable.CURoundableLayout_cu_cornerAll,
+                                0
+                            ) == LinearLayoutManager.VERTICAL
+                        ) LinearLayoutManager.VERTICAL else LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
             } finally {
                 recycle()
             }

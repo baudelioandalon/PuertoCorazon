@@ -1,6 +1,6 @@
 package com.boreal.puertocorazon.core.data.datasource.remote
 
-import com.boreal.puertocorazon.core.data.GetPaymentDataSource
+import com.boreal.puertocorazon.core.data.datasource.GetPaymentDataSource
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel

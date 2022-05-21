@@ -55,6 +55,7 @@ dependencies {
     implementation(project(":library:ui-system"))
     implementation(project(":features:showevent"))
     implementation(project(":features:payments"))
+    implementation(project(":features:client:home"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)
@@ -90,10 +91,5 @@ dependencies {
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)
-//    implementation(Dependency.kProgressHud)
-//    implementation(Dependency.donutLibrary)
-//    implementation(Dependency.picassoLibrary)
-//    implementation(Dependency.circleImage)
-//
 
 }

@@ -16,5 +16,5 @@ data class PCPaymentRequest(
     val digitsCard: String,
     var emailLocal: String,
     var environmentLocal: String,
-    val packages: List<PCPackagePaymentModel> = listOf()
+    val packages: List<PCPackageTicketModel> = listOf()
 )

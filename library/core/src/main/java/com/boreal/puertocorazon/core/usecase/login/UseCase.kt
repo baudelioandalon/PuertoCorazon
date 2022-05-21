@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.core.usecase
+package com.boreal.puertocorazon.core.usecase.login
 
 import kotlinx.coroutines.flow.Flow
 
