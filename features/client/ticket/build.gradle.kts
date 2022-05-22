@@ -90,5 +90,8 @@ dependencies {
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)
+    //QR
+    implementation("com.journeyapps:zxing-android-embedded:3.0.2@aar")
+    implementation("com.google.zxing:core:3.3.3")
 
 }

@@ -43,7 +43,12 @@ class PCClientTicketFragment :
                     nameEvent = model.nameEvent
                     imageEvent = model.imageEvent
                     btnShowTickets.onClick {
-                        PCShowQrTickets().show(getSupportFragmentManager(), "odmod")
+                        PCShowQrTickets(
+                            arrayListOf(
+                                "dmji34nufgby7384bfyvg3758vgf",
+                                "mjriepfbuy3vnijufbniv3bfu"
+                            )
+                        ).show(getSupportFragmentManager(), "odmod")
                     }
                     if (model.isPackage) {
                         tvNamePackage.showView()
