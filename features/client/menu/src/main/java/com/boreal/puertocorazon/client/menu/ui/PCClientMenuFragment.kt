@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.client.menu.ui
 
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.puertocorazon.client.home.R
@@ -10,6 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class PCClientMenuFragment :
     CUBaseFragment<PcClientMenuFragmentBinding>() {
 
+    lateinit var navController: NavController
     val mainViewModel: PCMainViewModel by sharedViewModel()
 
     override fun initObservers() {

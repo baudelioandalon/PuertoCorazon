@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.home
 
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
@@ -72,6 +71,9 @@ class PCClientHomeFragment :
         )
     }
 
+
+    override fun getLayout() = R.layout.pc_client_home_fragment
+
     override fun initObservers() {
 
         mainViewModel.eventList.observe(viewLifecycleOwner) {
@@ -98,8 +100,6 @@ class PCClientHomeFragment :
             }
         }
     }
-
-    override fun getLayout() = R.layout.pc_client_home_fragment
 
     override fun initView() {
         initElements()

@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.client.menu.ui
 
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.changeDrawable
 import com.boreal.commonutils.extensions.hideView
@@ -8,6 +9,9 @@ import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.client.home.R
 
 fun PCClientMenuFragment.initElements() {
+    val navHostFragment =
+        childFragmentManager.findFragmentById(R.id.navigationMenu) as NavHostFragment
+    navController = navHostFragment.navController
     binding.apply {
         userProfile = mainViewModel.getImageProfile()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
@@ -30,12 +34,18 @@ fun PCClientMenuFragment.initElements() {
         }
 
         imgTicket.onClick {
+            if (navController.currentDestination?.label == "PCClientTicketFragment") {
+                return@onClick
+            }
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
             mainViewModel.navigateToTicket()
         }
 
         imgHome.onClick {
+            if (navController.currentDestination?.label == "PCClientHomeFragment") {
+                return@onClick
+            }
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
             mainViewModel.navigateToHome()

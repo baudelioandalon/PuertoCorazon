@@ -178,6 +178,7 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
                     priceItem: packageItem.priceItem,
                     nameEvent: packageItem.nameEvent,
                     imageEvent: packageItem.imageEvent,
+                    idPackage: packageItem.idPackage,
                     idClient: idClient,
                     idPayment: paymentId,
                     idTicket: idTicket,

@@ -221,7 +221,8 @@ class PCMainViewModel(
                                 isPackage = it.isPackage,
                                 priceItem = it.priceElement.toFloat().toLong(),
                                 nameEvent = it.titleEvent,
-                                imageEvent = it.imageEvent
+                                imageEvent = it.imageEvent,
+                                idPackage = it.idPackage
                             )
                         }
                     ), conektaCardModel

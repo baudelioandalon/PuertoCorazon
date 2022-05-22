@@ -37,7 +37,7 @@ fun getToday(timestamp: Timestamp = Timestamp.now()) = with(timestamp) {
 }
 
 fun getAMPM(format: String = "a") = with(Timestamp.now()) {
-    "${getHour(format).replace(" ", "")}".uppercase()
+    getHour(format).replace(" ", "").uppercase()
 }
 
 fun getHourAMPM(format: String = "HH:mm", timestamp: Timestamp = Timestamp.now()) =
@@ -70,7 +70,7 @@ fun Timestamp.getYear(format: String = "yyyy", locale: Locale = Locale("es", "MX
 
 
 fun Timestamp.getHour(format: String = "HH", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale).replace("\\s".toRegex(), "")
 
 fun Timestamp.isValidDate() = this != Timestamp(0L, 0)
 
@@ -153,7 +153,8 @@ fun Timestamp.setHour(hourAndMinute: String) =
             Locale("es", "MX")
         ).parse(
             "${this@setHour.getFormat("dd MM yy")} ${
-                hourAndMinute.replace("A.M.", "").replace(" ", "").replace("P.M.", "")
+                hourAndMinute.replace("A.M.", "").replace(" ", "")
+                    .replace("P.M.", "").trimIndent()
             }:00"
         )
         Timestamp(Date(time.time))
