@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.showToast
+import com.boreal.commonutils.extensions.showView
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
@@ -35,13 +36,33 @@ class PCClientTicketFragment :
 
             }).build(),
             holderCallback = { bindingElement, model, list, adapter, position ->
-//                binding.customModel = model.userData
                 bindingElement.apply {
-//                    txtTitleEvent.text = model.title
-//                    homeImg = model.homeImageUrl
-//                    containerEventItem.onClick {
-//                        mainViewModel.setEventSelected(model)
-//                    }
+                    nameEvent = model.nameEvent
+                    imageEvent = model.imageEvent
+                    if (model.isPackage) {
+                        tvNamePackage.showView()
+                        tvNamePackage.text = model.namePackage
+
+                        tvCountAdults.showView()
+                        tvCountAdults.text = "${model.countAdult} x Boletos adulto"
+                        tvCountElement.text = "${model.countAdult}x"
+
+                        tvCountChildren.showView()
+                        tvCountChildren.text = "${model.countChild} x Boleto niños / as"
+                        tvCountElement.text = "${model.countItem}x"
+                    } else {
+                        model.countChild
+                        model.countAdult
+                        if (model.countAdult != 0L) {
+                            tvCountAdults.showView()
+                            tvCountAdults.text = "Boleto adulto"
+                            tvCountElement.text = "${model.countAdult}x"
+                        } else {
+                            tvCountChildren.showView()
+                            tvCountChildren.text = "Boleto niño / a"
+                            tvCountElement.text = "${model.countChild}x"
+                        }
+                    }
                 }
             }
         )

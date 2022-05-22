@@ -6,15 +6,23 @@
     <data>
 
         <variable
-            name="countItem"
+            name="imageEvent"
+            type="java.lang.String" />
+
+        <variable
+            name="nameEvent"
             type="java.lang.String" />
 
     </data>
 
     <LinearLayout
+        android:id="@+id/btnShowTickets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,13 +34,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/landscape_test"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{imageEvent}"
                 app:riv_corner_radius="10dp"
-                app:riv_mutate_background="true" />
+                app:riv_mutate_background="true"
+                tools:src="@drawable/landscape_test" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -45,14 +54,20 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
+                    android:id="@+id/btnGoToEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_bold"
+                        android:text="@{nameEvent}"
+                        maxDot="@{17}"
                         android:textColor="@color/black_700"
                         android:textSize="14sp"
                         tools:text="Carrera de caballos" />
@@ -122,15 +137,14 @@
 
                     <TextView
                         android:id="@+id/tvCountElement"
-                        android:layout_width="50dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:text="@{countItem}"
-                        tools:text="1x"
                         android:textAlignment="center"
                         android:textColor="@color/black_700"
                         android:textSize="20sp"
-                        tools:gravity="center" />
+                        tools:gravity="center"
+                        tools:text="1x" />
 
                 </LinearLayout>
 

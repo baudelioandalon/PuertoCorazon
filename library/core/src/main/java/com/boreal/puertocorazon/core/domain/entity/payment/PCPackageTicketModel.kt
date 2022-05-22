@@ -2,6 +2,8 @@ package com.boreal.puertocorazon.core.domain.entity.payment
 
 import com.boreal.puertocorazon.core.constants.NONE
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.PropertyName
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class PCPackageTicketModel(
@@ -20,5 +22,7 @@ data class PCPackageTicketModel(
     val nameEvent: String = NONE,
     val imageEvent: String = NONE,
     val namePackage: String = "",
+    val countItem: Int = 0,
+    @JvmField @PropertyName("isPackage")
     val isPackage: Boolean = false
 )

@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.payments.ui.addcard
 
+import android.widget.Toast
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.utils.retrofit.core.StatusRequestEnum
@@ -25,6 +26,10 @@ class PCAddCardFragment : CUBaseFragment<PcAddCardFragmentBinding>() {
                         mainViewModel.paymentClear()
                         mainViewModel.clearShoppingCart()
                         mainViewModel.goToHomeClient()
+                        showToast(
+                            "Compra realizada exitosamente,\n en unos momentos sus boletos estarán listos",
+                            Toast.LENGTH_LONG
+                        )
                         hideProgressBarCustom()
                     }
                     StatusRequestEnum.FAILURE -> {

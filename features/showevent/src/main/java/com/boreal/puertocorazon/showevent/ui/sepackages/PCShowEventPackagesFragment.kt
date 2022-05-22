@@ -4,8 +4,11 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.hideView
+import com.boreal.commonutils.extensions.onClick
+import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
+import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.showevent.R
@@ -46,6 +49,24 @@ class PCShowEventPackagesFragment :
                     model.apply {
                         tvPricePackage.text = price.formatCurrency()
                         tvNamePackage.text = model.titlePackage
+                        btnAddPackage.onClick {
+                            mainViewModel.getEventSelected().apply {
+                                mainViewModel.addShopping(
+                                    PCShoppingModel(
+                                        idEvent = idEvent,
+                                        idPackage = model.idPackage,
+                                        imageEvent = homeImageUrl,
+                                        titleEvent = title,
+                                        countAdult = model.adult.toFloat().toInt(),
+                                        countChild = model.child.toFloat().toInt(),
+                                        priceElement = model.price.toFloat().toInt(),
+                                        isPackage = true,
+                                        namePackage = model.titlePackage
+                                    )
+                                )
+                            }
+                            showToast("Boleto agregado al carrito")
+                        }
                         if (adult == 0L) {
                             tvCountAdults.hideView()
                         } else {

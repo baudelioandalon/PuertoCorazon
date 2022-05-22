@@ -73,6 +73,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnAddPackage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cu_backgroundColor="@color/primary_700"

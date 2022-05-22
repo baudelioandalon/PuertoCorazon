@@ -50,22 +50,22 @@ class PCMainViewModel(
         goToHomeClient?.invoke()
     }
 
-    private var shoppingCart = arrayListOf(
-        PCShoppingModel(
-            idEvent = "dmuc874hc8348",
-            titleEvent = "Evento Holistico",
-            isPackage = true,
-            namePackage = "Paquete familia",
-            countAdult = 2,
-            countChild = 2,
-            priceElement = 450
-        ), PCShoppingModel(
-            idEvent = "v45gc32ed",
-            titleEvent = "2do Evento",
-            countAdult = 1,
-            priceElement = 150
-        )
-    )
+    private var shoppingCart = arrayListOf<PCShoppingModel>()
+//        PCShoppingModel(
+//            idEvent = "dmuc874hc8348",
+//            titleEvent = "Evento Holistico",
+//            isPackage = true,
+//            namePackage = "Paquete familia",
+//            countAdult = 2,
+//            countChild = 2,
+//            priceElement = 450
+//        ), PCShoppingModel(
+//            idEvent = "v45gc32ed",
+//            titleEvent = "2do Evento",
+//            countAdult = 1,
+//            priceElement = 150
+//        )
+//    )
 
     fun getCardList() = cardList
 
@@ -74,7 +74,14 @@ class PCMainViewModel(
     var navToHome: () -> Unit = {}
 
     fun addShopping(element: PCShoppingModel) {
-        shoppingCart.add(element)
+        val founded = shoppingCart.find { it.idPackage == element.idPackage }
+        if (founded != null) {
+            shoppingCart.removeAt(shoppingCart.indexOf(founded))
+            founded.countItem += 1
+            shoppingCart.add(founded)
+        } else {
+            shoppingCart.add(element)
+        }
         shoppingChanged?.invoke(shoppingCart)
     }
 
@@ -93,6 +100,29 @@ class PCMainViewModel(
     }
 
     fun getShoppingList() = shoppingCart
+    private fun getShoppingListToMap() = with(ArrayList<PCPackageTicketModel>()) {
+        getShoppingList().forEach { element ->
+            repeat(element.countItem) {
+                add(
+                    PCPackageTicketModel(
+                        countAdult = element.countAdult.toLong(),
+                        countChild = element.countChild.toLong(),
+                        idClient = getIdUser(),
+                        idEvent = element.idEvent,
+                        namePackage = element.namePackage,
+                        isPackage = element.isPackage,
+                        priceItem = element.priceElement.toFloat().toLong(),
+                        nameEvent = element.titleEvent,
+                        imageEvent = element.imageEvent,
+                        idPackage = element.idPackage
+                    )
+                )
+            }
+
+        }
+        this
+    }
+
 
     val goLogin: LiveData<Boolean?>
         get() = _goLogin
@@ -211,20 +241,7 @@ class PCMainViewModel(
                         digitsCard = conektaCardModel.numberCard,
                         emailLocal = BuildConfig.DEFAULT_EMAIL,
                         environmentLocal = BuildConfig.ENVIRONMENT,
-                        packages = getShoppingList().map {
-                            PCPackageTicketModel(
-                                countAdult = it.countAdult.toLong(),
-                                countChild = it.countChild.toLong(),
-                                idClient = getIdUser(),
-                                idEvent = it.idEvent,
-                                namePackage = it.namePackage,
-                                isPackage = it.isPackage,
-                                priceItem = it.priceElement.toFloat().toLong(),
-                                nameEvent = it.titleEvent,
-                                imageEvent = it.imageEvent,
-                                idPackage = it.idPackage
-                            )
-                        }
+                        packages = getShoppingListToMap()
                     ), conektaCardModel
                 )
             ).catch {

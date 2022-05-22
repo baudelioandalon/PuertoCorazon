@@ -32,7 +32,7 @@ fun PCShowEventDescriptionFragment.initElements() {
                     mainViewModel.addShopping(
                         PCShoppingModel(
                             idEvent = idEvent,
-                            idPackage = idEvent,
+                            idPackage = idEvent + "s",
                             imageEvent = homeImageUrl,
                             titleEvent = title,
                             countChild = 1,

@@ -39,6 +39,7 @@ class PCCartShoppingFragment : CUBaseFragment<PcCartShoppingBinding>() {
             }).build(),
             holderCallback = { bindingElement, model, list, adapter, position ->
                 bindingElement.apply {
+                    modelShoppingCart = model
                     countItem = model.countItem.toString()
                     tvPriceElement.text = model.priceElement.toLong().formatCurrency()
                     tvNamePackage.notInvisibleIf(model.isPackage) {
