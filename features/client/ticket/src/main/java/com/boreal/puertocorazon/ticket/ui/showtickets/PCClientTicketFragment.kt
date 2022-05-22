@@ -1,8 +1,10 @@
-package com.boreal.puertocorazon.ticket.ui
+package com.boreal.puertocorazon.ticket.ui.showtickets
 
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
+import com.boreal.commonutils.extensions.getSupportFragmentManager
+import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.extensions.showView
 import com.boreal.commonutils.utils.GAdapter
@@ -12,6 +14,7 @@ import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestor
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.ticket.R
 import com.boreal.puertocorazon.ticket.databinding.PcClientTicketFragmentBinding
+import com.boreal.puertocorazon.ticket.ui.showqr.PCShowQrTickets
 import com.boreal.puertocorazon.uisystem.databinding.PcItemTicketBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -39,6 +42,9 @@ class PCClientTicketFragment :
                 bindingElement.apply {
                     nameEvent = model.nameEvent
                     imageEvent = model.imageEvent
+                    btnShowTickets.onClick {
+                        PCShowQrTickets().show(getSupportFragmentManager(), "odmod")
+                    }
                     if (model.isPackage) {
                         tvNamePackage.showView()
                         tvNamePackage.text = model.namePackage

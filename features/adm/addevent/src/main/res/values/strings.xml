@@ -1,40 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="instructor_text">Instructor</string>
-    <string name="elegir_text">Elegir</string>
-    <string name="titulo_text">Titulo</string>
-    <string name="subtitulo_text">Subtitulo</string>
-    <string name="del_evento_text">Del evento</string>
-    <string name="descripci_n_name_text">Descripción</string>
 
-    <string name="paquetes_text">Paquetes</string>
-    <string name="boleto_text">Boleto</string>
-    <string name="adulto_text">Adulto</string>
-    <string name="infantil_text">Infantil</string>
-    <string name="empty_price">$0</string>
-    <string name="subtitulo_de_prueba_text">Subtitulo de prueba</string>
-    <string name="titulo_de_prueba_text">Titulo de prueba</string>
-    <string name="duraci_n_nfecha_y_hora_text">Duración\nFecha y hora</string>
-    <string name="place_text">Lugar</string>
-    <string name="location_text">Ubicación</string>
-    <string name="no_available_text">No disponible</string>
-    <string name="_00_00_am_text">00:00 AM</string>
-    <string name="_23_59_pm_text">23:59 PM</string>
-    <string name="_27_08_2022_text">Lun, 27 de Ago del 2022</string>
-    <string name="vestimenta_text">Vestimenta\nAccesorios</string>
-    <string name="people_text">Personas</string>
-    <string name="clothes_text">Vestimenta</string>
-    <string name="accesories_text">Accesorios</string>
-    <string name="requeri_nmientos_text">Requeri-\nmientos</string>
-    <string name="requirements_text">Requerimientos</string>
-    <string name="select_photo_text">Aún no has seleccionado una foto</string>
-    <string name="select_main_photo_text">Selecciona una foto principal</string>
-    <string name="add_text">Agregar</string>
-    <string name="amount_text">Monto</string>
-    <string name="change_text">Cambiar</string>ç
-    <string name="title_price_ticket_holder">Boleto %s</string>
-
-    <string name="write_text">Escribe</string>
-    <string name="package_name_text">Nombre del paquete</string>
-    <string name="imagen_de_inicio_text">Imagen de inicio</string>
 </resources>

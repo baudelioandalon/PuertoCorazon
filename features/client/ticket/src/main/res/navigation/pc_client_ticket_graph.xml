@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/PCClientTicketFragment"
-        android:name="com.boreal.puertocorazon.ticket.ui.PCClientTicketFragment"
+        android:name="com.boreal.puertocorazon.ticket.ui.showtickets.PCClientTicketFragment"
         android:label="PCClientTicketFragment"
         tools:layout="@layout/pc_client_ticket_fragment" />
 

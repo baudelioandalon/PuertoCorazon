@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.ticket.ui
+package com.boreal.puertocorazon.ticket.ui.showtickets
 
 import androidx.navigation.fragment.findNavController
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
