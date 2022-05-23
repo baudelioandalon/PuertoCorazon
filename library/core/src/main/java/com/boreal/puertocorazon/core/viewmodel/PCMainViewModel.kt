@@ -217,6 +217,8 @@ class PCMainViewModel(
         }
     }
 
+    fun getAllTicketsClient() = _ticketList.value?.response ?: arrayListOf()
+
     fun removeEventSelected() {
         _eventSelected.value = null
     }

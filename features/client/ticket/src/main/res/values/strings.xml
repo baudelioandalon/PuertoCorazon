@@ -2,4 +2,5 @@
 <resources>
     <string name="my_tickets">Mis Boletos</string>
     <string name="ticket_details_text">Detalles del boleto</string>
+    <string name="cargando">Cargando...</string>
 </resources>

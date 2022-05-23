@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.boreal.commonutils.base.CUBackHandler
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
     private val extended: Boolean = true
@@ -48,21 +48,7 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
         dialog = BottomSheetDialog(requireContext(), theme)
         if (extended) {
             dialog.setOnShowListener {
-                val bottomSheetDialog = it as BottomSheetDialog
-                val parentLayout =
-                    bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-                parentLayout?.let { parent ->
-                    val behaviour = BottomSheetBehavior.from(parent)
-                    val layoutParams: ViewGroup.LayoutParams
-                    val param = parent.layoutParams as ViewGroup.MarginLayoutParams
-                    param.setMargins(0, 130, 0, 0)
-                    layoutParams = param
-
-                    layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-                    parent.layoutParams = layoutParams
-                    behaviour.state = BottomSheetBehavior.STATE_EXPANDED
-                    behaviour.skipCollapsed = true
-                }
+                setExpanded()
             }
         }
 
@@ -80,22 +66,19 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
         super.onStart()
         if (extended) {
             dialog.setOnShowListener {
-                val bottomSheetDialog = it as BottomSheetDialog
-                val parentLayout =
-                    bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-                parentLayout?.let { parent ->
-                    val behaviour = BottomSheetBehavior.from(parent)
-                    val layoutParams: ViewGroup.LayoutParams
-                    val param = parent.layoutParams as ViewGroup.MarginLayoutParams
-                    param.setMargins(0, 130, 0, 0)
-                    layoutParams = param
-
-                    layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-                    parent.layoutParams = layoutParams
-                    behaviour.state = BottomSheetBehavior.STATE_EXPANDED
-                    behaviour.skipCollapsed = true
-                }
+                setExpanded()
             }
+        }
+    }
+
+    fun setExpanded() {
+        val parentLayout =
+            dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+        parentLayout?.let {
+            val behaviour = BottomSheetBehavior.from(it)
+            behaviour.state = BottomSheetBehavior.STATE_EXPANDED
+            behaviour.skipCollapsed = true
+            behaviour.peekHeight = 0
         }
     }
 

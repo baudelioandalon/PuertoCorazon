@@ -15,15 +15,12 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-fun Bitmap.getImageUri(levelQuality: Int = 23, replaceFile: Boolean = true): Uri{
+fun Bitmap.getImageUri(levelQuality: Int = 23): Uri{
     return if (Build.VERSION.SDK_INT >= 28) {
         val imagePath = "/storage/emulated/0/pictures"
         val dir = File(imagePath)
         if (!dir.exists()) dir.mkdirs()
-        val file = File(dir, if (replaceFile) "title.jpg" else randomID() + ".jpg")
-        if (file.exists() && replaceFile) {
-            file.delete()
-        }
+        val file = File(dir,  randomID() + ".jpg")
         try {
             val fOut = FileOutputStream(file)
             fOut.flush()

@@ -9,12 +9,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                 android:id="@+id/btnBack"
@@ -30,7 +30,6 @@
                 app:cu_cornerLeftBottom="10dp"
                 app:cu_cornerLeftTop="10dp"
                 app:cu_cornerRightSide="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -60,22 +59,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="20dp">
+            <TextView
+                android:id="@+id/txtCountElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textColor="@color/black_700"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnBack"
+                tools:text="10 / 10" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewQrs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCountElements"
+                tools:layout_height="200dp" />
 
             <TextView
                 android:id="@+id/tvTitleEvent"
@@ -84,21 +93,32 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/helvetica_neue_bold"
+                android:text="@string/cargando"
                 android:textColor="@color/black_700"
                 android:textSize="20sp"
-                android:translationZ="11dp"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerViewQrs"
                 tools:text="@string/titulo_de_prueba_text"
                 tools:visibility="visible" />
 
+            <ImageView
+                android:id="@+id/imgShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/ic_pc_share"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTitleEvent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleEvent" />
+
             <ScrollView
                 android:id="@+id/scrollContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginTop="42dp"
-                android:fillViewport="true"
                 app:layout_constraintStart_toStartOf="@+id/tvTitleEvent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitleEvent">
 
@@ -215,151 +235,120 @@
                         app:layout_constraintEnd_toEndOf="@id/imgSpacerTop"
                         app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5" />
 
+
                     <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                        android:id="@+id/containerPackageFilled"
-                        android:layout_width="0dp"
-                        android:layout_height="136dp"
-                        android:layout_marginVertical="20dp"
-                        android:elevation="3dp"
-                        app:cu_cornerAll="20dp"
-                        app:cu_strokeLineColor="@color/primary_700"
-                        app:cu_strokeLineWidth="2dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                        app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout5"
+                        android:id="@+id/cuRoundableLayoutpackage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="18dp"
+                        app:cu_backgroundColor="@color/helper_color_background"
+                        app:cu_cornerAll="10dp"
+                        app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
                         app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout5">
 
-                        <TextView
-                            android:id="@+id/tvNamePackage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="13dp"
-                            android:fontFamily="@font/helvetica_neue_bold"
-                            android:textColor="@color/black_700"
-                            android:textSize="18sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Familia" />
-
-                        <TextView
-                            android:id="@+id/tvCountAdults"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/avenir_medium"
-                            android:textColor="@color/black_700"
-                            android:textSize="17sp"
-                            app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
-                            app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
-                            tools:text="2 Adultos" />
-
-                        <TextView
-                            android:id="@+id/tvCountAdultsAvailable"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="13dp"
-                            android:fontFamily="@font/avenir_medium"
-                            android:textColor="@color/green_700"
-                            android:textSize="17sp"
-                            app:layout_constraintStart_toEndOf="@+id/tvCountAdults"
-                            app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
-                            tools:text="2 Adultos" />
-
-                        <TextView
-                            android:id="@+id/tvCountChildren"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/avenir_medium"
-                            android:textColor="@color/black_700"
-                            android:textSize="17sp"
-                            app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
-                            app:layout_constraintTop_toBottomOf="@+id/tvCountAdults"
-                            tools:text="2 Niños" />
-
-                        <TextView
-                            android:id="@+id/tvCountChildrenAvailable"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/avenir_medium"
-                            android:textColor="@color/green_700"
-                            android:textSize="17sp"
-                            app:layout_constraintStart_toStartOf="@+id/tvCountAdultsAvailable"
-                            app:layout_constraintTop_toBottomOf="@+id/tvCountAdultsAvailable"
-                            tools:text="2 Niños" />
-
                         <ImageView
-                            android:id="@+id/imageFromPackage"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="@dimen/margin_16"
-                            android:layout_marginEnd="@dimen/margin_16"
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
                             android:src="@drawable/ic_pc_family"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                            android:id="@+id/btnAddPackage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cu_backgroundColor="@color/primary_700"
-                            app:cu_cornerLeftTop="25dp"
-                            app:cu_cornerRightBottom="25dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
-
-                            <TextView
-                                android:id="@+id/textView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="40dp"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/montserrat_bold"
-                                android:text="@string/a_adir_text"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/tvPricePackage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="24dp"
-                                android:layout_marginBottom="5dp"
-                                android:fontFamily="@font/montserrat_bold"
-                                android:text="@string/_799_test_price"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
                     </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <TextView
+                        android:id="@+id/tvNamePackage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/helvetica_neue_bold"
+                        android:textColor="@color/black_700"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@+id/txtAddressPlace"
+                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
+                        tools:text="Familia" />
+
+                    <TextView
+                        android:id="@+id/tvCountAdults"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir_medium"
+                        android:textColor="@color/black_700"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
+                        tools:text="2 Adultos" />
+
+                    <TextView
+                        android:id="@+id/tvCountAdultsAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/avenir_medium"
+                        android:textColor="@color/green_700"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvNamePackage"
+                        app:layout_constraintStart_toEndOf="@+id/tvNamePackage"
+                        app:layout_constraintTop_toTopOf="@+id/tvNamePackage"
+                        tools:text="2 Adultos" />
+
+                    <TextView
+                        android:id="@+id/tvCountChildren"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/avenir_medium"
+                        android:textColor="@color/black_700"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvCountAdults"
+                        app:layout_constraintStart_toEndOf="@+id/tvCountAdults"
+                        app:layout_constraintTop_toTopOf="@+id/tvCountAdults"
+                        tools:text="2 Niños" />
+
+                    <TextView
+                        android:id="@+id/tvCountChildrenAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/avenir_medium"
+                        android:textColor="@color/green_700"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvCountAdultsAvailable"
+                        app:layout_constraintStart_toEndOf="@+id/tvCountAdultsAvailable"
+                        app:layout_constraintTop_toTopOf="@+id/tvCountAdultsAvailable"
+                        tools:text="2 Niños" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pc_vertical_spacer"
+                        app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayoutpackage"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </ScrollView>
 
-
             <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
                 android:id="@+id/btnReady"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/scrollContainer"
+                app:layout_constraintVertical_bias="1.0"
                 app:sl_shadow_color="@color/primary_300"
                 app:sl_shadowed="true">
 
                 <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                     android:id="@+id/btnAddPrice"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
+                    android:layout_width="359dp"
+                    android:layout_height="55dp"
                     android:layout_marginHorizontal="10dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -384,38 +373,7 @@
 
             </com.boreal.commonutils.component.shadowlayout.CUShadowLayout>
 
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnAuthImg"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginHorizontal="38dp"
-                android:visibility="gone"
-                app:cu_cornerAll="15dp"
-                app:cu_strokeLineColor="@color/primary_700"
-                app:cu_strokeLineWidth="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnReady">
-
-
-                <TextView
-                    android:id="@+id/txtUploadText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/change_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/primary_700"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </LinearLayout>
 

@@ -4,4 +4,6 @@ import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 
 class ShowTicketsViewModel : CUBaseViewModel() {
 
+    var scrollPosition = 0
+
 }

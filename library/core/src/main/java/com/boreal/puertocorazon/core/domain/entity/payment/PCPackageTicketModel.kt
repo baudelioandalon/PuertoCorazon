@@ -3,7 +3,6 @@ package com.boreal.puertocorazon.core.domain.entity.payment
 import com.boreal.puertocorazon.core.constants.NONE
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.PropertyName
-import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class PCPackageTicketModel(
@@ -25,4 +24,13 @@ data class PCPackageTicketModel(
     val countItem: Int = 0,
     @JvmField @PropertyName("isPackage")
     val isPackage: Boolean = false
-)
+) {
+    fun isAdultUsed() = attendedAdult >= countAdult
+    fun isChildUsed() = attendedChild >= countChild
+    fun isPackageUsed() = isAdultUsed() && isChildUsed()
+    fun isUsed() = isPackage && isPackageUsed() ||
+            countAdult > countChild && !isPackage && isAdultUsed() ||
+            countChild > countAdult && !isPackage && isChildUsed()
+
+    fun isNotUsed() = !isUsed()
+}
