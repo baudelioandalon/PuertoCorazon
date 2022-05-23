@@ -17,7 +17,7 @@ fun PCClientHomeFragment.initElements() {
         }
     }
     mainViewModel.navToTicket = {
-        findNavController().navigate(R.id.pc_client_ticket_graph)
+        findNavController().navigate(R.id.pc_ticket_graph)
     }
 }
 

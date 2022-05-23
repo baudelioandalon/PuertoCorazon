@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_ticket_graph"
+    app:startDestination="@id/PCTicketFragment">
+
+    <fragment
+        android:id="@+id/PCTicketFragment"
+        android:name="com.boreal.puertocorazon.ticket.ui.showtickets.PCTicketFragment"
+        android:label="PCTicketFragment"
+        tools:layout="@layout/pc_ticket_fragment" />
+
+</navigation>

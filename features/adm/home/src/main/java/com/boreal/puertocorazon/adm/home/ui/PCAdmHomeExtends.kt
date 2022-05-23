@@ -10,22 +10,6 @@ import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 
 fun PCAdmHomeFragment.initElements() {
     binding.apply {
-        userProfile = mainViewModel.getImageProfile()
-        findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
-            when (destination.id) {
-                R.id.PCShowEventFragment, R.id.PCBaseAddEventFragment, R.id.PCShowEventFragment -> {
-                    bottomMenu.hideView()
-                }
-                else -> {
-                    bottomMenu.showView()
-                }
-            }
-        }
-
-        btnNotifications.onClick {
-            mainViewModel.signOutUser()
-        }
-
         recyclerAdmHomeEvents.apply {
             adapter(adapterRecyclerAdmHomeEvent)
             mainViewModel.requestEvents()
@@ -34,9 +18,8 @@ fun PCAdmHomeFragment.initElements() {
             adapter = adapterRecyclerHomeService
             itemPercent(.88)
         }
-
-        btnNewEvent.setOnClickListener {
-            findNavController().navigate(R.id.pc_add_event_graph)
+        mainViewModel.navToTicket = {
+            findNavController().navigate(R.id.pc_ticket_graph)
         }
     }
 }

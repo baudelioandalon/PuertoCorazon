@@ -136,7 +136,7 @@ class PCStartFragment :
                     mainViewModel.allowExit = false
                     mainViewModel.logOut = false
                     mainViewModel.setAuthUser(userLocal)
-                    findNavController().navigate(R.id.action_PCStartFragment_to_pc_adm_home_graph)
+                    findNavController().navigate(R.id.action_PCStartFragment_to_pc_adm_menu_graph)
                         .run {
                             hideProgressBarCustom()
                         }
@@ -145,7 +145,7 @@ class PCStartFragment :
                     mainViewModel.allowExit = false
                     mainViewModel.logOut = false
                     mainViewModel.setAuthUser(userLocal)
-                    findNavController().navigate(R.id.action_PCStartFragment_to_pc_client_home_graph)
+                    findNavController().navigate(R.id.action_PCStartFragment_to_pc_client_menu_graph)
                         .run {
                             hideProgressBarCustom()
                         }

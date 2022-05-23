@@ -45,7 +45,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
         } else {
             navController.currentDestination?.apply {
                 if (id == R.id.PCClientMenuFragment ||
-                    id == R.id.PCAdmHomeFragment
+                    id == R.id.PCAdmMenuFragment
                 ) {
                     showOutDialog()
                 } else {

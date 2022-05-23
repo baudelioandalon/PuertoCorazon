@@ -5,13 +5,12 @@
     android:id="@+id/pc_client_home_graph"
     app:startDestination="@id/PCClientHomeFragment">
 
-
     <fragment
         android:id="@+id/PCClientHomeFragment"
         tools:layout="@layout/pc_client_home_fragment"
         android:name="com.boreal.puertocorazon.home.PCClientHomeFragment"
         android:label="PCClientHomeFragment" />
 
-    <include app:graph="@navigation/pc_client_ticket_graph" />
+    <include app:graph="@navigation/pc_ticket_graph" />
 
 </navigation>

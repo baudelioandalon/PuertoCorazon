@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_adm_menu_graph"
+    app:startDestination="@id/PCAdmMenuFragment">
+
+    <fragment
+        android:id="@+id/PCAdmMenuFragment"
+        android:name="com.boreal.puertocorazon.adm.menu.ui.PCAdmMenuFragment"
+        android:label="PCClientMenuFragment"
+        tools:layout="@layout/pc_adm_menu_fragment" />
+
+    <include app:graph="@navigation/pc_payment_graph" />
+    <include app:graph="@navigation/pc_show_event_graph" />
+    <include app:graph="@navigation/pc_add_event_graph" />
+
+</navigation>

@@ -49,27 +49,51 @@
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
         <ImageView
-            android:id="@+id/btnNotifications"
-            android:layout_width="23dp"
-            android:layout_height="26dp"
-            android:layout_marginEnd="25dp"
+            android:id="@+id/btnNewEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
-            android:src="@drawable/ic_pc_notification"
+            android:src="@drawable/ic_pc_calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNotifications"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/btnNotifications" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_pc_add_user"
             app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
-            app:layout_constraintEnd_toStartOf="@+id/btnCartShopping"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/roundableLayout"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
 
         <ImageView
             android:id="@+id/btnCartShopping"
             android:layout_width="23dp"
             android:layout_height="26dp"
-            android:layout_marginEnd="30dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:src="@drawable/ic_pc_cart_shopping"
+            app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
+            app:layout_constraintEnd_toStartOf="@+id/btnNotifications"
+            app:layout_constraintStart_toEndOf="@+id/btnNewEvent"
+            app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
+
+        <ImageView
+            android:id="@+id/btnNotifications"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_pc_notification"
             app:layout_constraintBottom_toBottomOf="@+id/roundableLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/roundableLayout" />
@@ -84,7 +108,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            app:navGraph="@navigation/pc_client_home_graph" />
+            app:navGraph="@navigation/pc_adm_home_graph" />
 
         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
             android:id="@+id/bottomMenu"

@@ -39,6 +39,7 @@ android {
         dataBinding = true
     }
 }
+
 repositories {
     google()
     jcenter()
@@ -52,7 +53,8 @@ dependencies {
     implementation(project(":library:ui-system"))
     implementation(project(":features:showevent"))
     implementation(project(":features:payments"))
-    implementation(project(":features:ticket"))
+    implementation(project(":features:adm:home"))
+    implementation(project(":features:adm:addevent"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)
@@ -84,9 +86,7 @@ dependencies {
     implementation(Dependency.firestoreKtx)
     implementation(Dependency.firebaseAuth)
 
-
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)
-
 }

@@ -11,30 +11,32 @@
         android:label="ALoginFragment"
         tools:layout="@layout/pc_login_fragment">
         <action
-            android:id="@+id/action_ALoginFragment_to_pc_client_home_graph"
+            android:id="@+id/action_ALoginFragment_to_pc_client_menu_graph"
             app:destination="@id/pc_client_menu_graph" />
         <action
-            android:id="@+id/action_ALoginFragment_to_pc_adm_home_graph"
-            app:destination="@id/pc_adm_home_graph" />
+            android:id="@+id/action_ALoginFragment_to_pc_adm_menu_graph"
+            app:destination="@id/pc_adm_menu_graph" />
+
     </fragment>
 
     <include app:graph="@navigation/pc_client_menu_graph" />
-    <include app:graph="@navigation/pc_adm_home_graph" />
+    <include app:graph="@navigation/pc_adm_menu_graph" />
     <fragment
         tools:layout="@layout/pc_start_login_fragment"
         android:id="@+id/PCStartFragment"
         android:name="com.boreal.puertocorazon.login.ui.start.PCStartFragment"
         android:label="PCStartFragment" >
+
         <action
             android:id="@+id/action_PCStartFragment_to_ALoginFragment"
             app:destination="@id/ALoginFragment" />
-        <action
-            android:id="@+id/action_PCStartFragment_to_pc_adm_home_graph"
-            app:destination="@id/pc_adm_home_graph" />
-        <action
-            android:id="@+id/action_PCStartFragment_to_pc_client_home_graph"
-            app:destination="@id/pc_client_menu_graph" />
-    </fragment>
 
+        <action
+            android:id="@+id/action_PCStartFragment_to_pc_client_menu_graph"
+            app:destination="@id/pc_client_menu_graph" />
+        <action
+            android:id="@+id/action_PCStartFragment_to_pc_adm_menu_graph"
+            app:destination="@id/pc_adm_menu_graph" />
+    </fragment>
 
 </navigation>

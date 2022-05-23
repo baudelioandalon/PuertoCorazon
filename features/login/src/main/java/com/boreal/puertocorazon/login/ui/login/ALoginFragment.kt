@@ -89,7 +89,7 @@ class ALoginFragment :
                 PCUserType.ADMINISTRATOR.type -> {
                     mainViewModel.allowExit = false
                     mainViewModel.logOut = false
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_home_graph)
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_adm_menu_graph)
                         .run {
                             hideProgressBarCustom()
                         }
@@ -97,7 +97,7 @@ class ALoginFragment :
                 PCUserType.CLIENT.type -> {
                     mainViewModel.allowExit = false
                     mainViewModel.logOut = false
-                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_home_graph)
+                    findNavController().navigate(R.id.action_ALoginFragment_to_pc_client_menu_graph)
                         .run {
                             hideProgressBarCustom()
                         }

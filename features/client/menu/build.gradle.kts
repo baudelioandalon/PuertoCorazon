@@ -87,7 +87,6 @@ dependencies {
     implementation(Dependency.firestoreKtx)
     implementation(Dependency.firebaseAuth)
 
-
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)

@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.client.menu.ui
+package com.boreal.puertocorazon.adm.menu.ui
 
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -6,9 +6,9 @@ import com.boreal.commonutils.extensions.changeDrawable
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
-import com.boreal.puertocorazon.client.home.R
+import com.boreal.puertocorazon.adm.menu.R
 
-fun PCClientMenuFragment.initElements() {
+fun PCAdmMenuFragment.initElements() {
     val navHostFragment =
         childFragmentManager.findFragmentById(R.id.navigationMenu) as NavHostFragment
     navController = navHostFragment.navController
@@ -33,6 +33,10 @@ fun PCClientMenuFragment.initElements() {
             findNavController().navigate(R.id.pc_payment_graph)
         }
 
+        btnNewEvent.onClick {
+            findNavController().navigate(R.id.pc_add_event_graph)
+        }
+
         imgTicket.onClick {
             if (navController.currentDestination?.label == "PCTicketFragment") {
                 return@onClick
@@ -43,7 +47,7 @@ fun PCClientMenuFragment.initElements() {
         }
 
         imgHome.onClick {
-            if (navController.currentDestination?.label == "PCClientHomeFragment") {
+            if (navController.currentDestination?.label == "PCAdmHomeFragment") {
                 return@onClick
             }
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
@@ -54,9 +58,9 @@ fun PCClientMenuFragment.initElements() {
     }
 }
 
-fun PCClientMenuFragment.drawMenu() {
+fun PCAdmMenuFragment.drawMenu() {
     binding.apply {
-        if (navController.currentDestination?.label == "PCClientHomeFragment") {
+        if (navController.currentDestination?.label == "PCAdmHomeFragment") {
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
         } else if (navController.currentDestination?.label == "PCTicketFragment") {

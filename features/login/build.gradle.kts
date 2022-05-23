@@ -60,7 +60,7 @@ dependencies {
     implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
     implementation(project(":features:client:menu"))
-    implementation(project(":features:adm:home"))
+    implementation(project(":features:adm:menu"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)

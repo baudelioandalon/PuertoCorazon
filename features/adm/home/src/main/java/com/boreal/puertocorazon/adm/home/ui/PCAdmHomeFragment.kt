@@ -77,14 +77,6 @@ class PCAdmHomeFragment :
 
     override fun initObservers() {
 
-        mainViewModel.eventSelected.observe(viewLifecycleOwner) {
-            it?.let {
-                if (it.idEvent != "NONE") {
-                    findNavController().navigate(R.id.pc_show_event_graph)
-                }
-            }
-        }
-
         mainViewModel.eventList.observe(viewLifecycleOwner) {
             it?.let {
                 when (it.status) {
