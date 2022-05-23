@@ -63,6 +63,5 @@ fun PCClientMenuFragment.drawMenu() {
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
         }
-
     }
 }
