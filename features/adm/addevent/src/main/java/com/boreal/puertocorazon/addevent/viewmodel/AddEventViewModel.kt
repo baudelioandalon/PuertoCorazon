@@ -6,56 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
-import com.boreal.puertocorazon.core.domain.entity.event.*
-import com.boreal.puertocorazon.core.domain.entity.requirements.PCRequirementEnum
+import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.core.domain.entity.event.PCEventToUploadModel
+import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
+import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
 import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
-import com.google.firebase.Timestamp
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 
 class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Input, AddEventUseCase.Output>) :
     CUBaseViewModel() {
 
-    private var newEvent = PCEventModel(
-        title = "Titilo de prueba",
-        subtitle = "Subtitulo de prueba",
-        description = "Esto es una descripcion de prueba",
-        addressPlace = "Calle miramar#1195, San esteban",
-        place = PCLocationModel(latitude = 0L, 5L),
-        eventType = "PARTICULAR",
-        imageGallery = listOf(),
-        videoGallery = listOf(),
-        packages = listOf(
-            PCPackageModel(
-                titlePackage = "Paquete 1",
-                adult = 2L,
-                child = 1L,
-                price = 500L
-            )
-        ),
-        priceAdult = 300L,
-        priceChild = 200L,
-        readyToShow = false,
-        schedule = listOf(
-            PCScheduleModel(
-                idTime = 1L,
-                startTime = Timestamp.now(),
-                endTime = Timestamp.now()
-            )
-        ),
-        creationDate = Timestamp.now(),
-        instructionId = "NONE",
-        instructorName = "NONE",
-        instructorImageUrl = "NONE",
-        mainImageUrl = "NONE",
-        capacity = 50L,
-        homeImageUrl = "NONE",
-        allowedPeople = listOf(PCRequirementEnum.OLD.name),
-        allowedAccesories = listOf(PCRequirementEnum.NECKLACE.name),
-        allowedClothing = listOf(PCRequirementEnum.LARGE_SHIRT.name)
-    )
+    private var newEvent = PCEventModel()
 
     private var eventImageToUpload = PCEventToUploadModel()
 
