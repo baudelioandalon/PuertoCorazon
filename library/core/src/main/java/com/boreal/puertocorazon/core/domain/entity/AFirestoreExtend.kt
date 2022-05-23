@@ -14,6 +14,9 @@ inline fun <reified T> List<DocumentSnapshot>.convertDataToList(idData: String) 
         this
     }
 
+inline fun <reified T> List<DocumentSnapshot>.convertData(idData: String) =
+    this@convertData.first().convertData<T>(idData)
+
 inline fun <reified T> List<DocumentSnapshot>.convertDataToList() =
     with(ArrayList<T>()) {
         this@convertDataToList.forEach {

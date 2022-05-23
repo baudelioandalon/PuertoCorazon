@@ -41,6 +41,7 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
     ): View {
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         initView()
+        initObservers()
         return binding.root
     }
 
@@ -53,7 +54,6 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
         }
 
         initDependency()
-        initObservers()
 
         if (activity is CUBackHandler) {
             cuBackHandler = activity as CUBackHandler

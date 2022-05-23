@@ -1,19 +1,24 @@
 package com.boreal.puertocorazon.ui
 
-import com.boreal.puertocorazon.core.data.datasource.GetPaymentDataSource
+import com.boreal.puertocorazon.core.data.datasource.GetEventDataSource
 import com.boreal.puertocorazon.core.data.datasource.GetHomeDataSource
+import com.boreal.puertocorazon.core.data.datasource.GetPaymentDataSource
 import com.boreal.puertocorazon.core.data.datasource.GetTicketDataSource
 import com.boreal.puertocorazon.core.data.datasource.remote.ARemotePaymentDataSource
+import com.boreal.puertocorazon.core.data.datasource.remote.PCRemoteEventDataSource
 import com.boreal.puertocorazon.core.data.datasource.remote.PCRemoteHomeDataSource
 import com.boreal.puertocorazon.core.data.datasource.remote.PCRemoteTicketDataSource
+import com.boreal.puertocorazon.core.domain.EventRepository
 import com.boreal.puertocorazon.core.domain.HomeRepository
 import com.boreal.puertocorazon.core.domain.PaymentRepository
 import com.boreal.puertocorazon.core.domain.TicketRepository
+import com.boreal.puertocorazon.core.repository.event.DefaultEventRepository
 import com.boreal.puertocorazon.core.repository.home.DefaultHomeRepository
 import com.boreal.puertocorazon.core.repository.payment.DefaultPaymentRepository
 import com.boreal.puertocorazon.core.repository.ticket.DefaultTicketRepository
-import com.boreal.puertocorazon.core.usecase.login.UseCase
+import com.boreal.puertocorazon.core.usecase.event.EventUseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
+import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
 import com.boreal.puertocorazon.core.usecase.ticket.TicketUseCase
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
@@ -61,11 +66,26 @@ val activityModule = module {
         PaymentUseCase(get(named("DefaultPaymentRepository")))
     }
 
+    single<GetEventDataSource>(named("PCRemoteEventDataSource")) {
+        PCRemoteEventDataSource()
+    }
+
+    single<EventRepository>(named("DefaultEventRepository")) {
+        DefaultEventRepository(
+            get(named("PCRemoteEventDataSource"))
+        )
+    }
+
+    single<UseCase<EventUseCase.Input, EventUseCase.Output>>(named("EventUseCase")) {
+        EventUseCase(get(named("DefaultEventRepository")))
+    }
+
     viewModel {
         PCMainViewModel(
             get(named("HomeUseCase")),
             get(named("PaymentUseCase")),
-            get(named("TicketUseCase"))
+            get(named("TicketUseCase")),
+            get(named("EventUseCase"))
         )
     }
 }

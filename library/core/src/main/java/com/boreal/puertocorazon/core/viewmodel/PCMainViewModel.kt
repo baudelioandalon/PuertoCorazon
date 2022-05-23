@@ -14,6 +14,7 @@ import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
+import com.boreal.puertocorazon.core.usecase.event.EventUseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
 import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
@@ -34,6 +35,7 @@ class PCMainViewModel(
     private val getHomeUseCase: UseCase<HomeUseCase.Input, HomeUseCase.Output>,
     private val getPaymentUseCase: UseCase<PaymentUseCase.Input, PaymentUseCase.Output>,
     private val getTicketUseCase: UseCase<TicketUseCase.Input, TicketUseCase.Output>,
+    private val getEventUseCase: UseCase<EventUseCase.Input, EventUseCase.Output>
 ) : CUBaseViewModel() {
 
     var countOutClicked = 0
@@ -136,6 +138,11 @@ class PCMainViewModel(
         get() = _eventList
     private val _eventList =
         MutableLiveData<AFirestoreGetResponse<List<PCEventModel>>>()
+
+    val singleEvent: LiveData<AFirestoreGetResponse<PCEventModel>>
+        get() = _singleEvent
+    private val _singleEvent =
+        MutableLiveData<AFirestoreGetResponse<PCEventModel>>()
 
     val ticketList: LiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>
         get() = _ticketList
@@ -253,6 +260,25 @@ class PCMainViewModel(
                 )
             }.collect {
                 _paymentTransaction.postValue(it.response)
+            }
+        }
+    }
+
+    fun requestSingleEvent(idEventToSearch: String) {
+        executeFlow {
+            if (_singleEvent.value?.status == AFirestoreStatusRequest.LOADING) {
+                return@executeFlow
+            }
+            _singleEvent.value = AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
+            getEventUseCase.execute(
+                EventUseCase.Input(
+                    idEventToSearch,
+                    "${BuildConfig.ENVIRONMENT}${BuildConfig.DEFAULT_EMAIL}Events"
+                )
+            ).catch { cause: Throwable ->
+                cause
+            }.collect {
+                _singleEvent.value = it.response
             }
         }
     }

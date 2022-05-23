@@ -50,6 +50,19 @@ fun PCClientMenuFragment.initElements() {
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
             mainViewModel.navigateToHome()
         }
+        drawMenu()
+    }
+}
+
+fun PCClientMenuFragment.drawMenu() {
+    binding.apply {
+        if (navController.currentDestination?.label == "PCClientHomeFragment") {
+            imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+        } else if (navController.currentDestination?.label == "PCClientTicketFragment") {
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+        }
 
     }
 }

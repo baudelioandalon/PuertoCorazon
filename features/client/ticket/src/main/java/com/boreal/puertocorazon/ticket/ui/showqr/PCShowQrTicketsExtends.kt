@@ -8,11 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieDrawable
 import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.extensions.changeTextColor
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.onClick
+import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.extension.addLinearHelper
 import com.boreal.puertocorazon.core.extension.scrollToPositionCentered
 import com.boreal.puertocorazon.core.utils.getImageUri
@@ -26,7 +28,15 @@ fun PCShowQrTickets.initElements() {
         btnBack.onClick {
             closeFragment()
         }
+        loadingImage.setAnimation(R.raw.last_loading)
+        loadingImage.repeatCount = LottieDrawable.INFINITE
+        loadingImage.playAnimation()
         initAdapter()
+    }
+}
+
+fun PCShowQrTickets.setData(eventModel: PCEventModel) {
+    binding.apply {
     }
 }
 
@@ -50,7 +60,6 @@ fun PCShowQrTickets.initAdapter() {
                                 linearLayoutManager.findFirstCompletelyVisibleItemPosition()
                             if (itemPosition >= 0 && itemPosition != showTicketViewModel.scrollPosition) {
                                 showTicketViewModel.scrollPosition = itemPosition
-                                //Execute request firestore
                                 fillData()
                             }
                         }
@@ -118,6 +127,7 @@ fun PCShowQrTickets.fillData() {
         }
         txtCountElements.text = "${showTicketViewModel.scrollPosition + 1} / ${listTickets.size}"
         listTickets[showTicketViewModel.scrollPosition].apply {
+            mainViewModel.requestSingleEvent(idEvent)
             tvTitleEvent.text = nameEvent
             if (isPackage) {
                 tvNamePackage.text = namePackage

@@ -126,207 +126,231 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                        android:id="@+id/cuRoundableLayout4"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="25dp"
-                        app:cu_backgroundColor="@color/helper_color_background"
-                        app:cu_cornerAll="10dp"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/loadingImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:elevation="1dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/containerInformation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/cuRoundableLayout4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="25dp"
+                            app:cu_backgroundColor="@color/helper_color_background"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pc_clock"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                        <TextView
+                            android:id="@+id/txtDateEvent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_pc_clock"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:layout_marginStart="14dp"
+                            android:fontFamily="@font/avenir_medium"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout4"
+                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout4"
+                            tools:text="March 24, 2021" />
 
-                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-                    <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:fontFamily="@font/avenir_medium"
-                        android:text="March 24, 2021"
-                        android:textColor="@color/gray_subtitle"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout4"
-                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout4" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/helvetica_neue"
-                        android:text="8:00 AM - 1:00 PM"
-                        android:textColor="@color/black_700"
-                        android:textSize="21sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout4"
-                        app:layout_constraintStart_toStartOf="@+id/textView7" />
-
-                    <ImageView
-                        android:id="@+id/imgSpacerTop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="26dp"
-                        android:src="@drawable/ic_pc_vertical_spacer"
-                        app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout4"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout4" />
-
-                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                        android:id="@+id/cuRoundableLayout5"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="18dp"
-                        app:cu_backgroundColor="@color/helper_color_background"
-                        app:cu_cornerAll="10dp"
-                        app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
-                        app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout4">
+                        <TextView
+                            android:id="@+id/txtHourEvent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:textColor="@color/black_700"
+                            android:textSize="21sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout4"
+                            app:layout_constraintStart_toStartOf="@+id/txtDateEvent"
+                            tools:text="8:00 AM - 1:00 PM" />
 
                         <ImageView
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:src="@drawable/ic_pc_location_black"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:id="@+id/imgSpacerTop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="26dp"
+                            android:src="@drawable/ic_pc_vertical_spacer"
+                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout4"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout4" />
 
-                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/cuRoundableLayout5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="18dp"
+                            app:cu_backgroundColor="@color/helper_color_background"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
+                            app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout4">
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:fontFamily="@font/avenir_medium"
-                        android:text="Puerto Vallarta, MX"
-                        android:textColor="@color/gray_subtitle"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout5"
-                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5" />
+                            <ImageView
+                                android:layout_width="21dp"
+                                android:layout_height="21dp"
+                                android:src="@drawable/ic_pc_location_black"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/txtAddressPlace"
-                        maxDot="@{20}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/helvetica_neue"
-                        android:text="Miramar #1195 San Est..."
-                        android:textColor="@color/black_700"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/textView8" />
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_pc_vertical_spacer"
-                        app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
-                        app:layout_constraintEnd_toEndOf="@id/imgSpacerTop"
-                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5" />
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:fontFamily="@font/avenir_medium"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout5"
+                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5"
+                            tools:text="Puerto Vallarta, MX" />
 
-
-                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                        android:id="@+id/cuRoundableLayoutpackage"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="18dp"
-                        app:cu_backgroundColor="@color/helper_color_background"
-                        app:cu_cornerAll="10dp"
-                        app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
-                        app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout5">
+                        <TextView
+                            android:id="@+id/txtAddressPlace"
+                            maxDot="@{20}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/helvetica_neue"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/textView8"
+                            tools:text="Miramar #1195 San Est..." />
 
                         <ImageView
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:src="@drawable/ic_pc_family"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:id="@+id/imageView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pc_vertical_spacer"
+                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
+                            app:layout_constraintEnd_toEndOf="@id/imgSpacerTop"
+                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5" />
 
-                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-                    <TextView
-                        android:id="@+id/tvNamePackage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/helvetica_neue_bold"
-                        android:textColor="@color/black_700"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/txtAddressPlace"
-                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
-                        tools:text="Familia" />
+                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                            android:id="@+id/cuRoundableLayoutpackage"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="18dp"
+                            app:cu_backgroundColor="@color/helper_color_background"
+                            app:cu_cornerAll="10dp"
+                            app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
+                            app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout5">
 
-                    <TextView
-                        android:id="@+id/tvCountAdults"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/avenir_medium"
-                        android:textColor="@color/black_700"
-                        android:textSize="17sp"
-                        app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
-                        app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
-                        tools:text="2 Adultos" />
+                            <ImageView
+                                android:layout_width="21dp"
+                                android:layout_height="21dp"
+                                android:src="@drawable/ic_pc_family"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvCountAdultsAvailable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/avenir_medium"
-                        android:textColor="@color/green_700"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvNamePackage"
-                        app:layout_constraintStart_toEndOf="@+id/tvNamePackage"
-                        app:layout_constraintTop_toTopOf="@+id/tvNamePackage"
-                        tools:text="2 Adultos" />
+                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-                    <TextView
-                        android:id="@+id/tvCountChildren"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/avenir_medium"
-                        android:textColor="@color/black_700"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvCountAdults"
-                        app:layout_constraintStart_toEndOf="@+id/tvCountAdults"
-                        app:layout_constraintTop_toTopOf="@+id/tvCountAdults"
-                        tools:text="2 Niños" />
+                        <TextView
+                            android:id="@+id/tvNamePackage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/helvetica_neue_bold"
+                            android:textColor="@color/black_700"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toStartOf="@+id/txtAddressPlace"
+                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
+                            tools:text="Familia" />
 
-                    <TextView
-                        android:id="@+id/tvCountChildrenAvailable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/avenir_medium"
-                        android:textColor="@color/green_700"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvCountAdultsAvailable"
-                        app:layout_constraintStart_toEndOf="@+id/tvCountAdultsAvailable"
-                        app:layout_constraintTop_toTopOf="@+id/tvCountAdultsAvailable"
-                        tools:text="2 Niños" />
+                        <TextView
+                            android:id="@+id/tvCountAdults"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/avenir_medium"
+                            android:textColor="@color/black_700"
+                            android:textSize="17sp"
+                            app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
+                            app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
+                            tools:text="2 Adultos" />
 
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_pc_vertical_spacer"
-                        app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayoutpackage"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                        app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage" />
+                        <TextView
+                            android:id="@+id/tvCountAdultsAvailable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/avenir_medium"
+                            android:textColor="@color/green_700"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvNamePackage"
+                            app:layout_constraintStart_toEndOf="@+id/tvNamePackage"
+                            app:layout_constraintTop_toTopOf="@+id/tvNamePackage"
+                            tools:text="2 Adultos" />
 
+                        <TextView
+                            android:id="@+id/tvCountChildren"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/avenir_medium"
+                            android:textColor="@color/black_700"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvCountAdults"
+                            app:layout_constraintStart_toEndOf="@+id/tvCountAdults"
+                            app:layout_constraintTop_toTopOf="@+id/tvCountAdults"
+                            tools:text="2 Niños" />
+
+                        <TextView
+                            android:id="@+id/tvCountChildrenAvailable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/avenir_medium"
+                            android:textColor="@color/green_700"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvCountAdultsAvailable"
+                            app:layout_constraintStart_toEndOf="@+id/tvCountAdultsAvailable"
+                            app:layout_constraintTop_toTopOf="@+id/tvCountAdultsAvailable"
+                            tools:text="2 Niños" />
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pc_vertical_spacer"
+                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayoutpackage"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
