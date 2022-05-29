@@ -8,6 +8,7 @@ import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
+import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
@@ -183,7 +184,9 @@ class PCMainViewModel(
 
     fun getIdUser() = _authUser.value?.user_id ?: NONE
     fun getEmailUser() = _authUser.value?.email ?: NONE
+    fun getNameUser() = _authUser.value?.name ?: NONE
     fun getImageProfile() = _authUser.value?.picture ?: NONE
+    fun getTypeUser() = _authUser.value?.userType ?: PCUserType.NONE.type
 
     fun requestEvents() {
         executeFlow {
@@ -240,7 +243,7 @@ class PCMainViewModel(
                 PaymentUseCase.Input(
                     PCPaymentRequest(
                         idClient = getIdUser(),
-                        nameUser = "Baudelio Andalon",
+                        nameUser = getNameUser(),
                         email = getEmailUser(),
                         amount = getShoppingList().sumOf { (it.countItem * it.priceElement) }
                             .toLong(),
