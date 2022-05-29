@@ -36,6 +36,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
         initElements()
         mainViewModel.goToHomeClient = {
             navController.popBackStack(R.id.pc_client_menu_graph, false)
+            navController.popBackStack(R.id.pc_adm_menu_graph, false)
         }
     }
 

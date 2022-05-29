@@ -48,7 +48,7 @@ class PCMainViewModel(
 
     var goToHomeClient: (() -> Unit)? = null
 
-    fun goToHomeClient() {
+    fun goToMenuHome() {
         goToHomeClient?.invoke()
     }
 
@@ -165,7 +165,10 @@ class PCMainViewModel(
             Realm.getDefaultInstance().executeTransaction {
                 FirebaseAuth.getInstance().signOut()
                 it.deleteAll()
-                _authUser.postValue(AAuthModel())
+                _ticketList.postValue(AFirestoreGetResponse())
+                _eventList.postValue(AFirestoreGetResponse())
+                _paymentTransaction.postValue(DataResponse())
+                _authUser.postValue(null)
                 _goLogin.postValue(true)
                 allowExit = true
             }
@@ -236,7 +239,7 @@ class PCMainViewModel(
             getPaymentUseCase.execute(
                 PaymentUseCase.Input(
                     PCPaymentRequest(
-                        idClient = "epQUrsON4aNxzxqizDgSZlc3whX2",//baudelioandalon@gmail.com,
+                        idClient = getIdUser(),
                         nameUser = "Baudelio Andalon",
                         email = getEmailUser(),
                         amount = getShoppingList().sumOf { (it.countItem * it.priceElement) }

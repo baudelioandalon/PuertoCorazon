@@ -25,7 +25,7 @@ class PCAddCardFragment : CUBaseFragment<PcAddCardFragmentBinding>() {
                     StatusRequestEnum.SUCCESS -> {
                         mainViewModel.paymentClear()
                         mainViewModel.clearShoppingCart()
-                        mainViewModel.goToHomeClient()
+                        mainViewModel.goToMenuHome()
                         showToast(
                             "Compra realizada exitosamente,\n en unos momentos sus boletos estarán listos",
                             Toast.LENGTH_LONG
