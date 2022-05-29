@@ -1,313 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_a_background_login"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.github.mmin18.widget.RealtimeBlurView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:realtimeBlurRadius="250dp"
-                app:realtimeOverlayColor="#A4F8F6F6" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.55"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_pc_start_left_login"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="86dp"
-                android:alpha="0.55"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_pc_start_right_login"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imgTop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_pc_start_top_login"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/imgLogo"
-                android:layout_width="45dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
-                android:elevation="7dp"
-                app:cu_backgroundColor="@color/primary_700"
-                app:cu_cornerLeftSide="20dp"
-                app:cu_cornerRightTop="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/imgTop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgTop">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_pc_puerto_corazon_colibri_white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/imgOne"
-                android:layout_width="146dp"
-                android:layout_height="220dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:elevation="6dp"
-                app:cu_cornerAll="80dp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView9"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgTop">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/pc_start_login_three"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/imgTwo"
-                android:layout_width="146dp"
-                android:layout_height="220dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="80dp"
-                android:elevation="5dp"
-                app:cu_cornerAll="80dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="@+id/imgOne">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.45"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/pc_start_login_one"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:fontFamily="@font/helvetica_neue_bold"
-                android:text="@string/login_puerto_coraz_n_text"
-                android:textColor="@color/black_700"
-                android:textSize="35sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgTwo" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/helvetica_neue_bold"
-                android:text="Acércate a nuestro centro, puedes\n venir con tu familia."
-                android:textColor="#A9A9A9"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_pc_middle_login"
-                app:layout_constraintEnd_toEndOf="@+id/textView10"
-                app:layout_constraintStart_toStartOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnGoogle"
-                android:layout_width="77dp"
-                android:layout_height="77dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="4dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cu_backgroundColor="#FAE9E9"
-                app:cu_cornerLeftBottom="80dp"
-                app:cu_cornerLeftTop="80dp"
-                app:cu_cornerRightTop="80dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_google_logo"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnFacebook"
-                android:layout_width="77dp"
-                android:layout_height="77dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="20dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cu_backgroundColor="#E6ECFA"
-                app:cu_cornerLeftTop="80dp"
-                app:cu_cornerRightBottom="80dp"
-                app:cu_cornerRightTop="80dp"
-                app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_facebook_logo"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnPuertoCorazon"
-                android:layout_width="77dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="22dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:rotation="135"
-                app:cu_backgroundColor="#ECE4F0"
-                app:cu_cornerLeftTop="80dp"
-                app:cu_cornerRightBottom="80dp"
-                app:cu_cornerRightTop="80dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
-                app:layout_constraintVertical_bias="0.0">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:rotation="-135"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_pc_puerto_corazon_colibri"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout5"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/login_splash"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnPuertoCorazon"
-                app:layout_constraintVertical_bias="1.0">
+                android:layout_height="match_parent"
+                android:layout_marginTop="-15dp"
+                android:background="@color/white">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ya_conoces_nuestro_sitio"
-                    android:textColor="#373444"
-                    android:textSize="15sp" />
+                    android:padding="60dp"
+                    android:src="@drawable/ic_pc_logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/helvetica_neue_bold"
-                    android:text="Visitanos"
-                    android:textColor="#DD2F34"
-                    android:textSize="15sp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
+            <ScrollView
+                android:id="@+id/containerLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                android:visibility="gone"
+                tools:visibility="visible">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_a_background_login"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    </ScrollView>
+                    <com.github.mmin18.widget.RealtimeBlurView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:realtimeBlurRadius="250dp"
+                        app:realtimeOverlayColor="#A4F8F6F6" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.55"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_pc_start_left_login"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="86dp"
+                        android:alpha="0.55"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_pc_start_right_login"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imgTop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/ic_pc_start_top_login"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/imgLogo"
+                        android:layout_width="45dp"
+                        android:layout_height="33dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:elevation="7dp"
+                        app:cu_backgroundColor="@color/primary_700"
+                        app:cu_cornerLeftSide="20dp"
+                        app:cu_cornerRightTop="20dp"
+                        app:layout_constraintEnd_toStartOf="@+id/imgTop"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgTop">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_pc_puerto_corazon_colibri_white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/imgOne"
+                        android:layout_width="146dp"
+                        android:layout_height="220dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:elevation="6dp"
+                        app:cu_cornerAll="80dp"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgTop">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/pc_start_login_three"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/imgTwo"
+                        android:layout_width="146dp"
+                        android:layout_height="220dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="80dp"
+                        android:elevation="5dp"
+                        app:cu_cornerAll="80dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView10"
+                        app:layout_constraintTop_toTopOf="@+id/imgOne">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.45"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/pc_start_login_one"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="38dp"
+                        android:fontFamily="@font/helvetica_neue_bold"
+                        android:text="@string/login_puerto_coraz_n_text"
+                        android:textColor="@color/black_700"
+                        android:textSize="35sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgTwo" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/helvetica_neue_bold"
+                        android:text="Acércate a nuestro centro, puedes\n venir con tu familia."
+                        android:textColor="#A9A9A9"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/ic_pc_middle_login"
+                        app:layout_constraintEnd_toEndOf="@+id/textView10"
+                        app:layout_constraintStart_toStartOf="@+id/textView10"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/btnGoogle"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginEnd="4dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cu_backgroundColor="#FAE9E9"
+                        app:cu_cornerLeftBottom="80dp"
+                        app:cu_cornerLeftTop="80dp"
+                        app:cu_cornerRightTop="80dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView11">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_google_logo"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/btnFacebook"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginEnd="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cu_backgroundColor="#E6ECFA"
+                        app:cu_cornerLeftTop="80dp"
+                        app:cu_cornerRightBottom="80dp"
+                        app:cu_cornerRightTop="80dp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView11">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_facebook_logo"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                        android:id="@+id/btnPuertoCorazon"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="22dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:rotation="135"
+                        app:cu_backgroundColor="#ECE4F0"
+                        app:cu_cornerLeftTop="80dp"
+                        app:cu_cornerRightBottom="80dp"
+                        app:cu_cornerRightTop="80dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="20dp"
+                            android:rotation="-135"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_pc_puerto_corazon_colibri"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnPuertoCorazon"
+                        app:layout_constraintVertical_bias="1.0">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ya_conoces_nuestro_sitio"
+                            android:textColor="#373444"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/helvetica_neue_bold"
+                            android:text="Visitanos"
+                            android:textColor="#DD2F34"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

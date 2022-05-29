@@ -6,6 +6,8 @@ import com.boreal.commonutils.base.CUBaseActivity
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialog
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.R
+import com.boreal.puertocorazon.core.databinding.SplashBinding
+import com.boreal.puertocorazon.core.utils.DialogGenericFragment
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.databinding.PcBaseActivityBinding
 import com.boreal.puertocorazon.databinding.PcOutDialogBinding
@@ -16,9 +18,10 @@ import kotlin.system.exitProcess
 
 class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
 
-    private val mainViewModel: PCMainViewModel by viewModel()
+    val mainViewModel: PCMainViewModel by viewModel()
     lateinit var navController: NavController
     lateinit var dialog: CUBlurDialog
+    lateinit var splashDialog: DialogGenericFragment<SplashBinding>
 
     override fun getLayout() = R.layout.pc_base_activity
 
@@ -37,6 +40,16 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
         mainViewModel.goToHomeClient = {
             navController.popBackStack(R.id.pc_client_menu_graph, false)
             navController.popBackStack(R.id.pc_adm_menu_graph, false)
+        }
+        mainViewModel.splash = { showSplash ->
+            if (this::splashDialog.isInitialized) {
+                if (showSplash && !splashDialog.isVisible && !splashDialog.isAdded) {
+                    mainViewModel.resetLogin = true
+                    splashDialog.show(supportFragmentManager, "dialog_splash")
+                } else {
+                    splashDialog.dismissAllowingStateLoss()
+                }
+            }
         }
     }
 

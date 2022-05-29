@@ -7,7 +7,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.base.CUBaseFragment
+import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.showToast
+import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
@@ -34,7 +36,7 @@ class PCStartFragment :
     lateinit var oneTapClient: SignInClient
     lateinit var signInRequest: BeginSignInRequest
     val viewModel: ALoginViewModel by sharedViewModel()
-    private val mainViewModel: PCMainViewModel by activityViewModels()
+    val mainViewModel: PCMainViewModel by activityViewModels()
 
     override fun getLayout() = R.layout.pc_start_login_fragment
 
@@ -82,6 +84,17 @@ class PCStartFragment :
 
         if (FirebaseAuth.getInstance().currentUser != null) {
             viewModel.getLocalUser()
+        } else {
+            if (mainViewModel.resetLogin) {
+                mainViewModel.hideSplash {
+                    mainViewModel.resetLogin = false
+                    binding.loginSplash.hideView()
+                    binding.containerLogin.showView()
+                }
+            }else{
+                binding.loginSplash.hideView()
+                binding.containerLogin.showView()
+            }
         }
         viewModel.authUser.observe(viewLifecycleOwner) {
             it?.let { authInfo ->

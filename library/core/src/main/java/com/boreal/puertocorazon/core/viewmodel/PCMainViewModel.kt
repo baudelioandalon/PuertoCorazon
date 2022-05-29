@@ -27,6 +27,7 @@ import com.boreal.puertocorazon.core.utils.retrofit.core.StatusRequestEnum
 import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -48,9 +49,25 @@ class PCMainViewModel(
     private val cardList = arrayListOf<PCCardModel>()
 
     var goToHomeClient: (() -> Unit)? = null
+    var splash: ((show: Boolean) -> Unit)? = null
+    var resetLogin = true
 
     fun goToMenuHome() {
         goToHomeClient?.invoke()
+    }
+
+    fun showSplash() {
+        viewModelScope.launch(Dispatchers.Main) {
+            splash?.invoke(true)
+        }
+    }
+
+    fun hideSplash(clicked: () -> Unit = {}) {
+        viewModelScope.launch(Dispatchers.Main) {
+            delay(1000)
+            splash?.invoke(false)
+            clicked()
+        }
     }
 
     private var shoppingCart = arrayListOf<PCShoppingModel>()
@@ -103,6 +120,7 @@ class PCMainViewModel(
     }
 
     fun getShoppingList() = shoppingCart
+
     private fun getShoppingListToMap() = with(ArrayList<PCPackageTicketModel>()) {
         getShoppingList().forEach { element ->
             repeat(element.countItem) {
@@ -163,6 +181,7 @@ class PCMainViewModel(
 
     fun signOutUser() {
         viewModelScope.launch(Dispatchers.IO) {
+            showSplash()
             Realm.getDefaultInstance().executeTransaction {
                 FirebaseAuth.getInstance().signOut()
                 it.deleteAll()
@@ -173,6 +192,7 @@ class PCMainViewModel(
                 _goLogin.postValue(true)
                 allowExit = true
             }
+
         }
     }
 

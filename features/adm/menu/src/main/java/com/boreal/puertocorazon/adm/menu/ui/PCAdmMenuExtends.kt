@@ -14,6 +14,7 @@ fun PCAdmMenuFragment.initElements() {
     navController = navHostFragment.navController
     binding.apply {
         userProfile = mainViewModel.getImageProfile()
+        mainViewModel.hideSplash()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.PCShowEventFragment, R.id.PCCartShoppingFragment -> {

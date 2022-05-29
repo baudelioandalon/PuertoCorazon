@@ -26,6 +26,7 @@ fun ALoginFragment.initElements() {
         }
 
         btnBack.onClick {
+            mainViewModel.resetLogin = false
             findNavController().popBackStack(R.id.PCStartFragment, false)
         }
         if(mainViewModel.logOut){
