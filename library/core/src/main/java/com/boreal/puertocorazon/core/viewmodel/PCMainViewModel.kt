@@ -64,7 +64,7 @@ class PCMainViewModel(
 
     fun hideSplash(clicked: () -> Unit = {}) {
         viewModelScope.launch(Dispatchers.Main) {
-            delay(1000)
+            delay(500)
             splash?.invoke(false)
             clicked()
         }

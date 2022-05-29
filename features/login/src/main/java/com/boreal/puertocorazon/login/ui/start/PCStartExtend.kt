@@ -95,6 +95,7 @@ fun PCStartFragment.goToLogin(typeSession: PCTypeSession) {
 
         }
         PCTypeSession.NORMAL -> {
+            mainViewModel.logOut = false
             findNavController().navigate(R.id.action_PCStartFragment_to_ALoginFragment)
         }
     }
