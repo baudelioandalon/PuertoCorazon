@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="lorem_impsum_text">You will learn tennis Lorem Ipsum is simply du mmy text of the printing and typesetting indust ry. Lorem Ipsum has been the industry’s stan dard dummy text ever since the 1500s.</string>
-    <string name="descripci_n_text">Descripción</string>
-    <string name="gallery_text">Galeria</string>
-    <string name="paquetes_text">Paquetes</string>
-    <string name="agregar_al_carrito_text">Agregar al carrito</string>
-    <string name="u2022_follow_text">• Follow</string>
+
 </resources>

@@ -5,6 +5,7 @@ import com.boreal.commonutils.extensions.changeTextColor
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
+import com.boreal.puertocorazon.core.component.tabadapter.MenuBottomAdapter
 import com.boreal.puertocorazon.showevent.R
 import com.boreal.puertocorazon.showevent.ui.sedescription.PCShowEventDescriptionFragment
 import com.boreal.puertocorazon.showevent.ui.segallery.PCShowEventGalleryFragment

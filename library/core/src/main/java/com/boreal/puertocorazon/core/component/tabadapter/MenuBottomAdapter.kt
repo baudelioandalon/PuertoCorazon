@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.showevent.ui.showevent
+package com.boreal.puertocorazon.core.component.tabadapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
