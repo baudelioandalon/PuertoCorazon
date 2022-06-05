@@ -9,6 +9,9 @@ import com.boreal.puertocorazon.core.utils.toFormat
 
 fun PCShowDetailTicket.initElements() {
     binding.apply {
+        btnBack.onClick {
+            closeFragment()
+        }
         event.apply {
             tvTitleEvent.text = title
             imageEvent = mainImageUrl

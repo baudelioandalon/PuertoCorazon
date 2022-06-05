@@ -13,7 +13,6 @@ import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.globalmethod.randomID
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileOutputStream
 
 fun Bitmap.getImageUri(levelQuality: Int = 23): Uri {
     return if (Build.VERSION.SDK_INT >= 28) {
@@ -21,13 +20,7 @@ fun Bitmap.getImageUri(levelQuality: Int = 23): Uri {
         val dir = File(imagePath)
         if (!dir.exists()) dir.mkdirs()
         val file = File(dir, randomID() + ".jpg")
-        try {
-            val fOut = FileOutputStream(file)
-            fOut.flush()
-            fOut.close()
-        } catch (exception: Exception) {
-        }
-        ImageUtils.save(this, file, Bitmap.CompressFormat.JPEG, levelQuality)
+        ImageUtils.save(this, file, Bitmap.CompressFormat.JPEG, levelQuality, true)
         UriUtils.file2Uri(getFileByPath(file.path))
     } else {
         val stream = ByteArrayOutputStream()
