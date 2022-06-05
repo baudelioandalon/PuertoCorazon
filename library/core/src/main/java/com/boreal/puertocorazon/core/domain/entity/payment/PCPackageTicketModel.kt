@@ -1,9 +1,11 @@
 package com.boreal.puertocorazon.core.domain.entity.payment
 
 import com.boreal.puertocorazon.core.constants.NONE
+import com.boreal.puertocorazon.core.domain.entity.ticket.PCAttendedItem
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.PropertyName
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class PCPackageTicketModel(
     val idPackage: String = "",
@@ -13,7 +15,7 @@ data class PCPackageTicketModel(
     val idEvent: String = "",
     val attendedAdult: Long = 0L,
     val attendedChild: Long = 0L,
-    val attendedTime: List<Timestamp> = listOf(),
+    val attendedTime: ArrayList<PCAttendedItem> = arrayListOf(),
     val payedDate: Timestamp = Timestamp(Date(0L)),
     val countAdult: Long = 0L,
     val countChild: Long = 0L,

@@ -168,7 +168,7 @@
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout4"
                         app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout4"
-                        tools:text="March 24, 2021" />
+                        tools:text="Vie, 13 de May del 2022" />
 
                     <TextView
                         android:id="@+id/txtHourEvent"

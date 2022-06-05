@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="imageEvent"
+            type="java.lang.String" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerDetailsTicket"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnBack"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cu_cornerLeftBottom="10dp"
+                app:cu_cornerLeftTop="10dp"
+                app:cu_cornerRightSide="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pc_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/select_tickets_text"
+                android:textColor="@color/black_700"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSelectedItems"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/btnShadow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnBack"
+                tools:itemCount="3"
+                tools:listitem="@layout/pc_select_ticket_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
+                android:id="@+id/btnShadow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:sl_shadow_color="@color/primary_300"
+                app:sl_shadowed="true">
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/btnToRedeem"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="10dp"
+                    app:cu_backgroundColor="@color/primary_700"
+                    app:cu_cornerAll="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/btnReady"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/insideText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/to_redeem_text"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            </com.boreal.commonutils.component.shadowlayout.CUShadowLayout>
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/btnCancel"
+                android:layout_width="359dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="29dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cu_cornerLeftSide="15dp"
+                app:cu_cornerRightSide="15dp"
+                app:cu_strokeLineColor="@color/helper_color"
+                app:cu_strokeLineWidth="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/txtRedeem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/primary_700"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</layout>

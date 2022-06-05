@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp">
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/btnAttendedItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cu_backgroundColor="#FAFAFA"
+            android:foreground="?attr/selectableItemBackground">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/cuRoundableLayoutpackage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cu_backgroundColor="@color/helper_color_background"
+                app:cu_cornerAll="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgTypeTicket"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/ic_pc_clock_gray" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/tvNamePackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/helvetica_neue_bold"
+                android:textColor="@color/gray_letter"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/cuRoundableLayoutpackage"
+                app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
+                tools:text="Familia" />
+
+            <TextView
+                android:id="@+id/tvCountAdults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/helvetica_neue_bold"
+                android:textColor="@color/black_700"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
+                app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
+                tools:text="2 Adultos" />
+
+            <ImageView
+                android:id="@+id/imgSpacer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pc_vertical_spacer"
+                app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayoutpackage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+    </LinearLayout>
+</layout>
