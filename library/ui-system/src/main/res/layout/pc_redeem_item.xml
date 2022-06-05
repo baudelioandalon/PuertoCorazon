@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+            android:id="@+id/containerTicketToRedeem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cu_cornerAll="10dp">
+
+            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                android:id="@+id/cuRoundableLayoutpackage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cu_backgroundColor="@color/helper_color_background"
+                app:cu_cornerAll="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgTypeTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/ic_pc_package_ticket" />
+
+            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            <TextView
+                android:id="@+id/tvNamePackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/helvetica_neue_bold"
+                android:textColor="@color/black_700"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/cuRoundableLayoutpackage"
+                app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
+                tools:text="Familia" />
+
+            <TextView
+                android:id="@+id/tvCountAdults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenir_medium"
+                android:textColor="@color/black_700"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
+                app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
+                tools:text="2 Adultos" />
+
+            <TextView
+                android:id="@+id/tvCountAdultsAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:textColor="@color/green_700"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvNamePackage"
+                app:layout_constraintStart_toEndOf="@+id/tvNamePackage"
+                app:layout_constraintTop_toTopOf="@+id/tvNamePackage"
+                tools:text="2 Adultos" />
+
+            <TextView
+                android:id="@+id/tvCountChildren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:textColor="@color/black_700"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCountAdults"
+                app:layout_constraintStart_toEndOf="@+id/tvCountAdults"
+                app:layout_constraintTop_toTopOf="@+id/tvCountAdults"
+                tools:text="2 Niños" />
+
+            <TextView
+                android:id="@+id/tvCountChildrenAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/avenir_medium"
+                android:textColor="@color/green_700"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCountAdultsAvailable"
+                app:layout_constraintStart_toEndOf="@+id/tvCountAdultsAvailable"
+                app:layout_constraintTop_toTopOf="@+id/tvCountAdultsAvailable"
+                tools:text="2 Niños" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pc_vertical_spacer"
+                app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayoutpackage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage" />
+
+        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+    </LinearLayout>
+</layout>

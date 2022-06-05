@@ -76,4 +76,12 @@ object Version {
 
     //PERMISSION
     const val dexterVersion = "6.2.2"
+
+    //Transactions
+    const val conektaVersion =  "2.1"
+    const val apacheOrgVersion =  "4.1.2"
+
+    //QR
+    const val saveUtilsVersion = "3.0.2@aar"
+    const val zxingCoreVersion = "3.3.3"
 }

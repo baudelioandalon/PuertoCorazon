@@ -19,7 +19,8 @@ import com.boreal.puertocorazon.core.usecase.event.EventUseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
 import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
-import com.boreal.puertocorazon.core.usecase.ticket.TicketUseCase
+import com.boreal.puertocorazon.core.usecase.ticket.TicketByClientUseCase
+import com.boreal.puertocorazon.core.usecase.ticket.TicketByEventUseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
 import com.boreal.puertocorazon.core.utils.retrofit.core.DataResponse
@@ -36,8 +37,9 @@ import kotlinx.coroutines.launch
 class PCMainViewModel(
     private val getHomeUseCase: UseCase<HomeUseCase.Input, HomeUseCase.Output>,
     private val getPaymentUseCase: UseCase<PaymentUseCase.Input, PaymentUseCase.Output>,
-    private val getTicketUseCase: UseCase<TicketUseCase.Input, TicketUseCase.Output>,
-    private val getEventUseCase: UseCase<EventUseCase.Input, EventUseCase.Output>
+    private val getTicketByClientUseCase: UseCase<TicketByClientUseCase.Input, TicketByClientUseCase.Output>,
+    private val getEventUseCase: UseCase<EventUseCase.Input, EventUseCase.Output>,
+    private val getTicketByEventUseCase: UseCase<TicketByEventUseCase.Input, TicketByEventUseCase.Output>
 ) : CUBaseViewModel() {
 
     var countOutClicked = 0
@@ -152,6 +154,9 @@ class PCMainViewModel(
     val eventSelected: LiveData<PCEventModel?>
         get() = _eventSelected
     private val _eventSelected = MutableLiveData<PCEventModel?>()
+    val checkingSelected: LiveData<PCEventModel?>
+        get() = _checkingSelected
+    private val _checkingSelected = MutableLiveData<PCEventModel?>()
 
     val eventList: LiveData<AFirestoreGetResponse<List<PCEventModel>>>
         get() = _eventList
@@ -163,9 +168,14 @@ class PCMainViewModel(
     private val _singleEvent =
         MutableLiveData<AFirestoreGetResponse<PCEventModel>>()
 
-    val ticketList: LiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>
-        get() = _ticketList
-    private val _ticketList =
+    val ticketListByClient: LiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>
+        get() = _ticketListByClient
+    private val _ticketListByClient =
+        MutableLiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>()
+
+    val ticketListByEvent: LiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>
+        get() = _ticketListByEvent
+    private val _ticketListByEvent =
         MutableLiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>()
 
     val paymentTransaction: LiveData<DataResponse<PCPaymentResponse>>
@@ -185,7 +195,7 @@ class PCMainViewModel(
             Realm.getDefaultInstance().executeTransaction {
                 FirebaseAuth.getInstance().signOut()
                 it.deleteAll()
-                _ticketList.postValue(AFirestoreGetResponse())
+                _ticketListByClient.postValue(AFirestoreGetResponse())
                 _eventList.postValue(AFirestoreGetResponse())
                 _paymentTransaction.postValue(DataResponse())
                 _authUser.postValue(null)
@@ -200,7 +210,11 @@ class PCMainViewModel(
         _eventSelected.value = eventModel
     }
 
-    fun getEventSelected() = _eventSelected.value ?: PCEventModel()
+    fun setCheckingEvent(eventModel: PCEventModel) {
+        _checkingSelected.value = eventModel
+    }
+
+    fun getEventSelected() = _eventSelected.value ?: _checkingSelected.value ?: PCEventModel()
 
     fun getIdUser() = _authUser.value?.user_id ?: NONE
     fun getEmailUser() = _authUser.value?.email ?: NONE
@@ -229,31 +243,59 @@ class PCMainViewModel(
         }
     }
 
-    fun requestTickets() {
+    fun requestTicketsByClient() {
         executeFlow {
-            if (_ticketList.value?.status == AFirestoreStatusRequest.SUCCESS ||
-                _ticketList.value?.status == AFirestoreStatusRequest.LOADING
+            if (_ticketListByClient.value?.status == AFirestoreStatusRequest.SUCCESS ||
+                _ticketListByClient.value?.status == AFirestoreStatusRequest.LOADING
             ) {
                 return@executeFlow
             }
-            _ticketList.value = AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
-            getTicketUseCase.execute(
-                TicketUseCase.Input(
+            _ticketListByClient.value =
+                AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
+            getTicketByClientUseCase.execute(
+                TicketByClientUseCase.Input(
                     getIdUser(),
                     "${BuildConfig.ENVIRONMENT}${BuildConfig.DEFAULT_EMAIL}Tickets"
                 )
             ).catch { cause: Throwable ->
                 cause
             }.collect {
-                _ticketList.value = it.response
+                _ticketListByClient.value = it.response
             }
         }
     }
 
-    fun getAllTicketsClient() = _ticketList.value?.response ?: arrayListOf()
+    fun requestTicketsByEvent() {
+        executeFlow {
+            if (_ticketListByEvent.value?.status == AFirestoreStatusRequest.SUCCESS ||
+                _ticketListByEvent.value?.status == AFirestoreStatusRequest.LOADING
+            ) {
+                return@executeFlow
+            }
+            _ticketListByEvent.value =
+                AFirestoreGetResponse(status = AFirestoreStatusRequest.LOADING)
+            getTicketByEventUseCase.execute(
+                TicketByEventUseCase.Input(
+                    getEventSelected().idEvent,
+                    "${BuildConfig.ENVIRONMENT}${BuildConfig.DEFAULT_EMAIL}Tickets"
+                )
+            ).catch { cause: Throwable ->
+                cause
+            }.collect {
+                _ticketListByEvent.value = it.response
+            }
+        }
+    }
+
+
+    fun getAllTicketsClient() = _ticketListByClient.value?.response ?: arrayListOf()
 
     fun removeEventSelected() {
         _eventSelected.value = null
+    }
+
+    fun removeCheckingSelected() {
+        _checkingSelected.value = null
     }
 
     fun requestPayment(aliasCard: String, conektaCardModel: ConektaCardModel) {

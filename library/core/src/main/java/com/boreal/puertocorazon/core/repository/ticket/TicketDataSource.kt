@@ -15,12 +15,45 @@ import kotlinx.coroutines.flow.callbackFlow
 class TicketDataSource {
     companion object : AFirestoreRepository() {
         @OptIn(ExperimentalCoroutinesApi::class)
-        fun getTickets(
+        fun getTicketsByIdClient(
             idClient: String,
             collectionPath: String
         ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>> = callbackFlow {
             val response =
                 firestoreInstance.collection(collectionPath).whereEqualTo("idClient", idClient)
+            val subscription = response.addSnapshotListener { snapshot, exception ->
+                exception?.let {
+                    "Error getting documents. ${validationError(exception.message!!)}".log(this::class.java.simpleName)
+                    trySend(
+                        AFirestoreGetResponse(
+                            response = null,
+                            failure = validationError(exception.message!!),
+                            status = AFirestoreStatusRequest.FAILURE
+                        )
+                    )
+                    cancel(it.message.toString())
+                    return@addSnapshotListener
+                }
+                if (snapshot?.documents != null) {
+                    trySend(with(snapshot.documents.convertDataToList<PCPackageTicketModel>()) {
+                        AFirestoreGetResponse(
+                            response = this,
+                            failure = null,
+                            status = AFirestoreStatusRequest.SUCCESS
+                        )
+                    })
+                }
+            }
+            awaitClose { subscription.remove() }
+        }
+
+        @OptIn(ExperimentalCoroutinesApi::class)
+        fun getTicketsByIdEvent(
+            idEvent: String,
+            collectionPath: String
+        ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>> = callbackFlow {
+            val response =
+                firestoreInstance.collection(collectionPath).whereEqualTo("idEvent", idEvent)
             val subscription = response.addSnapshotListener { snapshot, exception ->
                 exception?.let {
                     "Error getting documents. ${validationError(exception.message!!)}".log(this::class.java.simpleName)

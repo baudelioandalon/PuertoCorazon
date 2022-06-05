@@ -54,23 +54,31 @@ fun Timestamp.getFormatWithDay(
     SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalizeName()
 
 fun Timestamp.getDay(format: String = "dd", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+    SimpleDateFormat(format, locale).format(Date(toDate().time))
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
 
 fun Timestamp.getMonth(format: String = "MM", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+    SimpleDateFormat(format, locale).format(Date(toDate().time))
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
 
 fun Timestamp.getNameOfMonth(format: String = "MMM", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+    SimpleDateFormat(format, locale).format(Date(toDate().time))
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
 
 fun Timestamp.getNameOfDay(format: String = "EEEE", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale).removeTilde()
+    SimpleDateFormat(format, locale).format(Date(toDate().time))
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
+        .removeTilde()
 
 fun Timestamp.getYear(format: String = "yyyy", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale)
+    SimpleDateFormat(format, locale).format(Date(toDate().time))
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
 
 
 fun Timestamp.getHour(format: String = "HH", locale: Locale = Locale("es", "MX")) =
-    SimpleDateFormat(format, locale).format(Date(toDate().time)).capitalize(locale).replace("\\s".toRegex(), "")
+    SimpleDateFormat(format, locale).format(Date(toDate().time))
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
+        .replace("\\s".toRegex(), "")
 
 fun Timestamp.isValidDate() = this != Timestamp(0L, 0)
 
@@ -208,6 +216,17 @@ fun Long.toFormat() = with(Timestamp(Date(this))) {
         )
     }, ${getDay()} de ${getNameOfMonth()} del ${getYear()}"
 }
+
+fun Timestamp.toFormat() =
+    "${
+        getNameOfDay().subSequence(
+            IntRange(
+                0,
+                2
+            )
+        )
+    }, ${getDay()} de ${getNameOfMonth()} del ${getYear()}"
+
 
 fun Long.toTimeStamp() = Timestamp(Date(this))
 

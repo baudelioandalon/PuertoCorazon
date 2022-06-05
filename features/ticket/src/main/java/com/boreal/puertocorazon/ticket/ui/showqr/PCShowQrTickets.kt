@@ -9,13 +9,14 @@ import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
+import com.boreal.puertocorazon.core.extension.generateQr
 import com.boreal.puertocorazon.core.utils.bottomfragment.ABaseBottomSheetDialogFragment
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.ticket.R
-import com.boreal.puertocorazon.ticket.databinding.PcQrItemBinding
 import com.boreal.puertocorazon.ticket.databinding.PcShowQrBottomFragmentBinding
 import com.boreal.puertocorazon.ticket.viewmodel.ShowTicketsViewModel
+import com.boreal.puertocorazon.uisystem.databinding.PcQrItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCShowQrTickets(
@@ -84,7 +85,7 @@ class PCShowQrTickets(
                         binding.containerInformation.showView()
                         if (it.response?.idEvent == NONE) {
                             showToast("No se encontró el evento")
-                        }else{
+                        } else {
                             setData(it.response ?: PCEventModel())
                         }
                     }

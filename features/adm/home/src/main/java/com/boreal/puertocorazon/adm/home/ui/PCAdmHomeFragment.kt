@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.adm.home.ui
 
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
@@ -13,7 +12,7 @@ import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
-import com.boreal.puertocorazon.uisystem.databinding.PcHomeEventItemBinding
+import com.boreal.puertocorazon.uisystem.databinding.PcAdmHomeEventItemBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeServiceItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,8 +24,8 @@ class PCAdmHomeFragment :
     val viewModel: PCHomeViewModel by viewModel()
 
     val adapterRecyclerAdmHomeEvent by lazy {
-        GAdapter<PcHomeEventItemBinding, PCEventModel>(
-            R.layout.pc_home_event_item,
+        GAdapter<PcAdmHomeEventItemBinding, PCEventModel>(
+            R.layout.pc_adm_home_event_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCEventModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCEventModel,
@@ -46,6 +45,9 @@ class PCAdmHomeFragment :
                     homeImg = model.homeImageUrl
                     containerEventItem.onClick {
                         mainViewModel.setEventSelected(model)
+                    }
+                    btnGoToChecking.onClick {
+                        mainViewModel.setCheckingEvent(model)
                     }
                 }
             }

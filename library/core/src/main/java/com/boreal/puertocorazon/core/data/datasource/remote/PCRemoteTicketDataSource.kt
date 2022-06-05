@@ -12,6 +12,12 @@ class PCRemoteTicketDataSource : GetTicketDataSource {
         idClient: String,
         collectionPath: String
     ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>> =
-        TicketDataSource.getTickets(idClient, collectionPath)
+        TicketDataSource.getTicketsByIdClient(idClient, collectionPath)
+
+    override suspend fun executeGetTicketsByEvent(
+        idEvent: String,
+        collectionPath: String
+    ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>> =
+        TicketDataSource.getTicketsByIdEvent(idEvent, collectionPath)
 
 }

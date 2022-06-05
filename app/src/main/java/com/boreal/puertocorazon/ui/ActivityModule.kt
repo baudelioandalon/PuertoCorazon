@@ -20,7 +20,8 @@ import com.boreal.puertocorazon.core.usecase.event.EventUseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
 import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
-import com.boreal.puertocorazon.core.usecase.ticket.TicketUseCase
+import com.boreal.puertocorazon.core.usecase.ticket.TicketByClientUseCase
+import com.boreal.puertocorazon.core.usecase.ticket.TicketByEventUseCase
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -48,8 +49,12 @@ val activityModule = module {
         )
     }
 
-    single<UseCase<TicketUseCase.Input, TicketUseCase.Output>>(named("TicketUseCase")) {
-        TicketUseCase(get(named("DefaultTicketRepository")))
+    single<UseCase<TicketByClientUseCase.Input, TicketByClientUseCase.Output>>(named("TicketByClientUseCase")) {
+        TicketByClientUseCase(get(named("DefaultTicketRepository")))
+    }
+
+    single<UseCase<TicketByEventUseCase.Input, TicketByEventUseCase.Output>>(named("TicketByEventUseCase")) {
+        TicketByEventUseCase(get(named("DefaultTicketRepository")))
     }
 
     single<UseCase<HomeUseCase.Input, HomeUseCase.Output>>(named("HomeUseCase")) {
@@ -84,8 +89,9 @@ val activityModule = module {
         PCMainViewModel(
             get(named("HomeUseCase")),
             get(named("PaymentUseCase")),
-            get(named("TicketUseCase")),
-            get(named("EventUseCase"))
+            get(named("TicketByClientUseCase")),
+            get(named("EventUseCase")),
+            get(named("TicketByEventUseCase"))
         )
     }
 }

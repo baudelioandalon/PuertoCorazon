@@ -1,44 +1,45 @@
-package com.boreal.puertocorazon.showevent.ui.showevent
+package com.boreal.puertocorazon.adm.checking.ui.showchecking
 
 import androidx.viewpager.widget.ViewPager
 import com.boreal.commonutils.extensions.changeTextColor
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
+import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.adm.checking.entity.PCCheckingEventFragmentEnum
+import com.boreal.puertocorazon.adm.checking.ui.scdetails.PCCheckingDetailsFragment
+import com.boreal.puertocorazon.adm.checking.ui.scredeem.PCCheckingRedeemFragment
+import com.boreal.puertocorazon.adm.checking.ui.sctoredeem.PCCheckingToRedeemFragment
 import com.boreal.puertocorazon.core.component.tabadapter.MenuBottomAdapter
-import com.boreal.puertocorazon.showevent.R
-import com.boreal.puertocorazon.showevent.entity.PCShowEventFragmentEnum
-import com.boreal.puertocorazon.showevent.ui.sedescription.PCShowEventDescriptionFragment
-import com.boreal.puertocorazon.showevent.ui.segallery.PCShowEventGalleryFragment
-import com.boreal.puertocorazon.showevent.ui.sepackages.PCShowEventPackagesFragment
 
-fun PCShowEventFragment.initElements() {
+fun PCCheckingShowEventFragment.initElements() {
     binding.apply {
         navigation()
+        mainViewModel.requestTicketsByEvent()
         onBackPressedDispatcher {
-            mainViewModel.removeEventSelected()
+            mainViewModel.removeCheckingSelected()
             onFragmentBackPressed(true)
         }
         btnClose.onClick {
-            mainViewModel.removeEventSelected()
+            mainViewModel.removeCheckingSelected()
             onFragmentBackPressed(true)
         }
 
-        btnDescription.onClick {
+        btnToRedeem.onClick {
             changingTitleTheme(
-                PCShowEventFragmentEnum.DESCRIPTION.position,
+                PCCheckingEventFragmentEnum.TO_REDEEM.ordinal,
                 true
             )
         }
-        btnGallery.onClick {
+        btnRedeem.onClick {
             changingTitleTheme(
-                PCShowEventFragmentEnum.GALLERY.position,
+                PCCheckingEventFragmentEnum.REDEEM.ordinal,
                 true
             )
         }
-        btnPackages.onClick {
+        btnDetails.onClick {
             changingTitleTheme(
-                PCShowEventFragmentEnum.PACKAGES.position,
+                PCCheckingEventFragmentEnum.DETAILS.ordinal,
                 true
             )
         }
@@ -46,7 +47,7 @@ fun PCShowEventFragment.initElements() {
     fillData()
 }
 
-fun PCShowEventFragment.fillData() {
+fun PCCheckingShowEventFragment.fillData() {
     binding.apply {
         mainViewModel.getEventSelected().apply {
             mainImage = mainImageUrl
@@ -56,20 +57,20 @@ fun PCShowEventFragment.fillData() {
     }
 }
 
-fun PCShowEventFragment.navigation() {
+fun PCCheckingShowEventFragment.navigation() {
     binding.apply {
 
         val menuAdapter =
             MenuBottomAdapter(
                 arrayListOf(
-                    PCShowEventDescriptionFragment(),
-                    PCShowEventGalleryFragment(),
-                    PCShowEventPackagesFragment()
+                    PCCheckingToRedeemFragment(),
+                    PCCheckingRedeemFragment(),
+                    PCCheckingDetailsFragment()
                 ), childFragmentManager
             ) //inicializando adapter
-        containerShowEvent.adapter = menuAdapter
+        containerCheckingPager.adapter = menuAdapter
 
-        containerShowEvent.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        containerCheckingPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -86,13 +87,13 @@ fun PCShowEventFragment.navigation() {
 
 }
 
-fun PCShowEventFragment.changingTitleTheme(position: Int, buttonAction: Boolean = false) {
+fun PCCheckingShowEventFragment.changingTitleTheme(position: Int, buttonAction: Boolean = false) {
     binding.apply {
         if (buttonAction) {
-            containerShowEvent.currentItem = position
+            containerCheckingPager.currentItem = position
         }
         when (position) {
-            PCShowEventFragmentEnum.DESCRIPTION.position -> {
+            PCCheckingEventFragmentEnum.TO_REDEEM.ordinal -> {
                 bottomLineDescription.showView()
                 titleDescription.changeTextColor(R.color.black_700)
                 bottomLineGallery.invisibleView()
@@ -100,7 +101,7 @@ fun PCShowEventFragment.changingTitleTheme(position: Int, buttonAction: Boolean 
                 bottomLinePackages.invisibleView()
                 titlePackages.changeTextColor(R.color.gray_viewpager)
             }
-            PCShowEventFragmentEnum.GALLERY.position -> {
+            PCCheckingEventFragmentEnum.REDEEM.ordinal -> {
                 bottomLineGallery.showView()
                 titleGallery.changeTextColor(R.color.black_700)
                 bottomLineDescription.invisibleView()
@@ -108,7 +109,7 @@ fun PCShowEventFragment.changingTitleTheme(position: Int, buttonAction: Boolean 
                 bottomLinePackages.invisibleView()
                 titlePackages.changeTextColor(R.color.gray_viewpager)
             }
-            PCShowEventFragmentEnum.PACKAGES.position -> {
+            PCCheckingEventFragmentEnum.DETAILS.ordinal -> {
                 bottomLinePackages.showView()
                 titlePackages.changeTextColor(R.color.black_700)
                 bottomLineDescription.invisibleView()

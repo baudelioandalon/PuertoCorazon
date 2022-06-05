@@ -11,14 +11,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class TicketUseCase(private val ticketRepository: TicketRepository) :
-    UseCase<TicketUseCase.Input, TicketUseCase.Output> {
+class TicketByEventUseCase(private val ticketRepository: TicketRepository) :
+    UseCase<TicketByEventUseCase.Input, TicketByEventUseCase.Output> {
 
-    class Input(val email: String,val collectionPath: String) : In()
+    class Input(val idEvent: String, val collectionPath: String) : In()
     inner class Output(val response: AFirestoreGetResponse<List<PCPackageTicketModel>>) : Out()
 
     override suspend fun execute(input: Input): Flow<Output> {
-        return ticketRepository.executeGetTickets(input.email,input.collectionPath)
+        return ticketRepository.executeGetTicketsByEvent(input.idEvent, input.collectionPath)
             .flowOn(Dispatchers.IO).map {
                 Output(it)
             }

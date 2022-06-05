@@ -15,4 +15,10 @@ class DefaultTicketRepository(
         collectionPath: String
     ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>> =
         getTicketDataSource.executeGetTickets(idClient, collectionPath)
+
+    override suspend fun executeGetTicketsByEvent(
+        idEvent: String,
+        collectionPath: String
+    ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>> =
+        getTicketDataSource.executeGetTicketsByEvent(idEvent, collectionPath)
 }

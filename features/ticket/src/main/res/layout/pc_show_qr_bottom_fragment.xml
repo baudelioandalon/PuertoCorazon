@@ -196,7 +196,7 @@
                             android:id="@+id/imgSpacerTop"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_marginEnd="26dp"
+                            android:layout_marginEnd="25dp"
                             android:src="@drawable/ic_pc_vertical_spacer"
                             app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout4"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -269,9 +269,10 @@
                             app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout5">
 
                             <ImageView
+                                android:id="@+id/imgTypeTicket"
                                 android:layout_width="21dp"
                                 android:layout_height="21dp"
-                                android:src="@drawable/ic_pc_family"
+                                tools:src="@drawable/ic_pc_family"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

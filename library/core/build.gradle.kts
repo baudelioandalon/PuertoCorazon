@@ -31,10 +31,22 @@ android {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT_ABSOLUTE", value = "\"DEBUG\"")
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"DEBUG/\"")
-            buildConfigField(type = "String", name = "CONEKTA_PUBLIC_KEY", value = "\"key_DQpekCNQJ55Dj14grt1XYYg\"")
-            buildConfigField(type = "String", name = "DEFAULT_EMAIL", value = "\"baudelio_andalon@hotmail.com/\"")//obtener desde RemoteConfig
+            buildConfigField(
+                type = "String",
+                name = "CONEKTA_PUBLIC_KEY",
+                value = "\"key_DQpekCNQJ55Dj14grt1XYYg\""
+            )
+            buildConfigField(
+                type = "String",
+                name = "DEFAULT_EMAIL",
+                value = "\"baudelio_andalon@hotmail.com/\""
+            )//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
-            buildConfigField(type = "String", name = "BASE_URL", value = "\"https://us-central1-puertocorazonapp.cloudfunctions.net/\"")//obtener desde RemoteConfig
+            buildConfigField(
+                type = "String",
+                name = "BASE_URL",
+                value = "\"https://us-central1-puertocorazonapp.cloudfunctions.net/\""
+            )//obtener desde RemoteConfig
             buildConfigField(
                 type = "String",
                 name = "VERSION_NAME",
@@ -47,9 +59,21 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"RELEASE/\"")
-            buildConfigField(type = "String", name = "CONEKTA_PUBLIC_KEY", value = "\"key_WCz3NwHC1GZj8JJsufrqKvg\"")
-            buildConfigField(type = "String", name = "DEFAULT_EMAIL", value = "\"baudelio_andalon@hotmail.com/\"")//obtener desde RemoteConfig
-            buildConfigField(type = "String", name = "BASE_URL", value = "\"https://us-central1-puertocorazonapp.cloudfunctions.net/\"")//obtener desde RemoteConfig
+            buildConfigField(
+                type = "String",
+                name = "CONEKTA_PUBLIC_KEY",
+                value = "\"key_WCz3NwHC1GZj8JJsufrqKvg\""
+            )
+            buildConfigField(
+                type = "String",
+                name = "DEFAULT_EMAIL",
+                value = "\"baudelio_andalon@hotmail.com/\""
+            )//obtener desde RemoteConfig
+            buildConfigField(
+                type = "String",
+                name = "BASE_URL",
+                value = "\"https://us-central1-puertocorazonapp.cloudfunctions.net/\""
+            )//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(
                 type = "String",
@@ -131,7 +155,11 @@ dependencies {
     implementation(Dependency.rxJava2Adapter)
     implementation(Dependency.imageConverterLibrary)
 
-    implementation("io.conekta:conektasdk:2.1")
-    implementation("org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2")
+    implementation(Dependency.conekta)
+    implementation(Dependency.apacheOrg)
+
+    //QR
+    implementation(Dependency.saveQrUtils)
+    implementation(Dependency.zxingCore)
 
 }

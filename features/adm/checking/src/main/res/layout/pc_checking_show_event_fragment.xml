@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mainImage"
             type="java.lang.String" />
-        
+
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -47,30 +48,6 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnSettings"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="22dp"
-                android:elevation="10dp"
-                app:cu_cornerLeftSide="5dp"
-                app:cu_cornerRightBottom="10dp"
-                app:cu_cornerRightTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_pc_settings"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                 android:id="@+id/CURoundableLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -81,7 +58,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    app:loadImage="@{mainImage}"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:elevation="9dp"
@@ -90,7 +66,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadImage="@{mainImage}" />
 
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -99,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fillViewport="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnReady"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CURoundableLayout3">
@@ -123,9 +100,9 @@
                             android:layout_marginStart="25dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/helvetica_neue_bold"
-                            tools:text="Temazcal Experience"
                             android:textColor="@color/black_700"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            tools:text="Temazcal Experience" />
 
                         <ImageView
                             android:id="@+id/imgShare"
@@ -158,7 +135,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:id="@+id/btnDescription"
+                            android:id="@+id/btnToRedeem"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -181,7 +158,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/btnGallery"
+                            android:id="@+id/btnRedeem"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="40dp"
@@ -206,7 +183,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/btnPackages"
+                            android:id="@+id/btnDetails"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -233,7 +210,7 @@
                     </LinearLayout>
 
                     <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/containerShowEventUsers"
+                        android:id="@+id/containerCheckingPager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="25dp"
@@ -242,6 +219,48 @@
                 </LinearLayout>
 
             </ScrollView>
+
+            <com.boreal.commonutils.component.shadowlayout.CUShadowLayout
+                android:id="@+id/btnReady"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="19dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:sl_shadow_color="@color/primary_300"
+                app:sl_shadowed="true">
+
+                <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                    android:id="@+id/btnScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cu_backgroundColor="@color/primary_700"
+                    app:cu_cornerLeftSide="10dp"
+                    app:cu_cornerRightSide="10dp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/scan_text"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+            </com.boreal.commonutils.component.shadowlayout.CUShadowLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

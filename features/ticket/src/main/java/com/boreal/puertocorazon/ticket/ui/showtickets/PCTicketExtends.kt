@@ -8,7 +8,7 @@ fun PCTicketFragment.initElements() {
 
         recyclerClientTicketsEvents.apply {
             adapter(adapterRecyclerTicketsEvents)
-            mainViewModel.requestTickets()
+            mainViewModel.requestTicketsByClient()
         }
         mainViewModel.navToHome = {
             try {

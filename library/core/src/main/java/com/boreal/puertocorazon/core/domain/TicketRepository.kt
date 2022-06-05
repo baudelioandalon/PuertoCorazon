@@ -10,4 +10,9 @@ interface TicketRepository {
         idClient: String = "",
         collectionPath: String = ""
     ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>>
+
+    suspend fun executeGetTicketsByEvent(
+        idEvent: String = "",
+        collectionPath: String = ""
+    ): Flow<AFirestoreGetResponse<List<PCPackageTicketModel>>>
 }

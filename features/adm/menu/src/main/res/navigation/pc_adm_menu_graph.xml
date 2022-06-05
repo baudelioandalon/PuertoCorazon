@@ -14,5 +14,6 @@
     <include app:graph="@navigation/pc_payment_graph" />
     <include app:graph="@navigation/pc_show_event_graph" />
     <include app:graph="@navigation/pc_add_event_graph" />
+    <include app:graph="@navigation/pc_adm_checking_graph" />
 
 </navigation>

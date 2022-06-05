@@ -17,7 +17,7 @@ fun PCAdmMenuFragment.initElements() {
         mainViewModel.hideSplash()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.PCShowEventFragment, R.id.PCCartShoppingFragment -> {
+                R.id.PCShowEventFragment, R.id.PCCartShoppingFragment, R.id.PCCheckingEventFragment -> {
                     bottomMenu.hideView()
                 }
                 else -> {

@@ -1,29 +1,42 @@
 package com.boreal.puertocorazon.core.extension
 
+import android.graphics.Bitmap
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
+import com.boreal.commonutils.application.CUAppInit
+import com.boreal.puertocorazon.core.R
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.google.gson.Gson
+import com.google.zxing.BarcodeFormat
+import com.journeyapps.barcodescanner.BarcodeEncoder
 
-inline fun <reified T : AAuthModel> String.toModel()  = Gson().fromJson(
-        "{\"" + Gson().toJson(toString()).replace(":", "\":\"")
-            .replace("}", "\"}").substringAfter("proxy[")
-            .replace("]\"", "").replace("\"https\":\"","\"https:").replace("{", "").replace(",", ",\"")
-            .replace("}", "") + "}",
-        T::class.java
-    )
+inline fun <reified T : AAuthModel> String.toModel() = Gson().fromJson(
+    "{\"" + Gson().toJson(toString()).replace(":", "\":\"")
+        .replace("}", "\"}").substringAfter("proxy[")
+        .replace("]\"", "").replace("\"https\":\"", "\"https:").replace("{", "").replace(",", ",\"")
+        .replace("}", "") + "}",
+    T::class.java
+)
 
+fun ImageView.generateQr(generateUrl: String, width: Int = 800, height: Int = 800) =
+    try {
+        val barcodeEncoder = BarcodeEncoder()
+        val bitmap: Bitmap =
+            barcodeEncoder.encodeBitmap(generateUrl, BarcodeFormat.QR_CODE, width, height)
+        setImageBitmap(bitmap)
+        bitmap
+    } catch (e: Exception) {
+        ContextCompat.getDrawable(context, R.drawable.ic_warning_square)?.toBitmap()
+    }
 
-//proxy[
-// {id:0},
-// {aud:puertocorazonapp},
-// {auth_time:1652223215},
-// {dateCreated:0},
-// {email:baudelioandalon@gmail.com},
-// {name:Baudelio Andalon},
-// {email_verified:true},
-// {sign_in_provider:GOOGLE},
-// {picture:https://lh3.googleusercontent.com/a/AATXAJyKQqntLDk7CPQHxuJHHcNIDDP-lecuSqJ_rcpx=s96-c},
-// {exp:1652226815},
-// {iat:1652223215},
-// {userType:Client},
-// {user_id:bVjbbCAA1AgI9jaSkoKeBkdzWJs2}
-// ]
+fun String.generateQr(width: Int = 800, height: Int = 800) =
+    try {
+        val barcodeEncoder = BarcodeEncoder()
+        val bitmap: Bitmap =
+            barcodeEncoder.encodeBitmap(this, BarcodeFormat.QR_CODE, width, height)
+        bitmap
+    } catch (e: Exception) {
+        ContextCompat.getDrawable(CUAppInit.getAppContext(), R.drawable.ic_warning_square)
+            ?.toBitmap()
+    }

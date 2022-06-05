@@ -92,7 +92,7 @@ class PCTicketFragment :
 
     override fun initObservers() {
 
-        mainViewModel.ticketList.observe(viewLifecycleOwner) {
+        mainViewModel.ticketListByClient.observe(viewLifecycleOwner) {
             it?.let {
                 when (it.status) {
                     AFirestoreStatusRequest.LOADING -> {

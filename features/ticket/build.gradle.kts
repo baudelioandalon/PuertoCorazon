@@ -90,9 +90,5 @@ dependencies {
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)
     implementation(Dependency.lottie)
-    
-    //QR
-    implementation("com.journeyapps:zxing-android-embedded:3.0.2@aar")
-    implementation("com.google.zxing:core:3.3.3")
 
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pc_adm_checking_graph"
+    app:startDestination="@id/PCCheckingEventFragment">
+
+    <fragment
+        android:id="@+id/PCCheckingEventFragment"
+        android:name="com.boreal.puertocorazon.adm.checking.ui.showchecking.PCCheckingShowEventFragment"
+        android:label="PCCheckingEventFragment"
+        tools:layout="@layout/pc_checking_show_event_fragment" />
+
+</navigation>

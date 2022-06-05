@@ -54,4 +54,7 @@
     <string name="present_text">Redimidos</string>
     <string name="absent_text">Por Redimir</string>
     <string name="subtitle_applied_text">Subtitulo aplicado</string>
+    <string name="scan_text">Escanear</string>
+    <string name="ticket_details_text">Detalles del boleto</string>
+    <string name="to_redeem_text">Redimir</string>
 </resources>
