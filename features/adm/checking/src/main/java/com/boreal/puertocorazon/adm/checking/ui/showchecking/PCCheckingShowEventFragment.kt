@@ -12,7 +12,6 @@ import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-
 class PCCheckingShowEventFragment :
     CUBaseFragment<PcCheckingShowEventFragmentBinding>() {
 
@@ -52,6 +51,5 @@ class PCCheckingShowEventFragment :
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
-
 
 }

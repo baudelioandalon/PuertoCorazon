@@ -13,19 +13,12 @@ import com.boreal.puertocorazon.adm.checking.ui.sctoredeem.PCCheckingToRedeemFra
 import com.boreal.puertocorazon.core.component.tabadapter.MenuBottomAdapter
 import com.google.zxing.integration.android.IntentIntegrator
 
-
-
-
 fun PCCheckingShowEventFragment.initElements() {
     binding.apply {
         navigation()
         mainViewModel.requestTicketsByEvent()
-        onBackPressedDispatcher {
-            mainViewModel.removeCheckingSelected()
-            onFragmentBackPressed(true)
-        }
+
         btnClose.onClick {
-            mainViewModel.removeCheckingSelected()
             onFragmentBackPressed(true)
         }
 

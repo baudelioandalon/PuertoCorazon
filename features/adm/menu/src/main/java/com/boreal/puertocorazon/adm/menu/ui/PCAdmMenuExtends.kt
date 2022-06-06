@@ -56,6 +56,10 @@ fun PCAdmMenuFragment.initElements() {
             mainViewModel.navigateToHome()
         }
         drawMenu()
+
+        mainViewModel.goToChecking = {
+            findNavController().navigate(R.id.pc_adm_checking_graph)
+        }
     }
 }
 

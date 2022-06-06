@@ -51,11 +51,16 @@ class PCMainViewModel(
     private val cardList = arrayListOf<PCCardModel>()
 
     var goToHomeClient: (() -> Unit)? = null
+    var goToChecking: (() -> Unit)? = null
     var splash: ((show: Boolean) -> Unit)? = null
     var resetLogin = true
 
     fun goToMenuHome() {
         goToHomeClient?.invoke()
+    }
+
+    fun goToChecking() {
+        goToChecking?.invoke()
     }
 
     fun showSplash() {
@@ -154,9 +159,7 @@ class PCMainViewModel(
     val eventSelected: LiveData<PCEventModel?>
         get() = _eventSelected
     private val _eventSelected = MutableLiveData<PCEventModel?>()
-    val checkingSelected: LiveData<PCEventModel?>
-        get() = _checkingSelected
-    private val _checkingSelected = MutableLiveData<PCEventModel?>()
+    var checkingSelected: PCEventModel? = null
 
     val eventList: LiveData<AFirestoreGetResponse<List<PCEventModel>>>
         get() = _eventList
@@ -211,10 +214,11 @@ class PCMainViewModel(
     }
 
     fun setCheckingEvent(eventModel: PCEventModel) {
-        _checkingSelected.value = eventModel
+        checkingSelected = eventModel
+        goToChecking()
     }
 
-    fun getEventSelected() = _eventSelected.value ?: _checkingSelected.value ?: PCEventModel()
+    fun getEventSelected() = _eventSelected.value ?: checkingSelected ?: PCEventModel()
 
     fun getIdUser() = _authUser.value?.user_id ?: NONE
     fun getEmailUser() = _authUser.value?.email ?: NONE
@@ -296,7 +300,7 @@ class PCMainViewModel(
     }
 
     fun removeCheckingSelected() {
-        _checkingSelected.value = null
+        checkingSelected = null
     }
 
     fun requestPayment(nameCard: String, aliasCard: String, conektaCardModel: ConektaCardModel) {

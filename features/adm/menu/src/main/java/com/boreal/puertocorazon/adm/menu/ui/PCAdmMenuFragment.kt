@@ -24,14 +24,6 @@ class PCAdmMenuFragment :
             }
         }
 
-        mainViewModel.checkingSelected.observe(viewLifecycleOwner) {
-            it?.let {
-                if (it.idEvent != "NONE") {
-                    findNavController().navigate(R.id.pc_adm_checking_graph)
-                }
-            }
-        }
-
     }
 
     override fun getLayout() = R.layout.pc_adm_menu_fragment
