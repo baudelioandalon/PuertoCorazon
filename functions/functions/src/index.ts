@@ -169,8 +169,6 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
             const setTicket = admin.firestore().collection(environmentLocal + '/' + emailLocal + '/Tickets').doc()
                 const idTicket = setTicket.id
                 await setTicket.set({
-                    attendedAdult: 0,
-                    attendedChild: 0,
                     attendedTime: [],
                     payedDate: payedDate,
                     countAdult: packageItem.countAdult,

@@ -56,7 +56,7 @@ class PCCheckingToRedeemFragment :
                                         ""
                                     }
                                 }"
-                                val childAvailable = (countChild - attendedChild).toInt()
+                                val childAvailable = (countChild - getAttendedChild()).toInt()
                                 tvCountChildrenAvailable.text = "$childAvailable Niño${
                                     if (childAvailable > 1) {
                                         "s"
@@ -76,7 +76,7 @@ class PCCheckingToRedeemFragment :
                                         ""
                                     }
                                 }"
-                                val adultAvailable = (countAdult - attendedAdult).toInt()
+                                val adultAvailable = (countAdult - getAttendedAdult()).toInt()
                                 tvCountAdultsAvailable.text = "$adultAvailable Adulto${
                                     if (adultAvailable > 1) {
                                         "s"

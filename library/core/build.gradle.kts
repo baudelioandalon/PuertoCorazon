@@ -42,6 +42,7 @@ android {
                 value = "\"baudelio_andalon@hotmail.com/\""
             )//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
+            buildConfigField(type = "String", name = "TICKETS", value = "\"Tickets\"")
             buildConfigField(
                 type = "String",
                 name = "BASE_URL",

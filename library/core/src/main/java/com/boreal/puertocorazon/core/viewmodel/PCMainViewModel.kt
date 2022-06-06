@@ -287,6 +287,7 @@ class PCMainViewModel(
         }
     }
 
+    fun getAllTicketsByEvent() = _ticketListByEvent.value?.response ?: arrayListOf()
 
     fun getAllTicketsClient() = _ticketListByClient.value?.response ?: arrayListOf()
 
@@ -298,14 +299,14 @@ class PCMainViewModel(
         _checkingSelected.value = null
     }
 
-    fun requestPayment(aliasCard: String, conektaCardModel: ConektaCardModel) {
+    fun requestPayment(nameCard: String, aliasCard: String, conektaCardModel: ConektaCardModel) {
         executeFlow {
             _paymentTransaction.value = DataResponse(statusRequest = StatusRequestEnum.LOADING)
             getPaymentUseCase.execute(
                 PaymentUseCase.Input(
                     PCPaymentRequest(
                         idClient = getIdUser(),
-                        nameUser = getNameUser(),
+                        nameUser = nameCard,
                         email = getEmailUser(),
                         amount = getShoppingList().sumOf { (it.countItem * it.priceElement) }
                             .toLong(),

@@ -30,8 +30,6 @@ fun PCTicketFragment.loadRecyclerEvent(response: List<PCPackageTicketModel>) {
                     idPayment = this[0].idPayment,
                     idClient = this[0].idClient,
                     idEvent = this[0].idEvent,
-                    attendedAdult = this[0].attendedAdult,
-                    attendedChild = this[0].attendedChild,
                     attendedTime = this[0].attendedTime,
                     payedDate = this[0].payedDate,
                     countAdult = if (!this[0].isPackage && this[0].countAdult > 0 && size > 1) size.toLong() else this[0].countAdult,

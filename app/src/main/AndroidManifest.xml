@@ -22,7 +22,7 @@
         <uses-library android:name ="org.apache.http.legacy" android:required ="false"/>
         <service android:name=".addevent.ui.services.AUploadImageService" />
 
-        <activity android:name=".ui.PCBaseActivity">
+        <activity android:name=".ui.PCBaseActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

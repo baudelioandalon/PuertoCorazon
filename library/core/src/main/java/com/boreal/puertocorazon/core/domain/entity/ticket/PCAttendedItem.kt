@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 import java.util.*
 
 data class PCAttendedItem(
-    val attendedTime: Timestamp = Timestamp(Date(0L)),
+    val attendedDate: Timestamp = Timestamp(Date(0L)),
     val attendedType: Boolean = false,
     val ticketType: String = PCTicketType.ADULT.name,
     val imageSaved: String = NONE,

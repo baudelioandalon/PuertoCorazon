@@ -95,6 +95,7 @@ dependencies {
     implementation(project(":features:client:menu"))
     implementation(project(":features:adm:home"))
     implementation(project(":features:adm:addevent"))
+    implementation(project(":features:adm:checking"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)

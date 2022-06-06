@@ -5,11 +5,13 @@ import android.webkit.WebView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
+import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialogBinding
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.globalmethod.getDeviceId
 import com.boreal.puertocorazon.core.utils.*
 import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
 import com.boreal.puertocorazon.payments.R
+import com.boreal.puertocorazon.uisystem.databinding.PcQuestionDialogBinding
 import io.conekta.conektasdk.Conekta
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,8 +37,41 @@ fun PCAddCardFragment.initElements() {
         }
 
         btnSave.onClick {
-            if (cardValid()) {
+            if (mainViewModel.getNameUser().isEmpty() && cardValid()) {
+                CUBlurDialogBinding<PcQuestionDialogBinding>(
+                    layout = R.layout.pc_question_dialog,
+                    callback = { binding, dialogBlur ->
+                        binding.apply {
+                            txtTitle.text = "¿El nombre está vacio, es tu mismo nombre de tarjeta?"
+                            txtMessage.text = "Si, es mi mismo nombre"
+                            txtBtnCancel.text = getString(R.string.cancelar)
+                            txtBtnContinue.text = "Continuar"
+                            btnCancel.onClick {
+                                dialogBlur.dismissAllowingStateLoss()
+                            }
+                            btnContinue.onClick {
+                                mainViewModel.requestPayment(
+                                    nameCard = txtNameCard.onlyText(),
+                                    aliasCard = txtAlias.onlyText(),
+                                    ConektaCardModel(
+                                        numberCard = txtNumberCard.onlyText().onlyCardNumber(),
+                                        nameCard = txtNameCard.onlyText(),
+                                        cvc = tvCvv.onlyText(),
+                                        exp_month = tvMonthCard.onlyText(),
+                                        exp_year = tvYearCard.onlyText()
+                                    )
+                                )
+                                dialogBlur.dismissAllowingStateLoss()
+                            }
+                        }
+                    },
+                    cancelable = true
+                ).also {
+                    it.show(getSupportFragmentManager(), "dialog_question")
+                }
+            } else if (cardValid()) {
                 mainViewModel.requestPayment(
+                    nameCard = mainViewModel.getNameUser(),
                     aliasCard = txtAlias.onlyText(),
                     ConektaCardModel(
                         numberCard = txtNumberCard.onlyText().onlyCardNumber(),

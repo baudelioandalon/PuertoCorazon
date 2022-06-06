@@ -131,7 +131,7 @@ fun PCShowQrTickets.fillData() {
                             ""
                         }
                     }"
-                    val childAvailable = (countChild - attendedChild).toInt()
+                    val childAvailable = (countChild - getAttendedChild()).toInt()
                     tvCountChildrenAvailable.text = "$childAvailable Niño${
                         if (childAvailable > 1) {
                             "s"
@@ -151,7 +151,7 @@ fun PCShowQrTickets.fillData() {
                             ""
                         }
                     }"
-                    val adultAvailable = (countAdult - attendedAdult).toInt()
+                    val adultAvailable = (countAdult - getAttendedAdult())
                     tvCountAdultsAvailable.text = "$adultAvailable Adulto${
                         if (adultAvailable > 1) {
                             "s"

@@ -81,8 +81,10 @@ dependencies {
     implementation(Dependency.firestoreKtx)
     implementation(Dependency.firestoreStorage)
 
-
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)
+
+    implementation(Dependency.zxingCore)
+    implementation(Dependency.saveQrUtils)
 }

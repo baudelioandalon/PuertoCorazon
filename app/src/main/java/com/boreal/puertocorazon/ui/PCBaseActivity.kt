@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.system.exitProcess
 
+
 class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
 
     val mainViewModel: PCMainViewModel by viewModel()

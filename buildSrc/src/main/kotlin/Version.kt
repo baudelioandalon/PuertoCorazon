@@ -83,5 +83,5 @@ object Version {
 
     //QR
     const val saveUtilsVersion = "3.0.2@aar"
-    const val zxingCoreVersion = "3.3.3"
+    const val zxingCoreVersion = "3.5.0"
 }

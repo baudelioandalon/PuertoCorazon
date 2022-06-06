@@ -1,13 +1,16 @@
 package com.boreal.puertocorazon.adm.checking.ui.detailticket
 
 import androidx.constraintlayout.widget.ConstraintSet
-import com.boreal.commonutils.dialogs.blurdialog.CUBlurDialogBinding
+import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialogBinding
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.adm.checking.R
 import com.boreal.puertocorazon.adm.checking.ui.selectredeem.PCSelectRedeemTicket
+import com.boreal.puertocorazon.core.constants.NONE
+import com.boreal.puertocorazon.core.domain.entity.ticket.PCTicketType
 import com.boreal.puertocorazon.core.extension.dp
 import com.boreal.puertocorazon.core.utils.toFormat
 import com.boreal.puertocorazon.uisystem.databinding.PcQuestionDialogBinding
+import com.google.firebase.Timestamp
 
 fun PCShowDetailTicket.initElements() {
     binding.apply {
@@ -63,7 +66,63 @@ fun PCShowDetailTicket.initElements() {
                             dialogBlur.dismissAllowingStateLoss()
                         }
                         btnContinue.onClick {
+                            val mapToAdd: ArrayList<Map<String, Any>> = arrayListOf()
+                            val timeNow = Timestamp.now()
 
+                            if (ticket.attendedTime.isEmpty()) {
+                                repeat(ticket.countAdult.toInt() - ticket.getAttendedAdult()) {
+                                    mapToAdd.add(
+                                        mapOf(
+                                            "attendedDate" to timeNow,
+                                            "attendedType" to true,
+                                            "imageSaved" to NONE,
+                                            "ticketType" to PCTicketType.ADULT.name
+                                        )
+                                    )
+                                }
+                                repeat(ticket.countChild.toInt() - ticket.getAttendedChild()) {
+                                    mapToAdd.add(
+                                        mapOf(
+                                            "attendedDate" to timeNow,
+                                            "attendedType" to true,
+                                            "imageSaved" to NONE,
+                                            "ticketType" to PCTicketType.CHILD.name
+                                        )
+                                    )
+                                }
+                            } else {
+                                mapToAdd.addAll(ticket.attendedTime.map {
+                                    mapOf(
+                                        "attendedDate" to it.attendedDate,
+                                        "attendedType" to it.attendedType,
+                                        "imageSaved" to it.imageSaved,
+                                        "ticketType" to it.ticketType
+                                    )
+                                })
+                                repeat(ticket.countAdult.toInt() - ticket.getAttendedAdult()) {
+                                    mapToAdd.add(
+                                        mapOf(
+                                            "attendedDate" to timeNow,
+                                            "attendedType" to true,
+                                            "imageSaved" to NONE,
+                                            "ticketType" to PCTicketType.ADULT.name
+                                        )
+                                    )
+                                }
+                                repeat(ticket.countChild.toInt() - ticket.getAttendedChild()) {
+                                    mapToAdd.add(
+                                        mapOf(
+                                            "attendedDate" to timeNow,
+                                            "attendedType" to true,
+                                            "imageSaved" to NONE,
+                                            "ticketType" to PCTicketType.CHILD.name
+                                        )
+                                    )
+                                }
+                            }
+                            viewModel.updateTicket(
+                                ticket.idTicket, mapToAdd
+                            )
                             dialogBlur.dismissAllowingStateLoss()
                         }
                     }
@@ -97,7 +156,7 @@ fun PCShowDetailTicket.fillData() {
                             ""
                         }
                     }"
-                    val childAvailable = (countChild - attendedChild).toInt()
+                    val childAvailable = (countChild - getAttendedChild()).toInt()
                     tvCountChildrenAvailable.text = "$childAvailable Niño${
                         if (childAvailable > 1) {
                             "s"
@@ -117,7 +176,7 @@ fun PCShowDetailTicket.fillData() {
                             ""
                         }
                     }"
-                    val adultAvailable = (countAdult - attendedAdult).toInt()
+                    val adultAvailable = (countAdult - getAttendedAdult())
                     tvCountAdultsAvailable.text = "$adultAvailable Adulto${
                         if (adultAvailable > 1) {
                             "s"

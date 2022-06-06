@@ -11,6 +11,10 @@ import com.boreal.puertocorazon.adm.checking.ui.scdetails.PCCheckingDetailsFragm
 import com.boreal.puertocorazon.adm.checking.ui.scredeem.PCCheckingRedeemFragment
 import com.boreal.puertocorazon.adm.checking.ui.sctoredeem.PCCheckingToRedeemFragment
 import com.boreal.puertocorazon.core.component.tabadapter.MenuBottomAdapter
+import com.google.zxing.integration.android.IntentIntegrator
+
+
+
 
 fun PCCheckingShowEventFragment.initElements() {
     binding.apply {
@@ -42,6 +46,16 @@ fun PCCheckingShowEventFragment.initElements() {
                 PCCheckingEventFragmentEnum.DETAILS.ordinal,
                 true
             )
+        }
+
+        btnScan.onClick {
+            val integrator = IntentIntegrator.forSupportFragment(this@initElements)
+            integrator.setOrientationLocked(false)
+            integrator.setPrompt("Escaneo de ticket QR")
+            integrator.setBeepEnabled(true)
+            integrator.setOrientationLocked(true)
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+            integrator.initiateScan()
         }
     }
     fillData()

@@ -3,23 +3,26 @@ package com.boreal.puertocorazon.adm.checking.ui.selectredeem
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.extensions.changeDrawable
-import com.boreal.commonutils.extensions.changeTextColor
-import com.boreal.commonutils.extensions.changeTextSize
 import com.boreal.commonutils.extensions.onClick
+import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.checking.R
 import com.boreal.puertocorazon.adm.checking.databinding.PcSelectRedeemBottomFragmentBinding
+import com.boreal.puertocorazon.adm.checking.viewmodel.PCCheckingViewModel
+import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
 import com.boreal.puertocorazon.core.domain.entity.ticket.PCAttendedItem
 import com.boreal.puertocorazon.core.domain.entity.ticket.PCTicketType
-import com.boreal.puertocorazon.core.extension.dp
 import com.boreal.puertocorazon.core.utils.bottomfragment.ABaseBottomSheetDialogFragment
 import com.boreal.puertocorazon.core.utils.toFormat
 import com.boreal.puertocorazon.uisystem.databinding.PcSelectTicketItemBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCSelectRedeemTicket(
     val ticketSelect: PCPackageTicketModel
 ) : ABaseBottomSheetDialogFragment<PcSelectRedeemBottomFragmentBinding>() {
+
+    val viewModel: PCCheckingViewModel by sharedViewModel()
 
     val adapterAttendedItems by lazy {
         GAdapter<PcSelectTicketItemBinding, PCAttendedItem>(
@@ -46,7 +49,7 @@ class PCSelectRedeemTicket(
                         }
                         if (attendedType) {
                             btnAttendedItem.isEnabled = false
-                            tvNamePackage.text = attendedTime.toFormat()
+                            tvNamePackage.text = attendedDate.toFormat()
                             imgTypeTicket.changeDrawable(R.drawable.ic_pc_arrow_correct_gray)
                         } else {
                             tvNamePackage.text = "Disponible"
@@ -73,6 +76,25 @@ class PCSelectRedeemTicket(
 
     override fun initView() {
         initElements()
+    }
+
+    override fun initObservers() {
+        viewModel.updateChecking.observe(viewLifecycleOwner) {
+            when (it.status) {
+                AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
+                    hideProgressBarCustom()
+                    viewModel.resetViewModel()
+                    it.failure?.let { errorResult ->
+                        showToast(errorResult.messageError)
+                        return@observe
+                    }
+                    showToast(
+                        "Los boletos se redimieron exitosamente"
+                    )
+                    closeFragment()
+                }
+            }
+        }
     }
 
 }
