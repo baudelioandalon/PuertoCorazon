@@ -24,6 +24,10 @@ fun PCCartShoppingFragment.initElements() {
             }
         }
         btnPay.onClick {
+            if (mainViewModel.getShoppingList().isEmpty()) {
+                showToast("No hay articulos en el carrito de compra")
+                return@onClick
+            }
             PCPaymentSelector { typePaymentSelected ->
                 findNavController().navigate(R.id.PCAddCardFragment)
             }.show(getSupportFragmentManager(), "odmod")

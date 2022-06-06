@@ -37,6 +37,10 @@ fun PCAddCardFragment.initElements() {
         }
 
         btnSave.onClick {
+            if (mainViewModel.getShoppingList().isEmpty()) {
+                showToast("No hay articulos en el carrito de compra")
+                return@onClick
+            }
             if (mainViewModel.getNameUser().isEmpty() && cardValid()) {
                 CUBlurDialogBinding<PcQuestionDialogBinding>(
                     layout = R.layout.pc_question_dialog,
@@ -167,10 +171,29 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
         txtNumberCard.doAfterTextChanged {
             it?.let {
+                if (it.toString().endsWith(" ")) return@doAfterTextChanged
+                if (it.toString().length == 4 || it.toString().length == 11 || it.toString().length == 18) {
+                    txtNumberCard.setText(
+                        StringBuilder(it.toString()).insert(it.toString().length, " - ").toString()
+                    )
+                    txtNumberCard.setSelection(
+                        txtNumberCard.text.toString().length
+                    )
+                } else if (it.toString().isNotEmpty() && it.toString().last() == '-') {
+                    txtNumberCard.setText(
+                        it.toString().substring(0, it.toString().length - 3)
+                    )
+                    txtNumberCard.setSelection(
+                        txtNumberCard.text.toString().length
+                    )
+                }
+
                 val cardNumber = it.onlyCardNumber()
                 if (cardNumber.isNotEmpty() && cardNumber.length < 5) {
                     txtNumberCardOneSegment.text = cardNumber
                     txtNumberCardTwoSegment.text = "0000"
+                    txtNumberCardThreeSegment.text = "0000"
+                    txtNumberCardFourSegment.text = "0000"
                 } else if (cardNumber.length in 5..8) {
                     txtNumberCardTwoSegment.text =
                         cardNumber.substring(IntRange(4, cardNumber.length - 1))
@@ -184,6 +207,9 @@ fun PCAddCardFragment.initOnChangeListener() {
                         cardNumber.substring(IntRange(12, cardNumber.length - 1))
                 } else if (cardNumber.isEmpty()) {
                     txtNumberCardOneSegment.text = "0000"
+                    txtNumberCardTwoSegment.text = "0000"
+                    txtNumberCardThreeSegment.text = "0000"
+                    txtNumberCardFourSegment.text = "0000"
                 }
                 changeImageCorrect3.notInvisibleIf(
                     it.validCardNumber()
