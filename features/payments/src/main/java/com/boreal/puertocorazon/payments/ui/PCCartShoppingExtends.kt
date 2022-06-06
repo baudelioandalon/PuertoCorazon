@@ -35,6 +35,10 @@ fun PCCartShoppingFragment.initElements() {
 
         initCardAdapter(mainViewModel.getCardList())
         btnCard.onClick {
+            if (mainViewModel.getShoppingList().isEmpty()) {
+                showToast("No hay articulos en el carrito de compra")
+                return@onClick
+            }
             if (mainViewModel.getCardList().isEmpty()) {
                 findNavController().navigate(R.id.PCAddCardFragment)
             } else {
