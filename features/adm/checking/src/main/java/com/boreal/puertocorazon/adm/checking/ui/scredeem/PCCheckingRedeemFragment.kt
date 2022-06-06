@@ -3,12 +3,11 @@ package com.boreal.puertocorazon.adm.checking.ui.scredeem
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.commonutils.extensions.showToast
+import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.checking.R
 import com.boreal.puertocorazon.adm.checking.databinding.PcCheckingRedeemFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
-import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
@@ -39,7 +38,53 @@ class PCCheckingRedeemFragment :
 
                 bindingElement.apply {
                     model.apply {
+                        tvNamePackage.changeTextColor(R.color.gray_letter)
+                        tvNamePackage.changeTypeFace(R.font.avenir_medium)
+                        imgTypeTicket.changeDrawable(R.drawable.ic_pc_single_ticket)
+                        tvCountAdults.changeTypeFace(R.font.helvetica_neue_bold)
+                        tvCountAdults.changeTextColor(R.color.gray_letter)
+                        tvCountChildren.changeTextColor(R.color.gray_letter)
+                        tvCountChildren.changeTypeFace(R.font.helvetica_neue_bold)
+                        if (isPackage) {
+                            imgTypeTicket.changeDrawable(R.drawable.ic_pc_package_ticket)
+                            tvNamePackage.text = "Paquete $namePackage"
+                            if (countChild > 0) {
+                                val countChildren = countChild.toFloat().toInt()
+                                tvCountChildren.text = "$countChildren Niño${
+                                    if (countChildren > 1) {
+                                        "s"
+                                    } else {
+                                        ""
+                                    }
+                                }"
+                            } else {
+                                tvCountChildrenAvailable.invisibleView()
+                            }
+                            if (countAdult > 0) {
+                                val countAdult = countAdult.toFloat().toInt()
+                                tvCountAdults.text = "$countAdult Adulto${
+                                    if (countAdult > 1) {
+                                        "s"
+                                    } else {
+                                        ""
+                                    }
+                                }"
 
+                            } else {
+                                tvCountAdultsAvailable.invisibleView()
+                            }
+                            if (isPackageUsed()) {
+                                tvCountAdults.changeTextColor(R.color.gray_letter)
+                                tvCountChildren.changeTextColor(R.color.gray_letter)
+                            }
+                        } else {
+                            tvNamePackage.text = "Boleto"
+                            tvCountAdults.text = if (countAdult > countChild) {
+                                "Adulto"
+                            } else {
+                                "Niño / a"
+                            }
+                        }
                     }
                 }
             }
