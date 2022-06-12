@@ -13,7 +13,7 @@ admin.initializeApp();
  /**
  * Synchronizing database emails and authentication emails for admins accounts.
  */
-export const debugAdminAccounts = functions.firestore.document('/DEBUG/{push}').onCreate((snap, context) => {
+export const debugAdminAccounts = functions.firestore.document('/DEBUG/administrator@borealnetwork.org').onCreate((snap, context) => {
       const newUser = snap.data();
        admin
         .auth()
@@ -36,7 +36,7 @@ export const debugAdminAccounts = functions.firestore.document('/DEBUG/{push}').
         });
   });
 
-  export const releaseAdminAccounts = functions.firestore.document('/RELEASE/{push}').onCreate((snap, context) => {
+  export const releaseAdminAccounts = functions.firestore.document('/RELEASE/administrator@borealnetwork.org').onCreate((snap, context) => {
     const newUser = snap.data();
      admin
       .auth()
@@ -59,7 +59,7 @@ export const debugAdminAccounts = functions.firestore.document('/DEBUG/{push}').
       });
 });
 
-  export const debugInstructorAccounts = functions.firestore.document('/DEBUG/{push}/Instructors/{pushInstructor}').onCreate((snap, context) => {
+  export const debugInstructorAccounts = functions.firestore.document('/DEBUG/administrator@borealnetwork.org/Instructors/{pushInstructor}').onCreate((snap, context) => {
     const newUser = snap.data();
      admin
       .auth()
@@ -82,7 +82,7 @@ export const debugAdminAccounts = functions.firestore.document('/DEBUG/{push}').
       });
 });
 
-export const releaseInstructorAccounts = functions.firestore.document('/RELEASE/{push}/Instructors/{pushInstructor}').onCreate((snap, context) => {
+export const releaseInstructorAccounts = functions.firestore.document('/RELEASE/administrator@borealnetwork.org/Instructors/{pushInstructor}').onCreate((snap, context) => {
   const newUser = snap.data();
    admin
     .auth()
@@ -105,7 +105,7 @@ export const releaseInstructorAccounts = functions.firestore.document('/RELEASE/
     });
 });
 
-export const debugClientAccounts = functions.firestore.document('/DEBUG/{push}/Clients/{pushClient}').onCreate((snap, context) => {
+export const debugClientAccounts = functions.firestore.document('/DEBUG/administrator@borealnetwork.org/Clients/{pushClient}').onCreate((snap, context) => {
   const newUser = snap.data();
    admin
     .auth()
@@ -128,7 +128,7 @@ export const debugClientAccounts = functions.firestore.document('/DEBUG/{push}/C
     });
 });
 
-export const releaseClientAccounts = functions.firestore.document('/RELEASE/{push}/Clients/{pushClient}').onCreate((snap, context) => {
+export const releaseClientAccounts = functions.firestore.document('/RELEASE/administrator@borealnetwork.org/Clients/{pushClient}').onCreate((snap, context) => {
   const newUser = snap.data();
    admin
     .auth()
@@ -159,7 +159,7 @@ exports.debugCreateClientAccount = functions.auth.user().onCreate((user) => {
     if(!providerIds.includes('google.com')){
         return
     }
-    admin.firestore().collection('DEBUG/{push}/Clients').doc(user.uid).set({
+    admin.firestore().collection('DEBUG/administrator@borealnetwork.org/Clients').doc(user.uid).set({
         userData:{
             idClient: user.uid,
             providerId: providerIds[0],
@@ -184,7 +184,7 @@ exports.debugCreateClientAccount = functions.auth.user().onCreate((user) => {
     if(!providerIds.includes('google.com')){
         return
     }
-    admin.firestore().collection('RELEASE/{push}/Clients').doc(user.uid).set({
+    admin.firestore().collection('RELEASE/administrator@borealnetwork.org/Clients').doc(user.uid).set({
         userData:{
             idClient: user.uid,
             providerId: providerIds[0],
