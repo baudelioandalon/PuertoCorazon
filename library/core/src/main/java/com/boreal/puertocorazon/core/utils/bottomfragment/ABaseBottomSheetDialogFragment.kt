@@ -2,13 +2,17 @@ package com.boreal.puertocorazon.core.utils.bottomfragment
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.boreal.commonutils.base.CUBackHandler
+import com.boreal.puertocorazon.core.constants.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -122,4 +126,61 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
         onDismissDialog()
     }
 
+    fun getPermissionsStorage(onFailure: () -> Unit = {}, onSuccess: () -> Unit) {
+        ActivityCompat.shouldShowRequestPermissionRationale(
+            requireActivity(),
+            permissionStorage
+        )
+        onRequestFailure = onFailure
+        onRequestSuccess = onSuccess
+        requestAllPermissions(REQUEST_STORAGE)
+    }
+
+    private var onRequestFailure: () -> Unit = {}
+    private var onRequestSuccess: () -> Unit = {}
+
+    fun getPermissionsCamera() {
+        val providerContext =
+            ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), permissionCamera)
+
+        if (providerContext) {
+            requestAllPermissions(REQUEST_IMAGE_CAPTURE)
+        } else {
+            requestAllPermissions(REQUEST_IMAGE_CAPTURE)
+        }
+    }
+
+    //TODO Buscar el metodo no deprecado
+    private fun requestAllPermissions(requestCode: Int) {
+        requestPermissions(
+            arrayOf(permissionCamera, permissionReadStorage, permissionStorage),
+            requestCode
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+            REQUEST_STORAGE -> {
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    onRequestSuccess()
+                } else {
+                    onRequestFailure()
+                    Toast.makeText(
+                        requireContext(),
+                        "No cuenta con permisos de almacenamiento",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
 }

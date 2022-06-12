@@ -17,6 +17,7 @@ import com.airbnb.lottie.LottieDrawable
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.core.R
+import com.boreal.puertocorazon.core.constants.*
 import com.boreal.puertocorazon.core.databinding.ABottomSheetOptionsImageFragmentBinding
 import com.boreal.puertocorazon.core.utils.getImageBitmap
 import com.boreal.puertocorazon.core.utils.getImageUri
@@ -25,18 +26,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class ABottomSheetOptionsImageFragment(
     private var imageReturn: (Uri) -> Unit
 ) : BottomSheetDialogFragment() {
 
-    private val REQUEST_IMAGE_CAPTURE = 1
-    private val REQUEST_GALLERY_CAPTURE = 2
     private var mImageSelectedUri: Uri? = null
-    private val permissionCamera = android.Manifest.permission.CAMERA
-    private val permissionStorage = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-    private val permissionReadStorage = android.Manifest.permission.READ_EXTERNAL_STORAGE
-
     lateinit var mBinding: ABottomSheetOptionsImageFragmentBinding
 
     override fun onCreateView(
@@ -149,7 +143,7 @@ class ABottomSheetOptionsImageFragment(
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        "No cuenta con permisos de almacenamiento",
+                        "No cuenta con permisos de almacenamiento, vaya a 'Informacion de la aplicacion' para solventarlo.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

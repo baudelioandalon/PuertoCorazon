@@ -22,6 +22,9 @@ fun PCShowQrTickets.initElements() {
         loadingImage.repeatCount = LottieDrawable.INFINITE
         loadingImage.playAnimation()
         initAdapter()
+        btnAcept.onClick {
+            closeFragment()
+        }
     }
 }
 
@@ -66,54 +69,57 @@ fun PCShowQrTickets.initAdapter() {
 fun PCShowQrTickets.fillData() {
     binding.apply {
         imgShare.onClick {
-            val intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                listTickets[showTicketViewModel.scrollPosition].apply {
-                    putExtra(
-                        Intent.EXTRA_STREAM,
-                        idTicket.generateQr()!!
-                            .getImageUri(50)
-                    )
-                    if (isPackage) {
-                        if (countAdult > 0 && countChild > 0) {
-                            putExtra(
-                                Intent.EXTRA_TEXT,
-                                "¡Hola, con este boleto puedes acceder al evento " +
-                                        "*$nameEvent* este boleto es para *$countAdult adultos* y *$countChild niños / as*, disfruta tu evento!"
-                            )
-                        } else if (countChild == 0L) {
-                            putExtra(
-                                Intent.EXTRA_TEXT,
-                                "¡Hola, con este boleto puedes acceder al evento *" +
-                                        "$nameEvent* este boleto es para *$countAdult adultos*, disfruta tu evento!"
-                            )
-                        } else if (countAdult == 0L) {
-                            putExtra(
-                                Intent.EXTRA_TEXT,
-                                "¡Hola, con este boleto puedes acceder al evento *" +
-                                        "$nameEvent* este boleto es para *$countChild niños / as*, disfruta tu evento!"
-                            )
+            getPermissionsStorage {
+                Intent().apply {
+                    action = Intent.ACTION_SEND
+                    listTickets[showTicketViewModel.scrollPosition].apply {
+                        putExtra(
+                            Intent.EXTRA_STREAM,
+                            idTicket.generateQr()!!
+                                .getImageUri(50)
+                        )
+                        if (isPackage) {
+                            if (countAdult > 0 && countChild > 0) {
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "¡Hola, con este boleto puedes acceder al evento " +
+                                            "*$nameEvent* este boleto es para *$countAdult adultos* y *$countChild niños / as*, disfruta tu evento!"
+                                )
+                            } else if (countChild == 0L) {
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "¡Hola, con este boleto puedes acceder al evento *" +
+                                            "$nameEvent* este boleto es para *$countAdult adultos*, disfruta tu evento!"
+                                )
+                            } else if (countAdult == 0L) {
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "¡Hola, con este boleto puedes acceder al evento *" +
+                                            "$nameEvent* este boleto es para *$countChild niños / as*, disfruta tu evento!"
+                                )
+                            }
+
+                        } else {
+                            if (countChild == 0L) {
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "¡Hola, con este boleto puedes acceder al evento " +
+                                            "*$nameEvent* este boleto es para *$countAdult adulto*, disfruta tu evento!"
+                                )
+                            } else if (countAdult == 0L) {
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "¡Hola, con este boleto puedes acceder al evento " +
+                                            "*$nameEvent* este boleto es para *$countChild niño / a*, disfruta tu evento!"
+                                )
+                            }
                         }
 
-                    } else {
-                        if (countChild == 0L) {
-                            putExtra(
-                                Intent.EXTRA_TEXT,
-                                "¡Hola, con este boleto puedes acceder al evento " +
-                                        "*$nameEvent* este boleto es para *$countAdult adulto*, disfruta tu evento!"
-                            )
-                        } else if (countAdult == 0L) {
-                            putExtra(
-                                Intent.EXTRA_TEXT,
-                                "¡Hola, con este boleto puedes acceder al evento " +
-                                        "*$nameEvent* este boleto es para *$countChild niño / a*, disfruta tu evento!"
-                            )
-                        }
                     }
+                    type = "image/jpeg"
+                    startActivity(Intent.createChooser(this, "share"))
                 }
-                type = "image/jpeg"
             }
-            startActivity(Intent.createChooser(intent, "share"))
         }
         txtCountElements.text = "${showTicketViewModel.scrollPosition + 1} / ${listTickets.size}"
         listTickets[showTicketViewModel.scrollPosition].apply {
@@ -192,4 +198,8 @@ fun PCShowQrTickets.fillData() {
             }
         }
     }
+}
+
+fun PCShowQrTickets.onRequestPermission() {
+
 }
