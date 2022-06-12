@@ -26,7 +26,11 @@ fun PCShowEventGalleryFragment.initAdapter(galleryList: List<PCImageItemModel>) 
         addLinearHelper()
         smoothScrollToPosition(0)
         scrollToPositionCentered()
-        itemPercent(.88)
+        if (galleryList.size == 1) {
+            binding.mRecyclerImages.itemPercent(1.0)
+        } else {
+            binding.mRecyclerImages.itemPercent(.88)
+        }
     }
 
 }

@@ -47,12 +47,6 @@ class PCShowEventGalleryFragment :
 
     override fun getLayout() = R.layout.pc_show_event_gallery_fragment
 
-    override fun initDependency(savedInstanceState: Bundle?) {
-    }
-
-    override fun initObservers() {
-    }
-
     override fun initView() {
         initElements()
     }
