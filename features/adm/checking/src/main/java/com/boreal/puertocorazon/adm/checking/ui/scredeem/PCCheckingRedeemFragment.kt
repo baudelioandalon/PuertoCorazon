@@ -58,7 +58,7 @@ class PCCheckingRedeemFragment :
                                     }
                                 }"
                             } else {
-                                tvCountChildrenAvailable.invisibleView()
+                                tvCountChildren.hideView()
                             }
                             if (countAdult > 0) {
                                 val countAdult = countAdult.toFloat().toInt()
@@ -71,7 +71,7 @@ class PCCheckingRedeemFragment :
                                 }"
 
                             } else {
-                                tvCountAdultsAvailable.invisibleView()
+                                tvCountAdults.hideView()
                             }
                             if (isPackageUsed()) {
                                 tvCountAdults.changeTextColor(R.color.gray_letter)

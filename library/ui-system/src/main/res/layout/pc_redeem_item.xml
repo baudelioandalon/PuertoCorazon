@@ -57,20 +57,6 @@
                 app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
                 tools:text="Familia" />
 
-
-            <TextView
-                android:id="@+id/tvCountAdultsAvailable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/avenir_medium"
-                android:textColor="@color/green_700"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNamePackage"
-                app:layout_constraintStart_toEndOf="@+id/tvNamePackage"
-                app:layout_constraintTop_toTopOf="@+id/tvNamePackage"
-                tools:text="2 Adultos" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,19 +85,6 @@
                     tools:text="2 Niños" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvCountChildrenAvailable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/avenir_medium"
-                android:textColor="@color/green_700"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvCountAdultsAvailable"
-                app:layout_constraintStart_toEndOf="@+id/tvCountAdultsAvailable"
-                app:layout_constraintTop_toTopOf="@+id/tvCountAdultsAvailable"
-                tools:text="2 Niños" />
 
             <ImageView
                 android:id="@+id/imageView7"
