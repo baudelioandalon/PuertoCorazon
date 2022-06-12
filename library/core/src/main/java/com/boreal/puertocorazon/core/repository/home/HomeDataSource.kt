@@ -41,6 +41,15 @@ class HomeDataSource {
                             status = AFirestoreStatusRequest.SUCCESS
                         )
                     })
+                } else {
+                    trySend(
+                        element =
+                        AFirestoreGetResponse(
+                            response = listOf(),
+                            failure = null,
+                            status = AFirestoreStatusRequest.SUCCESS
+                        )
+                    )
                 }
             }
             awaitClose { subscription.remove() }

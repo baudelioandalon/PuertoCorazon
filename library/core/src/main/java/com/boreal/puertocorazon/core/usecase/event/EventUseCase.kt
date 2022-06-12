@@ -1,7 +1,6 @@
 package com.boreal.puertocorazon.core.usecase.event
 
 import com.boreal.puertocorazon.core.domain.EventRepository
-import com.boreal.puertocorazon.core.domain.HomeRepository
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreGetResponse
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.usecase.login.In
@@ -17,14 +16,15 @@ class EventUseCase(private val eventRepository: EventRepository) :
 
     class Input(
         val idEvent: String,
-        val collectionPath: String
+        val collectionPath: String,
+        val realtime: Boolean
     ) : In()
 
     inner class Output(val response: AFirestoreGetResponse<PCEventModel>) :
         Out()
 
     override suspend fun execute(input: Input): Flow<Output> {
-        return eventRepository.executeGetEvent(input.idEvent, input.collectionPath)
+        return eventRepository.executeGetEvent(input.idEvent, input.collectionPath, input.realtime)
             .flowOn(Dispatchers.IO).map {
                 Output(it)
             }

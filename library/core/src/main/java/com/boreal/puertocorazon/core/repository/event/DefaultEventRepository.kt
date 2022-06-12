@@ -12,9 +12,14 @@ class DefaultEventRepository(
 ) : EventRepository {
     override suspend fun executeGetEvent(
         idEvent: String,
-        collectionPath: String
-    ): Flow<AFirestoreGetResponse<PCEventModel>> = flow {
-        emit(getEventDataSource.executeGetEvent(idEvent, collectionPath))
+        collectionPath: String,
+        realtime: Boolean
+    ): Flow<AFirestoreGetResponse<PCEventModel>> = if (realtime) {
+        getEventDataSource.executeGetRealTimeEvent(idEvent, collectionPath)
+    } else {
+        flow {
+            emit(getEventDataSource.executeGetEvent(idEvent, collectionPath))
+        }
     }
 
 }

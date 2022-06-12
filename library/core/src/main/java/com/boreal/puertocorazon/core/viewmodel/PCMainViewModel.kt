@@ -295,6 +295,14 @@ class PCMainViewModel(
 
     fun getAllTicketsClient() = _ticketListByClient.value?.response ?: arrayListOf()
 
+    fun getAllTicketsClientFiltered(model: PCPackageTicketModel) =
+        _ticketListByClient.value?.response?.filter {
+            it.isPackage == model.isPackage
+                    && it.idEvent == model.idEvent
+                    && it.namePackage == model.namePackage
+                    && it.idPackage == model.idPackage
+        }?.sortedBy { it.isUsed() } ?: emptyList()
+
     fun removeEventSelected() {
         _eventSelected.value = null
     }
@@ -346,7 +354,7 @@ class PCMainViewModel(
             getEventUseCase.execute(
                 EventUseCase.Input(
                     idEventToSearch,
-                    "${BuildConfig.ENVIRONMENT}${BuildConfig.DEFAULT_EMAIL}Events"
+                    "${BuildConfig.ENVIRONMENT}${BuildConfig.DEFAULT_EMAIL}Events", true
                 )
             ).catch { cause: Throwable ->
                 cause

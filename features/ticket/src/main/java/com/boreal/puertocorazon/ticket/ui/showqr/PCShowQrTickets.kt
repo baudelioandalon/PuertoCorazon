@@ -20,7 +20,7 @@ import com.boreal.puertocorazon.uisystem.databinding.PcQrItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCShowQrTickets(
-    val listTickets: List<PCPackageTicketModel> = arrayListOf()
+    val model: PCPackageTicketModel,
 ) : ABaseBottomSheetDialogFragment<PcShowQrBottomFragmentBinding>() {
 
     val showTicketViewModel: ShowTicketsViewModel by viewModels()
@@ -88,6 +88,30 @@ class PCShowQrTickets(
                         } else {
                             setData(it.response ?: PCEventModel())
                         }
+                    }
+                }
+            }
+        }
+
+        mainViewModel.ticketListByClient.observe(viewLifecycleOwner) {
+            it?.let {
+                when (it.status) {
+                    AFirestoreStatusRequest.SUCCESS, AFirestoreStatusRequest.FAILURE -> {
+                        it.failure?.let { errorResult ->
+                            if (errorResult == CUFirestoreErrorEnum.ERROR_PERMISSION_DENIED) {
+                                mainViewModel.signOutUser()
+                            }
+                            showToast(errorResult.messageError)
+                            return@observe
+                        }
+                        val lastItemId =
+                            adapterRecyclerQrs.currentList[(showTicketViewModel.scrollPosition)].idTicket
+                        adapterRecyclerQrs.submitList(
+                            mainViewModel.getAllTicketsClientFiltered(
+                                model
+                            )
+                        )
+                        binding.recyclerViewQrs.smoothScrollToPosition(mainViewModel.getAllTicketsClientFiltered(model).indexOfFirst { it.idTicket == lastItemId })
                     }
                 }
             }

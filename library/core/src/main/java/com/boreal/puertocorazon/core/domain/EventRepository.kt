@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface EventRepository {
     suspend fun executeGetEvent(
         idEvent: String = "",
-        collectionPath: String = ""
+        collectionPath: String = "",
+        realtime: Boolean = false
     ): Flow<AFirestoreGetResponse<PCEventModel>>
 }

@@ -9,4 +9,9 @@ interface GetEventDataSource {
         idEvent: String = "",
         collectionPath: String = ""
     ): AFirestoreGetResponse<PCEventModel>
+
+    suspend fun executeGetRealTimeEvent(
+        idEvent: String = "",
+        collectionPath: String = ""
+    ): Flow<AFirestoreGetResponse<PCEventModel>>
 }

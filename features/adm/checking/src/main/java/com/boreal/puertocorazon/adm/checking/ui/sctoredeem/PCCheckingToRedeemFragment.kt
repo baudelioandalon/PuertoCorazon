@@ -48,16 +48,9 @@ class PCCheckingToRedeemFragment :
                             imgTypeTicket.changeDrawable(R.drawable.ic_pc_package_ticket)
                             tvNamePackage.text = namePackage
                             if (countChild > 0) {
-                                val countChildren = countChild.toFloat().toInt()
-                                tvCountChildren.text = "$countChildren Niño${
-                                    if (countChildren > 1) {
-                                        "s"
-                                    } else {
-                                        ""
-                                    }
-                                }"
+
                                 val childAvailable = (countChild - getAttendedChild()).toInt()
-                                tvCountChildrenAvailable.text = "$childAvailable Niño${
+                                tvCountChildren.text = "$childAvailable Niño${
                                     if (childAvailable > 1) {
                                         "s"
                                     } else {
@@ -65,19 +58,12 @@ class PCCheckingToRedeemFragment :
                                     }
                                 }"
                             } else {
-                                tvCountChildrenAvailable.invisibleView()
+                                tvCountChildren.hideView()
                             }
                             if (countAdult > 0) {
-                                val countAdult = countAdult.toFloat().toInt()
-                                tvCountAdults.text = "$countAdult Adulto${
-                                    if (countAdult > 1) {
-                                        "s"
-                                    } else {
-                                        ""
-                                    }
-                                }"
+
                                 val adultAvailable = (countAdult - getAttendedAdult()).toInt()
-                                tvCountAdultsAvailable.text = "$adultAvailable Adulto${
+                                tvCountAdults.text = "$adultAvailable Adulto${
                                     if (adultAvailable > 1) {
                                         "s"
                                     } else {
@@ -85,7 +71,7 @@ class PCCheckingToRedeemFragment :
                                     }
                                 }"
                             } else {
-                                tvCountAdultsAvailable.invisibleView()
+                                tvCountAdults.hideView()
                             }
                             if (isPackageUsed()) {
                                 tvCountAdults.changeTextColor(R.color.orange_700)

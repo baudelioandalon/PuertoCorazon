@@ -57,16 +57,6 @@
                 app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
                 tools:text="Familia" />
 
-            <TextView
-                android:id="@+id/tvCountAdults"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/avenir_medium"
-                android:textColor="@color/black_700"
-                android:textSize="17sp"
-                app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
-                app:layout_constraintTop_toBottomOf="@+id/tvNamePackage"
-                tools:text="2 Adultos" />
 
             <TextView
                 android:id="@+id/tvCountAdultsAvailable"
@@ -81,18 +71,34 @@
                 app:layout_constraintTop_toTopOf="@+id/tvNamePackage"
                 tools:text="2 Adultos" />
 
-            <TextView
-                android:id="@+id/tvCountChildren"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/avenir_medium"
-                android:textColor="@color/black_700"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvCountAdults"
+                app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayoutpackage"
                 app:layout_constraintStart_toEndOf="@+id/tvCountAdults"
-                app:layout_constraintTop_toTopOf="@+id/tvCountAdults"
-                tools:text="2 Niños" />
+                app:layout_constraintStart_toStartOf="@+id/tvNamePackage"
+                app:layout_constraintTop_toBottomOf="@+id/tvNamePackage">
+
+                <TextView
+                    android:id="@+id/tvCountAdults"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenir_medium"
+                    android:textColor="@color/black_700"
+                    android:textSize="17sp"
+                    tools:text="2 Adultos" />
+
+                <TextView
+                    android:id="@+id/tvCountChildren"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/avenir_medium"
+                    android:textColor="@color/black_700"
+                    android:textSize="17sp"
+                    tools:text="2 Niños" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvCountChildrenAvailable"

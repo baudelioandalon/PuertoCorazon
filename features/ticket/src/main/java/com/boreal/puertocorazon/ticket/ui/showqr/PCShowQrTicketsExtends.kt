@@ -35,16 +35,16 @@ fun PCShowQrTickets.setData(eventModel: PCEventModel) {
 
 fun PCShowQrTickets.initAdapter() {
     binding.apply {
-        adapterRecyclerQrs.submitList(listTickets)
+        adapterRecyclerQrs.submitList(mainViewModel.getAllTicketsClientFiltered(model))
         recyclerViewQrs.apply {
             adapter = adapterRecyclerQrs
             addLinearHelper()
             smoothScrollToPosition(0)
             scrollToPositionCentered()
-            if (listTickets.size > 1) {
+            if (mainViewModel.getAllTicketsClientFiltered(model).size > 1) {
                 itemPercent(.78)
             }
-            fillData()
+            requestData()
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
@@ -55,7 +55,7 @@ fun PCShowQrTickets.initAdapter() {
                                 linearLayoutManager.findFirstCompletelyVisibleItemPosition()
                             if (itemPosition >= 0 && itemPosition != showTicketViewModel.scrollPosition) {
                                 showTicketViewModel.scrollPosition = itemPosition
-                                fillData()
+                                requestData()
                             }
                         }
                         else -> {}
@@ -66,13 +66,13 @@ fun PCShowQrTickets.initAdapter() {
     }
 }
 
-fun PCShowQrTickets.fillData() {
+fun PCShowQrTickets.requestData() {
     binding.apply {
         imgShare.onClick {
             getPermissionsStorage {
                 Intent().apply {
                     action = Intent.ACTION_SEND
-                    listTickets[showTicketViewModel.scrollPosition].apply {
+                    mainViewModel.getAllTicketsClientFiltered(model)[showTicketViewModel.scrollPosition].apply {
                         putExtra(
                             Intent.EXTRA_STREAM,
                             idTicket.generateQr()!!
@@ -121,8 +121,10 @@ fun PCShowQrTickets.fillData() {
                 }
             }
         }
-        txtCountElements.text = "${showTicketViewModel.scrollPosition + 1} / ${listTickets.size}"
-        listTickets[showTicketViewModel.scrollPosition].apply {
+        txtCountElements.text = "${showTicketViewModel.scrollPosition + 1} / ${
+            mainViewModel.getAllTicketsClientFiltered(model).size
+        }"
+        mainViewModel.getAllTicketsClientFiltered(model)[showTicketViewModel.scrollPosition].apply {
             mainViewModel.requestSingleEvent(idEvent)
             tvTitleEvent.text = nameEvent
             if (isPackage) {
@@ -198,8 +200,4 @@ fun PCShowQrTickets.fillData() {
             }
         }
     }
-}
-
-fun PCShowQrTickets.onRequestPermission() {
-
 }

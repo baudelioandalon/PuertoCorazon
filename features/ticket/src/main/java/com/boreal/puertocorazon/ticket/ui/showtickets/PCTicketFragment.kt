@@ -43,18 +43,13 @@ class PCTicketFragment :
                     nameEvent = model.nameEvent
                     imageEvent = model.imageEvent
                     btnShowTickets.onClick {
-                        val ticketsFiltered = mainViewModel.getAllTicketsClient().filter {
-                            it.isPackage == model.isPackage
-                                    && it.idEvent == model.idEvent
-                                    && it.namePackage == model.namePackage
-                                    && it.idPackage == model.idPackage
-                        }
+                        val ticketsFiltered = mainViewModel.getAllTicketsClientFiltered(model)
                         if (ticketsFiltered.isEmpty()) {
                             showToast("No se pudieron filtrar tus tickets")
                             //Analitycs
                             return@onClick
                         }
-                        PCShowQrTickets(ticketsFiltered.sortedBy { it.isUsed() }).show(
+                        PCShowQrTickets(model).show(
                             getSupportFragmentManager(),
                             "odmod"
                         )
