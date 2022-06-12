@@ -225,7 +225,7 @@
                         android:maxLength="50"
                         android:maxLines="1"
                         android:paddingHorizontal="10dp"
-                        android:text="baudelio_andalon@hotmail.com"
+                        android:text="administrator@borealnetwork.org"
                         android:textColor="@color/black_700"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"

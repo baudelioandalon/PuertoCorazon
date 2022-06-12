@@ -131,46 +131,6 @@ class CUFirestoreResponse {
             }
     }
 
-    fun getSingleDocumentPath(
-        documentPath: String,
-        origin: Source = Source.SERVER
-    ) {
-        try {
-//            db.document(documentPath + "/baudelio_andalon@hotmail.com")
-            db.document("sdsd324cdws/rfre")
-                .get(origin)
-                .addOnSuccessListener { documentSnapshot ->
-//                val city = documentSnapshot.toObject<City>()
-                    if (documentSnapshot != null) {
-                        Log.e(
-                            this::class.java.simpleName,
-                            "DocumentSnapshot data: ${documentSnapshot.data}"
-                        )
-                    } else {
-                        Log.e(this::class.java.simpleName, "Error getting documents.")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    if(exception is FirebaseFirestoreException){
-                        val error = exception
-
-                    }else{
-
-                    }
-//                    .addOnFailureListener...
-//                    FirebaseFirestoreException
-//                    Failed to get document because the client is offline.
-                    Log.e(this::class.java.simpleName, "Error getting documents.", exception)
-                }.addOnCanceledListener {
-                    Log.e(this::class.java.simpleName, "Error getting documents.")
-                }
-        } catch (exception: Exception) {
-            Log.e(
-                this::class.java.simpleName,
-                "Error getting documents. ${validationError(exception.message!!)}"
-            )
-        }
-    }
 
     private fun validationError(errorReceived: String): String {
         return if (errorReceived.contains(CUFirestoreErrorEnum.ERROR_INVALID_PATH.defaultError)) {
@@ -180,50 +140,7 @@ class CUFirestoreResponse {
         }
     }
 
-    fun getSingleDocument(
-        collectionPath: String,
-        documentPath: String,
-        origin: Source = Source.SERVER
-    ) {
-        try {
-            db.collection(collectionPath)
-                .document(documentPath)
-                .get(origin)
-                .addOnSuccessListener { documentSnapshot ->
-//                val city = documentSnapshot.toObject<City>()
-                    if (documentSnapshot != null) {
-                        Log.e(
-                            this::class.java.simpleName,
-                            "DocumentSnapshot data: ${documentSnapshot.data}"
-                        )
-                    } else {
-                        Log.e(this::class.java.simpleName, "Error getting documents.")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.e(this::class.java.simpleName, "Error getting documents.", exception)
-                }
-        } catch (exception: Exception) {
-            Log.e(this::class.java.simpleName, "Error getting documents.", exception)
-        }
 
-    }
-
-    fun listenSingleDocument(collectionPath: String, documentPath: String) {
-        db.collection(collectionPath).document(documentPath)
-            .addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, e ->
-                if (e != null) {
-                    Log.e(this::class.java.simpleName, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-
-                if (snapshot != null && snapshot.exists()) {
-                    Log.e(this::class.java.simpleName, "Current data: ${snapshot.data}")
-                } else {
-                    Log.e(this::class.java.simpleName, "Current data: null")
-                }
-            }
-    }
 
     //Recibir query
 //    .orderBy("population")

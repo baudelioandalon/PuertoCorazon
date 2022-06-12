@@ -58,6 +58,7 @@ class PCStartFragment :
                     .build()
             )
             .build()
+        throw  RuntimeException("Test Crash"); // Force a crash
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

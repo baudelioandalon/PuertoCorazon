@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "564590043689",
-    "firebase_url": "https://puertocorazonapp-default-rtdb.firebaseio.com",
-    "project_id": "puertocorazonapp",
-    "storage_bucket": "puertocorazonapp.appspot.com"
+    "project_number": "726528013023",
+    "project_id": "borealpuertocorazon",
+    "storage_bucket": "borealpuertocorazon.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:564590043689:android:d7fc9ea125903c83827238",
+        "mobilesdk_app_id": "1:726528013023:android:db76f1481c96865474af6a",
         "android_client_info": {
           "package_name": "com.boreal.puertocorazon"
         }
       },
       "oauth_client": [
         {
-          "client_id": "564590043689-rpf446th2dp3l43imlu0mpjpevckgn7e.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.boreal.puertocorazon",
-            "certificate_hash": "a341b4b7b19ae7be41680b351d791dff9859758c"
-          }
-        },
-        {
-          "client_id": "564590043689-5otcqkcm7u3ekp7a4lhusqu9079udrct.apps.googleusercontent.com",
+          "client_id": "726528013023-a8018jkfrdepq898e4jf73a1a25csh7a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDizIcMkoAhp4ZCbzlcmDvEj60RCZGP8rM"
+          "current_key": "AIzaSyB3vK_unF_Y-YPCVmoYAjJLHWL7kW6HHuQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "564590043689-5otcqkcm7u3ekp7a4lhusqu9079udrct.apps.googleusercontent.com",
+              "client_id": "726528013023-a8018jkfrdepq898e4jf73a1a25csh7a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -9,7 +9,149 @@ admin.initializeApp();
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-exports.createClientAccount = functions.auth.user().onCreate((user) => {
+
+ /**
+ * Synchronizing database emails and authentication emails for admins accounts.
+ */
+export const debugAdminAccounts = functions.firestore.document('/DEBUG/{push}').onCreate((snap, context) => {
+      const newUser = snap.data();
+       admin
+        .auth()
+        .createUser({
+          email: newUser.userData.email,
+          password: 'Altemis132',
+          uid: snap.id
+        })
+        .then(userRecord => {
+            const currentDateString = Date.now();
+            
+          return admin.auth().setCustomUserClaims(userRecord.uid, {
+            dateCreated: currentDateString,
+            userType: 'Administrator'
+          });
+        })
+        .catch(error => {
+          console.log('Error creating user Administrator', error);
+          return false;
+        });
+  });
+
+  export const releaseAdminAccounts = functions.firestore.document('/RELEASE/{push}').onCreate((snap, context) => {
+    const newUser = snap.data();
+     admin
+      .auth()
+      .createUser({
+        email: newUser.userData.email,
+        password: 'Altemis132',
+        uid: snap.id
+      })
+      .then(userRecord => {
+          const currentDateString = Date.now();
+          
+        return admin.auth().setCustomUserClaims(userRecord.uid, {
+          dateCreated: currentDateString,
+          userType: 'Administrator'
+        });
+      })
+      .catch(error => {
+        console.log('Error creating user Administrator', error);
+        return false;
+      });
+});
+
+  export const debugInstructorAccounts = functions.firestore.document('/DEBUG/{push}/Instructors/{pushInstructor}').onCreate((snap, context) => {
+    const newUser = snap.data();
+     admin
+      .auth()
+      .createUser({
+        email: newUser.lenderData.email,
+        password: 'Altemis132',
+        uid: snap.id
+      })
+      .then(userRecord => {
+          const currentDateString = Date.now();
+          
+        return admin.auth().setCustomUserClaims(userRecord.uid, {
+          dateCreated: currentDateString,
+          userType: 'Instructor'
+        });
+      })
+      .catch(error => {
+        console.log('Error creating user Instructor', error);
+        return false;
+      });
+});
+
+export const releaseInstructorAccounts = functions.firestore.document('/RELEASE/{push}/Instructors/{pushInstructor}').onCreate((snap, context) => {
+  const newUser = snap.data();
+   admin
+    .auth()
+    .createUser({
+      email: newUser.lenderData.email,
+      password: 'Altemis132',
+      uid: snap.id
+    })
+    .then(userRecord => {
+        const currentDateString = Date.now();
+        
+      return admin.auth().setCustomUserClaims(userRecord.uid, {
+        dateCreated: currentDateString,
+        userType: 'Instructor'
+      });
+    })
+    .catch(error => {
+      console.log('Error creating user Instructor', error);
+      return false;
+    });
+});
+
+export const debugClientAccounts = functions.firestore.document('/DEBUG/{push}/Clients/{pushClient}').onCreate((snap, context) => {
+  const newUser = snap.data();
+   admin
+    .auth()
+    .createUser({
+      email: newUser.clientData.email,
+      password: 'Altemis132',
+      uid: snap.id
+    })
+    .then(userRecord => {
+        const currentDateString = Date.now();
+        
+      return admin.auth().setCustomUserClaims(userRecord.uid, {
+        dateCreated: currentDateString,
+        userType: 'Client'
+      });
+    })
+    .catch(error => {
+      console.log('Error creating user Client', error);
+      return false;
+    });
+});
+
+export const releaseClientAccounts = functions.firestore.document('/RELEASE/{push}/Clients/{pushClient}').onCreate((snap, context) => {
+  const newUser = snap.data();
+   admin
+    .auth()
+    .createUser({
+      email: newUser.clientData.email,
+      password: 'Altemis132',
+      uid: snap.id
+    })
+    .then(userRecord => {
+        const currentDateString = Date.now();
+        
+      return admin.auth().setCustomUserClaims(userRecord.uid, {
+        dateCreated: currentDateString,
+        userType: 'Client'
+      });
+    })
+    .catch(error => {
+      console.log('Error creating user Client', error);
+      return false;
+    });
+});
+
+exports.debugCreateClientAccount = functions.auth.user().onCreate((user) => {
     const providerIds: String[] = []
     user.providerData.forEach((userData ) => {
         providerIds.push(userData.providerId)
@@ -17,7 +159,32 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
     if(!providerIds.includes('google.com')){
         return
     }
-    admin.firestore().collection('DEBUG/baudelio_andalon@hotmail.com/Clients').doc(user.uid).set({
+    admin.firestore().collection('DEBUG/{push}/Clients').doc(user.uid).set({
+        userData:{
+            idClient: user.uid,
+            providerId: providerIds[0],
+            firstName: user.displayName || 'NONE',
+            lastName: 'NONE',
+            birthDay: 'NONE',
+            email: user.email || 'NONE',
+            phone: user.phoneNumber || 'NONE',
+            typeUser: 'Client',
+            sex: 'NONE',
+            creationDate: admin.firestore.Timestamp.now(),
+            imageUser: user.photoURL || 'NONE'
+        }
+    })
+  });
+
+  exports.releaseClientAccount = functions.auth.user().onCreate((user) => {
+    const providerIds: String[] = []
+    user.providerData.forEach((userData ) => {
+        providerIds.push(userData.providerId)
+    })
+    if(!providerIds.includes('google.com')){
+        return
+    }
+    admin.firestore().collection('RELEASE/{push}/Clients').doc(user.uid).set({
         userData:{
             idClient: user.uid,
             providerId: providerIds[0],
@@ -193,3 +360,4 @@ exports.createClientAccount = functions.auth.user().onCreate((user) => {
     });
   });
 
+  

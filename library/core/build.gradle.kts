@@ -39,14 +39,14 @@ android {
             buildConfigField(
                 type = "String",
                 name = "DEFAULT_EMAIL",
-                value = "\"baudelio_andalon@hotmail.com/\""
+                value = "\"administrator@borealnetwork.org/\""
             )//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(type = "String", name = "TICKETS", value = "\"Tickets\"")
             buildConfigField(
                 type = "String",
                 name = "BASE_URL",
-                value = "\"https://us-central1-puertocorazonapp.cloudfunctions.net/\""
+                value = "\"https://us-central1-borealpuertocorazon.cloudfunctions.net/\""
             )//obtener desde RemoteConfig
             buildConfigField(
                 type = "String",
@@ -68,12 +68,12 @@ android {
             buildConfigField(
                 type = "String",
                 name = "DEFAULT_EMAIL",
-                value = "\"baudelio_andalon@hotmail.com/\""
+                value = "\"administrator@borealnetwork.org/\""
             )//obtener desde RemoteConfig
             buildConfigField(
                 type = "String",
                 name = "BASE_URL",
-                value = "\"https://us-central1-puertocorazonapp.cloudfunctions.net/\""
+                value = "\"https://us-central1-borealpuertocorazon.cloudfunctions.net/\""
             )//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
             buildConfigField(
