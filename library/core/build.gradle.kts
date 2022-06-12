@@ -76,6 +76,7 @@ android {
                 value = "\"https://us-central1-borealpuertocorazon.cloudfunctions.net/\""
             )//obtener desde RemoteConfig
             buildConfigField(type = "String", name = "EVENTS", value = "\"/Events\"")
+            buildConfigField(type = "String", name = "TICKETS", value = "\"Tickets\"")
             buildConfigField(
                 type = "String",
                 name = "VERSION_NAME",
