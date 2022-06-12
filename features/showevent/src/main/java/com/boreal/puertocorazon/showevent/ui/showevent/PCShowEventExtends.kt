@@ -42,6 +42,10 @@ fun PCShowEventFragment.initElements() {
                 true
             )
         }
+
+        btnPayments.onClick {
+            mainViewModel.goToPayments()
+        }
     }
     fillData()
 }

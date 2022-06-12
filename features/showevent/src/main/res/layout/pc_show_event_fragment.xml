@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="mainImage"
             type="java.lang.String" />
-        
+
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -46,12 +47,15 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/btnSettings"
+                android:id="@+id/btnPayments"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="22dp"
+                android:clickable="true"
                 android:elevation="10dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 app:cu_cornerLeftSide="5dp"
                 app:cu_cornerRightBottom="10dp"
                 app:cu_cornerRightTop="10dp"
@@ -61,7 +65,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_pc_settings"
+                    android:layout_marginEnd="3dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_pc_cart_shopping_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +86,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    app:loadImage="@{mainImage}"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:elevation="9dp"
@@ -89,7 +94,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadImage="@{mainImage}" />
 
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 

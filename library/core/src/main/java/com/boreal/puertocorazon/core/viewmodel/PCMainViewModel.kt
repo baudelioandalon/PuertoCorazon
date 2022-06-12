@@ -52,6 +52,7 @@ class PCMainViewModel(
 
     var goToHomeClient: (() -> Unit)? = null
     var goToChecking: (() -> Unit)? = null
+    var goToPayment: (() -> Unit)? = null
     var splash: ((show: Boolean) -> Unit)? = null
     var resetLogin = true
 
@@ -61,6 +62,10 @@ class PCMainViewModel(
 
     fun goToChecking() {
         goToChecking?.invoke()
+    }
+
+    fun goToPayments() {
+        goToPayment?.invoke()
     }
 
     fun showSplash() {

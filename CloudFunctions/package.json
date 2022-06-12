@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^3.1.2"
+  },
+  "dependencies": {
+    "conekta": "^4.2.0"
+  }
+}

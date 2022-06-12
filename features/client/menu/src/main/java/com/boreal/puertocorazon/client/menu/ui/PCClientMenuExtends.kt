@@ -51,6 +51,11 @@ fun PCClientMenuFragment.initElements() {
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
             mainViewModel.navigateToHome()
         }
+
+        mainViewModel.goToPayment = {
+            onFragmentBackPressed(true)
+            findNavController().navigate(R.id.pc_payment_graph)
+        }
         drawMenu()
     }
 }

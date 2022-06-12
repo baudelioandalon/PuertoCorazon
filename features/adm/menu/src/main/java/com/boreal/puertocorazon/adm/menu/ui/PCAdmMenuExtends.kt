@@ -60,6 +60,11 @@ fun PCAdmMenuFragment.initElements() {
         mainViewModel.goToChecking = {
             findNavController().navigate(R.id.pc_adm_checking_graph)
         }
+
+        mainViewModel.goToPayment = {
+            onFragmentBackPressed(true)
+            findNavController().navigate(R.id.pc_payment_graph)
+        }
     }
 }
 
