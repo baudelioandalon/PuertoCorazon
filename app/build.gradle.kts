@@ -27,7 +27,7 @@ android {
         getByName("debug") {
             val properties =
                 org.jetbrains.kotlin.konan.properties.loadProperties(project.rootProject.file("local.properties").path)
-            storeFile = file("../gradle/BorealNetwork")
+            storeFile = file("../gradle/keystoreboreal.jks")
             storePassword = properties.getProperty("STORE_PASSWORD")
             keyAlias = properties.getProperty("KEY_ALIAS")
             keyPassword = properties.getProperty("KEY_PASSWORD")
@@ -35,7 +35,7 @@ android {
         create("release") {
             val properties =
                 org.jetbrains.kotlin.konan.properties.loadProperties(project.rootProject.file("local.properties").path)
-            storeFile = file("../gradle/BorealNetwork")
+            storeFile = file("../gradle/keystoreboreal.jks")
             storePassword = properties.getProperty("STORE_PASSWORD")
             keyPassword = properties.getProperty("KEY_PASSWORD")
             keyAlias = properties.getProperty("KEY_ALIAS")

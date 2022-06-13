@@ -1,4 +1,3 @@
-rootProject.name = "PuertoCorazon"
 include(":app")
 include(":commonutils")
 include(":library:ui-system")
