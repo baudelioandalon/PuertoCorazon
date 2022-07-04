@@ -19,6 +19,10 @@ fun PCClientHomeFragment.initElements() {
     mainViewModel.navToTicket = {
         findNavController().navigate(R.id.pc_ticket_graph)
     }
+
+    mainViewModel.navToMap = {
+        findNavController().navigate(R.id.pc_map_graph)
+    }
 }
 
 fun PCClientHomeFragment.loadRecyclerEvent(response: List<PCEventModel>) {

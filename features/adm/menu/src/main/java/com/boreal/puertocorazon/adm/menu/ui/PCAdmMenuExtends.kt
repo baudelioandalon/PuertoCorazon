@@ -55,6 +55,16 @@ fun PCAdmMenuFragment.initElements() {
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
             mainViewModel.navigateToHome()
         }
+
+        imgMap.onClick {
+            if (navController.currentDestination?.label == "PCAdmHomeFragment") {
+                return@onClick
+            }
+            imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            mainViewModel.navigateToHome()
+        }
+
         drawMenu()
 
         mainViewModel.goToChecking = {

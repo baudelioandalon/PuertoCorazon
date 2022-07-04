@@ -141,5 +141,6 @@ dependencies {
     implementation(Dependency.dagger2)
     annotationProcessor(Dependency.dagger2Compiler)
     implementation(Dependency.dexter)
+    implementation(Dependency.googleMap)
 
 }

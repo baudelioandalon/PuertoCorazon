@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
+
 apply {
     plugin(Dependency.pluginKotlinApp)
     plugin(Dependency.pluginKotlinKapt)
@@ -15,7 +16,7 @@ android {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
 
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -35,10 +36,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         dataBinding = true
     }
 }
+
 repositories {
     google()
     jcenter()
@@ -47,13 +50,10 @@ repositories {
 }
 
 dependencies {
+
     implementation(project(":commonutils"))
     implementation(project(":library:core"))
     implementation(project(":library:ui-system"))
-    implementation(project(":features:showevent"))
-    implementation(project(":features:payments"))
-    implementation(project(":features:ticket"))
-    implementation(project(":features:maps"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)
@@ -85,9 +85,10 @@ dependencies {
     implementation(Dependency.firestoreKtx)
     implementation(Dependency.firebaseAuth)
 
-
     implementation(Dependency.circularProgress)
     implementation(Dependency.realtimeBlurView)
     implementation(Dependency.roundableImageView)
+    implementation(Dependency.lottie)
+    implementation(Dependency.googleMap)
 
 }

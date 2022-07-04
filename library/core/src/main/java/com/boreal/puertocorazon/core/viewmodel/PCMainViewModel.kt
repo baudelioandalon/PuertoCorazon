@@ -104,6 +104,7 @@ class PCMainViewModel(
     var shoppingChanged: ((list: List<PCShoppingModel>) -> Unit)? = null
     var navToTicket: () -> Unit = {}
     var navToHome: () -> Unit = {}
+    var navToMap: () -> Unit = {}
 
     fun addShopping(element: PCShoppingModel) {
         val founded = shoppingCart.find { it.idPackage == element.idPackage }
@@ -375,6 +376,10 @@ class PCMainViewModel(
 
     fun navigateToHome() {
         navToHome.invoke()
+    }
+
+    fun navigateToMap(){
+        navToMap.invoke()
     }
 
     private fun resetError() {

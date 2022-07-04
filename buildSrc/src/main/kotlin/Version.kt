@@ -84,4 +84,8 @@ object Version {
     //QR
     const val saveUtilsVersion = "3.0.2@aar"
     const val zxingCoreVersion = "3.5.0"
+
+    //Google Maps
+    const val googleMapVersion = "18.0.2"
+
 }

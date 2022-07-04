@@ -13,4 +13,9 @@
 
     <include app:graph="@navigation/pc_ticket_graph" />
 
+    <include app:graph="@navigation/pc_map_graph"/>
+
+    <action android:id="@+id/action_global_PCClientHomeFragment"
+        app:destination="@id/PCClientHomeFragment"/>
+
 </navigation>

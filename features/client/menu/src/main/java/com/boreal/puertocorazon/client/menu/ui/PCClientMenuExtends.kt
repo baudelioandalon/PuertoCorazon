@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.client.menu.ui
 
+import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.changeDrawable
@@ -40,6 +41,7 @@ fun PCClientMenuFragment.initElements() {
             }
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
             mainViewModel.navigateToTicket()
         }
 
@@ -49,7 +51,19 @@ fun PCClientMenuFragment.initElements() {
             }
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
             mainViewModel.navigateToHome()
+        }
+
+        imgMap.onClick {
+            Toast.makeText(requireActivity(), "Press", Toast.LENGTH_SHORT).show()
+            if (navController.currentDestination?.label == "PCMapFragment") {
+                return@onClick
+            }
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
+            mainViewModel.navigateToMap()
         }
 
         mainViewModel.goToPayment = {
@@ -65,9 +79,15 @@ fun PCClientMenuFragment.drawMenu() {
         if (navController.currentDestination?.label == "PCClientHomeFragment") {
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
         } else if (navController.currentDestination?.label == "PCTicketFragment") {
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+        } else if (navController.currentDestination?.label == "PCMapFragment"){
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
         }
     }
 }

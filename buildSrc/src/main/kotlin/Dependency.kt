@@ -132,4 +132,8 @@ object Dependency {
     const val saveQrUtils = "com.journeyapps:zxing-android-embedded:${Version.saveUtilsVersion}"
     const val zxingCore = "com.google.zxing:core:${Version.zxingCoreVersion}"
 
+    //Google Maps
+    const val googleMap = "com.google.android.gms:play-services-maps:${Version.googleMapVersion}"
+
+
 }
