@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.client.menu.ui
 
-import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.changeDrawable
@@ -45,6 +44,23 @@ fun PCClientMenuFragment.initElements() {
             mainViewModel.navigateToHome()
         }
 
+        mainViewModel.navToTicket = {
+            if (!findNavController().popBackStack(R.id.pc_ticket_graph, false)) {
+                findNavController().navigate(R.id.pc_ticket_graph)
+            }
+        }
+
+        mainViewModel.navToMap = {
+            if (!findNavController().popBackStack(R.id.pc_map_graph, false)) {
+                findNavController().navigate(R.id.pc_map_graph)
+            }
+        }
+
+        mainViewModel.navToHome = {
+            if (!findNavController().popBackStack(R.id.pc_client_home_graph, false)) {
+                findNavController().navigate(R.id.pc_client_home_graph)
+            }
+        }
         imgTicket.onClick {
             if (navController.currentDestination?.label == "PCTicketFragment") {
                 return@onClick
@@ -69,6 +85,19 @@ fun PCClientMenuFragment.initElements() {
             onFragmentBackPressed(true)
             findNavController().navigate(R.id.pc_payment_graph)
         }
+
+        mainViewModel.navToTicket = {
+            navController.navigate(R.id.pc_ticket_graph)
+        }
+
+        mainViewModel.navToMap = {
+            navController.navigate(R.id.pc_map_graph)
+        }
+
+        mainViewModel.navToHome = {
+            navController.navigate(R.id.pc_client_home_graph)
+        }
+
         drawMenu()
     }
 }
@@ -83,7 +112,7 @@ fun PCClientMenuFragment.drawMenu() {
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
             imgMap.changeDrawable(R.drawable.ic_pc_locations)
-        } else if (navController.currentDestination?.label == "PCMapFragment"){
+        } else if (navController.currentDestination?.label == "PCMapFragment") {
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
             imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
