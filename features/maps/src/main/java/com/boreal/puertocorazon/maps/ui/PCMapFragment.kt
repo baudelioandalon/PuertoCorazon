@@ -8,6 +8,7 @@ import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestor
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.maps.R
 import com.boreal.puertocorazon.maps.databinding.PcMapFragmentBinding
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -26,10 +27,6 @@ class PCMapFragment : CUBaseFragment<PcMapFragmentBinding>(), OnMapReadyCallback
     override fun initView() {
         initElements()
         createFragmentMap()
-    }
-
-    override fun initObservers() {
-
     }
 
     private fun createFragmentMap() {
@@ -67,14 +64,19 @@ class PCMapFragment : CUBaseFragment<PcMapFragmentBinding>(), OnMapReadyCallback
     private fun createMarket(response: List<PCEventModel>?) {
 
         response?.forEach {
-            val coordenadas = LatLng(it.place.latitude.toFloat().toDouble(), it.place.longitude.toFloat().toDouble())
+            val coordenadas = LatLng(
+                it.place.latitude.toFloat().toDouble(),
+                it.place.longitude.toFloat().toDouble()
+            )
             val marker = MarkerOptions().position(coordenadas).title(it.title)
             map.addMarker(marker)
-//            map.animateCamera(
-//                CameraUpdateFactory.newLatLngZoom(coordenadas, 18f),//coordanadas a mostrar y Cuanto zoom realizara
-//                4000,//Tiempo en realizar el zoom
-//                null
-//            )
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    coordenadas,
+                    9f
+                ),//coordanadas a mostrar y Cuanto zoom realizara
+                4000, null
+            )
         }
 
     }
