@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.home
 
-import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 

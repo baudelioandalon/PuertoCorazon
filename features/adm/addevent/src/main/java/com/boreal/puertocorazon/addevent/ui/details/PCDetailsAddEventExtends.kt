@@ -34,7 +34,7 @@ fun PCDetailsAddEventFragment.initElements() {
                 requireContext(), R.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, year)
-                    cal.set(Calendar.MONTH, monthOfYear + 1)
+                    cal.set(Calendar.MONTH, monthOfYear)
                     cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                     tvInitialDate.text = cal.time.time.toFormat()
                     tempInitialDate = cal.time.time.toTimeStamp()
@@ -51,7 +51,7 @@ fun PCDetailsAddEventFragment.initElements() {
                 requireContext(), R.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, year)
-                    cal.set(Calendar.MONTH, monthOfYear + 1)
+                    cal.set(Calendar.MONTH, monthOfYear )
                     cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                     tvDateEnding.text = cal.time.time.toFormat()
                     val timestampEnd = cal.time.time.toTimeStamp()
