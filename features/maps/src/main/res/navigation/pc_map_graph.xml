@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pc_map_graph"
-    app:startDestination="@id/PCMap">
+    app:startDestination="@id/PCMapFragment">
 
     <fragment
-        android:id="@+id/PCMap"
+        android:id="@+id/PCMapFragment"
         android:name="com.boreal.puertocorazon.maps.ui.PCMapFragment"
-        android:label="PCMap"
-        tools:layout="@layout/pc_map_fragment"/>
+        android:label="PCMapFragment"
+        tools:layout="@layout/pc_map_fragment" />
 
 </navigation>

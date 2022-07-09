@@ -1,21 +1,12 @@
 package com.boreal.puertocorazon.ticket.ui.showtickets
 
-import androidx.navigation.fragment.findNavController
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
 
 fun PCTicketFragment.initElements() {
     binding.apply {
-
         recyclerClientTicketsEvents.apply {
             adapter(adapterRecyclerTicketsEvents)
             mainViewModel.requestTicketsByClient()
-        }
-        mainViewModel.navToHome = {
-            try {
-                findNavController().popBackStack()
-            } catch (e: Exception) {
-
-            }
         }
     }
 }

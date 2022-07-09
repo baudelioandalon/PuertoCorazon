@@ -371,15 +371,15 @@ class PCMainViewModel(
     }
 
     fun navigateToTicket() {
-        navToTicket.invoke()
+        navToTicket()
     }
 
     fun navigateToHome() {
-        navToHome.invoke()
+        navToHome()
     }
 
     fun navigateToMap(){
-        navToMap.invoke()
+        navToMap()
     }
 
     private fun resetError() {

@@ -35,16 +35,6 @@ fun PCClientMenuFragment.initElements() {
             findNavController().navigate(R.id.pc_payment_graph)
         }
 
-        imgTicket.onClick {
-            if (navController.currentDestination?.label == "PCTicketFragment") {
-                return@onClick
-            }
-            imgHome.changeDrawable(R.drawable.ic_pc_home)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations)
-            mainViewModel.navigateToTicket()
-        }
-
         imgHome.onClick {
             if (navController.currentDestination?.label == "PCClientHomeFragment") {
                 return@onClick
@@ -55,8 +45,17 @@ fun PCClientMenuFragment.initElements() {
             mainViewModel.navigateToHome()
         }
 
+        imgTicket.onClick {
+            if (navController.currentDestination?.label == "PCTicketFragment") {
+                return@onClick
+            }
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+            mainViewModel.navigateToTicket()
+        }
+
         imgMap.onClick {
-            Toast.makeText(requireActivity(), "Press", Toast.LENGTH_SHORT).show()
             if (navController.currentDestination?.label == "PCMapFragment") {
                 return@onClick
             }
