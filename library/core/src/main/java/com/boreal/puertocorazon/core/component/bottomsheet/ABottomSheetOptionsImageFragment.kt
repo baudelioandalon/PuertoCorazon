@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieDrawable
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.showView
+import com.boreal.commonutils.utils.*
 import com.boreal.puertocorazon.core.R
 import com.boreal.puertocorazon.core.constants.*
 import com.boreal.puertocorazon.core.databinding.ABottomSheetOptionsImageFragmentBinding
@@ -101,6 +102,18 @@ class ABottomSheetOptionsImageFragment(
             requestAllPermissions(REQUEST_IMAGE_CAPTURE)
         } else {
             requestAllPermissions(REQUEST_IMAGE_CAPTURE)
+        }
+    }
+
+    fun getPermissionsReadStorage() {
+        val providerContext =
+            ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
+                permissionReadStorage)
+
+        if (providerContext) {
+            requestAllPermissions(REQUEST_GALLERY_CAPTURE)
+        } else {
+            requestAllPermissions(REQUEST_GALLERY_CAPTURE)
         }
     }
 

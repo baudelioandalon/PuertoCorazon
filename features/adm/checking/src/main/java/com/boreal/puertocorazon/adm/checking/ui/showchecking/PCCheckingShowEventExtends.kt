@@ -42,13 +42,15 @@ fun PCCheckingShowEventFragment.initElements() {
         }
 
         btnScan.onClick {
-            val integrator = IntentIntegrator.forSupportFragment(this@initElements)
-            integrator.setOrientationLocked(false)
-            integrator.setPrompt("Escaneo de ticket QR")
-            integrator.setBeepEnabled(true)
-            integrator.setOrientationLocked(true)
-            integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
-            integrator.initiateScan()
+            getPermissionsCamera {
+                val integrator = IntentIntegrator.forSupportFragment(this@initElements)
+                integrator.setOrientationLocked(false)
+                integrator.setPrompt("Escaneo de ticket QR")
+                integrator.setBeepEnabled(true)
+                integrator.setOrientationLocked(true)
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+                integrator.initiateScan()
+            }
         }
     }
     fillData()

@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.boreal.commonutils.base.CUBackHandler
+import com.boreal.commonutils.utils.*
 import com.boreal.puertocorazon.core.constants.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -56,13 +57,10 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
                 setExpanded()
             }
         }
-
         initDependency()
-
         if (activity is CUBackHandler) {
             cuBackHandler = activity as CUBackHandler
         }
-
         return dialog
     }
 
@@ -75,7 +73,7 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
         }
     }
 
-    fun setExpanded() {
+    protected fun setExpanded() {
         val parentLayout =
             dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         parentLayout?.let {
@@ -139,10 +137,14 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
     private var onRequestFailure: () -> Unit = {}
     private var onRequestSuccess: () -> Unit = {}
 
-    fun getPermissionsCamera() {
+    fun getPermissionsCamera(onFailure: () -> Unit = {}, onSuccess: () -> Unit) {
         val providerContext =
-            ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), permissionCamera)
-
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                requireActivity(),
+                permissionCamera
+            )
+        onRequestFailure = onFailure
+        onRequestSuccess = onSuccess
         if (providerContext) {
             requestAllPermissions(REQUEST_IMAGE_CAPTURE)
         } else {
@@ -177,6 +179,21 @@ abstract class ABaseBottomSheetDialogFragment<T : ViewDataBinding>(
                     Toast.makeText(
                         requireContext(),
                         "No cuenta con permisos de almacenamiento",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            REQUEST_IMAGE_CAPTURE -> {
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    onRequestSuccess()
+                } else {
+                    onRequestFailure()
+                    Toast.makeText(
+                        requireContext(),
+                        "No cuenta con permisos de cámara",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
