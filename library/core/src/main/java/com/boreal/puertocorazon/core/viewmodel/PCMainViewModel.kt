@@ -335,8 +335,8 @@ class PCMainViewModel(
                         aliasCard = aliasCard,
                         expirationDate = conektaCardModel.expirationDate(),
                         digitsCard = conektaCardModel.numberCard,
-                        emailLocal = BuildConfig.DEFAULT_EMAIL,
-                        environmentLocal = BuildConfig.ENVIRONMENT,
+                        emailLocal = BuildConfig.DEFAULT_EMAIL.replace("/",""),
+                        environmentLocal = BuildConfig.ENVIRONMENT.replace("/",""),
                         packages = getShoppingListToMap()
                     ), conektaCardModel
                 )

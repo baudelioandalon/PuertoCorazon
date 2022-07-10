@@ -6,6 +6,7 @@ import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.adm.checking.R
 import com.boreal.puertocorazon.adm.checking.ui.selectredeem.PCSelectRedeemTicket
 import com.boreal.puertocorazon.core.constants.NONE
+import com.boreal.puertocorazon.core.domain.entity.event.getAddressLatLng
 import com.boreal.puertocorazon.core.domain.entity.ticket.PCTicketType
 import com.boreal.puertocorazon.core.extension.dp
 import com.boreal.puertocorazon.core.utils.toFormat

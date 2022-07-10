@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieDrawable
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.core.domain.entity.event.getCity
+import com.boreal.puertocorazon.core.domain.entity.event.getDateEvent
+import com.boreal.puertocorazon.core.domain.entity.event.getHourEvent
 import com.boreal.puertocorazon.core.extension.addLinearHelper
 import com.boreal.puertocorazon.core.extension.generateQr
 import com.boreal.puertocorazon.core.extension.scrollToPositionCentered

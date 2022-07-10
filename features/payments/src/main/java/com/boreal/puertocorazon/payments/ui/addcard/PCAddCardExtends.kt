@@ -242,28 +242,3 @@ fun PCAddCardFragment.initOnChangeListener() {
         }
     }
 }
-
-fun PCAddCardFragment.collectDevice() {
-    val sessionId = getDeviceId()
-    val publicKey = Conekta.getPublicKey()
-    if (publicKey.isEmpty()) return
-
-    var html = "<!DOCTYPE html><html><head></head><body style=\"background: blue;\">"
-    html += "<script type=\"text/javascript\" src=\"https://conektaapi.s3.amazonaws.com/v0.5.0/js/conekta.js\" data-conekta-public-key=\"$publicKey\" data-conekta-session-id=\"$sessionId\"></script>"
-    html += "</body></html>"
-
-    val webView = WebView(requireActivity())
-
-    CookieManager.getInstance().setAcceptCookie(true)
-    CookieManager.getInstance()
-        .setAcceptThirdPartyCookies(webView, true)
-
-    webView.settings.javaScriptEnabled = true
-    webView.settings.allowContentAccess = true
-    webView.settings.databaseEnabled = true
-    webView.settings.domStorageEnabled = true
-    webView.loadDataWithBaseURL(
-        "https://conektaapi.s3.amazonaws.com/v0.5.0/js/conekta.js",
-        html, "text/html", "UTF-8", null
-    )
-}

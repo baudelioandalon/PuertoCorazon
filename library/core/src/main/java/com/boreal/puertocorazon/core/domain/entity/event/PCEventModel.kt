@@ -30,29 +30,4 @@ data class PCEventModel(
     var allowedPeople: List<String> = listOf(),
     var allowedAccesories: List<String> = listOf(),
     var allowedClothing: List<String> = listOf()
-) {
-    fun getCity() =
-        (addressPlace.substring(
-            addressPlace.indexOf(',') + 1,
-            addressPlace.indexOfLast { it == ',' }).trim()).substringBeforeLast(",")
-
-    fun getHourEvent() =
-        if (schedule.isNotEmpty()) {
-            with(schedule.first()) {
-                "${getHourAMPM(timestamp = startTime)} - ${getHourAMPM(timestamp = endTime)}"
-            }
-        } else {
-            ""
-        }
-
-    fun getDateEvent() =
-        if (schedule.isNotEmpty()) {
-            with(schedule.first()) {
-                startTime.getFormat("EEEE dd MMM yy")
-            }
-        } else {
-            ""
-        }
-
-    fun getAddressLatLng() = "${place.latitude}, ${place.longitude}"
-}
+)

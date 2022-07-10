@@ -4,6 +4,10 @@ import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.openFacebookActivity
 import com.boreal.commonutils.extensions.openMapsActivity
 import com.boreal.commonutils.extensions.showToast
+import com.boreal.puertocorazon.core.domain.entity.event.getAddressLatLng
+import com.boreal.puertocorazon.core.domain.entity.event.getCity
+import com.boreal.puertocorazon.core.domain.entity.event.getDateEvent
+import com.boreal.puertocorazon.core.domain.entity.event.getHourEvent
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 

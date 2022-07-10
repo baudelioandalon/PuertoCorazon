@@ -75,7 +75,8 @@ fun PCPackagesAddEventFragment.initAdapter() {
                 titlePackage = it.titlePackage,
                 adult = it.adult,
                 child = it.child,
-                price = it.price
+                price = it.price,
+                empty = false
             )
         })
     }

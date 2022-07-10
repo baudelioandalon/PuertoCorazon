@@ -94,7 +94,7 @@ class PaymentDataSource {
                 DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
                     null,
-                    errorData = "No se pudo completar la transaccion"
+                    errorData = "No se pudo completar la transaccion, por favor intenta mas tarde"
                 )
             }
         }

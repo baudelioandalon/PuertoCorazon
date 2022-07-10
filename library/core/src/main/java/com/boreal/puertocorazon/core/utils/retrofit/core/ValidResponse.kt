@@ -29,13 +29,11 @@ class ValidResponse<R>(
                     errorData = "Hay un error en la peticion"
                 )
             } else {
-                val objJson = bufferedToJson(
-                    errorBody.charStream().buffered()
-                )
-                val myResponse = Gson().fromJson(objJson.toString(), vkClass.javaObjectType) as R
+                val jsonObject = gson.toJsonTree(errorBody)
+                val errorResult = Gson().fromJson(jsonObject, vkClass.javaObjectType) as R
                 DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
-                    errorModel = myResponse
+                    errorModel = errorResult
                 )
             }
         }
