@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
@@ -68,19 +67,21 @@ class AMapUtilityActivity :
                     txtAddress.text = model.description
                     itemAddress.setOnSingleClickListener {
                         enableFinishButton(true)
-                        val address = getCompleteAddressString(
-                            currentLocation.latitude,
-                            currentLocation.longitude
-                        )
                         searchLocation(model) { result ->
+                            geoPointSelected = GeopointModel(
+                                result.latitude,
+                                result.longitude,
+                                result.countryCode,
+                                result.getAddressLine(0)
+                            )
                             createMarker(
                                 location = LatLng(result.latitude, result.longitude),
-                                titleText = address,
+                                titleText = result.getAddressLine(0),
                                 removeAllMarkers = true,
                                 moveToLocation = true
                             )
-                            completeAddress = address.removeTilde()
-                            binding.edtSearchAddress.setText(model.description)
+                            completeAddress = result.getAddressLine(0).removeTilde()
+                            binding.edtSearchAddress.setText(result.getAddressLine(0))
                         }
                     }
                 }

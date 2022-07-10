@@ -77,12 +77,12 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
         newEvent.schedule = schedule
     }
 
-    fun setLocation(){
+    fun setLocation() {
         locationSelected?.let {
             newEvent.addressPlace = it.addressName
             newEvent.place = PCLocationModel(
-                latitude = it.latitud.toLong(),
-                longitude = it.longitude.toLong()
+                latitude = it.latitud.toString(),
+                longitude = it.longitude.toString()
             )
         }
     }

@@ -53,11 +53,12 @@ fun AMapUtilityActivity.initElements() {
                     isEmptyPlaces.hideView()
                     rvPlaces.adapter = adapter
                     adapter.submitList(getDataPlaces(it.toString()).predictions)
-                    enableFinishButton(completeAddress == it.toString())
-                    if (completeAddress == it.toString()) {
-                        rvPlaces.hideView()
-                        hideKeyBoard()
+                    if(it.toString().length < completeAddress.length){
+                        completeAddress = ""
+                        enableFinishButton(false)
+                        return@launch
                     }
+                    enableFinishButton(completeAddress.isNotEmpty() && it.toString().length == completeAddress.length)
                 }
             }
         }

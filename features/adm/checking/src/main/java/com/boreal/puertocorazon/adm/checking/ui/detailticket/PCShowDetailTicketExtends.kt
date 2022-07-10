@@ -44,6 +44,9 @@ fun PCShowDetailTicket.initElements() {
                     applyTo(containerDetailsTicket)
                 }
             }
+            cuRoundableLayoutLinear.onClick{
+                openMapsActivity(byLocation = getAddressLatLng())
+            }
         }
 
         btnSelectItems.onClick {

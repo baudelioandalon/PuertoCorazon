@@ -12,9 +12,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.PolygonOptions
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -65,18 +65,26 @@ class PCMapFragment : CUBaseFragment<PcMapFragmentBinding>(), OnMapReadyCallback
     private fun createMarket(response: List<PCEventModel>?) {
 
         response?.forEach {
-            val coordenadas = LatLng(
+            val location = LatLng(
                 it.place.latitude.toFloat().toDouble(),
                 it.place.longitude.toFloat().toDouble()
             )
-            val marker = MarkerOptions().position(coordenadas).title(it.title)
+            val locationPuertoCorazon = LatLng(20.6437441, -105.22035419999999)
+            val marker = MarkerOptions().position(location).title(it.title)
+            val markerPuertoCorazon =
+                MarkerOptions().position(locationPuertoCorazon).title("Puerto Corazon").icon(
+                    BitmapDescriptorFactory.fromResource(
+                        R.drawable.ic_location_marker
+                    )
+                )
             map.addMarker(marker)
+            map.addMarker(markerPuertoCorazon)
             map.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
-                    coordenadas,
-                    9f
+                    locationPuertoCorazon,
+                    13f
                 ),//coordanadas a mostrar y Cuanto zoom realizara
-                4000, null
+                2000, null
             )
         }
 
