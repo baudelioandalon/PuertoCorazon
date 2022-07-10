@@ -20,7 +20,12 @@ fun PCDetailsAddEventFragment.initElements() {
     binding.apply {
 
         btnOpenMap.onClick {
-            responseLocation.launch(Intent(requireContext(), AMapUtilityActivity::class.java))
+            responseLocation.launch(
+                Intent(
+                    requireContext(),
+                    AMapUtilityActivity::class.java
+                )
+            )
         }
 
         val cal = Calendar.getInstance()
@@ -116,6 +121,11 @@ fun PCDetailsAddEventFragment.initElements() {
                     }
                 } else {
                     val eventHours = tempEndingDate hoursBetweenDays tempInitialDate
+                    if (tvAddress.text.toString().isEmpty() || viewModel.locationSelected == null) {
+                        showToast("Aún no has seleccionado una ubicación")
+                        return@onClick
+                    }
+                    viewModel.setLocation()
                     viewModel.setSchedule(
                         listOf(
                             PCScheduleModel(

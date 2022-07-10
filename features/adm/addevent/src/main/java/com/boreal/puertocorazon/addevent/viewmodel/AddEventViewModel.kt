@@ -7,10 +7,7 @@ import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.GeopointModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCEventToUploadModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
-import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
+import com.boreal.puertocorazon.core.domain.entity.event.*
 import com.boreal.puertocorazon.core.usecase.login.UseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
@@ -78,6 +75,16 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
 
     fun setSchedule(schedule: List<PCScheduleModel>) {
         newEvent.schedule = schedule
+    }
+
+    fun setLocation(){
+        locationSelected?.let {
+            newEvent.addressPlace = it.addressName
+            newEvent.place = PCLocationModel(
+                latitude = it.latitud.toLong(),
+                longitude = it.longitude.toLong()
+            )
+        }
     }
 
     fun setEvent() {
