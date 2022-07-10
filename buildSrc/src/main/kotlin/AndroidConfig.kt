@@ -6,7 +6,7 @@ object AndroidConfig {
     const val targetSdk = 30
     const val compileSdk = 30
     const val appId = "com.boreal.puertocorazon"
-    const val versionCode = 1
+    const val versionCode = 2
     val versionName = "1.0.0-${SimpleDateFormat("yyyyMMdd", Locale.US).format(Date())}"
     const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
