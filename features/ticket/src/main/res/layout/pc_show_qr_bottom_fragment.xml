@@ -224,7 +224,7 @@
                         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/txtCity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="14dp"
@@ -245,7 +245,7 @@
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/textView8"
+                            app:layout_constraintStart_toStartOf="@+id/txtCity"
                             tools:text="Miramar #1195 San Est..." />
 
                         <ImageView

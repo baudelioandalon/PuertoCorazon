@@ -30,6 +30,11 @@ fun PCShowQrTickets.initElements() {
 
 fun PCShowQrTickets.setData(eventModel: PCEventModel) {
     binding.apply {
+        eventModel.apply {
+            txtCity.text = getCity()
+            txtHourEvent.text = getHourEvent()
+            txtDateEvent.text = getDateEvent()
+        }
     }
 }
 

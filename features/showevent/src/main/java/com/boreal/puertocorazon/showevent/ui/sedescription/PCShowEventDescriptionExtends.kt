@@ -63,6 +63,9 @@ fun PCShowEventDescriptionFragment.fillData() {
             }
             tvTicketPriceAdult.text = priceAdult.formatCurrency(textFirst = "Boleto \n Adulto")
             txtCountPeople.text = "4" //TODO getTickets from firebase
+            txtCity.text = getCity()
+            txtHourEvent.text = getHourEvent()
+            txtDateEvent.text = getDateEvent()
             btnFollow.onClick {
                 try {
                     openFacebookActivity(
@@ -74,7 +77,7 @@ fun PCShowEventDescriptionFragment.fillData() {
 
             }
             btnGoMaps.onClick {
-                openMapsActivity(byAddress = addressPlace)
+                openMapsActivity(byLocation = "${place.latitude},${place.longitude}")
             }
         }
     }

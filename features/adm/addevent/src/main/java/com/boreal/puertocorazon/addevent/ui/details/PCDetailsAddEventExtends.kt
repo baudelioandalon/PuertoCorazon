@@ -15,7 +15,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 
-
 fun PCDetailsAddEventFragment.initElements() {
     binding.apply {
 

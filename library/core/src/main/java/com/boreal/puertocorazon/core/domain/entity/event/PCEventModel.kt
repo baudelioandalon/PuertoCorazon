@@ -1,6 +1,8 @@
 package com.boreal.puertocorazon.core.domain.entity.event
 
 import com.boreal.commonutils.globalmethod.randomANID
+import com.boreal.puertocorazon.core.utils.getFormat
+import com.boreal.puertocorazon.core.utils.getHourAMPM
 import com.google.firebase.Timestamp
 
 data class PCEventModel(
@@ -28,4 +30,23 @@ data class PCEventModel(
     var allowedPeople: List<String> = listOf(),
     var allowedAccesories: List<String> = listOf(),
     var allowedClothing: List<String> = listOf()
-)
+) {
+    fun getCity() = addressPlace.substringBeforeLast(",")
+    fun getHourEvent() =
+        if (schedule.isNotEmpty()) {
+            with(schedule.first()) {
+                "${getHourAMPM(timestamp = startTime)} - ${getHourAMPM(timestamp = endTime)}"
+            }
+        } else {
+            ""
+        }
+
+    fun getDateEvent() =
+        if (schedule.isNotEmpty()) {
+            with(schedule.first()) {
+                startTime.getFormat("EEEE dd MMM yy")
+            }
+        } else {
+            ""
+        }
+}
