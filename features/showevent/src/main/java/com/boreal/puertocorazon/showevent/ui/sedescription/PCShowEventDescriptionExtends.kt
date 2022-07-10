@@ -77,7 +77,7 @@ fun PCShowEventDescriptionFragment.fillData() {
 
             }
             btnGoMaps.onClick {
-                openMapsActivity(byLocation = "${place.latitude},${place.longitude}")
+                openMapsActivity(byAddress = addressPlace)
             }
         }
     }

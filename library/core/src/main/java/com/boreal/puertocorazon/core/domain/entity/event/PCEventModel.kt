@@ -31,7 +31,9 @@ data class PCEventModel(
     var allowedAccesories: List<String> = listOf(),
     var allowedClothing: List<String> = listOf()
 ) {
-    fun getCity() = addressPlace.substringBeforeLast(",")
+    fun getCity() =
+        (addressPlace.substring(addressPlace.indexOf(',') + 1, addressPlace.indexOfLast { it == ',' }).trim()).substringBeforeLast(",")
+
     fun getHourEvent() =
         if (schedule.isNotEmpty()) {
             with(schedule.first()) {

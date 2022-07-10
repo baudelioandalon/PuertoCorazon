@@ -75,7 +75,6 @@ fun PCAdmMenuFragment.initElements() {
             onFragmentBackPressed(true)
             findNavController().navigate(R.id.pc_payment_graph)
         }
-        btnNewEvent.performClick()
     }
 }
 
