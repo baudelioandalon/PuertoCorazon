@@ -44,6 +44,7 @@ fun PCAdmMenuFragment.initElements() {
             }
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
             mainViewModel.navigateToTicket()
         }
 
@@ -53,6 +54,7 @@ fun PCAdmMenuFragment.initElements() {
             }
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
             mainViewModel.navigateToHome()
         }
 
@@ -65,8 +67,6 @@ fun PCAdmMenuFragment.initElements() {
             imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
             mainViewModel.navigateToMap()
         }
-
-        drawMenu()
 
         mainViewModel.goToChecking = {
             findNavController().navigate(R.id.pc_adm_checking_graph)
@@ -88,6 +88,7 @@ fun PCAdmMenuFragment.initElements() {
         mainViewModel.navToHome = {
             navController.navigate(R.id.pc_adm_home_graph)
         }
+        drawMenu()
     }
 }
 
