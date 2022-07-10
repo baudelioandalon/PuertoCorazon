@@ -27,6 +27,9 @@ fun PCDetailsAddEventFragment.initElements() {
                 )
             )
         }
+        if (viewModel.locationSelected != null) {
+            tvAddress.setText(viewModel.locationSelected?.addressName ?: "")
+        }
 
         val cal = Calendar.getInstance()
         var tempInitialDate =
