@@ -87,7 +87,6 @@
 
         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navigationMenu"
             android:name="androidx.navigation.fragment.NavHostFragment"
