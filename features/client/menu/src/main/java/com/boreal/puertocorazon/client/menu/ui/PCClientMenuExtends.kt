@@ -44,23 +44,6 @@ fun PCClientMenuFragment.initElements() {
             mainViewModel.navigateToHome()
         }
 
-        mainViewModel.navToTicket = {
-            if (!findNavController().popBackStack(R.id.pc_ticket_graph, false)) {
-                findNavController().navigate(R.id.pc_ticket_graph)
-            }
-        }
-
-        mainViewModel.navToMap = {
-            if (!findNavController().popBackStack(R.id.pc_map_graph, false)) {
-                findNavController().navigate(R.id.pc_map_graph)
-            }
-        }
-
-        mainViewModel.navToHome = {
-            if (!findNavController().popBackStack(R.id.pc_client_home_graph, false)) {
-                findNavController().navigate(R.id.pc_client_home_graph)
-            }
-        }
         imgTicket.onClick {
             if (navController.currentDestination?.label == "PCTicketFragment") {
                 return@onClick

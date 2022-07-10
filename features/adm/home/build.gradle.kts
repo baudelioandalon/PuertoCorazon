@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":features:showevent"))
     implementation(project(":features:ticket"))
     implementation(project(":features:payments"))
+    implementation(project(":features:maps"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)

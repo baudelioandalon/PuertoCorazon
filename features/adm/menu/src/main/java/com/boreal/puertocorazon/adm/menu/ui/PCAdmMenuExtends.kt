@@ -57,12 +57,13 @@ fun PCAdmMenuFragment.initElements() {
         }
 
         imgMap.onClick {
-            if (navController.currentDestination?.label == "PCAdmHomeFragment") {
+            if (navController.currentDestination?.label == "PCMapFragment") {
                 return@onClick
             }
-            imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
-            mainViewModel.navigateToHome()
+            imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
+            mainViewModel.navigateToMap()
         }
 
         drawMenu()
@@ -74,6 +75,18 @@ fun PCAdmMenuFragment.initElements() {
         mainViewModel.goToPayment = {
             onFragmentBackPressed(true)
             findNavController().navigate(R.id.pc_payment_graph)
+        }
+
+        mainViewModel.navToTicket = {
+            navController.navigate(R.id.pc_ticket_graph)
+        }
+
+        mainViewModel.navToMap = {
+            navController.navigate(R.id.pc_map_graph)
+        }
+
+        mainViewModel.navToHome = {
+            navController.navigate(R.id.pc_adm_home_graph)
         }
     }
 }
