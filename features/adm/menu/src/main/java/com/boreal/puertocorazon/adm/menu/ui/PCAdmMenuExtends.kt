@@ -96,9 +96,15 @@ fun PCAdmMenuFragment.drawMenu() {
         if (navController.currentDestination?.label == "PCAdmHomeFragment") {
             imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
         } else if (navController.currentDestination?.label == "PCTicketFragment") {
             imgHome.changeDrawable(R.drawable.ic_pc_home)
             imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+        } else if (navController.currentDestination?.label == "PCMapFragment") {
+            imgHome.changeDrawable(R.drawable.ic_pc_home)
+            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
         }
     }
 }
