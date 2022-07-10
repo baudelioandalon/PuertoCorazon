@@ -17,6 +17,7 @@
     <color name="gray_letter">#7C7C8B</color>
     <color name="gray_photo">#F0F0F1</color>
     <color name="gray_blue_container">#F4F4FA</color>
+    <color name="gray_letter_search">#D2D3D6</color>
 
     <color name="gray_100">#FCFCFE</color>
     <color name="gray_200">#F7F4FC</color>

@@ -2,10 +2,12 @@ package com.boreal.puertocorazon.addevent.ui.details
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.core.component.maputils.AMapUtilityActivity
 import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
 import com.boreal.puertocorazon.core.utils.*
 import com.google.firebase.Timestamp
@@ -16,6 +18,11 @@ import java.util.*
 
 fun PCDetailsAddEventFragment.initElements() {
     binding.apply {
+
+        btnOpenMap.onClick {
+            responseLocation.launch(Intent(requireContext(), AMapUtilityActivity::class.java))
+        }
+
         val cal = Calendar.getInstance()
         var tempInitialDate =
             if (viewModel.isScheduleValid()) viewModel.getSchedule()[0].startTime else Timestamp.now()
@@ -51,7 +58,7 @@ fun PCDetailsAddEventFragment.initElements() {
                 requireContext(), R.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, year)
-                    cal.set(Calendar.MONTH, monthOfYear )
+                    cal.set(Calendar.MONTH, monthOfYear)
                     cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                     tvDateEnding.text = cal.time.time.toFormat()
                     val timestampEnd = cal.time.time.toTimeStamp()

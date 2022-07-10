@@ -70,19 +70,21 @@
                 app:cu_cornerAll="5dp"
                 app:cu_strokeLineColor="@color/blue_edittext"
                 app:cu_strokeLineWidth="1dp"
-                app:layout_constraintEnd_toStartOf="@+id/CURoundableLayout3"
+                app:layout_constraintEnd_toStartOf="@+id/btnOpenMap"
                 app:layout_constraintStart_toStartOf="@+id/lblNames"
                 app:layout_constraintTop_toBottomOf="@+id/lblNames">
 
                 <EditText
-                    android:id="@+id/tvTitle"
+                    android:id="@+id/tvAddress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:fontFamily="@font/montserrat_semibold"
                     android:hint="@string/no_available_text"
                     android:inputType="text"
-                    android:maxLength="50"
+                    android:lines="2"
+                    android:maxLength="100"
+                    android:minLines="2"
                     android:nextFocusDown="@id/tvSubtitle"
                     android:paddingHorizontal="10dp"
                     android:textColor="@color/black_700"
@@ -96,7 +98,7 @@
             </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
             <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                android:id="@+id/CURoundableLayout3"
+                android:id="@+id/btnOpenMap"
                 android:layout_width="51dp"
                 android:layout_height="0dp"
                 android:clickable="true"
@@ -430,8 +432,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btnReady"
                 app:layout_constraintEnd_toEndOf="@+id/btnReady"
                 app:layout_constraintStart_toStartOf="@+id/btnReady"
-                tools:text="Este es un mensaje de error"
-                />
+                tools:text="Este es un mensaje de error" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

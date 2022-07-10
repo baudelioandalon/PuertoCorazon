@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.boreal.puertocorazon.addevent.usecase.AddEventUseCase
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
+import com.boreal.puertocorazon.core.domain.entity.GeopointModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventToUploadModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageModel
@@ -24,6 +25,7 @@ class AddEventViewModel(private val addEventUseCase: UseCase<AddEventUseCase.Inp
     private var eventImageToUpload = PCEventToUploadModel()
 
     var requirementsChanged = false
+    var locationSelected: GeopointModel? = null
 
     val addEvent: LiveData<AFirestoreSetResponse<PCEventModel, CUFirestoreErrorEnum>>
         get() = _addEvent

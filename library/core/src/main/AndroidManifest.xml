@@ -2,4 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.boreal.puertocorazon.core">
 
+    <application>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".component.maputils.AMapUtilityActivity"/>
+    </application>
+
 </manifest>

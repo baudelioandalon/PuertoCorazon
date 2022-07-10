@@ -27,6 +27,8 @@ android {
     }
 
     buildTypes {
+        val properties =
+            org.jetbrains.kotlin.konan.properties.loadProperties(project.rootProject.file("local.properties").path)
         getByName("debug") {
             isMinifyEnabled = false
             buildConfigField(type = "String", name = "ENVIRONMENT_ABSOLUTE", value = "\"DEBUG\"")
@@ -34,7 +36,12 @@ android {
             buildConfigField(
                 type = "String",
                 name = "CONEKTA_PUBLIC_KEY",
-                value = "\"key_DQpekCNQJ55Dj14grt1XYYg\""
+                value = "\"${properties.getProperty("CONEKTA_DEBUG_PUBLIC_KEY")}\""
+            )
+            buildConfigField(
+                type = "String",
+                name = "MAPS_API_KEY",
+                value = "\"${properties.getProperty("GOOGLE_MAPS_KEY")}\""
             )
             buildConfigField(
                 type = "String",
@@ -63,7 +70,12 @@ android {
             buildConfigField(
                 type = "String",
                 name = "CONEKTA_PUBLIC_KEY",
-                value = "\"key_WCz3NwHC1GZj8JJsufrqKvg\""
+                value = "\"${properties.getProperty("CONEKTA_RELEASE_PUBLIC_KEY")}\""
+            )
+            buildConfigField(
+                type = "String",
+                name = "MAPS_API_KEY",
+                value = "\"${properties.getProperty("GOOGLE_MAPS_KEY")}\""
             )
             buildConfigField(
                 type = "String",
