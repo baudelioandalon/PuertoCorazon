@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -225,7 +226,7 @@
                         android:maxLength="50"
                         android:maxLines="1"
                         android:paddingHorizontal="10dp"
-                        android:text="administrator@borealnetwork.org"
+                        tools:text="administrator@borealnetwork.org"
                         android:textColor="@color/black_700"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -259,7 +260,7 @@
                         android:maxLength="50"
                         android:textSize="15sp"
                         android:paddingHorizontal="10dp"
-                        android:text="Altemis132"
+                        tools:text="Altemis132"
                         android:textColor="@color/black_700"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
