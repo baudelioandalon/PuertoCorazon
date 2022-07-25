@@ -8,7 +8,10 @@ import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 import com.boreal.puertocorazon.payments.R
-import com.boreal.puertocorazon.payments.ui.paymentselector.PCPaymentSelector
+import com.mercadopago.android.px.core.MercadoPagoCheckout
+
+
+private const val REQUEST_CODE = 1
 
 fun PCCartShoppingFragment.initElements() {
     binding.apply {
@@ -28,9 +31,22 @@ fun PCCartShoppingFragment.initElements() {
                 showToast("No hay articulos en el carrito de compra")
                 return@onClick
             }
-            PCPaymentSelector { typePaymentSelected ->
-                findNavController().navigate(R.id.PCAddCardFragment)
-            }.show(getSupportFragmentManager(), "odmod")
+            val subtotal =
+                mainViewModel.getShoppingList().sumOf { (it.countItem * it.priceElement) }.toLong()
+            val iva = (subtotal * .16).toLong()
+
+
+//            MercadoPago.Builder().setContext(requireContext())
+//                .setPublicKey("TEST-55083885-4ee1-458c-ac70-2933c2b29019")
+//                .build()
+            MercadoPagoCheckout.Builder(
+                "TEST-337eebca-a95c-426f-b7c1-cc204dbf467d",
+                "208868187-a7951ced-ba00-4ffa-ab08-84726f592459"
+            ).build().startPayment(
+                requireContext(),
+                REQUEST_CODE
+            )
+
         }
 
         initCardAdapter(mainViewModel.getCardList())

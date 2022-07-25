@@ -142,5 +142,7 @@ dependencies {
     annotationProcessor(Dependency.dagger2Compiler)
     implementation(Dependency.dexter)
     implementation(Dependency.googleMap)
-
+    implementation("com.mercadopago.android.px:checkout:4.53.1") {
+        exclude(module = Dependency.appcompat)
+    }
 }

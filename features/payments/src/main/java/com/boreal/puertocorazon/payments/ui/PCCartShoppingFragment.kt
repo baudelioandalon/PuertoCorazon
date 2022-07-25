@@ -1,5 +1,7 @@
 package com.boreal.puertocorazon.payments.ui
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
@@ -89,5 +91,39 @@ class PCCartShoppingFragment : CUBaseFragment<PcCartShoppingBinding>() {
 
     override fun initView() {
         initElements()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        data
+//        if (requestCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
+        if (resultCode == RESULT_OK) {
+//                val paymentMethod: PaymentMethod = JsonUtil.getInstance().fromJson(
+//                    data!!.getStringExtra("paymentMethod"),
+//                    PaymentMethod::class.java
+//                )
+//                val issuer: Issuer = JsonUtil.getInstance().fromJson(
+//                    data.getStringExtra("issuer"),
+//                    Issuer::class.java
+//                )
+//                val token: Token =
+//                    JsonUtil.getInstance().fromJson(data.getStringExtra("token"), Token::class.java)
+//                val payerCost: PayerCost = JsonUtil.getInstance().fromJson(
+//                    data.getStringExtra("payerCost"),
+//                    PayerCost::class.java
+//                )
+//                paymentMethod
+//                issuer
+//                payerCost
+//                token
+////                createPayment(paymentMethod, issuer, payerCost, token)
+//            } else {
+//                if (data != null && data.hasExtra("mpException")) {
+//                    data
+////                    val exception: MPException = JsonUtil.getInstance()
+////                        .fromJson(data.getStringExtra("mpException"), MPException::class.java)
+//                }
+//            }
+        }
     }
 }

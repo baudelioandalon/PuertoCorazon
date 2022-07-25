@@ -1,5 +1,6 @@
 package com.boreal.puertocorazon.ui
 
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.boreal.commonutils.base.CUBaseActivity
@@ -15,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.system.exitProcess
-
 
 class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
 
@@ -97,5 +97,64 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
         FirebaseAuth.getInstance().signOut()
         navController.popBackStack()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        resolveCheckoutResult(this, requestCode, resultCode, data, 1);
+        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 1) {
+//            if (resultCode == RESULT_OK) {
+//                val paymentMethod: PaymentMethod = Gson().fromJson(
+//                    data!!.getStringExtra("paymentMethod"),
+//                    PaymentMethod::class.java
+//                )
+//                val issuer: Issuer = Gson().fromJson(
+//                    data.getStringExtra("issuer"),
+//                    Issuer::class.java
+//                )
+//                val token: Token = Gson().fromJson(data.getStringExtra("token"), Token::class.java)
+//                val payerCost: PayerCost = Gson().fromJson(
+//                    data.getStringExtra("payerCost"),
+//                    PayerCost::class.java
+//                )
+//                paymentMethod
+//                issuer
+//                payerCost
+//                token
+////                createPayment(paymentMethod, issuer, payerCost, token)
+//            } else {
+//                if (data != null && data.hasExtra("mpException")) {
+//                    data
+////                    val exception: MPException = JsonUtil.getInstance()
+////                        .fromJson(data.getStringExtra("mpException"), MPException::class.java)
+//                }
+//            }
+//        }
+    }
+//    fun resolveCheckoutResult(
+//        context: Activity?, requestCode: Int, resultCode: Int,
+//        data: Intent?, reqCodeCheckout: Int
+//    ) {
+//        ViewUtils.showRegularLayout(context)
+//        if (requestCode == reqCodeCheckout) {
+//            if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
+//                val payment =
+//                    data!!.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
+//               payment
+//            } else if (resultCode == RESULT_CANCELED) {
+//                if (data != null && data.extras != null &&
+//                    data.extras!!.containsKey(MercadoPagoCheckout.EXTRA_ERROR)
+//                ) {
+//                    val mercadoPagoError =
+//                        data.getSerializableExtra(MercadoPagoCheckout.EXTRA_ERROR) as MercadoPagoError?
+//                    Toast.makeText(context, "Error: $mercadoPagoError", Toast.LENGTH_LONG).show()
+//                } else {
+//
+//                }
+//            } else {
+//                ""
+//            }
+//        }
+//    }
+
 
 }
