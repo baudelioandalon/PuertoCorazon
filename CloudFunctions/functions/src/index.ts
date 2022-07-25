@@ -263,17 +263,81 @@ export const createPreference = functions.https.onRequest(async (request: functi
       })
       response.status(200).send({
         code: 200,
-        preferenceId: createPreference.response.id,
-        data: createPreference.response
+        preferenceId: createPreference.response.id
       });
     } catch (error) {
       await admin.firestore().collection(paymentPath).doc(paymentId).delete()
+      console.log('MPError', error)
       response.status(400).send({
         code: 400,
-        message: "Hubo un error en MercadoPago",
-        error: error
+        message: "Hubo un error en MercadoPago"
       });
     }
+  }
+});
+
+export const webhookPaymentRelease = functions.https.onRequest(async (request: functions.https.Request, response: functions.Response<any>) => {
+  const mercadoPago = getMercagoPago('RELEASE')
+  //Paso 1 Obtener el paymentId
+  const paymentId = request.body.data.id
+
+  try {
+    const payment = (await mercadoPago.payment.get(paymentId)).response
+    const externalRef = payment.external_reference
+    console.log('INFO_SUCCESS', JSON.stringify(payment))
+    const paymentStatus = payment.status === 'approved'
+    const paymentReference = admin.firestore().collection('RELEASE/administrator@borealnetwork.org/Payments').doc(externalRef)
+    const lastTry = admin.firestore.Timestamp.now()
+
+    paymentReference.update({
+      status: paymentStatus,
+      dateLastTry: lastTry,
+      idMPPayment: paymentId,
+      datePayed: paymentStatus ? lastTry : null
+    })
+
+    console.log('STATUS_CHANGED', 'OK')
+    //getPackages
+    if (paymentStatus) {
+      //Situacion 1 => 2 Paquetes
+      //Situacion 2 => 2 Boletos individuales adulto
+      //Situcaion 3 => 2 Boletos individuales niño
+      //Situacion 4 => 1 Boleto Adulto ó 1 Boleto niño
+      const getPaymentDocument = (await paymentReference.get()).data()
+      console.log('GET_DOCUMENT', 'SUCCESS')
+      console.log('GET_DOCUMENT', JSON.stringify(getPaymentDocument))
+      for (let packageItem of getPaymentDocument?.packages || []) {
+        console.log('FOREACH', JSON.stringify(packageItem))
+        const setTicket = admin.firestore().collection('RELEASE/administrator@borealnetwork.org/Tickets').doc()
+        const idTicket = setTicket.id
+        await setTicket.set({
+          attendedTime: [],
+          payedDate: lastTry,
+          countAdult: packageItem.countAdult,
+          countChild: packageItem.countChild,
+          priceItem: packageItem.priceItem || 0,
+          nameEvent: packageItem.nameEvent || "NONE",
+          imageEvent: packageItem.imageEvent || "NONE",
+          idPackage: packageItem.idPackage || "NONE",
+          idClient: getPaymentDocument?.idClient,
+          idPayment: getPaymentDocument?.idPayment,
+          idTicket: idTicket,
+          idEvent: packageItem.idEvent,
+          namePackage: packageItem.namePackage,
+          isPackage: packageItem.isPackage
+        })
+      }
+    }
+    response.status(200).send({
+      code: 200,
+      message: ["Transaccion exitosa"]
+    });
+  } catch (error) {
+    console.log('INFO_ERROR', error)
+    response.status(200).send({
+      code: 200,
+      message: "Hubo un error en el pago"
+    });
   }
 });
 
