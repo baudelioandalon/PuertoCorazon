@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieDrawable
 import com.boreal.commonutils.extensions.*
-import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
-import com.boreal.puertocorazon.core.domain.entity.event.getCity
-import com.boreal.puertocorazon.core.domain.entity.event.getDateEvent
-import com.boreal.puertocorazon.core.domain.entity.event.getHourEvent
+import com.boreal.puertocorazon.core.domain.entity.event.*
 import com.boreal.puertocorazon.core.extension.addLinearHelper
 import com.boreal.puertocorazon.core.extension.generateQr
 import com.boreal.puertocorazon.core.extension.scrollToPositionCentered
@@ -34,6 +31,10 @@ fun PCShowQrTickets.initElements() {
 fun PCShowQrTickets.setData(eventModel: PCEventModel) {
     binding.apply {
         eventModel.apply {
+            goToMap.onClick {
+                openMapsActivity(byLocation = getAddressLatLng())
+            }
+            txtAddressPlace.text = addressPlace
             txtCity.text = getCity()
             txtHourEvent.text = getHourEvent()
             txtDateEvent.text = getDateEvent()

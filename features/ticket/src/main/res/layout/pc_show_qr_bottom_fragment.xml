@@ -202,61 +202,77 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout4" />
 
-                        <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
-                            android:id="@+id/cuRoundableLayout5"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/goToMap"
+                            android:layout_width="0dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="18dp"
-                            app:cu_backgroundColor="@color/helper_color_background"
-                            app:cu_cornerAll="10dp"
-                            app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
-                            app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout4">
-
-                            <ImageView
-                                android:layout_width="21dp"
-                                android:layout_height="21dp"
-                                android:src="@drawable/ic_pc_location_black"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
-
-                        <TextView
-                            android:id="@+id/txtCity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="14dp"
-                            android:fontFamily="@font/avenir_medium"
-                            android:textColor="@color/gray_subtitle"
-                            android:textSize="14sp"
-                            app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout5"
-                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5"
-                            tools:text="Puerto Vallarta, MX" />
-
-                        <TextView
-                            android:id="@+id/txtAddressPlace"
-                            maxDot="@{20}"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/helvetica_neue"
-                            android:textColor="@color/black_700"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView6"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/txtCity"
-                            tools:text="Miramar #1195 San Est..." />
+                            app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
+                            app:layout_constraintTop_toBottomOf="@+id/txtHourEvent">
+
+                            <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
+                                android:id="@+id/cuRoundableLayout5"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:cu_backgroundColor="@color/helper_color_background"
+                                app:cu_cornerAll="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:layout_width="21dp"
+                                    android:layout_height="21dp"
+                                    android:src="@drawable/ic_pc_location_black"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
+
+                            <TextView
+                                android:id="@+id/txtCity"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/avenir_medium"
+                                android:textColor="@color/gray_subtitle"
+                                android:textSize="14sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toEndOf="@+id/cuRoundableLayout5"
+                                app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5"
+                                tools:text="Puerto Vallarta, MXefcewrferwgtrheytjhytejmnuy56y356yb66b56yb56" />
+
+                            <TextView
+                                android:id="@+id/txtAddressPlace"
+                                maxDot="@{20}"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/helvetica_neue"
+                                android:textColor="@color/black_700"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="@+id/txtCity"
+                                app:layout_constraintTop_toBottomOf="@+id/txtCity"
+                                tools:text="Miramar #1195 San Est..." />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <ImageView
                             android:id="@+id/imageView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_pc_vertical_spacer"
-                            app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
+                            app:layout_constraintBottom_toBottomOf="@+id/goToMap"
                             app:layout_constraintEnd_toEndOf="@id/imgSpacerTop"
-                            app:layout_constraintTop_toTopOf="@+id/cuRoundableLayout5" />
-
+                            app:layout_constraintTop_toTopOf="@+id/goToMap" />
 
                         <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                             android:id="@+id/cuRoundableLayoutpackage"
@@ -265,18 +281,18 @@
                             android:layout_marginTop="18dp"
                             app:cu_backgroundColor="@color/helper_color_background"
                             app:cu_cornerAll="10dp"
-                            app:layout_constraintStart_toStartOf="@+id/cuRoundableLayout4"
-                            app:layout_constraintTop_toBottomOf="@+id/cuRoundableLayout5">
+                            app:layout_constraintStart_toStartOf="@id/goToMap"
+                            app:layout_constraintTop_toBottomOf="@id/goToMap">
 
                             <ImageView
                                 android:id="@+id/imgTypeTicket"
                                 android:layout_width="21dp"
                                 android:layout_height="21dp"
-                                tools:src="@drawable/ic_pc_family"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:src="@drawable/ic_pc_family" />
 
                         </com.boreal.commonutils.component.roundablelayout.CURoundableLayout>
 
@@ -284,10 +300,11 @@
                             android:id="@+id/tvNamePackage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
                             android:fontFamily="@font/helvetica_neue_bold"
                             android:textColor="@color/black_700"
                             android:textSize="18sp"
-                            app:layout_constraintStart_toStartOf="@+id/txtAddressPlace"
+                            app:layout_constraintStart_toEndOf="@+id/cuRoundableLayoutpackage"
                             app:layout_constraintTop_toTopOf="@+id/cuRoundableLayoutpackage"
                             tools:text="Familia" />
 
@@ -352,12 +369,12 @@
                 <com.boreal.commonutils.component.roundablelayout.CURoundableLayout
                     android:id="@+id/btnAcept"
                     android:layout_width="match_parent"
-                    android:paddingVertical="12dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:paddingVertical="12dp"
                     app:cu_backgroundColor="@color/primary_700"
                     app:cu_cornerLeftSide="15dp"
                     app:cu_cornerRightSide="15dp">
