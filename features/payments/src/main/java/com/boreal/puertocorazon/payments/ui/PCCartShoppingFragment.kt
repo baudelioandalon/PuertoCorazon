@@ -1,24 +1,29 @@
 package com.boreal.puertocorazon.payments.ui
 
-import android.app.Activity.RESULT_OK
-import android.content.Intent
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.notInvisibleIf
 import com.boreal.commonutils.extensions.onClick
+import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
+import com.boreal.puertocorazon.core.BuildConfig
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
+import com.boreal.puertocorazon.core.utils.retrofit.core.StatusRequestEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.payments.R
 import com.boreal.puertocorazon.payments.databinding.PcCartShoppingBinding
 import com.boreal.puertocorazon.payments.databinding.PcItemShoppingBinding
+import com.mercadopago.android.px.core.MercadoPagoCheckout
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PCCartShoppingFragment : CUBaseFragment<PcCartShoppingBinding>() {
 
     val mainViewModel: PCMainViewModel by sharedViewModel()
+    val viewModel: PCCartShoppingViewModel by viewModel()
 
     val adapterRecyclerShopping by lazy {
         GAdapter<PcItemShoppingBinding, PCShoppingModel>(
@@ -91,39 +96,58 @@ class PCCartShoppingFragment : CUBaseFragment<PcCartShoppingBinding>() {
 
     override fun initView() {
         initElements()
-    }
+        mainViewModel.checkOutResult = { canceled, mercadoPagoError, success ->
+            if (canceled) {
+                showToast(mercadoPagoError.message)
+            } else {
+                when (mercadoPagoError.errorDetail) {
+                    "approved" -> {
+                        //More info
+                        viewModel.paymentClear()
+                        mainViewModel.clearShoppingCart()
+                        mainViewModel.goToMenuHome()
+                        showToast(mercadoPagoError.message, Toast.LENGTH_LONG)
+                    }
+                    "rejected" -> {
+                        showToast(mercadoPagoError.message)
+                    }
+                    else -> {
+                        showToast(mercadoPagoError.message, Toast.LENGTH_LONG)
+                        viewModel.paymentClear()
+                        mainViewModel.clearShoppingCart()
+                        mainViewModel.goToMenuHome()
+                    }
+                }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        data
-//        if (requestCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
-        if (resultCode == RESULT_OK) {
-//                val paymentMethod: PaymentMethod = JsonUtil.getInstance().fromJson(
-//                    data!!.getStringExtra("paymentMethod"),
-//                    PaymentMethod::class.java
-//                )
-//                val issuer: Issuer = JsonUtil.getInstance().fromJson(
-//                    data.getStringExtra("issuer"),
-//                    Issuer::class.java
-//                )
-//                val token: Token =
-//                    JsonUtil.getInstance().fromJson(data.getStringExtra("token"), Token::class.java)
-//                val payerCost: PayerCost = JsonUtil.getInstance().fromJson(
-//                    data.getStringExtra("payerCost"),
-//                    PayerCost::class.java
-//                )
-//                paymentMethod
-//                issuer
-//                payerCost
-//                token
-////                createPayment(paymentMethod, issuer, payerCost, token)
-//            } else {
-//                if (data != null && data.hasExtra("mpException")) {
-//                    data
-////                    val exception: MPException = JsonUtil.getInstance()
-////                        .fromJson(data.getStringExtra("mpException"), MPException::class.java)
-//                }
-//            }
+            }
+
         }
     }
+
+    override fun initObservers() {
+        viewModel.paymentTransaction.observe(viewLifecycleOwner) {
+            it?.let {
+                when (it.statusRequest) {
+                    StatusRequestEnum.LOADING -> {
+                        showProgress()
+                    }
+                    StatusRequestEnum.SUCCESS -> {
+                        MercadoPagoCheckout.Builder(
+                            BuildConfig.MERCADO_PAGO_PUBLIC,
+                            it.successData?.preferenceId ?: ""
+                        ).build().startPayment(
+                            requireContext(),
+                            1
+                        )
+                        hideProgressBarCustom()
+                    }
+                    StatusRequestEnum.FAILURE -> {
+                        hideProgressBarCustom()
+                        showToast(it.errorData ?: "")
+                    }
+                }
+            }
+        }
+    }
+
 }

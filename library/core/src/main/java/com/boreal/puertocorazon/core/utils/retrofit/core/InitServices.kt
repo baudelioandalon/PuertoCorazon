@@ -8,5 +8,4 @@ class InitServices<R, RQ> {
     fun postExecuteService(request: RQ, endPoint: String) =
         RetroClient.getRestEngine().create(ApiServices::class.java)
             .serviceResponsePostBody(endPoint, (request as Any)) as R
-
 }

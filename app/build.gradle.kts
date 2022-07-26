@@ -96,6 +96,7 @@ dependencies {
     implementation(project(":features:adm:home"))
     implementation(project(":features:adm:addevent"))
     implementation(project(":features:adm:checking"))
+    implementation(project(":features:payments"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)
@@ -142,7 +143,11 @@ dependencies {
     annotationProcessor(Dependency.dagger2Compiler)
     implementation(Dependency.dexter)
     implementation(Dependency.googleMap)
-    implementation("com.mercadopago.android.px:checkout:4.53.1") {
+
+    implementation(Dependency.mercadoPago) {
         exclude(module = Dependency.appcompat)
+        exclude(module = Dependency.googleMap)
+        isTransitive = true
     }
+
 }

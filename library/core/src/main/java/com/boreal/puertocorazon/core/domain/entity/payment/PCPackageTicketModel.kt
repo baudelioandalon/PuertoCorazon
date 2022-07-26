@@ -18,6 +18,7 @@ data class PCPackageTicketModel(
     val countAdult: Long = 0L,
     val countChild: Long = 0L,
     val priceItem: Long = 0L,
+    val description: String = "Boleto",
     val nameEvent: String = NONE,
     val imageEvent: String = NONE,
     val namePackage: String = "",

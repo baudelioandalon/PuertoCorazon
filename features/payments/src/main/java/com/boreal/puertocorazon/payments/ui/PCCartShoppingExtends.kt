@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.payments.ui
 
-import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
@@ -8,10 +7,6 @@ import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 import com.boreal.puertocorazon.payments.R
-import com.mercadopago.android.px.core.MercadoPagoCheckout
-
-
-private const val REQUEST_CODE = 1
 
 fun PCCartShoppingFragment.initElements() {
     binding.apply {
@@ -22,7 +17,6 @@ fun PCCartShoppingFragment.initElements() {
         mainViewModel.shoppingChanged = { listShopping ->
             sumTotal(listShopping)
             if (listShopping.isEmpty()) {
-                tvSubtotal.text = "$0"
                 tvSubtotalIva.text = "$0"
             }
         }
@@ -31,20 +25,12 @@ fun PCCartShoppingFragment.initElements() {
                 showToast("No hay articulos en el carrito de compra")
                 return@onClick
             }
-            val subtotal =
-                mainViewModel.getShoppingList().sumOf { (it.countItem * it.priceElement) }.toLong()
-            val iva = (subtotal * .16).toLong()
-
-
-//            MercadoPago.Builder().setContext(requireContext())
-//                .setPublicKey("TEST-55083885-4ee1-458c-ac70-2933c2b29019")
-//                .build()
-            MercadoPagoCheckout.Builder(
-                "TEST-337eebca-a95c-426f-b7c1-cc204dbf467d",
-                "208868187-a7951ced-ba00-4ffa-ab08-84726f592459"
-            ).build().startPayment(
-                requireContext(),
-                REQUEST_CODE
+            viewModel.requestPayment(
+                idClient = mainViewModel.getIdUser(),
+                nameUser = mainViewModel.getNameUser(),
+                emailUser = mainViewModel.getEmailUser(),
+                0,
+                mainViewModel.getShoppingListToMap()
             )
 
         }
@@ -56,7 +42,8 @@ fun PCCartShoppingFragment.initElements() {
                 return@onClick
             }
             if (mainViewModel.getCardList().isEmpty()) {
-                findNavController().navigate(R.id.PCAddCardFragment)
+//                findNavController().navigate(R.id.PCAddCardFragment)
+                btnPay.performClick()
             } else {
                 //Open show cards
             }
@@ -119,9 +106,7 @@ private fun PCCartShoppingFragment.initAdapter(listShopping: List<PCShoppingMode
 private fun PCCartShoppingFragment.sumTotal(listShopping: List<PCShoppingModel>) {
     binding.apply {
         val subtotal = listShopping.sumOf { (it.countItem * it.priceElement) }.toLong()
-        val iva = (subtotal * .16).toLong()
-        tvSubtotal.text = subtotal.formatCurrency()
-        tvSubtotalIva.text = iva.formatCurrency()
-        tvTotal.text = (subtotal + iva).formatCurrency()
+        tvSubtotalIva.text = subtotal.formatCurrency()
+        tvTotal.text = subtotal.formatCurrency()
     }
 }

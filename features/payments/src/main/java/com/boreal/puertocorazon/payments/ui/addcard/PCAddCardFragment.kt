@@ -1,9 +1,6 @@
 package com.boreal.puertocorazon.payments.ui.addcard
 
-import android.widget.Toast
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.commonutils.extensions.showToast
-import com.boreal.puertocorazon.core.utils.retrofit.core.StatusRequestEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.payments.R
 import com.boreal.puertocorazon.payments.databinding.PcAddCardFragmentBinding
@@ -14,33 +11,6 @@ class PCAddCardFragment : CUBaseFragment<PcAddCardFragmentBinding>() {
     val mainViewModel: PCMainViewModel by sharedViewModel()
 
     override fun getLayout() = R.layout.pc_add_card_fragment
-
-    override fun initObservers() {
-        mainViewModel.paymentTransaction.observe(viewLifecycleOwner) {
-            it?.let {
-                when (it.statusRequest) {
-                    StatusRequestEnum.LOADING -> {
-                        showProgress()
-                    }
-                    StatusRequestEnum.SUCCESS -> {
-                        mainViewModel.paymentClear()
-                        mainViewModel.clearShoppingCart()
-                        mainViewModel.goToMenuHome()
-                        showToast(
-                            "Compra realizada exitosamente,\n en unos momentos sus boletos estarán listos",
-                            Toast.LENGTH_LONG
-                        )
-                        hideProgressBarCustom()
-                    }
-                    StatusRequestEnum.FAILURE -> {
-                        hideProgressBarCustom()
-                        showToast(it.errorData ?: "")
-                    }
-                }
-            }
-
-        }
-    }
 
     override fun initView() {
         initElements()

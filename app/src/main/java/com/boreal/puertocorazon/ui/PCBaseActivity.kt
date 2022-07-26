@@ -13,6 +13,9 @@ import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.databinding.PcBaseActivityBinding
 import com.boreal.puertocorazon.databinding.PcOutDialogBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.mercadopago.android.px.core.MercadoPagoCheckout
+import com.mercadopago.android.px.model.Payment
+import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.system.exitProcess
@@ -99,62 +102,118 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        resolveCheckoutResult(this, requestCode, resultCode, data, 1);
         super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                val paymentMethod: PaymentMethod = Gson().fromJson(
-//                    data!!.getStringExtra("paymentMethod"),
-//                    PaymentMethod::class.java
-//                )
-//                val issuer: Issuer = Gson().fromJson(
-//                    data.getStringExtra("issuer"),
-//                    Issuer::class.java
-//                )
-//                val token: Token = Gson().fromJson(data.getStringExtra("token"), Token::class.java)
-//                val payerCost: PayerCost = Gson().fromJson(
-//                    data.getStringExtra("payerCost"),
-//                    PayerCost::class.java
-//                )
-//                paymentMethod
-//                issuer
-//                payerCost
-//                token
-////                createPayment(paymentMethod, issuer, payerCost, token)
-//            } else {
-//                if (data != null && data.hasExtra("mpException")) {
-//                    data
-////                    val exception: MPException = JsonUtil.getInstance()
-////                        .fromJson(data.getStringExtra("mpException"), MPException::class.java)
-//                }
-//            }
-//        }
-    }
-//    fun resolveCheckoutResult(
-//        context: Activity?, requestCode: Int, resultCode: Int,
-//        data: Intent?, reqCodeCheckout: Int
-//    ) {
-//        ViewUtils.showRegularLayout(context)
-//        if (requestCode == reqCodeCheckout) {
-//            if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
-//                val payment =
-//                    data!!.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
-//               payment
-//            } else if (resultCode == RESULT_CANCELED) {
-//                if (data != null && data.extras != null &&
-//                    data.extras!!.containsKey(MercadoPagoCheckout.EXTRA_ERROR)
-//                ) {
-//                    val mercadoPagoError =
-//                        data.getSerializableExtra(MercadoPagoCheckout.EXTRA_ERROR) as MercadoPagoError?
-//                    Toast.makeText(context, "Error: $mercadoPagoError", Toast.LENGTH_LONG).show()
-//                } else {
-//
-//                }
-//            } else {
-//                ""
-//            }
-//        }
-//    }
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK && data != null || resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE && data != null) {
+                if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
+                    val payment =
+                        data.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
+                    if (payment == null) {
+                        mainViewModel.resultCheckout(
+                            canceled = false,
+                            MercadoPagoError.createNotRecoverable(
+                                "El pago no fue realizado",
+                                "failed"
+                            ), success = false
+                        )
+                        return
+                    }
+                    when (payment.paymentStatus) {
+                        "rejected" -> {
+                            mainViewModel.resultCheckout(
+                                canceled = false,
+                                MercadoPagoError(
+                                    "El pago no fue realizado, por favor,\n pruebe otro medio de pago",
+                                    "rejected",
+                                    true
+                                ), success = false
+                            )
+                        }
+                        "approved" -> {
+                            mainViewModel.resultCheckout(
+                                canceled = false,
+                                MercadoPagoError(
+                                    "Pago exitoso, en unos momentos podrá ver sus tickets en su cuenta",
+                                    payment.paymentStatus,
+                                    false
+                                ),
+                                success = true
+                            )
+                        }
+                        "pending" -> {
+                            mainViewModel.resultCheckout(
+                                canceled = false,
+                                MercadoPagoError(
+                                    "Realiza el pago con la referencia anterior",
+                                    payment.paymentStatus,
+                                    false
+                                ),
+                                success = true
+                            )
+                        }
+                        else -> {
+                            mainViewModel.resultCheckout(
+                                canceled = false,
+                                MercadoPagoError(
+                                    "El pago no fue realizado",
+                                    payment.paymentStatus,
+                                    true
+                                ),
+                                success = false
+                            )
+                        }
+                    }
 
+                } else {
+
+                }
+
+            } else {
+                if (resultCode == RESULT_CANCELED) {
+                    data?.let {
+                        if (data.extras != null && data.extras!!.containsKey(MercadoPagoCheckout.EXTRA_ERROR)
+                        ) {
+                            val mercadoPagoError =
+                                data.getSerializableExtra(MercadoPagoCheckout.EXTRA_ERROR) as MercadoPagoError?
+                            mainViewModel.resultCheckout(
+                                canceled = true,
+                                mercadoPagoError = mercadoPagoError ?: MercadoPagoError(
+                                    "El pago no fue realizado",
+                                    "canceled",
+                                    false
+                                ), success = false
+                            )
+                        } else {
+                            mainViewModel.resultCheckout(
+                                canceled = true,
+                                mercadoPagoError = MercadoPagoError(
+                                    "El pago no fue realizado",
+                                    "canceled",
+                                    false
+                                ), success = false
+                            )
+                        }
+                    }
+                    mainViewModel.resultCheckout(
+                        canceled = true,
+                        mercadoPagoError = MercadoPagoError(
+                            "El pago no fue realizado",
+                            "canceled",
+                            false
+                        ), success = false
+                    )
+                } else {
+                    mainViewModel.resultCheckout(
+                        canceled = true,
+                        mercadoPagoError = MercadoPagoError(
+                            "El pago no fue realizado",
+                            "failed",
+                            false
+                        ), success = false
+                    )
+                }
+            }
+        }
+    }
 
 }

@@ -78,7 +78,7 @@ object Version {
     const val dexterVersion = "6.2.2"
 
     //Transactions
-    const val conektaVersion =  "2.1"
+    const val mercadoPagoVersion =  "4.53.1"
     const val apacheOrgVersion =  "4.1.2"
 
     //QR

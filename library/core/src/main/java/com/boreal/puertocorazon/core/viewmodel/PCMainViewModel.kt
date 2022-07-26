@@ -12,20 +12,15 @@ import com.boreal.puertocorazon.core.domain.entity.auth.PCUserType
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCCardModel
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
-import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentRequest
-import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentResponse
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.usecase.event.EventUseCase
 import com.boreal.puertocorazon.core.usecase.home.HomeUseCase
 import com.boreal.puertocorazon.core.usecase.login.UseCase
-import com.boreal.puertocorazon.core.usecase.payment.PaymentUseCase
 import com.boreal.puertocorazon.core.usecase.ticket.TicketByClientUseCase
 import com.boreal.puertocorazon.core.usecase.ticket.TicketByEventUseCase
 import com.boreal.puertocorazon.core.utils.CUBaseViewModel
-import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
-import com.boreal.puertocorazon.core.utils.retrofit.core.DataResponse
-import com.boreal.puertocorazon.core.utils.retrofit.core.StatusRequestEnum
 import com.google.firebase.auth.FirebaseAuth
+import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 import io.realm.Realm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -36,7 +31,6 @@ import kotlinx.coroutines.launch
 
 class PCMainViewModel(
     private val getHomeUseCase: UseCase<HomeUseCase.Input, HomeUseCase.Output>,
-    private val getPaymentUseCase: UseCase<PaymentUseCase.Input, PaymentUseCase.Output>,
     private val getTicketByClientUseCase: UseCase<TicketByClientUseCase.Input, TicketByClientUseCase.Output>,
     private val getEventUseCase: UseCase<EventUseCase.Input, EventUseCase.Output>,
     private val getTicketByEventUseCase: UseCase<TicketByEventUseCase.Input, TicketByEventUseCase.Output>
@@ -53,8 +47,17 @@ class PCMainViewModel(
     var goToHomeClient: (() -> Unit)? = null
     var goToChecking: (() -> Unit)? = null
     var goToPayment: (() -> Unit)? = null
+    var checkOutResult: ((
+        canceled: Boolean,
+        mercadoPagoError: MercadoPagoError,
+        success: Boolean
+    ) -> Unit)? = null
     var splash: ((show: Boolean) -> Unit)? = null
     var resetLogin = true
+
+    fun resultCheckout(canceled: Boolean, mercadoPagoError: MercadoPagoError, success: Boolean) {
+        checkOutResult?.invoke(canceled, mercadoPagoError, success)
+    }
 
     fun goToMenuHome() {
         goToHomeClient?.invoke()
@@ -128,13 +131,9 @@ class PCMainViewModel(
         shoppingChanged?.invoke(shoppingCart)
     }
 
-    fun paymentClear() {
-        resetError()
-    }
-
     fun getShoppingList() = shoppingCart
 
-    private fun getShoppingListToMap() = with(ArrayList<PCPackageTicketModel>()) {
+    fun getShoppingListToMap() = with(ArrayList<PCPackageTicketModel>()) {
         getShoppingList().forEach { element ->
             repeat(element.countItem) {
                 add(
@@ -143,12 +142,13 @@ class PCMainViewModel(
                         countChild = element.countChild.toLong(),
                         idClient = getIdUser(),
                         idEvent = element.idEvent,
-                        namePackage = element.namePackage,
+                        namePackage = element.titleEvent,
                         isPackage = element.isPackage,
                         priceItem = element.priceElement.toFloat().toLong(),
                         nameEvent = element.titleEvent,
                         imageEvent = element.imageEvent,
-                        idPackage = element.idPackage
+                        idPackage = element.idPackage,
+                        countItem = element.countItem
                     )
                 )
             }
@@ -187,10 +187,6 @@ class PCMainViewModel(
     private val _ticketListByEvent =
         MutableLiveData<AFirestoreGetResponse<List<PCPackageTicketModel>>>()
 
-    val paymentTransaction: LiveData<DataResponse<PCPaymentResponse>>
-        get() = _paymentTransaction
-    private val _paymentTransaction = MutableLiveData<DataResponse<PCPaymentResponse>>()
-
     var allowExit = true
     var logOut = false
 
@@ -206,7 +202,6 @@ class PCMainViewModel(
                 it.deleteAll()
                 _ticketListByClient.postValue(AFirestoreGetResponse())
                 _eventList.postValue(AFirestoreGetResponse())
-                _paymentTransaction.postValue(DataResponse())
                 _authUser.postValue(null)
                 _goLogin.postValue(true)
                 allowExit = true
@@ -317,38 +312,31 @@ class PCMainViewModel(
         checkingSelected = null
     }
 
-    fun requestPayment(nameCard: String, aliasCard: String, conektaCardModel: ConektaCardModel) {
-        executeFlow {
-            _paymentTransaction.value = DataResponse(statusRequest = StatusRequestEnum.LOADING)
-            getPaymentUseCase.execute(
-                PaymentUseCase.Input(
-                    PCPaymentRequest(
-                        idClient = getIdUser(),
-                        nameUser = nameCard,
-                        email = getEmailUser(),
-                        amount = getShoppingList().sumOf { (it.countItem * it.priceElement) }
-                            .toLong(),
-                        typeCard = conektaCardModel.typeCard(),
-                        lastFour = conektaCardModel.lastFour(),
-                        typePayment = "CARD",
-                        phone = "1234567891",
-                        aliasCard = aliasCard,
-                        expirationDate = conektaCardModel.expirationDate(),
-                        digitsCard = conektaCardModel.numberCard,
-                        emailLocal = BuildConfig.DEFAULT_EMAIL.replace("/",""),
-                        environmentLocal = BuildConfig.ENVIRONMENT.replace("/",""),
-                        packages = getShoppingListToMap()
-                    ), conektaCardModel
-                )
-            ).catch {
-                _paymentTransaction.value = DataResponse(
-                    statusRequest = StatusRequestEnum.FAILURE,
-                    null, errorData = it.message ?: "Algo salio mal"
-                )
-            }.collect {
-                _paymentTransaction.postValue(it.response)
-            }
-        }
+    fun requestPayment(nameCard: String) {
+//        executeFlow {
+//            _paymentTransaction.value = DataResponse(statusRequest = StatusRequestEnum.LOADING)
+//            getPaymentUseCase.execute(
+//                PaymentUseCase.Input(
+//                    PCPaymentRequest(
+//                        idClient = getIdUser(),
+//                        nameUser = nameCard,
+//                        emailUser = getEmailUser(),
+//                        amount = getShoppingList().sumOf { (it.countItem * it.priceElement) }
+//                            .toLong(),
+//                        emailLocal = BuildConfig.DEFAULT_EMAIL.replace("/",""),
+//                        environmentLocal = BuildConfig.ENVIRONMENT.replace("/",""),
+//                        packages = getShoppingListToMap()
+//                    ), paymentRequestModel
+//                )
+//            ).catch {
+//                _paymentTransaction.value = DataResponse(
+//                    statusRequest = StatusRequestEnum.FAILURE,
+//                    null, errorData = it.message ?: "Algo salio mal"
+//                )
+//            }.collect {
+//                _paymentTransaction.postValue(it.response)
+//            }
+//        }
     }
 
     fun requestSingleEvent(idEventToSearch: String) {
@@ -378,17 +366,8 @@ class PCMainViewModel(
         navToHome()
     }
 
-    fun navigateToMap(){
+    fun navigateToMap() {
         navToMap()
-    }
-
-    private fun resetError() {
-        _paymentTransaction.postValue(
-            DataResponse(
-                statusRequest = StatusRequestEnum.NONE,
-                null
-            )
-        )
     }
 
 }

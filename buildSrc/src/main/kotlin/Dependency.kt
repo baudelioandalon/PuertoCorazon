@@ -124,7 +124,7 @@ object Dependency {
     const val dexter = "com.karumi:dexter:${Version.dexterVersion}"
 
     //Transactions
-    const val conekta = "io.conekta:conektasdk:${Version.conektaVersion}"
+    const val mercadoPago = "com.mercadopago.android.px:checkout:${Version.mercadoPagoVersion}"
     const val apacheOrg =
         "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${Version.apacheOrgVersion}"
 

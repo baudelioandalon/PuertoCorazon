@@ -88,7 +88,6 @@ val activityModule = module {
     viewModel {
         PCMainViewModel(
             get(named("HomeUseCase")),
-            get(named("PaymentUseCase")),
             get(named("TicketByClientUseCase")),
             get(named("EventUseCase")),
             get(named("TicketByEventUseCase"))

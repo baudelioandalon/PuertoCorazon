@@ -1,6 +1,6 @@
 package com.boreal.puertocorazon.core.domain.entity.payment
 
-data class PCPaymentResponse(
+data class PCPaymentErrorModel(
     val code: Int,
-    val preferenceId: String
+    val message: String
 )

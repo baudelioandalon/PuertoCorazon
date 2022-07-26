@@ -35,11 +35,6 @@ android {
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"DEBUG/\"")
             buildConfigField(
                 type = "String",
-                name = "CONEKTA_PUBLIC_KEY",
-                value = "\"${properties.getProperty("CONEKTA_DEBUG_PUBLIC_KEY")}\""
-            )
-            buildConfigField(
-                type = "String",
                 name = "MAPS_API_KEY",
                 value = "\"${properties.getProperty("GOOGLE_MAPS_KEY")}\""
             )
@@ -59,6 +54,11 @@ android {
                 type = "String",
                 name = "VERSION_NAME",
                 value = "\"AndroidConfig.versionName\""
+            )
+            buildConfigField(
+                type = "String",
+                name = "MERCADO_PAGO_PUBLIC",
+                value = "\"TEST-337eebca-a95c-426f-b7c1-cc204dbf467d\""
             )
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
@@ -69,11 +69,6 @@ android {
             buildConfigField(type = "String", name = "ENVIRONMENT", value = "\"RELEASE/\"")
             buildConfigField(
                 type = "String",
-                name = "CONEKTA_PUBLIC_KEY",
-                value = "\"${properties.getProperty("CONEKTA_RELEASE_PUBLIC_KEY")}\""
-            )
-            buildConfigField(
-                type = "String",
                 name = "MAPS_API_KEY",
                 value = "\"${properties.getProperty("GOOGLE_MAPS_KEY")}\""
             )
@@ -93,6 +88,11 @@ android {
                 type = "String",
                 name = "VERSION_NAME",
                 value = "\"AndroidConfig.versionName\""
+            )
+            buildConfigField(
+                type = "String",
+                name = "MERCADO_PAGO_PUBLIC",
+                value = "\"APP_USR-0619a755-7023-494f-a921-f9dfe236002b\""
             )
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
@@ -169,7 +169,7 @@ dependencies {
     implementation(Dependency.rxJava2Adapter)
     implementation(Dependency.imageConverterLibrary)
 
-    implementation(Dependency.conekta)
+    implementation(Dependency.mercadoPago)
     implementation(Dependency.apacheOrg)
 
     //QR

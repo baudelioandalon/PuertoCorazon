@@ -1,7 +1,8 @@
 package com.boreal.puertocorazon.core.utils.retrofit.core
 
+import com.boreal.puertocorazon.core.domain.entity.payment.PCPaymentErrorModel
 import com.google.gson.Gson
-import okhttp3.ResponseBody
+import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 import retrofit2.Call
 import java.io.BufferedReader
@@ -22,25 +23,30 @@ class ValidResponse<R>(
                 successData = myResponse
             )
         } else {
-            val errorBody = requestExecuted.errorBody() as ResponseBody
-            if (errorBody.string().contains("could not handle the request")) {
+            if (requestExecuted.errorBody() == null) {
                 DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
-                    errorData = "Hay un error en la peticion"
+                    errorData = "Hay una intermitencia en la red de pagos, por favor,\n " +
+                            "intente mas tarde, si el problema persiste,\n " +
+                            "envie un correo al administrador."
                 )
             } else {
-                val jsonObject = gson.toJsonTree(errorBody)
-                val errorResult = Gson().fromJson(jsonObject, vkClass.javaObjectType) as R
+                val type = object : TypeToken<PCPaymentErrorModel>() {}.type
+                val errorResult: PCPaymentErrorModel? =
+                    gson.fromJson(requestExecuted.errorBody()!!.charStream(), type)
                 DataResponse(
                     statusRequest = StatusRequestEnum.FAILURE,
                     errorModel = errorResult
                 )
             }
+
         }
     } catch (exception: Exception) {
         DataResponse(
             statusRequest = StatusRequestEnum.FAILURE,
-            errorData = "Algo salio mal"
+            errorData = "Hay una intermitencia en la red de pagos, por favor,\n " +
+                    "intente mas tarde, si el problema persiste,\n " +
+                    "envie un correo al administrador."
         )
     }
 

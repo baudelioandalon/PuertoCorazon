@@ -248,6 +248,7 @@ export const createPreference = functions.https.onRequest(async (request: functi
         items: packages.map((packageItem: any) => ({
           title: packageItem.namePackage,
           category_id: packageItem.idEvent,
+          description: packageItem.description,
           quantity: 1,
           unit_price: packageItem.priceItem
         }))

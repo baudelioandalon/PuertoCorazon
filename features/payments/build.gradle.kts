@@ -95,11 +95,10 @@ dependencies {
     implementation(Dependency.circleImage)
     implementation(Dependency.roundableImageView)
     implementation(Dependency.stfalconImageViewer)
-    implementation("io.conekta:conektasdk:2.1")
     implementation("org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2")
     implementation("net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3")
     implementation(Dependency.firebaseAuth)
-    implementation("com.mercadopago.android.px:checkout:4.53.1") {
+    implementation(Dependency.mercadoPago) {
         exclude(module = Dependency.appcompat)
         exclude(module = Dependency.googleMap)
         isTransitive = true

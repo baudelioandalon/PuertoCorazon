@@ -1,18 +1,13 @@
 package com.boreal.puertocorazon.payments.ui.addcard
 
-import android.webkit.CookieManager
-import android.webkit.WebView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialogBinding
 import com.boreal.commonutils.extensions.*
-import com.boreal.commonutils.globalmethod.getDeviceId
 import com.boreal.puertocorazon.core.utils.*
-import com.boreal.puertocorazon.core.utils.payment.ConektaCardModel
 import com.boreal.puertocorazon.payments.R
 import com.boreal.puertocorazon.uisystem.databinding.PcQuestionDialogBinding
-import io.conekta.conektasdk.Conekta
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
@@ -54,17 +49,17 @@ fun PCAddCardFragment.initElements() {
                                 dialogBlur.dismissAllowingStateLoss()
                             }
                             btnContinue.onClick {
-                                mainViewModel.requestPayment(
-                                    nameCard = txtNameCard.onlyText(),
-                                    aliasCard = txtAlias.onlyText(),
-                                    ConektaCardModel(
-                                        numberCard = txtNumberCard.onlyText().onlyCardNumber(),
-                                        nameCard = txtNameCard.onlyText(),
-                                        cvc = tvCvv.onlyText(),
-                                        exp_month = tvMonthCard.onlyText(),
-                                        exp_year = tvYearCard.onlyText()
-                                    )
-                                )
+//                                mainViewModel.requestPayment(
+//                                    nameCard = txtNameCard.onlyText(),
+//                                    aliasCard = txtAlias.onlyText(),
+//                                    PaymentRequestModel(
+//                                        numberCard = txtNumberCard.onlyText().onlyCardNumber(),
+//                                        nameCard = txtNameCard.onlyText(),
+//                                        cvc = tvCvv.onlyText(),
+//                                        exp_month = tvMonthCard.onlyText(),
+//                                        exp_year = tvYearCard.onlyText()
+//                                    )
+//                                )
                                 dialogBlur.dismissAllowingStateLoss()
                             }
                         }
@@ -74,17 +69,17 @@ fun PCAddCardFragment.initElements() {
                     it.show(getSupportFragmentManager(), "dialog_question")
                 }
             } else if (cardValid()) {
-                mainViewModel.requestPayment(
-                    nameCard = mainViewModel.getNameUser(),
-                    aliasCard = txtAlias.onlyText(),
-                    ConektaCardModel(
-                        numberCard = txtNumberCard.onlyText().onlyCardNumber(),
-                        nameCard = txtNameCard.onlyText(),
-                        cvc = tvCvv.onlyText(),
-                        exp_month = tvMonthCard.onlyText(),
-                        exp_year = tvYearCard.onlyText()
-                    )
-                )
+//                mainViewModel.requestPayment(
+//                    nameCard = mainViewModel.getNameUser(),
+//                    aliasCard = txtAlias.onlyText(),
+//                    PaymentRequestModel(
+//                        numberCard = txtNumberCard.onlyText().onlyCardNumber(),
+//                        nameCard = txtNameCard.onlyText(),
+//                        cvc = tvCvv.onlyText(),
+//                        exp_month = tvMonthCard.onlyText(),
+//                        exp_year = tvYearCard.onlyText()
+//                    )
+//                )
             } else {
                 changeText("Revisa los datos de la tarjeta")
             }

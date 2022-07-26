@@ -168,25 +168,13 @@
             android:id="@+id/tvDetailsBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="15dp"
             android:text="Detalles de compra"
             android:textColor="@color/black_700"
             android:textSize="17sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="@+id/view" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="Subtotal"
-            android:textColor="#8F9097"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvSubtotal"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toTopOf="@+id/tvSubtotal" />
 
         <TextView
             android:id="@+id/textView5"
@@ -194,24 +182,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="55dp"
             android:fontFamily="@font/montserrat_regular"
-            android:text="IVA (16%)"
+            android:text="Precio final"
             android:textColor="#8F9097"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvSubtotalIva"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvSubtotalIva" />
-
-        <TextView
-            android:id="@+id/tvSubtotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/montserrat_semibold"
-            android:textColor="#4F5053"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvSubtotalIva"
-            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalIva"
-            tools:text="$600" />
 
         <TextView
             android:id="@+id/tvSubtotalIva"

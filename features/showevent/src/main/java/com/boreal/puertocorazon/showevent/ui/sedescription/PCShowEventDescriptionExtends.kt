@@ -10,6 +10,7 @@ import com.boreal.puertocorazon.core.domain.entity.event.getDateEvent
 import com.boreal.puertocorazon.core.domain.entity.event.getHourEvent
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
+import com.boreal.puertocorazon.showevent.R
 
 
 fun PCShowEventDescriptionFragment.initElements() {
@@ -63,7 +64,7 @@ fun PCShowEventDescriptionFragment.fillData() {
             tvTicketPriceChild.text = if (priceChild != 0L) {
                 priceChild.formatCurrency(textFirst = "Boleto \n Infantil")
             } else {
-                "Agregar al carrito"
+                getString(R.string.agregar_al_carrito_text)
             }
             tvTicketPriceAdult.text = priceAdult.formatCurrency(textFirst = "Boleto \n Adulto")
             txtCountPeople.text = "4" //TODO getTickets from firebase
