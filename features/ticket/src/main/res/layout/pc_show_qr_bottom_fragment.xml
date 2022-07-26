@@ -240,6 +240,7 @@
                                 android:layout_marginStart="14dp"
                                 android:layout_marginEnd="20dp"
                                 android:fontFamily="@font/avenir_medium"
+                                android:maxLength="30"
                                 android:textColor="@color/gray_subtitle"
                                 android:textSize="14sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -250,10 +251,11 @@
 
                             <TextView
                                 android:id="@+id/txtAddressPlace"
-                                maxDot="@{20}"
+                                maxDot="@{40}"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/helvetica_neue"
+                                android:maxLength="50"
                                 android:textColor="@color/black_700"
                                 android:textSize="18sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/cuRoundableLayout5"
@@ -261,7 +263,7 @@
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="@+id/txtCity"
                                 app:layout_constraintTop_toBottomOf="@+id/txtCity"
-                                tools:text="Miramar #1195 San Est..." />
+                                tools:text="Miramar #1195 San Est...efv43tvr34r34r9hnv374gfr8r34vry349grv6834g87vgnr803ngr8vg384grb8734b889v34mi0r3" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
