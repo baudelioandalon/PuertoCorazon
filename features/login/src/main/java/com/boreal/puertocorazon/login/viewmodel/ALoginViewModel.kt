@@ -85,9 +85,7 @@ class ALoginViewModel(
 
     fun getLocalUser() {
         executeFlow {
-            getAuthUseCase.execute(EmptyIn).catch { cause: Throwable ->
-                cause
-            }.collect {
+            getAuthUseCase.execute(EmptyIn).collect {
                 _authUser.value = it.response
             }
         }
