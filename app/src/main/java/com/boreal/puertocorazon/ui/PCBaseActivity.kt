@@ -1,6 +1,9 @@
 package com.boreal.puertocorazon.ui
 
 import android.content.Intent
+import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.boreal.commonutils.base.CUBaseActivity
@@ -37,6 +40,12 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                 }
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val screenSplash = installSplashScreen()
+        super.onCreate(savedInstanceState)
+        screenSplash.setKeepOnScreenCondition{false}
     }
 
     override fun initView() {

@@ -143,6 +143,7 @@ dependencies {
     annotationProcessor(Dependency.dagger2Compiler)
     implementation(Dependency.dexter)
     implementation(Dependency.googleMap)
+    implementation(Dependency.splashGoogle)
 
     implementation(Dependency.mercadoPago) {
         exclude(module = Dependency.appcompat)

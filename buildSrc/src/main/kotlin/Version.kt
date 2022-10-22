@@ -88,4 +88,7 @@ object Version {
     //Google Maps
     const val googleMapVersion = "18.0.2"
 
+    //SplashGoogle
+    const val splashVersion = "1.0.0"
+
 }

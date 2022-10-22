@@ -135,5 +135,7 @@ object Dependency {
     //Google Maps
     const val googleMap = "com.google.android.gms:play-services-maps:${Version.googleMapVersion}"
 
+    //Splash
+    const val splashGoogle = "androidx.core:core-splashscreen:${Version.splashVersion}"
 
 }
