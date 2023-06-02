@@ -39,6 +39,10 @@ val activityModule = module {
         )
     }
 
+    single<UseCase<HomeUseCase.Input, HomeUseCase.Output>>(named("HomeUseCase")) {
+        HomeUseCase(get(named("DefaultHomeRepository")))
+    }
+
     single<GetTicketDataSource>(named("PCRemoteTicketDataSource")) {
         PCRemoteTicketDataSource()
     }
@@ -55,10 +59,6 @@ val activityModule = module {
 
     single<UseCase<TicketByEventUseCase.Input, TicketByEventUseCase.Output>>(named("TicketByEventUseCase")) {
         TicketByEventUseCase(get(named("DefaultTicketRepository")))
-    }
-
-    single<UseCase<HomeUseCase.Input, HomeUseCase.Output>>(named("HomeUseCase")) {
-        HomeUseCase(get(named("DefaultHomeRepository")))
     }
 
     single<GetPaymentDataSource>(named("ARemotePaymentDataSource")) {
