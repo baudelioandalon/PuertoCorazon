@@ -7,6 +7,7 @@ import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.adm.checking.databinding.PcSelectRedeemBottomFragmentBinding
 import com.boreal.puertocorazon.adm.checking.viewmodel.PCCheckingViewModel
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
@@ -26,7 +27,7 @@ class PCSelectRedeemTicket(
 
     val adapterAttendedItems by lazy {
         GAdapter<PcSelectTicketItemBinding, PCAttendedItem>(
-            R.layout.pc_select_ticket_item,
+            uiR.layout.pc_select_ticket_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAttendedItem>() {
                 override fun areItemsTheSame(
                     oldItem: PCAttendedItem,
@@ -50,15 +51,15 @@ class PCSelectRedeemTicket(
                         if (attendedType) {
                             btnAttendedItem.isEnabled = false
                             tvNamePackage.text = attendedDate.toFormat()
-                            imgTypeTicket.changeDrawable(R.drawable.ic_pc_arrow_correct_gray)
+                            imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_arrow_correct_gray)
                         } else {
                             tvNamePackage.text = "Disponible"
                             if (selected) {
-                                imgTypeTicket.changeDrawable(R.drawable.ic_pc_arrow_correct)
-                                imgSpacer.changeDrawable(R.drawable.ic_pc_vertical_spacer_blue)
+                                imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_arrow_correct)
+                                imgSpacer.changeDrawable(uiR.drawable.ic_pc_vertical_spacer_blue)
                             } else {
-                                imgTypeTicket.changeDrawable(R.drawable.ic_pc_clock_gray)
-                                imgSpacer.changeDrawable(R.drawable.ic_pc_vertical_spacer)
+                                imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_clock_gray)
+                                imgSpacer.changeDrawable(uiR.drawable.ic_pc_vertical_spacer)
                             }
                             btnAttendedItem.onClick {
                                 model.selected = !model.selected
@@ -93,6 +94,9 @@ class PCSelectRedeemTicket(
                     )
                     closeFragment()
                 }
+
+                AFirestoreStatusRequest.NONE -> {}
+                AFirestoreStatusRequest.LOADING -> {}
             }
         }
     }

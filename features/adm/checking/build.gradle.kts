@@ -10,7 +10,7 @@ apply {
 
 android {
     compileSdk = AndroidConfig.compileSdk
-    namespace = "com.boreal.puertocorazon.checking"
+    namespace = "com.boreal.puertocorazon.adm.checking"
 
     defaultConfig {
         minSdk = AndroidConfig.minSdk

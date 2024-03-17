@@ -3,7 +3,7 @@ package com.boreal.puertocorazon.adm.checking.ui.selectredeem
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialogBinding
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
-import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.ticket.PCAttendedItem
 import com.boreal.puertocorazon.core.domain.entity.ticket.PCTicketType
@@ -18,13 +18,13 @@ fun PCSelectRedeemTicket.initElements() {
                 return@onClick
             }
             CUBlurDialogBinding<PcQuestionDialogBinding>(
-                layout = R.layout.pc_question_dialog,
+                layout = uiR.layout.pc_question_dialog,
                 callback = { binding, dialogBlur ->
                     binding.apply {
                         txtTitle.text = "¿Redimir boletos?"
                         txtMessage.text = "Si continua, los boletos serán\n" +
                                 "marcados como redimidos"
-                        txtBtnCancel.text = getString(R.string.cancelar)
+                        txtBtnCancel.text = getString(uiR.string.cancelar)
                         txtBtnContinue.text = "Redimir"
                         btnCancel.onClick {
                             dialogBlur.dismissAllowingStateLoss()

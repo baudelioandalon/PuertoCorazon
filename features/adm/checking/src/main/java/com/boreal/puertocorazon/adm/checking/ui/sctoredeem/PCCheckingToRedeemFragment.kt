@@ -6,6 +6,7 @@ import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.adm.checking.databinding.PcCheckingToRedeemFragmentBinding
 import com.boreal.puertocorazon.adm.checking.ui.detailticket.PCShowDetailTicket
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
@@ -22,7 +23,7 @@ class PCCheckingToRedeemFragment :
 
     val adapterRecyclerToRedeem by lazy {
         GAdapter<PcRedeemItemBinding, PCPackageTicketModel>(
-            R.layout.pc_redeem_item,
+            uiR.layout.pc_redeem_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCPackageTicketModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCPackageTicketModel,
@@ -45,7 +46,7 @@ class PCCheckingToRedeemFragment :
                     }
                     model.apply {
                         if (isPackage) {
-                            imgTypeTicket.changeDrawable(R.drawable.ic_pc_package_ticket)
+                            imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_package_ticket)
                             tvNamePackage.text = namePackage
                             if (countChild > 0) {
 
@@ -74,27 +75,27 @@ class PCCheckingToRedeemFragment :
                                 tvCountAdults.hideView()
                             }
                             if (isPackageUsed()) {
-                                tvCountAdults.changeTextColor(R.color.orange_700)
-                                tvCountChildren.changeTextColor(R.color.orange_700)
+                                tvCountAdults.changeTextColor(uiR.color.orange_700)
+                                tvCountChildren.changeTextColor(uiR.color.orange_700)
                             }
                         } else {
-                            imgTypeTicket.changeDrawable(R.drawable.ic_pc_single_ticket)
+                            imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_single_ticket)
                             tvNamePackage.text = "Boleto ${
                                 if (countAdult > countChild) {
                                     tvCountAdults.text = if (isAdultUsed()) {
-                                        tvCountAdults.changeTextColor(R.color.orange_700)
+                                        tvCountAdults.changeTextColor(uiR.color.orange_700)
                                         "Usado"
                                     } else {
-                                        tvCountAdults.changeTextColor(R.color.green_700)
+                                        tvCountAdults.changeTextColor(uiR.color.green_700)
                                         "Disponible"
                                     }
                                     "Adulto"
                                 } else {
                                     tvCountAdults.text = if (isChildUsed()) {
-                                        tvCountAdults.changeTextColor(R.color.orange_700)
+                                        tvCountAdults.changeTextColor(uiR.color.orange_700)
                                         "Usado"
                                     } else {
-                                        tvCountAdults.changeTextColor(R.color.green_700)
+                                        tvCountAdults.changeTextColor(uiR.color.green_700)
                                         "Disponible"
                                     }
                                     "Infantil"
@@ -130,6 +131,8 @@ class PCCheckingToRedeemFragment :
                         }
                         loadRecyclerEvent(it.response!!)
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }

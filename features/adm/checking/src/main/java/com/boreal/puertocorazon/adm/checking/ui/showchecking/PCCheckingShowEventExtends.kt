@@ -5,7 +5,7 @@ import com.boreal.commonutils.extensions.changeTextColor
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
-import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.uisystem.R
 import com.boreal.puertocorazon.adm.checking.entity.PCCheckingEventFragmentEnum
 import com.boreal.puertocorazon.adm.checking.ui.scdetails.PCCheckingDetailsFragment
 import com.boreal.puertocorazon.adm.checking.ui.scredeem.PCCheckingRedeemFragment
@@ -48,7 +48,7 @@ fun PCCheckingShowEventFragment.initElements() {
                 integrator.setPrompt("Escaneo de ticket QR")
                 integrator.setBeepEnabled(true)
                 integrator.setOrientationLocked(true)
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+                integrator.setDesiredBarcodeFormats("QR_CODE_TYPES")
                 integrator.initiateScan()
             }
         }

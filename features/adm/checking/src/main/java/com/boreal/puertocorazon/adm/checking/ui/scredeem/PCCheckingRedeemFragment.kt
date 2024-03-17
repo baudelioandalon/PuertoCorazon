@@ -6,6 +6,8 @@ import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.uisystem.R as uiR
+import com.boreal.commonutils.R as commonR
 import com.boreal.puertocorazon.adm.checking.databinding.PcCheckingRedeemFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
@@ -21,7 +23,7 @@ class PCCheckingRedeemFragment :
 
     val adapterRecyclerRedeem by lazy {
         GAdapter<PcRedeemItemBinding, PCPackageTicketModel>(
-            R.layout.pc_redeem_item,
+            uiR.layout.pc_redeem_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCPackageTicketModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCPackageTicketModel,
@@ -38,15 +40,15 @@ class PCCheckingRedeemFragment :
 
                 bindingElement.apply {
                     model.apply {
-                        tvNamePackage.changeTextColor(R.color.gray_letter)
-                        tvNamePackage.changeTypeFace(R.font.avenir_medium)
-                        imgTypeTicket.changeDrawable(R.drawable.ic_pc_single_ticket)
-                        tvCountAdults.changeTypeFace(R.font.helvetica_neue_bold)
-                        tvCountAdults.changeTextColor(R.color.gray_letter)
-                        tvCountChildren.changeTextColor(R.color.gray_letter)
-                        tvCountChildren.changeTypeFace(R.font.helvetica_neue_bold)
+                        tvNamePackage.changeTextColor(uiR.color.gray_letter)
+                        tvNamePackage.changeTypeFace(commonR.font.avenir_medium)
+                        imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_single_ticket)
+                        tvCountAdults.changeTypeFace(commonR.font.helvetica_neue_bold)
+                        tvCountAdults.changeTextColor(uiR.color.gray_letter)
+                        tvCountChildren.changeTextColor(uiR.color.gray_letter)
+                        tvCountChildren.changeTypeFace(commonR.font.helvetica_neue_bold)
                         if (isPackage) {
-                            imgTypeTicket.changeDrawable(R.drawable.ic_pc_package_ticket)
+                            imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_package_ticket)
                             tvNamePackage.text = "Paquete $namePackage"
                             if (countChild > 0) {
                                 val countChildren = countChild.toFloat().toInt()
@@ -74,8 +76,8 @@ class PCCheckingRedeemFragment :
                                 tvCountAdults.hideView()
                             }
                             if (isPackageUsed()) {
-                                tvCountAdults.changeTextColor(R.color.gray_letter)
-                                tvCountChildren.changeTextColor(R.color.gray_letter)
+                                tvCountAdults.changeTextColor(uiR.color.gray_letter)
+                                tvCountChildren.changeTextColor(uiR.color.gray_letter)
                             }
                         } else {
                             tvNamePackage.text = "Boleto"
@@ -114,6 +116,8 @@ class PCCheckingRedeemFragment :
                         }
                         loadRecyclerEvent(it.response!!)
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }

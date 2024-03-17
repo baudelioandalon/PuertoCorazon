@@ -7,6 +7,14 @@ import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.adm.menu.R
+import com.boreal.puertocorazon.adm.addevent.R as admAddEventR
+import com.boreal.puertocorazon.adm.checking.R as admCheckingR
+import com.boreal.puertocorazon.showevent.R as showEventR
+import com.boreal.puertocorazon.uisystem.R as uiR
+import com.boreal.puertocorazon.payments.R as paymentsR
+import com.boreal.puertocorazon.adm.home.R as admHomeR
+import com.boreal.puertocorazon.maps.R as mapR
+import com.boreal.puertocorazon.ticket.R as ticketR
 
 fun PCAdmMenuFragment.initElements() {
     val navHostFragment =
@@ -17,7 +25,9 @@ fun PCAdmMenuFragment.initElements() {
         mainViewModel.hideSplash()
         findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.PCShowEventFragment, R.id.PCCartShoppingFragment, R.id.PCCheckingEventFragment -> {
+                showEventR.id.PCShowEventFragment,
+                paymentsR.id.PCCartShoppingFragment,
+                admCheckingR.id.PCCheckingEventFragment -> {
                     bottomMenu.hideView()
                 }
                 else -> {
@@ -31,20 +41,20 @@ fun PCAdmMenuFragment.initElements() {
         }
 
         btnCartShopping.onClick {
-            findNavController().navigate(R.id.pc_payment_graph)
+            findNavController().navigate(paymentsR.id.pc_payment_graph)
         }
 
         btnNewEvent.onClick {
-            findNavController().navigate(R.id.pc_add_event_graph)
+            findNavController().navigate(admAddEventR.id.pc_add_event_graph)
         }
 
         imgTicket.onClick {
             if (navController.currentDestination?.label == "PCTicketFragment") {
                 return@onClick
             }
-            imgHome.changeDrawable(R.drawable.ic_pc_home)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+            imgHome.changeDrawable(uiR.drawable.ic_pc_home)
+            imgTicket.changeDrawable(uiR.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(uiR.drawable.ic_pc_locations)
             mainViewModel.navigateToTicket()
         }
 
@@ -52,9 +62,9 @@ fun PCAdmMenuFragment.initElements() {
             if (navController.currentDestination?.label == "PCAdmHomeFragment") {
                 return@onClick
             }
-            imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+            imgHome.changeDrawable(uiR.drawable.ic_pc_home_selected)
+            imgTicket.changeDrawable(uiR.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(uiR.drawable.ic_pc_locations)
             mainViewModel.navigateToHome()
         }
 
@@ -62,31 +72,31 @@ fun PCAdmMenuFragment.initElements() {
             if (navController.currentDestination?.label == "PCMapFragment") {
                 return@onClick
             }
-            imgHome.changeDrawable(R.drawable.ic_pc_home)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
+            imgHome.changeDrawable(uiR.drawable.ic_pc_home)
+            imgTicket.changeDrawable(uiR.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(uiR.drawable.ic_pc_locations_selected)
             mainViewModel.navigateToMap()
         }
 
         mainViewModel.goToChecking = {
-            findNavController().navigate(R.id.pc_adm_checking_graph)
+            findNavController().navigate(admCheckingR.id.pc_adm_checking_graph)
         }
 
         mainViewModel.goToPayment = {
             onFragmentBackPressed(true)
-            findNavController().navigate(R.id.pc_payment_graph)
+            findNavController().navigate(paymentsR.id.pc_payment_graph)
         }
 
         mainViewModel.navToTicket = {
-            navController.navigate(R.id.pc_ticket_graph)
+            navController.navigate(ticketR.id.pc_ticket_graph)
         }
 
         mainViewModel.navToMap = {
-            navController.navigate(R.id.pc_map_graph)
+            navController.navigate(mapR.id.pc_map_graph)
         }
 
         mainViewModel.navToHome = {
-            navController.navigate(R.id.pc_adm_home_graph)
+            navController.navigate(admHomeR.id.pc_adm_home_graph)
         }
         drawMenu()
     }
@@ -95,17 +105,17 @@ fun PCAdmMenuFragment.initElements() {
 fun PCAdmMenuFragment.drawMenu() {
     binding.apply {
         if (navController.currentDestination?.label == "PCAdmHomeFragment") {
-            imgHome.changeDrawable(R.drawable.ic_pc_home_selected)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+            imgHome.changeDrawable(uiR.drawable.ic_pc_home_selected)
+            imgTicket.changeDrawable(uiR.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(uiR.drawable.ic_pc_locations)
         } else if (navController.currentDestination?.label == "PCTicketFragment") {
-            imgHome.changeDrawable(R.drawable.ic_pc_home)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket_selected)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations)
+            imgHome.changeDrawable(uiR.drawable.ic_pc_home)
+            imgTicket.changeDrawable(uiR.drawable.ic_pc_ticket_selected)
+            imgMap.changeDrawable(uiR.drawable.ic_pc_locations)
         } else if (navController.currentDestination?.label == "PCMapFragment") {
-            imgHome.changeDrawable(R.drawable.ic_pc_home)
-            imgTicket.changeDrawable(R.drawable.ic_pc_ticket)
-            imgMap.changeDrawable(R.drawable.ic_pc_locations_selected)
+            imgHome.changeDrawable(uiR.drawable.ic_pc_home)
+            imgTicket.changeDrawable(uiR.drawable.ic_pc_ticket)
+            imgMap.changeDrawable(uiR.drawable.ic_pc_locations_selected)
         }
     }
 }

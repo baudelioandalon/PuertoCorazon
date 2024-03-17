@@ -4,6 +4,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialogBinding
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.adm.checking.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.adm.checking.ui.selectredeem.PCSelectRedeemTicket
 import com.boreal.puertocorazon.core.constants.NONE
 import com.boreal.puertocorazon.core.domain.entity.event.getAddressLatLng
@@ -25,7 +26,7 @@ fun PCShowDetailTicket.initElements() {
             txtDateEvent.text = schedule.first().startTime.toFormat()
             if (!ticket.isPackage) {
                 btnSelectItems.hideView()
-                txtRedeem.text = getString(R.string.to_redeem_text)
+                txtRedeem.text = getString(uiR.string.to_redeem_text)
                 with(ConstraintSet()) {
                     clone(containerDetailsTicket)
                     connect(
@@ -58,13 +59,13 @@ fun PCShowDetailTicket.initElements() {
 
         btnToRedeem.onClick {
             CUBlurDialogBinding<PcQuestionDialogBinding>(
-                layout = R.layout.pc_question_dialog,
+                layout = uiR.layout.pc_question_dialog,
                 callback = { binding, dialogBlur ->
                     binding.apply {
                         txtTitle.text = "¿Redimir boleto?"
                         txtMessage.text = "Si continua, el boleto será\n" +
                                 "marcado como redimido"
-                        txtBtnCancel.text = getString(R.string.cancelar)
+                        txtBtnCancel.text = getString(uiR.string.cancelar)
                         txtBtnContinue.text = "Redimir"
                         btnCancel.onClick {
                             dialogBlur.dismissAllowingStateLoss()
@@ -149,7 +150,7 @@ fun PCShowDetailTicket.fillData() {
         ticket.apply {
             txtDateEvent.text = event.schedule.first().startTime.toFormat()
             if (isPackage) {
-                imgTypeTicket.changeDrawable(R.drawable.ic_pc_package_ticket)
+                imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_package_ticket)
                 tvNamePackage.text = namePackage
                 if (countChild > 0) {
                     val childAvailable = (countChild - getAttendedChild()).toInt()
@@ -177,27 +178,27 @@ fun PCShowDetailTicket.fillData() {
                     tvCountAdults.hideView()
                 }
                 if (isPackageUsed()) {
-                    tvCountAdults.changeTextColor(R.color.orange_700)
-                    tvCountChildren.changeTextColor(R.color.orange_700)
+                    tvCountAdults.changeTextColor(uiR.color.orange_700)
+                    tvCountChildren.changeTextColor(uiR.color.orange_700)
                 }
             } else {
-                imgTypeTicket.changeDrawable(R.drawable.ic_pc_single_ticket)
+                imgTypeTicket.changeDrawable(uiR.drawable.ic_pc_single_ticket)
                 tvNamePackage.text = "Boleto ${
                     if (countAdult > countChild) {
                         tvCountAdults.text = if (isAdultUsed()) {
-                            tvCountAdults.changeTextColor(R.color.orange_700)
+                            tvCountAdults.changeTextColor(uiR.color.orange_700)
                             "Usado"
                         } else {
-                            tvCountAdults.changeTextColor(R.color.green_700)
+                            tvCountAdults.changeTextColor(uiR.color.green_700)
                             "Disponible"
                         }
                         "Adulto"
                     } else {
                         tvCountAdults.text = if (isChildUsed()) {
-                            tvCountAdults.changeTextColor(R.color.orange_700)
+                            tvCountAdults.changeTextColor(uiR.color.orange_700)
                             "Usado"
                         } else {
-                            tvCountAdults.changeTextColor(R.color.green_700)
+                            tvCountAdults.changeTextColor(uiR.color.green_700)
                             "Disponible"
                         }
                         "Infantil"

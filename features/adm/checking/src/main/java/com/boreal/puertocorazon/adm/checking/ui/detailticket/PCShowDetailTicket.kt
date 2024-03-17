@@ -47,6 +47,8 @@ class PCShowDetailTicket(
                     )
                     closeFragment()
                 }
+
+                AFirestoreStatusRequest.NONE -> TODO()
             }
         }
     }
