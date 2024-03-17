@@ -9,12 +9,12 @@ import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.adm.menu.R
 import com.boreal.puertocorazon.adm.addevent.R as admAddEventR
 import com.boreal.puertocorazon.adm.checking.R as admCheckingR
-import com.boreal.puertocorazon.showevent.R as showEventR
-import com.boreal.puertocorazon.uisystem.R as uiR
-import com.boreal.puertocorazon.payments.R as paymentsR
 import com.boreal.puertocorazon.adm.home.R as admHomeR
 import com.boreal.puertocorazon.maps.R as mapR
+import com.boreal.puertocorazon.payments.R as paymentsR
+import com.boreal.puertocorazon.showevent.R as showEventR
 import com.boreal.puertocorazon.ticket.R as ticketR
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun PCAdmMenuFragment.initElements() {
     val navHostFragment =
@@ -30,6 +30,7 @@ fun PCAdmMenuFragment.initElements() {
                 admCheckingR.id.PCCheckingEventFragment -> {
                     bottomMenu.hideView()
                 }
+
                 else -> {
                     bottomMenu.showView()
                 }

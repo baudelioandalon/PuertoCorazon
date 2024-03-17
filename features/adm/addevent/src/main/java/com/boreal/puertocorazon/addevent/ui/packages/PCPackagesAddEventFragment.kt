@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.adm.addevent.R
 import com.boreal.puertocorazon.uisystem.R as uiR
-import com.boreal.puertocorazon.addevent.databinding.PcPackagesAddEventFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.databinding.PcPackagesAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.ui.packages.addpackage.PCAddPackage
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel

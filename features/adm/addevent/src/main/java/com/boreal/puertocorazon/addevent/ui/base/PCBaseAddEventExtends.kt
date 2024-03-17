@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.fragment.NavHostFragment
 import com.boreal.commonutils.extensions.*
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.adm.addevent.R
 import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 

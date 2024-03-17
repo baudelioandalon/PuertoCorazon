@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.puertocorazon.adm.menu.R
+import com.boreal.puertocorazon.showevent.R as showEventR
 import com.boreal.puertocorazon.adm.menu.databinding.PcAdmMenuFragmentBinding
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -19,7 +20,7 @@ class PCAdmMenuFragment :
         mainViewModel.eventSelected.observe(viewLifecycleOwner) {
             it?.let {
                 if (it.idEvent != "NONE") {
-                    findNavController().navigate(R.id.pc_show_event_graph)
+                    findNavController().navigate(showEventR.id.pc_show_event_graph)
                 }
             }
         }

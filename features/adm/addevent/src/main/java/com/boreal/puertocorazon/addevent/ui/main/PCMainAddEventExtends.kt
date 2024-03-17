@@ -7,12 +7,11 @@ import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 import com.boreal.puertocorazon.core.utils.onlyText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun PCMainAddEventFragment.initElements() {
     binding.apply {

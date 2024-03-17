@@ -3,12 +3,11 @@ package com.boreal.puertocorazon.addevent.ui.gallery
 import android.net.Uri
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.onClick
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageToUploadItemModel
 import com.boreal.puertocorazon.core.extension.addLinearHelper
 import com.boreal.puertocorazon.core.extension.scrollToPositionCentered
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun PCGalleryAddEventFragment.initElements() {
     binding.apply {
@@ -29,7 +28,7 @@ fun PCGalleryAddEventFragment.initElements() {
             ) {
                 tvErrorMessage.text = getString(uiR.string.select_photo_text)
                 return@onClick
-            }else if(viewModel.getMainImage() == Uri.EMPTY){
+            } else if (viewModel.getMainImage() == Uri.EMPTY) {
                 tvErrorMessage.text = getString(uiR.string.select_main_photo_text)
                 return@onClick
             }

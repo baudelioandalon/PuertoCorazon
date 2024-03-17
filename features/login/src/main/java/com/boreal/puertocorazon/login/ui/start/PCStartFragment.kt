@@ -106,6 +106,8 @@ class PCStartFragment :
                         viewModel.resetLoginData()
                         navigateToHome(authInfo.second)
                     }
+
+                    AFirestoreStatusRequest.NONE ->{}
                 }
             }
         }
@@ -138,6 +140,9 @@ class PCStartFragment :
                         )
                     }
                 }
+
+                AFirestoreStatusRequest.NONE -> {}
+                null -> {}
             }
         }
     }

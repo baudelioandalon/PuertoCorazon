@@ -44,6 +44,9 @@ class ALoginFragment :
                             viewModel.resetLoginData()
                             navigateToHome(authInfo.second)
                         }
+
+                        AFirestoreStatusRequest.NONE -> {
+                        }
                     }
                 }
             }
@@ -77,6 +80,9 @@ class ALoginFragment :
                             )
                         }
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
+                    null -> {}
                 }
             }
         }

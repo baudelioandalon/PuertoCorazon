@@ -9,6 +9,7 @@ import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.domain.entity.auth.PCTypeSession
 import com.boreal.puertocorazon.login.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.login.ui.start.PCStartFragment.Companion.REQ_GOOGLE
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
@@ -31,12 +32,12 @@ fun PCStartFragment.initAnimations() {
     binding.imgOne.startAnimation(
         AnimationUtils.loadAnimation(
             requireContext(),
-            R.anim.slide_right
+            uiR.anim.slide_right
         )
     )
-    binding.imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-    binding.imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-    binding.imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down))
+    binding.imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.fade_in))
+    binding.imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.fade_in))
+    binding.imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.slide_down))
 }
 
 

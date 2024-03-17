@@ -6,11 +6,13 @@ import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
+import com.boreal.puertocorazon.uisystem.R as uiR
+import com.boreal.puertocorazon.client.home.R
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
-import com.boreal.puertocorazon.home.databinding.PcClientHomeFragmentBinding
+import com.boreal.puertocorazon.client.home.databinding.PcClientHomeFragmentBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeEventItemBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcHomeServiceItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -22,7 +24,7 @@ class PCClientHomeFragment :
 
     val adapterRecyclerHomeEvent by lazy {
         GAdapter<PcHomeEventItemBinding, PCEventModel>(
-            R.layout.pc_home_event_item,
+            uiR.layout.pc_home_event_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCEventModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCEventModel,
@@ -50,7 +52,7 @@ class PCClientHomeFragment :
 
     val adapterRecyclerHomeService by lazy {
         GAdapter<PcHomeServiceItemBinding, String>(
-            R.layout.pc_home_service_item,
+            uiR.layout.pc_home_service_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<String>() {
                 override fun areItemsTheSame(
                     oldItem: String,
@@ -96,6 +98,8 @@ class PCClientHomeFragment :
                         loadRecyclerEvent(it.response!!)
 
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }

@@ -7,9 +7,9 @@ import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.changeDrawable
 import com.boreal.commonutils.extensions.changeImgColor
 import com.boreal.commonutils.utils.GAdapter
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.adm.addevent.R
 import com.boreal.puertocorazon.uisystem.R as uiR
-import com.boreal.puertocorazon.addevent.databinding.PcRequirementsAddEventFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.databinding.PcRequirementsAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.domain.entity.requirements.PCAllowedRequirementToShowModel
 import com.boreal.puertocorazon.uisystem.databinding.PcRequirementItemBinding

@@ -63,6 +63,8 @@ dependencies {
     implementation(project(":features:adm:home"))
     implementation(project(":features:adm:addevent"))
     implementation(project(":features:adm:checking"))
+    implementation(project(":features:maps"))
+    implementation(project(":features:ticket"))
     androidTestImplementation(Dependency.testAndroidJEspressoCore)
     androidTestImplementation(Dependency.testAndroidJunit)
     androidTestImplementation(Dependency.testAndroidRules)

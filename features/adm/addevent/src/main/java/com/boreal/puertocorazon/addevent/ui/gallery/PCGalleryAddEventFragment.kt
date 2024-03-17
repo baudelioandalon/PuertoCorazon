@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.uisystem.R as uiR
-import com.boreal.puertocorazon.addevent.databinding.PcGalleryAddEventFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.R
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
+import com.boreal.puertocorazon.uisystem.R as uiR
+import com.boreal.puertocorazon.adm.addevent.databinding.PcGalleryAddEventFragmentBinding
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageToUploadItemModel
 import com.boreal.puertocorazon.uisystem.databinding.PcGalleryToUploadItemBinding

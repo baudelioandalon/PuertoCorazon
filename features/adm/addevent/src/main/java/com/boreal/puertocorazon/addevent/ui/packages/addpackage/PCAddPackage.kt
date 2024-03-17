@@ -1,7 +1,7 @@
 package com.boreal.puertocorazon.addevent.ui.packages.addpackage
 
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.addevent.databinding.PcAddPackageBottomFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.R
+import com.boreal.puertocorazon.adm.addevent.databinding.PcAddPackageBottomFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.core.utils.bottomfragment.ABaseBottomSheetDialogFragment
 

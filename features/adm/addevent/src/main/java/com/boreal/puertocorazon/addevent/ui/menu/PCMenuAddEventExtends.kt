@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.boreal.commonutils.extensions.onClick
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.adm.addevent.R
 import com.boreal.puertocorazon.core.utils.clearText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

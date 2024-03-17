@@ -1,7 +1,7 @@
 package com.boreal.puertocorazon.addevent.ui.packages.addprice
 
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.addevent.databinding.PcAddPriceBottomFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.R
+import com.boreal.puertocorazon.adm.addevent.databinding.PcAddPriceBottomFragmentBinding
 import com.boreal.puertocorazon.core.utils.bottomfragment.ABaseBottomSheetDialogFragment
 
 class PCAddPriceTicket(

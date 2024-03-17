@@ -16,8 +16,6 @@ import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.globalmethod.randomNumberId
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.BuildConfig
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreRepository
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
@@ -31,6 +29,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 open class AUploadImageService : LifecycleService() {
 
@@ -267,6 +266,7 @@ open class AUploadImageService : LifecycleService() {
 
                     }
                 }
+
                 ACTION_STOP_SERVICE -> {
                     stopForeground(true)
                 }
@@ -520,6 +520,7 @@ open class AUploadImageService : LifecycleService() {
                                     }, builder.build()
                                 )
                             }
+
                             else -> {
                                 val progressUpload =
                                     (bytesTransferred.toFloat() / totalByteCount * 100).toInt()

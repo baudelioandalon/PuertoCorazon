@@ -4,8 +4,8 @@ import android.app.Activity
 import androidx.activity.result.contract.ActivityResultContracts
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.showToast
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.addevent.databinding.PcDetailsAddEventFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.R
+import com.boreal.puertocorazon.adm.addevent.databinding.PcDetailsAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.component.maputils.AMapUtilityActivity.Companion.NEW_LOCATION
 import com.boreal.puertocorazon.core.domain.entity.GeopointModel

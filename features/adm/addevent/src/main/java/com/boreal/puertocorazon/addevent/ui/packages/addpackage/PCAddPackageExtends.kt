@@ -4,11 +4,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.core.utils.onlyText
 import com.boreal.puertocorazon.core.utils.toNumber
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun PCAddPackage.initElements() {
     binding.apply {

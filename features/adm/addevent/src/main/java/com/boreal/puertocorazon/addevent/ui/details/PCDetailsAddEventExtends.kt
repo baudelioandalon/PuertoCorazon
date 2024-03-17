@@ -6,7 +6,7 @@ import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.adm.addevent.R
 import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.maputils.AMapUtilityActivity
 import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel

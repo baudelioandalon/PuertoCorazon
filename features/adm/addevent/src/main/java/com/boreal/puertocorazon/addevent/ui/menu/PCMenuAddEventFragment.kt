@@ -5,8 +5,8 @@ import android.net.Uri
 import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.notInvisibleIf
 import com.boreal.commonutils.extensions.showToast
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.addevent.databinding.PcMenuAddEventFragmentBinding
+import com.boreal.puertocorazon.adm.addevent.R
+import com.boreal.puertocorazon.adm.addevent.databinding.PcMenuAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.ui.services.AUploadImageService
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest

@@ -2,9 +2,9 @@ package com.boreal.puertocorazon.addevent.ui.base
 
 import androidx.navigation.NavController
 import com.boreal.commonutils.base.CUBaseFragment
-import com.boreal.puertocorazon.addevent.R
-import com.boreal.puertocorazon.addevent.databinding.PcBaseAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
+import com.boreal.puertocorazon.adm.addevent.R
+import com.boreal.puertocorazon.adm.addevent.databinding.PcBaseAddEventFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PCBaseAddEventFragment : CUBaseFragment<PcBaseAddEventFragmentBinding>() {

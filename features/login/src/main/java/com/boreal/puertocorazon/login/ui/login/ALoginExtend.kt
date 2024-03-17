@@ -9,6 +9,7 @@ import com.boreal.puertocorazon.core.domain.entity.auth.AAuthLoginEmailModel
 import com.boreal.puertocorazon.core.extension.isValidEmail
 import com.boreal.puertocorazon.core.extension.isValidPassword
 import com.boreal.puertocorazon.login.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun ALoginFragment.initElements() {
 
@@ -38,10 +39,10 @@ fun ALoginFragment.initElements() {
 
 fun ALoginFragment.initAnimations() {
     binding.apply {
-        imgOne.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-        imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left))
-        imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-        imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down))
+        imgOne.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.fade_in))
+        imgTwo.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.slide_left))
+        imgLogo.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.fade_in))
+        imgTop.startAnimation(AnimationUtils.loadAnimation(requireContext(), uiR.anim.slide_down))
     }
 }
 
