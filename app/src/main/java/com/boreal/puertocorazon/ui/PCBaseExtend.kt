@@ -5,13 +5,13 @@ import androidx.navigation.fragment.NavHostFragment
 import com.boreal.puertocorazon.R
 import com.boreal.puertocorazon.core.utils.DialogGenericFragment
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.boreal.puertocorazon.core.R as coreR
 
 fun PCBaseActivity.initElements() {
     binding.apply {
         splashDialog = DialogGenericFragment(
-            layout = R.layout.splash
+            layout = coreR.layout.splash
         ) { dialogBinding, dialogFragment ->
             dialogBinding.apply {
 

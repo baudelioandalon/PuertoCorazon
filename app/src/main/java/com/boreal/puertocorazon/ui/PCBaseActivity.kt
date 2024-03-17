@@ -2,7 +2,6 @@ package com.boreal.puertocorazon.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -10,6 +9,8 @@ import com.boreal.commonutils.base.CUBaseActivity
 import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialog
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.R
+import com.boreal.puertocorazon.adm.menu.R as admMenuR
+import com.boreal.puertocorazon.client.menu.R as clientMenuR
 import com.boreal.puertocorazon.core.databinding.SplashBinding
 import com.boreal.puertocorazon.core.utils.DialogGenericFragment
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
@@ -45,14 +46,14 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
-        screenSplash.setKeepOnScreenCondition{false}
+        screenSplash.setKeepOnScreenCondition { false }
     }
 
     override fun initView() {
         initElements()
         mainViewModel.goToHomeClient = {
-            navController.popBackStack(R.id.pc_client_menu_graph, false)
-            navController.popBackStack(R.id.pc_adm_menu_graph, false)
+            navController.popBackStack(clientMenuR.id.pc_client_menu_graph, false)
+            navController.popBackStack(admMenuR.id.pc_adm_menu_graph, false)
         }
         mainViewModel.splash = { showSplash ->
             if (this::splashDialog.isInitialized) {
@@ -71,8 +72,8 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
             showOutDialog()
         } else {
             navController.currentDestination?.apply {
-                if (id == R.id.PCClientMenuFragment ||
-                    id == R.id.PCAdmMenuFragment
+                if (id == clientMenuR.id.PCClientMenuFragment ||
+                    id == admMenuR.id.PCAdmMenuFragment
                 ) {
                     showOutDialog()
                 } else {
@@ -138,6 +139,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                                 ), success = false
                             )
                         }
+
                         "approved" -> {
                             mainViewModel.resultCheckout(
                                 canceled = false,
@@ -149,6 +151,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                                 success = true
                             )
                         }
+
                         "pending" -> {
                             mainViewModel.resultCheckout(
                                 canceled = false,
@@ -160,6 +163,7 @@ class PCBaseActivity : CUBaseActivity<PcBaseActivityBinding>() {
                                 success = true
                             )
                         }
+
                         else -> {
                             mainViewModel.resultCheckout(
                                 canceled = false,
