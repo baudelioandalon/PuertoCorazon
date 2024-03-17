@@ -4,6 +4,20 @@ buildscript {
         jcenter()
         mavenCentral()
         maven (url ="https://www.jitpack.io")
+        maven {
+            url = uri("https://storage.googleapis.com/r8-releases/raw")
+        }
+    }
+    allprojects {
+        repositories {
+            google()
+            jcenter()
+            mavenCentral()
+            maven (url ="https://www.jitpack.io")
+            maven {
+                url = uri("https://storage.googleapis.com/r8-releases/raw")
+            }
+        }
     }
     dependencies {
         classpath(Dependency.pluginKotlin)
@@ -12,7 +26,8 @@ buildscript {
         classpath(Dependency.pluginGmsGoogleServices)
         classpath(Dependency.pluginFirebaseCrashlyticsGradle)
         classpath(Dependency.realmGradle)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
+        classpath("com.android.tools:r8:8.2.24")
     }
 }
 

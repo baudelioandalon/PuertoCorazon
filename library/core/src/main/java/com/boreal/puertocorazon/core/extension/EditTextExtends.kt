@@ -9,6 +9,8 @@ import com.boreal.commonutils.component.roundablelayout.CURoundableLayout
 import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.core.R
+import com.boreal.puertocorazon.uisystem.R as uiR
+import com.boreal.commonutils.R as commonR
 
 
 fun EditText.isValidEmail() =
@@ -30,11 +32,11 @@ fun EditText.isPhoneValid(roundableLayout: CURoundableLayout) =
             .trimIndent().length < 10
     ) {
         roundableLayout.strokeLineColor =
-            ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+            ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
         false
     } else {
         roundableLayout.strokeLineColor =
-            ContextCompat.getColor(CUAppInit.getAppContext(), R.color.blue_edittext)
+            ContextCompat.getColor(CUAppInit.getAppContext(), uiR.color.blue_edittext)
         true
     }
 
@@ -45,21 +47,21 @@ fun EditText.isNameValid(roundableLayout: CURoundableLayout, messageErrorHolder:
     when {
         noSpacingText().isEmpty() -> {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+                ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
             messageErrorHolder.showView()
             messageErrorHolder.text = "Está vacio el nombre"
             false
         }
         noSpacingText().length < 3 -> {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+                ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
             messageErrorHolder.showView()
             messageErrorHolder.text = "El nombre es muy corto"
             false
         }
         else -> {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.blue_edittext)
+                ContextCompat.getColor(CUAppInit.getAppContext(), uiR.color.blue_edittext)
             messageErrorHolder.hideView()
             messageErrorHolder.text = ""
             true
@@ -70,21 +72,21 @@ fun EditText.isLastNameValid(roundableLayout: CURoundableLayout, messageErrorHol
     when {
         noSpacingText().isEmpty() -> {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+                ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
             messageErrorHolder.showView()
             messageErrorHolder.text = "Está vacio el apellido"
             false
         }
         noSpacingText().length < 2 -> {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+                ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
             messageErrorHolder.showView()
             messageErrorHolder.text = "El apellido es muy corto"
             false
         }
         else -> {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.blue_edittext)
+                ContextCompat.getColor(CUAppInit.getAppContext(), uiR.color.blue_edittext)
             messageErrorHolder.hideView()
             messageErrorHolder.text = ""
             true
@@ -94,18 +96,18 @@ fun EditText.isLastNameValid(roundableLayout: CURoundableLayout, messageErrorHol
 fun EditText.isEmailValid(roundableLayout: CURoundableLayout) =
     if (TextUtils.isEmpty(this.text.toString().trim().trimIndent())) {
         roundableLayout.strokeLineColor =
-            ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+            ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
         false
     } else {
         if (android.util.Patterns.EMAIL_ADDRESS.matcher(this.text.toString().trim().trimIndent())
                 .matches()
         ) {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.blue_edittext)
+                ContextCompat.getColor(CUAppInit.getAppContext(), uiR.color.blue_edittext)
             true
         } else {
             roundableLayout.strokeLineColor =
-                ContextCompat.getColor(CUAppInit.getAppContext(), R.color.redError)
+                ContextCompat.getColor(CUAppInit.getAppContext(), commonR.color.redError)
             false
         }
 

@@ -7,6 +7,7 @@ import com.boreal.puertocorazon.core.domain.entity.payment.PCTypeCard
 import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 import com.boreal.puertocorazon.payments.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun PCCartShoppingFragment.initElements() {
     binding.apply {
@@ -58,7 +59,7 @@ fun PCCartShoppingFragment.initCardAdapter(cardList: ArrayList<PCCardModel>) {
             tvAddCard.showView()
             tvNumberCard.hideView()
             tvAliasCard.hideView()
-            imgTypeCard.changeDrawable(R.drawable.ic_pc_more)
+            imgTypeCard.changeDrawable(uiR.drawable.ic_pc_more)
         } else {
             tvAddCard.hideView()
             tvNumberCard.showView()
@@ -74,10 +75,10 @@ private fun PCCartShoppingFragment.fillCard(card: PCCardModel) {
         imgTypeCard.changeDrawable(
             when (card.typeCard) {
                 PCTypeCard.VISA.name -> {
-                    R.drawable.ic_pc_visa
+                    uiR.drawable.ic_pc_visa
                 }
                 else -> {
-                    R.drawable.ic_pc_master_card
+                    uiR.drawable.ic_pc_master_card
                 }
             }
         )
@@ -87,7 +88,7 @@ private fun PCCartShoppingFragment.fillCard(card: PCCardModel) {
                 4
             ) else card.alias
 
-        tvNumberCard.text = getString(R.string.card_hidden, card.cardNumber.takeLast(4))
+        tvNumberCard.text = getString(uiR.string.card_hidden, card.cardNumber.takeLast(4))
     }
 
 }

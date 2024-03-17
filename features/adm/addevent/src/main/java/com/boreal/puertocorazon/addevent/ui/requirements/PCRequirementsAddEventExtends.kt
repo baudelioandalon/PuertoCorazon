@@ -2,7 +2,7 @@ package com.boreal.puertocorazon.addevent.ui.requirements
 
 import com.boreal.commonutils.extensions.resDrawableArray
 import com.boreal.commonutils.extensions.onClick
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R
 import com.boreal.puertocorazon.core.domain.entity.requirements.PCAllowedRequirementToShowModel
 import com.boreal.puertocorazon.core.utils.Constants.allowedAccesoriesList
 import com.boreal.puertocorazon.core.utils.Constants.allowedClothesList

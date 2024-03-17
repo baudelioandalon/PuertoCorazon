@@ -1,6 +1,5 @@
 package com.boreal.puertocorazon.showevent.ui.segallery
 
-import android.os.Bundle
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.boreal.commonutils.base.CUBaseFragment
@@ -10,6 +9,7 @@ import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageItemModel
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.showevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.showevent.databinding.PcShowEventGalleryFragmentBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcGalleryItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -21,7 +21,7 @@ class PCShowEventGalleryFragment :
 
     val adapterRecyclerImagesGallery by lazy {
         GAdapter<PcGalleryItemBinding, PCImageItemModel>(
-            R.layout.pc_gallery_item,
+            uiR.layout.pc_gallery_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCImageItemModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCImageItemModel,
@@ -38,7 +38,8 @@ class PCShowEventGalleryFragment :
                 bindingElement.apply {
                     imageUrl = model.imageUrl
                     containerGalleryFilled.onClick {
-                        showImageViewer(list.map { it.imageUrl ?: "" }.sortedBy { it != model.imageUrl ?: "" })
+                        showImageViewer(list.map { it.imageUrl ?: "" }
+                            .sortedBy { it != model.imageUrl ?: "" })
                     }
                 }
             }

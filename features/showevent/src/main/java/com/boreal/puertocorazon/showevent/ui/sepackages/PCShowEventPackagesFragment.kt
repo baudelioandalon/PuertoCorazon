@@ -12,6 +12,7 @@ import com.boreal.puertocorazon.core.domain.entity.shopping.PCShoppingModel
 import com.boreal.puertocorazon.core.utils.formatCurrency
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.showevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.showevent.databinding.PcShowEventPackagesFragmentBinding
 import com.boreal.puertocorazon.uisystem.databinding.PcPackageItemBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -30,7 +31,7 @@ class PCShowEventPackagesFragment :
 
     val adapterRecyclerPackages by lazy {
         GAdapter<PcPackageItemBinding, PCPackageModel>(
-            R.layout.pc_package_item,
+            uiR.layout.pc_package_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCPackageModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCPackageModel,

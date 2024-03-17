@@ -18,6 +18,7 @@ import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.showView
 import com.boreal.commonutils.utils.*
 import com.boreal.puertocorazon.core.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.constants.*
 import com.boreal.puertocorazon.core.databinding.ABottomSheetOptionsImageFragmentBinding
 import com.boreal.puertocorazon.core.utils.getImageBitmap
@@ -58,7 +59,7 @@ class ABottomSheetOptionsImageFragment(
 
     private fun showLoading() {
         mBinding.apply {
-            loadingImage.setAnimation(R.raw.last_loading)
+            loadingImage.setAnimation(uiR.raw.last_loading)
             loadingImage.repeatCount = LottieDrawable.INFINITE
             loadingImage.playAnimation()
             title.text = "Espere un momento, por favor..."
@@ -107,8 +108,10 @@ class ABottomSheetOptionsImageFragment(
 
     fun getPermissionsReadStorage() {
         val providerContext =
-            ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
-                permissionReadStorage)
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                requireActivity(),
+                permissionReadStorage
+            )
 
         if (providerContext) {
             requestAllPermissions(REQUEST_GALLERY_CAPTURE)

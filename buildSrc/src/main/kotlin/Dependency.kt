@@ -4,16 +4,15 @@ object Dependency {
     const val pluginKotlinKapt = "kotlin-kapt"
     const val pluginKotlinParcelize = "kotlin-parcelize"
     const val pluginSafeArgs = "androidx.navigation.safeargs.kotlin"
-    const val pluginGoogleService = "com.google.gms.google-services"
     const val pluginCrashlytics = "com.google.firebase.crashlytics"
     const val pluginRealm = "realm-android"
+    const val realmGradle = "io.realm:realm-gradle-plugin:10.13.3-transformer-api"
 
     const val appcompat = "androidx.appcompat:appcompat:${Version.appcompatVersion}"
-    const val realmGradle = "io.realm:realm-gradle-plugin:${Version.realmGradleVersion}"
     const val constraintlayout =
         "androidx.constraintlayout:constraintlayout:${Version.constraintlayoutVersion}"
     const val coreKtx = "androidx.core:core-ktx:${Version.coreKtxVersion}"
-    const val fragment = "androidx.fragment:fragment-ktx:${Version.fragmentVersion}"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Version.fragmentVersion}"
     const val navigationFragmentKtx =
         "androidx.navigation:navigation-fragment-ktx:${Version.navigationFragmentVersion}"
     const val navigationUiKtx =
@@ -22,8 +21,9 @@ object Dependency {
         "androidx.navigation:navigation-runtime-ktx:${Version.navigationRuntime}"
     const val kotlinxCoroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutineCoreVersion}"
+    const val kotlinxCoroutinesAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutineAndroidVersion}"
     const val material = "com.google.android.material:material:${Version.materialVersion}"
-    const val materialAlpha = "com.google.android.material:material:${Version.materialAlphaVersion}"
     const val playServicesAuth =
         "com.google.android.gms:play-services-auth:${Version.googleServicesVersion}"
     const val pluginBuildTools = "com.android.tools.build:gradle:${Version.buildToolsVersion}"
@@ -54,8 +54,8 @@ object Dependency {
     const val workRuntime = "androidx.work:work-runtime-ktx:${Version.workRuntimeVersion}"
     const val lifecycleRuntime =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycleRuntimeVersion}"
-    const val lifecycleExtensions =
-        "android.arch.lifecycle:extensions:${Version.lifecycleExtensionsVersion}"
+    const val lifecycleArchExtensions =
+        "android.arch.lifecycle:extensions:${Version.lifecycleArchExtensionsVersion}"
     const val activityKtx = "androidx.activity:activity-ktx:${Version.activityKtxVersion}"
     const val lifecycleKtx =
         "androidx.lifecycle:lifecycle-livedata-ktx:${Version.lifecycleKtxVersion}"
@@ -84,7 +84,9 @@ object Dependency {
     const val pluginFirebaseCrashlyticsGradle =
         "com.google.firebase:firebase-crashlytics-gradle:${Version.firebaseCrashlyticsGradle}"
     const val firebaseCrashlyticsKtx =
-        "com.google.firebase:firebase-crashlytics-ktx:${Version.firebaseCrashlytics}"
+        "com.google.firebase:firebase-crashlytics-ktx:${Version.firebaseCrashlyticsKtx}"
+    const val firebaseCrashlytics =
+        "com.google.firebase:firebase-crashlytics:${Version.firebaseCrashlytics}"
     const val firebaseAuth = "com.google.firebase:firebase-auth:${Version.firebaseAuthVersion}"
     const val firestoreKtx =
         "com.google.firebase:firebase-firestore-ktx:${Version.firestoreKtxVersion}"
@@ -114,9 +116,12 @@ object Dependency {
         "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:${Version.keyboardVisibilityVersion}"
 
     //Injection Dependencies
-    const val dagger2 = "com.google.dagger:dagger:${Version.dagger2Version}"
-    const val dagger2Compiler =
-        "com.google.dagger:dagger-compiler:${Version.dagger2CompilerVersion}"
+    const val daggerHilt = "com.google.dagger:hilt-android:${Version.daggerHiltVersion}"
+    const val daggerHiltCompiler =
+        "com.google.dagger:hilt-android-compiler:${Version.daggerHiltCompilerVersion}"
+    const val reactiveNetwork =
+        "com.github.pwittchen:reactivenetwork-rx2:${Version.reactiveNetworkVersion}"
+    const val reactiveWifi = "com.github.pwittchen:reactivewifi-rx2:${Version.reactiveWifiVersion}"
     const val koinAndroid = "io.insert-koin:koin-android:${Version.koinVersion}"
     const val koinCore = "io.insert-koin:koin-core:${Version.koinVersion}"
 
@@ -129,8 +134,10 @@ object Dependency {
         "org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:${Version.apacheOrgVersion}"
 
     //QR
-    const val saveQrUtils = "com.journeyapps:zxing-android-embedded:${Version.saveUtilsVersion}"
+    const val journeyAppsZxing =
+        "com.journeyapps:zxing-android-embedded:${Version.journeyAppsZxingVersion}"
     const val zxingCore = "com.google.zxing:core:${Version.zxingCoreVersion}"
+//    const val saveQrUtils = "com.journeyapps:zxing-android-embedded:${Version.saveUtilsVersion}"
 
     //Google Maps
     const val googleMap = "com.google.android.gms:play-services-maps:${Version.googleMapVersion}"
@@ -138,4 +145,44 @@ object Dependency {
     //Splash
     const val splashGoogle = "androidx.core:core-splashscreen:${Version.splashVersion}"
 
+    // sqlite
+    const val sqlite = "org.xerial:sqlite-jdbc:${Version.sqliteVersion}"
+
+    // room
+    const val roomCompiler = "androidx.room:room-compiler:${Version.roomCompilerVersion}"
+    const val room = "androidx.room:room-runtime:${Version.roomVersion}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Version.okHttpVersion}"
+    const val okHttpTls = "com.squareup.okhttp3:okhttp-tls:${Version.okHttpTlsVersion}"
+    const val okHttpLoggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Version.okHttpLoggingInterceptorVersion}"
+    const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Version.rxJava2Version}"
+    const val rxJava2Android = "io.reactivex.rxjava2:rxandroid:${Version.rxJava2AndroidVersion}"
+    const val jetbrainsStdlib =
+        "org.jetbrains.kotlin:kotlin-stdlib:${Version.jetbrainsStdlibVersion}"
+    const val sqliteAsset =
+        "com.readystatesoftware.sqliteasset:sqliteassethelper:${Version.sqliteAssetHelperVersion}"
+    const val datadog = "com.datadoghq:dd-sdk-android:${Version.datadogVersion}"
+
+
+    // anotations
+    const val annotations = "org.jetbrains:annotations:${Version.annotationsVersion}"
+
+    // legacy support
+    const val legacySupport = "androidx.legacy:legacy-support-v4:${Version.legacySupportVersion}"
+
+    // lifecycle
+    const val lifecycleExtensions =
+        "androidx.lifecycle:lifecycle-extensions:${Version.lifecycleExtensionsVersion}"
+
+    //Compose
+    const val composeUiUi = "androidx.compose.ui:ui:${Version.composeUiVersion}"
+    const val composeUiUtil = "androidx.compose.ui:ui-util:${Version.composeUiUtilVersion}"
+    const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Version.composeUiVersion}"
+    const val composeFoundation = "androidx.compose.foundation:foundation:${Version.composeUiVersion}"
+    const val composeMaterial = "androidx.compose.material:material:${Version.composeUiVersion}"
+    const val composeIconsCore = "androidx.compose.material:material-icons-core:${Version.composeUiVersion}"
+    const val composeIconsExtended = "androidx.compose.material:material-icons-extended:${Version.composeUiVersion}"
+    const val composeRuntimeLiveData= "androidx.compose.runtime:runtime-livedata:${Version.composeUiVersion}"
+    const val composeActivity= "androidx.activity:activity-compose:${Version.composeActivityVersion}"
+    const val composeLifecycleViewModel= "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.composeViewModelVersion}"
 }

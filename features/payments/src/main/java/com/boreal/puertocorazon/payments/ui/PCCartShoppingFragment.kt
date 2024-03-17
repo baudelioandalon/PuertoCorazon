@@ -145,6 +145,8 @@ class PCCartShoppingFragment : CUBaseFragment<PcCartShoppingBinding>() {
                         hideProgressBarCustom()
                         showToast(it.errorData ?: "")
                     }
+
+                    StatusRequestEnum.NONE -> {}
                 }
             }
         }

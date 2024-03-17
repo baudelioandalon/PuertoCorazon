@@ -12,6 +12,7 @@ apply {
 
 android {
     compileSdk = AndroidConfig.compileSdk
+    namespace = "com.boreal.puertocorazon.payments"
 
     defaultConfig {
         minSdk = AndroidConfig.minSdk
@@ -36,15 +37,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     buildFeatures {
         dataBinding = true
+        compose = true
+        buildConfig = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 }
 repositories {
@@ -79,7 +86,6 @@ dependencies {
     api(Dependency.koinAndroid)
 
     implementation(Dependency.material)
-    implementation(Dependency.materialAlpha)
     implementation(Dependency.viewmodelKtx)
     implementation(Dependency.workRuntime)
     implementation(Dependency.lifecycleRuntime)
@@ -103,4 +109,16 @@ dependencies {
         exclude(module = Dependency.googleMap)
         isTransitive = true
     }
+
+    //Compose
+    implementation(Dependency.composeUiUi)
+    implementation(Dependency.composeUiUtil)
+    implementation(Dependency.composeUiTooling)
+    implementation(Dependency.composeFoundation)
+    implementation(Dependency.composeMaterial)
+    implementation(Dependency.composeIconsCore)
+    implementation(Dependency.composeIconsExtended)
+    implementation(Dependency.composeRuntimeLiveData)
+    implementation(Dependency.composeActivity)
+    implementation(Dependency.composeLifecycleViewModel)
 }

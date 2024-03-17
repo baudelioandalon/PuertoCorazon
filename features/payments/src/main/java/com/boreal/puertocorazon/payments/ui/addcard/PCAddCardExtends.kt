@@ -7,6 +7,8 @@ import com.boreal.commonutils.component.dialogs.blurdialog.CUBlurDialogBinding
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.core.utils.*
 import com.boreal.puertocorazon.payments.R
+import com.boreal.puertocorazon.uisystem.R as uiR
+import com.boreal.puertocorazon.core.R as coreR
 import com.boreal.puertocorazon.uisystem.databinding.PcQuestionDialogBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,12 +40,12 @@ fun PCAddCardFragment.initElements() {
             }
             if (mainViewModel.getNameUser().isEmpty() && cardValid()) {
                 CUBlurDialogBinding<PcQuestionDialogBinding>(
-                    layout = R.layout.pc_question_dialog,
+                    layout = uiR.layout.pc_question_dialog,
                     callback = { binding, dialogBlur ->
                         binding.apply {
                             txtTitle.text = "¿El nombre está vacio, es tu mismo nombre de tarjeta?"
                             txtMessage.text = "Si, es mi mismo nombre"
-                            txtBtnCancel.text = getString(R.string.cancelar)
+                            txtBtnCancel.text = getString(coreR.string.cancelar)
                             txtBtnContinue.text = "Continuar"
                             btnCancel.onClick {
                                 dialogBlur.dismissAllowingStateLoss()

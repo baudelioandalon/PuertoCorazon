@@ -6,6 +6,7 @@ import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.addevent.databinding.PcPackagesAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.ui.packages.addpackage.PCAddPackage
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
@@ -20,7 +21,7 @@ class PCPackagesAddEventFragment : CUBaseFragment<PcPackagesAddEventFragmentBind
 
     val adapterRecyclerPackages by lazy {
         GAdapter<PcPackageToUploadItemBinding, PCPackageToUploadModel>(
-            R.layout.pc_package_to_upload_item,
+            uiR.layout.pc_package_to_upload_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCPackageToUploadModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCPackageToUploadModel,

@@ -13,7 +13,6 @@ import com.boreal.commonutils.extensions.setOnSingleClickListener
 import com.boreal.commonutils.extensions.showIf
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.core.BuildConfig
-import com.boreal.puertocorazon.core.R
 import com.boreal.puertocorazon.core.component.maputils.AMapUtilityActivity.Companion.NEW_LOCATION
 import com.boreal.puertocorazon.core.component.maputils.core.ApiInterface
 import com.boreal.puertocorazon.core.component.maputils.model.ListClass
@@ -32,7 +31,8 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
-import java.util.*
+import java.util.Locale
+import com.boreal.puertocorazon.uisystem.R as uiR
 
 fun AMapUtilityActivity.initElements() {
     binding.apply {
@@ -53,7 +53,7 @@ fun AMapUtilityActivity.initElements() {
                     isEmptyPlaces.hideView()
                     rvPlaces.adapter = adapter
                     adapter.submitList(getDataPlaces(it.toString()).predictions)
-                    if(it.toString().length < completeAddress.length){
+                    if (it.toString().length < completeAddress.length) {
                         completeAddress = ""
                         enableFinishButton(false)
                         return@launch
@@ -115,10 +115,10 @@ fun AMapUtilityActivity.enableFinishButton(enableOrNot: Boolean) {
     binding.apply {
         if (enableOrNot) {
             btnDone.backgroundColor =
-                ContextCompat.getColor(this@enableFinishButton, R.color.blue_location)
+                ContextCompat.getColor(this@enableFinishButton, uiR.color.blue_location)
         } else {
             btnDone.backgroundColor =
-                ContextCompat.getColor(this@enableFinishButton, R.color.gray_700)
+                ContextCompat.getColor(this@enableFinishButton, uiR.color.gray_700)
             completeAddress = ""
         }
         btnDone.isEnabled = enableOrNot
@@ -134,7 +134,7 @@ fun AMapUtilityActivity.createMarker(
     val marker = MarkerOptions()
         .position(location)
         .title(titleText)
-        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_marker))
+        .icon(BitmapDescriptorFactory.fromResource(uiR.drawable.ic_location_marker))
     if (removeAllMarkers) {
         mapUtility.clear()
     }

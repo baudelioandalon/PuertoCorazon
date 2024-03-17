@@ -8,6 +8,7 @@ import com.boreal.commonutils.extensions.changeDrawable
 import com.boreal.commonutils.extensions.changeImgColor
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.addevent.databinding.PcRequirementsAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.domain.entity.requirements.PCAllowedRequirementToShowModel
@@ -20,7 +21,7 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
 
     val adapterAllowedPeople by lazy {
         GAdapter<PcRequirementItemBinding, PCAllowedRequirementToShowModel>(
-            R.layout.pc_requirement_item,
+            uiR.layout.pc_requirement_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementToShowModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCAllowedRequirementToShowModel,
@@ -38,12 +39,12 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
                     imgInside.changeDrawable(model.imageResource)
                     if (model.selected) {
                         allowedElement.backgroundColor =
-                            ContextCompat.getColor(requireContext(), R.color.green_600)
-                        imgInside.changeImgColor(R.color.white)
+                            ContextCompat.getColor(requireContext(), uiR.color.green_600)
+                        imgInside.changeImgColor(uiR.color.white)
                     } else {
                         allowedElement.backgroundColor =
-                            ContextCompat.getColor(requireContext(), R.color.red_500)
-                        imgInside.changeImgColor(R.color.white)
+                            ContextCompat.getColor(requireContext(), uiR.color.red_500)
+                        imgInside.changeImgColor(uiR.color.white)
                     }
                     allowedElement.setOnClickListener {
                         model.selected = !model.selected
@@ -56,7 +57,7 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
 
     val adapterAllowedClothes by lazy {
         GAdapter<PcRequirementItemBinding, PCAllowedRequirementToShowModel>(
-            R.layout.pc_requirement_item,
+            uiR.layout.pc_requirement_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementToShowModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCAllowedRequirementToShowModel,
@@ -74,12 +75,12 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
                     imgInside.changeDrawable(model.imageResource)
                     if (model.selected) {
                         allowedElement.backgroundColor =
-                            ContextCompat.getColor(requireContext(), R.color.green_600)
-                        imgInside.changeImgColor(R.color.white)
+                            ContextCompat.getColor(requireContext(), uiR.color.green_600)
+                        imgInside.changeImgColor(uiR.color.white)
                     } else {
                         allowedElement.backgroundColor =
-                            ContextCompat.getColor(requireContext(), R.color.red_500)
-                        imgInside.changeImgColor(R.color.white)
+                            ContextCompat.getColor(requireContext(), uiR.color.red_500)
+                        imgInside.changeImgColor(uiR.color.white)
                     }
                     allowedElement.setOnClickListener {
                         model.selected = !model.selected
@@ -92,7 +93,7 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
 
     val adapterAllowedAccesories by lazy {
         GAdapter<PcRequirementItemBinding, PCAllowedRequirementToShowModel>(
-            R.layout.pc_requirement_item,
+            uiR.layout.pc_requirement_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCAllowedRequirementToShowModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCAllowedRequirementToShowModel,
@@ -110,12 +111,12 @@ class PCRequirementsAddEventFragment : CUBaseFragment<PcRequirementsAddEventFrag
                     imgInside.changeDrawable(model.imageResource)
                     if (model.selected) {
                         allowedElement.backgroundColor =
-                            ContextCompat.getColor(requireContext(), R.color.green_600)
-                        imgInside.changeImgColor(R.color.white)
+                            ContextCompat.getColor(requireContext(), uiR.color.green_600)
+                        imgInside.changeImgColor(uiR.color.white)
                     } else {
                         allowedElement.backgroundColor =
-                            ContextCompat.getColor(requireContext(), R.color.red_500)
-                        imgInside.changeImgColor(R.color.white)
+                            ContextCompat.getColor(requireContext(), uiR.color.red_500)
+                        imgInside.changeImgColor(uiR.color.white)
                     }
                     allowedElement.setOnClickListener {
                         model.selected = !model.selected

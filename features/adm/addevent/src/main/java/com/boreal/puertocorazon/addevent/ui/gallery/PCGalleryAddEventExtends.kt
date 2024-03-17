@@ -4,6 +4,7 @@ import android.net.Uri
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 import com.boreal.puertocorazon.core.domain.entity.gallery.PCImageToUploadItemModel
 import com.boreal.puertocorazon.core.extension.addLinearHelper
@@ -26,10 +27,10 @@ fun PCGalleryAddEventFragment.initElements() {
             if (adapterRecyclerImagesGallery.currentList.toMutableList()
                     .indexOfFirst { it.imageToUpdate == Uri.EMPTY } != -1
             ) {
-                tvErrorMessage.text = getString(R.string.select_photo_text)
+                tvErrorMessage.text = getString(uiR.string.select_photo_text)
                 return@onClick
             }else if(viewModel.getMainImage() == Uri.EMPTY){
-                tvErrorMessage.text = getString(R.string.select_main_photo_text)
+                tvErrorMessage.text = getString(uiR.string.select_main_photo_text)
                 return@onClick
             }
             viewModel.setGallery(adapterRecyclerImagesGallery.currentList.map { it.imageToUpdate })

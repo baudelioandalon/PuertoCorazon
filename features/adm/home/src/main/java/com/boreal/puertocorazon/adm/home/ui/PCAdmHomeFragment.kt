@@ -7,6 +7,7 @@ import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.adm.home.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.adm.home.databinding.PcAdmHomeFragmentBinding
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreStatusRequest
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
@@ -25,7 +26,7 @@ class PCAdmHomeFragment :
 
     val adapterRecyclerAdmHomeEvent by lazy {
         GAdapter<PcAdmHomeEventItemBinding, PCEventModel>(
-            R.layout.pc_adm_home_event_item,
+            uiR.layout.pc_adm_home_event_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCEventModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCEventModel,
@@ -56,7 +57,7 @@ class PCAdmHomeFragment :
 
     val adapterRecyclerHomeService by lazy {
         GAdapter<PcHomeServiceItemBinding, String>(
-            R.layout.pc_home_service_item,
+            uiR.layout.pc_home_service_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<String>() {
                 override fun areItemsTheSame(
                     oldItem: String,
@@ -99,6 +100,8 @@ class PCAdmHomeFragment :
                         loadRecyclerEvent(it.response!!)
 
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }

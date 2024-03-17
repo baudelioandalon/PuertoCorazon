@@ -1,7 +1,7 @@
 package com.boreal.puertocorazon.addevent.ui.packages.addprice
 
 import com.boreal.commonutils.extensions.onClick
-import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R
 
 fun PCAddPriceTicket.initElements() {
     binding.apply {

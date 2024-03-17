@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.maputils.AMapUtilityActivity
 import com.boreal.puertocorazon.core.domain.entity.event.PCScheduleModel
 import com.boreal.puertocorazon.core.utils.*
@@ -45,7 +46,7 @@ fun PCDetailsAddEventFragment.initElements() {
 
         roundableInitialDate.onClick {
             DatePickerDialog(
-                requireContext(), R.style.DatePickerTheme,
+                requireContext(), uiR.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, year)
                     cal.set(Calendar.MONTH, monthOfYear)
@@ -62,7 +63,7 @@ fun PCDetailsAddEventFragment.initElements() {
 
         roundableEndingDate.onClick {
             DatePickerDialog(
-                requireContext(), R.style.DatePickerTheme,
+                requireContext(), uiR.style.DatePickerTheme,
                 { _, year, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, year)
                     cal.set(Calendar.MONTH, monthOfYear)
@@ -80,7 +81,7 @@ fun PCDetailsAddEventFragment.initElements() {
 
         roundableStartHour.onClick {
             TimePickerDialog(
-                requireContext(), R.style.DatePickerTheme,
+                requireContext(), uiR.style.DatePickerTheme,
                 { _, hourOfDay, minute ->
                     val startHour =
                         "${if (hourOfDay.toString().length == 1) "0$hourOfDay" else hourOfDay}:${if (minute.toString().length == 1) "0$minute" else minute} ${if (hourOfDay > 11) "P.M." else "A.M."}"
@@ -92,7 +93,7 @@ fun PCDetailsAddEventFragment.initElements() {
         }
         roundableEndHour.onClick {
             TimePickerDialog(
-                requireContext(), R.style.DatePickerTheme,
+                requireContext(), uiR.style.DatePickerTheme,
                 { _, hourOfDay, minute ->
                     val endHour =
                         "${if (hourOfDay.toString().length == 1) "0$hourOfDay" else hourOfDay}:${if (minute.toString().length == 1) "0$minute" else minute} ${if (hourOfDay > 11) "P.M." else "A.M."}"

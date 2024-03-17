@@ -1,25 +1,20 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("realm-android")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
+//    id("realm-android")
 }
-
 apply {
     plugin(Dependency.pluginKotlinApp)
     plugin(Dependency.pluginKotlinKapt)
     plugin(Dependency.pluginKotlinParcelize)
     plugin(Dependency.pluginSafeArgs)
-    plugin(Dependency.pluginGoogleService)
-    plugin(Dependency.pluginCrashlytics)
 }
 
-repositories {
-    google()
-    jcenter()
-    mavenCentral()
-    maven(url = "https://www.jitpack.io")
-}
 
 android {
 
@@ -43,11 +38,11 @@ android {
     }
 
     compileSdk = AndroidConfig.compileSdk
+    namespace = AndroidConfig.namespace
 
     defaultConfig {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-        applicationId = AndroidConfig.appId
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
 
@@ -73,16 +68,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        dataBinding = true
+        compose = true
+        buildConfig = true
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
-    buildFeatures {
-        dataBinding = true
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 }
 
@@ -117,7 +117,6 @@ dependencies {
     api(Dependency.recyclerview)
 
     implementation(Dependency.material)
-    implementation(Dependency.materialAlpha)
     implementation(Dependency.viewmodelKtx)
     implementation(Dependency.workRuntime)
     implementation(Dependency.lifecycleRuntime)
@@ -139,8 +138,8 @@ dependencies {
     implementation(Dependency.firestore)
     implementation(Dependency.firestoreKtx)
 
-    implementation(Dependency.dagger2)
-    annotationProcessor(Dependency.dagger2Compiler)
+    implementation(Dependency.daggerHilt)
+    annotationProcessor(Dependency.daggerHiltCompiler)
     implementation(Dependency.dexter)
     implementation(Dependency.googleMap)
     implementation(Dependency.splashGoogle)
@@ -150,5 +149,17 @@ dependencies {
         exclude(module = Dependency.googleMap)
         isTransitive = true
     }
+
+    //Compose
+    implementation(Dependency.composeUiUi)
+    implementation(Dependency.composeUiUtil)
+    implementation(Dependency.composeUiTooling)
+    implementation(Dependency.composeFoundation)
+    implementation(Dependency.composeMaterial)
+    implementation(Dependency.composeIconsCore)
+    implementation(Dependency.composeIconsExtended)
+    implementation(Dependency.composeRuntimeLiveData)
+    implementation(Dependency.composeActivity)
+    implementation(Dependency.composeLifecycleViewModel)
 
 }

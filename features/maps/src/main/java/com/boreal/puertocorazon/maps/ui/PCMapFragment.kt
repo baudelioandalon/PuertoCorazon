@@ -7,6 +7,7 @@ import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.maps.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.maps.databinding.PcMapFragmentBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -57,6 +58,8 @@ class PCMapFragment : CUBaseFragment<PcMapFragmentBinding>(), OnMapReadyCallback
                         createMarket(it.response)
 
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }
@@ -74,7 +77,7 @@ class PCMapFragment : CUBaseFragment<PcMapFragmentBinding>(), OnMapReadyCallback
             val markerPuertoCorazon =
                 MarkerOptions().position(locationPuertoCorazon).title("Puerto Corazon").icon(
                     BitmapDescriptorFactory.fromResource(
-                        R.drawable.ic_location_marker
+                        uiR.drawable.ic_location_marker
                     )
                 )
             map.addMarker(marker)

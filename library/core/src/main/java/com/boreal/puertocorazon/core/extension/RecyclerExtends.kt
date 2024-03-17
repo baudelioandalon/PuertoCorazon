@@ -4,7 +4,7 @@ import android.content.res.Resources
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.boreal.puertocorazon.core.R
+import com.boreal.commonutils.R
 
 fun RecyclerView.addLinearHelper() = LinearSnapHelper().attachToRecyclerView(this)
 fun RecyclerView.scrollToPositionCentered(

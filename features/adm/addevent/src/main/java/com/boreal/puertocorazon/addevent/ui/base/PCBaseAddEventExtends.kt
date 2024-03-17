@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.fragment.NavHostFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 
 
@@ -29,7 +30,7 @@ fun PCBaseAddEventFragment.initElements() {
                 tvAdd.invisibleView()
                 imageView.invisibleView()
                 btnDeleteImage.showView()
-                tvTitle.changeTextColor(R.color.white)
+                tvTitle.changeTextColor(uiR.color.white)
             }.show(
                 requireActivity().supportFragmentManager,
                 "imageoption"
@@ -43,7 +44,7 @@ fun PCBaseAddEventFragment.initElements() {
             btnDeleteImage.invisibleView()
             tvAdd.showView()
             imageView.showView()
-            tvTitle.changeTextColor(R.color.black_700)
+            tvTitle.changeTextColor(uiR.color.black_700)
         }
     }
 }
@@ -56,7 +57,7 @@ fun PCBaseAddEventFragment.navigation() {
             when (destination.id) {
                 R.id.PCMenuAddEventFragment -> {
                     changeTitle("Nuevo Evento")
-                    imgBack.changeDrawable(R.drawable.ic_pc_close)
+                    imgBack.changeDrawable(uiR.drawable.ic_pc_close)
                     containerPhoto.hideView()
                     navigationAddEvent.showView()
                     btnDeleteImage.hideView()
@@ -70,12 +71,12 @@ fun PCBaseAddEventFragment.navigation() {
                 }
                 R.id.PCMainAddEventFragment -> {
                     changeTitle("Principal")
-                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    imgBack.changeDrawable(uiR.drawable.ic_pc_left_arrow)
                     resetConstraint()
                 }
                 R.id.PCGalleryAddEventFragment -> {
                     changeTitle("Galeria")
-                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    imgBack.changeDrawable(uiR.drawable.ic_pc_left_arrow)
                     containerPhoto.showView()
                     if (viewModel.getMainImage() != Uri.EMPTY) {
                         imgContainer.setImageURI(viewModel.getMainImage())
@@ -89,7 +90,7 @@ fun PCBaseAddEventFragment.navigation() {
                 }
                 R.id.PCPackagesAddEventFragment -> {
                     changeTitle("Paquetes")
-                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    imgBack.changeDrawable(uiR.drawable.ic_pc_left_arrow)
                     containerPhoto.showView()
                     btnDeleteImage.invisibleView()
                     tvTitleEvent.showView()
@@ -98,12 +99,12 @@ fun PCBaseAddEventFragment.navigation() {
                 }
                 R.id.PCDetailsAddEventFragment -> {
                     changeTitle("Detalles")
-                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    imgBack.changeDrawable(uiR.drawable.ic_pc_left_arrow)
                     resetConstraint()
                 }
                 R.id.PCRequirementsAddEventFragment -> {
-                    changeTitle(getString(R.string.requirements_text))
-                    imgBack.changeDrawable(R.drawable.ic_pc_left_arrow)
+                    changeTitle(getString(uiR.string.requirements_text))
+                    imgBack.changeDrawable(uiR.drawable.ic_pc_left_arrow)
                     resetConstraint()
                 }
                 else -> {

@@ -12,6 +12,7 @@ import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.invisibleView
 import com.boreal.commonutils.extensions.itemPercent
 import com.boreal.commonutils.extensions.showView
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.R
 import com.boreal.puertocorazon.core.databinding.CuRecyclerViewBinding
 
@@ -43,18 +44,13 @@ class CURecyclerView(
             0, 0
         ).apply {
             try {
-                binding.loadingImage.setAnimation(R.raw.last_loading)
+                binding.loadingImage.setAnimation(uiR.raw.last_loading)
                 binding.loadingImage.repeatCount = LottieDrawable.INFINITE
                 binding.loadingImage.playAnimation()
 
                 binding.recyclerViewInside.layoutManager =
                     LinearLayoutManager(
-                        context,
-                        if (getInt(
-                                R.styleable.CURoundableLayout_cu_cornerAll,
-                                0
-                            ) == LinearLayoutManager.VERTICAL
-                        ) LinearLayoutManager.VERTICAL else LinearLayoutManager.HORIZONTAL,
+                        context, LinearLayoutManager.VERTICAL,
                         false
                     )
             } finally {

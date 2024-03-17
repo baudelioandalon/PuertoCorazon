@@ -5,6 +5,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showToast
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.domain.entity.event.PCPackageToUploadModel
 import com.boreal.puertocorazon.core.utils.onlyText
 import com.boreal.puertocorazon.core.utils.toNumber
@@ -14,12 +15,12 @@ fun PCAddPackage.initElements() {
 
         txtNamePackage.doAfterTextChanged {
             countainerNamePackage.strokeLineColor =
-                ContextCompat.getColor(requireContext(), R.color.blue_edittext)
+                ContextCompat.getColor(requireContext(), uiR.color.blue_edittext)
         }
         btnAddPackage.onClick {
             if (txtNamePackage.onlyText().isEmpty()) {
                 countainerNamePackage.strokeLineColor =
-                    ContextCompat.getColor(requireContext(), R.color.red_600)
+                    ContextCompat.getColor(requireContext(), uiR.color.red_600)
                 return@onClick
             }
             if (txtPricePackage.getIntegers() == 0) {

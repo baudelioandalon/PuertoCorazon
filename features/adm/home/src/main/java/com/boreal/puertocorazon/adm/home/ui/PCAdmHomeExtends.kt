@@ -1,12 +1,9 @@
 package com.boreal.puertocorazon.adm.home.ui
 
 import androidx.navigation.fragment.findNavController
-import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.itemPercent
-import com.boreal.commonutils.extensions.onClick
-import com.boreal.commonutils.extensions.showView
-import com.boreal.puertocorazon.adm.home.R
 import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.ticket.R as uiR
 
 fun PCAdmHomeFragment.initElements() {
     binding.apply {
@@ -19,7 +16,7 @@ fun PCAdmHomeFragment.initElements() {
             itemPercent(.88)
         }
         mainViewModel.navToTicket = {
-            findNavController().navigate(R.id.pc_ticket_graph)
+            findNavController().navigate(uiR.id.pc_ticket_graph)
         }
     }
 }

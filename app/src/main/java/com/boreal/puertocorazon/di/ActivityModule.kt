@@ -1,4 +1,4 @@
-package com.boreal.puertocorazon.ui
+package com.boreal.puertocorazon.di
 
 import com.boreal.puertocorazon.core.data.datasource.GetEventDataSource
 import com.boreal.puertocorazon.core.data.datasource.GetHomeDataSource

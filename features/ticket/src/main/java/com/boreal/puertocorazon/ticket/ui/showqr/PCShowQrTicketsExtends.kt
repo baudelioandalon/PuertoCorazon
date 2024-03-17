@@ -5,13 +5,22 @@ import android.widget.AbsListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieDrawable
-import com.boreal.commonutils.extensions.*
-import com.boreal.puertocorazon.core.domain.entity.event.*
+import com.boreal.commonutils.extensions.changeDrawable
+import com.boreal.commonutils.extensions.changeTextColor
+import com.boreal.commonutils.extensions.hideView
+import com.boreal.commonutils.extensions.itemPercent
+import com.boreal.commonutils.extensions.onClick
+import com.boreal.commonutils.extensions.openMapsActivity
+import com.boreal.puertocorazon.core.domain.entity.event.PCEventModel
+import com.boreal.puertocorazon.core.domain.entity.event.getAddressLatLng
+import com.boreal.puertocorazon.core.domain.entity.event.getCity
+import com.boreal.puertocorazon.core.domain.entity.event.getDateEvent
+import com.boreal.puertocorazon.core.domain.entity.event.getHourEvent
 import com.boreal.puertocorazon.core.extension.addLinearHelper
 import com.boreal.puertocorazon.core.extension.generateQr
 import com.boreal.puertocorazon.core.extension.scrollToPositionCentered
 import com.boreal.puertocorazon.core.utils.getImageUri
-import com.boreal.puertocorazon.ticket.R
+import com.boreal.puertocorazon.uisystem.R
 
 fun PCShowQrTickets.initElements() {
     binding.apply {
@@ -67,6 +76,7 @@ fun PCShowQrTickets.initAdapter() {
                                 requestData()
                             }
                         }
+
                         else -> {}
                     }
                 }

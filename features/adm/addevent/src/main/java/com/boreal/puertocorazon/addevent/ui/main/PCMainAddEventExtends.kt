@@ -8,6 +8,7 @@ import com.boreal.commonutils.extensions.hideView
 import com.boreal.commonutils.extensions.onClick
 import com.boreal.commonutils.extensions.showView
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
 import com.boreal.puertocorazon.core.utils.onlyText
 import kotlinx.coroutines.delay
@@ -57,29 +58,29 @@ fun PCMainAddEventFragment.initElements() {
                 Pair(tvDescription.onlyText().isEmpty()) {
                     tvDescription.doAfterTextChanged {
                         roundableDescription.strokeLineColor =
-                            ContextCompat.getColor(requireContext(), R.color.blue_edittext)
+                            ContextCompat.getColor(requireContext(), uiR.color.blue_edittext)
                     }
                     showKeyboard(tvDescription)
                     roundableDescription.strokeLineColor =
-                        ContextCompat.getColor(requireContext(), R.color.red_400)
+                        ContextCompat.getColor(requireContext(), uiR.color.red_400)
                 },
                 Pair(tvSubtitle.onlyText().isEmpty()) {
                     tvSubtitle.doAfterTextChanged {
                         roundableSubtitle.strokeLineColor =
-                            ContextCompat.getColor(requireContext(), R.color.blue_edittext)
+                            ContextCompat.getColor(requireContext(), uiR.color.blue_edittext)
                     }
                     showKeyboard(tvSubtitle)
                     roundableSubtitle.strokeLineColor =
-                        ContextCompat.getColor(requireContext(), R.color.red_400)
+                        ContextCompat.getColor(requireContext(), uiR.color.red_400)
                 },
                 Pair(tvTitle.onlyText().isEmpty()) {
                     tvTitle.doAfterTextChanged {
                         roundableTitle.strokeLineColor =
-                            ContextCompat.getColor(requireContext(), R.color.blue_edittext)
+                            ContextCompat.getColor(requireContext(), uiR.color.blue_edittext)
                     }
                     showKeyboard(tvTitle)
                     roundableTitle.strokeLineColor =
-                        ContextCompat.getColor(requireContext(), R.color.red_400)
+                        ContextCompat.getColor(requireContext(), uiR.color.red_400)
                 }
             ).reversed()
 

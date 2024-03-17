@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.boreal.commonutils.application.CUAppInit
 import com.boreal.commonutils.globalmethod.randomNumberId
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.core.BuildConfig
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreRepository
 import com.boreal.puertocorazon.core.domain.entity.AFirestoreSetResponse
@@ -612,7 +613,7 @@ open class AUploadImageService : LifecycleService() {
     private fun createNotification(
         title: String,
         contentText: String,
-        icon: Int = R.drawable.ic_pc_logo,
+        icon: Int = uiR.drawable.ic_pc_logo,
         pendingIntent: Intent? = null,
         method: (notification: NotificationManagerCompat, builder: NotificationCompat.Builder, idNotification: Int) -> Unit
     ) {

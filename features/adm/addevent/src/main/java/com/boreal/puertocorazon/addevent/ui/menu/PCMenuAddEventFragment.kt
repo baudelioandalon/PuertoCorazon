@@ -67,6 +67,8 @@ class PCMenuAddEventFragment : CUBaseFragment<PcMenuAddEventFragmentBinding>() {
                             showToast("Error: ${error.messageError} -> ${error.reason} ${error.errorCode}")
                         }
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }

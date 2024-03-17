@@ -5,7 +5,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.boreal.commonutils.application.CUAppInit
-import com.boreal.puertocorazon.core.R
+import com.boreal.commonutils.R
 import com.boreal.puertocorazon.core.domain.entity.auth.AAuthModel
 import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat

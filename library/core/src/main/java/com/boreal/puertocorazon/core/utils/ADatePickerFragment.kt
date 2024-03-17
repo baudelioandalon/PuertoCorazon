@@ -6,7 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import com.boreal.puertocorazon.core.R
+import com.boreal.commonutils.R
 import java.util.*
 
 class ADatePickerFragment(val listener: (day: Int, month: Int, year: Int) -> Unit) :

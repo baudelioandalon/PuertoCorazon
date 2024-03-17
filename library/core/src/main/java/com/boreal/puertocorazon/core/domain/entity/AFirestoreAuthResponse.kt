@@ -1,6 +1,6 @@
 package com.boreal.puertocorazon.core.domain.entity
 
-import com.boreal.altemis.core.domain.entity.auth.AAuthenticationType
+import com.boreal.puertocorazon.core.domain.entity.auth.AAuthenticationType
 
 data class AFirestoreAuthResponse<M, R, E>(
     val authModel: M,

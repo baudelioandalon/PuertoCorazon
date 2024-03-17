@@ -7,6 +7,7 @@ import com.boreal.commonutils.base.CUBaseFragment
 import com.boreal.commonutils.extensions.*
 import com.boreal.commonutils.utils.GAdapter
 import com.boreal.puertocorazon.addevent.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.addevent.databinding.PcGalleryAddEventFragmentBinding
 import com.boreal.puertocorazon.addevent.viewmodel.AddEventViewModel
 import com.boreal.puertocorazon.core.component.bottomsheet.ABottomSheetOptionsImageFragment
@@ -20,7 +21,7 @@ class PCGalleryAddEventFragment : CUBaseFragment<PcGalleryAddEventFragmentBindin
 
     val adapterRecyclerImagesGallery by lazy {
         GAdapter<PcGalleryToUploadItemBinding, PCImageToUploadItemModel>(
-            R.layout.pc_gallery_to_upload_item,
+            uiR.layout.pc_gallery_to_upload_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCImageToUploadItemModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCImageToUploadItemModel,

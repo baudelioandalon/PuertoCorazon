@@ -14,6 +14,7 @@ import com.boreal.puertocorazon.core.utils.bottomfragment.ABaseBottomSheetDialog
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.ticket.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.ticket.databinding.PcShowQrBottomFragmentBinding
 import com.boreal.puertocorazon.ticket.viewmodel.ShowTicketsViewModel
 import com.boreal.puertocorazon.uisystem.databinding.PcQrItemBinding
@@ -28,7 +29,7 @@ class PCShowQrTickets(
 
     val adapterRecyclerQrs by lazy {
         GAdapter<PcQrItemBinding, PCPackageTicketModel>(
-            R.layout.pc_qr_item,
+            uiR.layout.pc_qr_item,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCPackageTicketModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCPackageTicketModel,
@@ -89,6 +90,8 @@ class PCShowQrTickets(
                             setData(it.response ?: PCEventModel())
                         }
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }
@@ -113,6 +116,9 @@ class PCShowQrTickets(
                         )
                         binding.recyclerViewQrs.smoothScrollToPosition(mainViewModel.getAllTicketsClientFiltered(model).indexOfFirst { it.idTicket == lastItemId })
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
+                    AFirestoreStatusRequest.LOADING -> {}
                 }
             }
         }

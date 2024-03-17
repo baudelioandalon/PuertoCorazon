@@ -13,6 +13,7 @@ import com.boreal.puertocorazon.core.domain.entity.payment.PCPackageTicketModel
 import com.boreal.puertocorazon.core.utils.corefirestore.errorhandler.CUFirestoreErrorEnum
 import com.boreal.puertocorazon.core.viewmodel.PCMainViewModel
 import com.boreal.puertocorazon.ticket.R
+import com.boreal.puertocorazon.uisystem.R as uiR
 import com.boreal.puertocorazon.ticket.databinding.PcTicketFragmentBinding
 import com.boreal.puertocorazon.ticket.ui.showqr.PCShowQrTickets
 import com.boreal.puertocorazon.uisystem.databinding.PcItemTicketBinding
@@ -25,7 +26,7 @@ class PCTicketFragment :
 
     val adapterRecyclerTicketsEvents by lazy {
         GAdapter<PcItemTicketBinding, PCPackageTicketModel>(
-            R.layout.pc_item_ticket,
+            uiR.layout.pc_item_ticket,
             AsyncDifferConfig.Builder(object : DiffUtil.ItemCallback<PCPackageTicketModel>() {
                 override fun areItemsTheSame(
                     oldItem: PCPackageTicketModel,
@@ -106,6 +107,8 @@ class PCTicketFragment :
                         }
                         loadRecyclerEvent(it.response!!)
                     }
+
+                    AFirestoreStatusRequest.NONE -> {}
                 }
             }
         }
